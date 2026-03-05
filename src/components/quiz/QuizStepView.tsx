@@ -419,13 +419,14 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
     return () => clearInterval(interval);
   }, [increment]);
 
-  useEffect(() => {
-    if (progress >= 100 && !hasAdvanced.current) {
-      hasAdvanced.current = true;
-      const timer = setTimeout(() => onNext(), 800);
-      return () => clearTimeout(timer);
-    }
-  }, [progress, onNext]);
+  // TODO: re-enable auto-advance after editing
+  // useEffect(() => {
+  //   if (progress >= 100 && !hasAdvanced.current) {
+  //     hasAdvanced.current = true;
+  //     const timer = setTimeout(() => onNext(), 800);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [progress, onNext]);
 
   return (
     <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
