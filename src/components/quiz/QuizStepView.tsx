@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
+import ceoImage from "@/assets/ceo-locagora.png";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
@@ -79,28 +80,52 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   if (step.type === "interstitial") {
     return (
       <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
-        <div className="max-w-2xl w-full text-center space-y-10 animate-fade-in">
-          <div className="w-16 h-16 mx-auto rounded-full bg-primary/15 flex items-center justify-center animate-float">
-            <Sparkles className="w-8 h-8 text-primary" />
-          </div>
-          <h2 className="font-heading font-bold text-xl md:text-3xl leading-tight text-foreground px-4">
-            {step.title}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="rounded-[10px] glass-card p-5 space-y-3">
-                <div className="w-10 h-10 rounded-full bg-primary/10 mx-auto flex items-center justify-center">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
-                </div>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed">
-                  "Depoimento de franqueado #{i}"
-                </p>
+        <div className="max-w-3xl w-full animate-fade-in">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            {/* CEO Photo */}
+            <div className="relative shrink-0">
+              <div className="w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_40px_rgba(34,197,94,0.15)]">
+                <img
+                  src={ceoImage}
+                  alt="CEO LocaGora"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
-            ))}
+              <div className="absolute -bottom-3 -right-3 w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg">
+                <CheckCircle2 className="w-5 h-5 text-primary-foreground" />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="text-center md:text-left space-y-5 flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-xs font-heading font-bold text-primary uppercase tracking-wider">Perfil compatível</span>
+              </div>
+
+              <h2 className="font-heading font-black text-xl md:text-3xl leading-tight text-foreground">
+                {step.title}
+              </h2>
+
+              {step.subtitle && (
+                <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
+                  {step.subtitle}
+                </p>
+              )}
+
+              <div className="flex flex-wrap justify-center md:justify-start gap-3 pt-2">
+                {["✓ Alta rentabilidade", "✓ Suporte completo", "✓ Retorno rápido"].map((item) => (
+                  <span key={item} className="text-xs font-body text-primary/90 bg-primary/5 border border-primary/10 rounded-full px-3 py-1.5">
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              <CTAButton onClick={onNext} className="px-10 py-5 mt-2" showArrow>
+                CONTINUAR
+              </CTAButton>
+            </div>
           </div>
-          <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
-            CONTINUAR
-          </CTAButton>
         </div>
       </div>
     );
