@@ -197,8 +197,9 @@ export const macroStepLabels: Record<number, string> = {
   2: "Seus dados",
   3: "Qualificação",
   4: "Perfil",
-  5: "Simulação",
-  6: "Resultado",
+  5: "Investimento",
+  6: "Simulação",
+  7: "Resultado",
 };
 
 // Business scenarios (2, 5, 10, 20 motos)
