@@ -18,7 +18,6 @@ interface QuizStepViewProps {
 
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
-  const [formData, setFormData] = useState({ nome: "", email: "", whatsapp: "" });
 
   useEffect(() => {
     if (step.autoAdvanceMs) {
