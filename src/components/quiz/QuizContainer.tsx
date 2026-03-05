@@ -24,8 +24,14 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [isTransitioning]);
 
   const handleNext = useCallback(() => {
+    // Investment filter: < 200k skips calculator, goes to loading
+    if (currentStep === 10 && answers[10] === "menos_200k") {
+      // Skip calculator (step 11), go directly to loading (step 12)
+      goToStep(12);
+      return;
+    }
     goToStep(currentStep + 1);
-  }, [currentStep, goToStep]);
+  }, [currentStep, answers, goToStep]);
 
   const handleAnswer = useCallback((value: string) => {
     setAnswers((prev) => ({ ...prev, [currentStep]: value }));
@@ -36,7 +42,8 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         const step = quizSteps.find((s) => s.id === currentStep);
-        if (step?.type === "welcome" || answers[currentStep]) {
+        if (!step) return;
+        if (step.type === "vsl" || step.type === "welcome" || answers[currentStep]) {
           handleNext();
         }
       }
@@ -49,7 +56,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     <div className="relative overflow-hidden bg-background">
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
-      {/* Main content area */}
       <div className="md:ml-16">
         <div
           className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -60,6 +66,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
               key={step.id}
               step={step}
               answer={answers[step.id]}
+              answers={answers}
               onAnswer={handleAnswer}
               onNext={handleNext}
               isFirst={step.id === 1}
