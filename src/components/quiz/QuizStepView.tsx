@@ -5,6 +5,7 @@ import { QuizStepData, motoScenarios, MotoScenario } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, Play, CheckCircle2, Sparkles, MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
+import PhoneInput from "./PhoneInput";
 
 
 interface QuizStepViewProps {
@@ -19,7 +20,7 @@ interface QuizStepViewProps {
 
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
-
+  const [validationError, setValidationError] = useState("");
   useEffect(() => {
     if (step.autoAdvanceMs) {
       const timer = setTimeout(() => onNext(), step.autoAdvanceMs);
@@ -227,25 +228,78 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
           </div>
         )}
 
-        {step.type === "text" && (
+        {step.type === "text" && step.inputType === "tel" && (
           <div className="space-y-5">
-            <input
-              type={step.inputType || "text"}
+            <PhoneInput
               value={localText}
-              onChange={(e) => setLocalText(e.target.value)}
-              onBlur={() => { if (localText) onAnswer(localText); }}
-              placeholder={step.placeholder || "Digite aqui..."}
-              className="w-full h-14 px-5 rounded-[10px] bg-card card-border text-foreground text-base font-body placeholder:text-muted-foreground/60 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && localText) {
-                  onAnswer(localText);
-                  onNext();
-                }
+              onChange={(val) => { setLocalText(val); setValidationError(""); }}
+              onSubmit={() => {
+                onAnswer(localText);
+                onNext();
               }}
             />
+            {validationError && (
+              <p className="text-sm text-destructive font-body">{validationError}</p>
+            )}
             <CTAButton
               onClick={() => {
-                if (localText) onAnswer(localText);
+                if (!localText || localText.replace(/\D/g, "").length < 10) {
+                  setValidationError("Informe um número de telefone válido.");
+                  return;
+                }
+                onAnswer(localText);
+                onNext();
+              }}
+              disabled={!localText && step.required}
+              className="px-10 py-4"
+              showArrow
+            >
+              CONTINUAR
+            </CTAButton>
+          </div>
+        )}
+
+        {step.type === "text" && step.inputType !== "tel" && (
+          <div className="space-y-5">
+            <div className="space-y-1.5">
+              <input
+                type={step.inputType || "text"}
+                value={localText}
+                onChange={(e) => { setLocalText(e.target.value); setValidationError(""); }}
+                onBlur={() => { if (localText) onAnswer(localText); }}
+                placeholder={step.placeholder || "Digite aqui..."}
+                className={cn(
+                  "w-full h-14 px-5 rounded-[10px] bg-card card-border text-foreground text-base font-body placeholder:text-muted-foreground/60 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all",
+                  validationError && "border-destructive/60 focus:border-destructive/60 focus:ring-destructive/30"
+                )}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && localText) {
+                    if (step.inputType === "email") {
+                      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                      if (!emailRegex.test(localText.trim())) {
+                        setValidationError("Informe um e-mail válido.");
+                        return;
+                      }
+                    }
+                    onAnswer(localText.trim());
+                    onNext();
+                  }
+                }}
+              />
+              {validationError && (
+                <p className="text-sm text-destructive font-body">{validationError}</p>
+              )}
+            </div>
+            <CTAButton
+              onClick={() => {
+                if (step.inputType === "email") {
+                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                  if (!emailRegex.test(localText.trim())) {
+                    setValidationError("Informe um e-mail válido.");
+                    return;
+                  }
+                }
+                if (localText) onAnswer(localText.trim());
                 onNext();
               }}
               disabled={!localText && step.required}
