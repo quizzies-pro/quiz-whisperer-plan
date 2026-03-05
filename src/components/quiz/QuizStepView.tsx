@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import logoLocagora from "@/assets/logo-locagora.png";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
@@ -36,6 +37,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     return (
       <div className="h-screen w-full relative flex items-center justify-center px-4">
         <div className="relative z-10 max-w-3xl w-full space-y-6 animate-fade-in text-center py-8">
+          <img src={logoLocagora} alt="LocaGora" className="h-12 md:h-16 mx-auto object-contain" />
           <h1 className="font-heading font-black text-2xl md:text-[2.5rem] leading-[1.15] text-white drop-shadow-lg">
             <span className="text-primary">Comece a lucrar</span> já no primeiro mês
             <span className="block mt-1">com a franquia mais segura do Brasil</span>
