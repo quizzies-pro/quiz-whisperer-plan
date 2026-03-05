@@ -44,7 +44,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
             <span className="block">com a franquia mais segura do Brasil</span>
           </h1>
 
-          <p className="text-sm md:text-[2rem] text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-base text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
             Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa
             <span className="block">do país: alugue motos para entregadores do iFood e Ubers.</span>
           </p>
@@ -59,7 +59,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
             </div>
           </div>
 
-          <p className="text-sm md:text-[2rem] text-foreground/60 font-body max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-base text-foreground/60 font-body max-w-xl mx-auto leading-relaxed">
             Encontramos seus primeiros clientes e facilitamos seu investimento para
             <span className="block">que você comece a lucrar com sua empresa no menor tempo possível</span>
           </p>
