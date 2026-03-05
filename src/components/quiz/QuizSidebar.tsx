@@ -22,9 +22,9 @@ const QuizSidebar = ({ currentStep, answeredSteps }: QuizSidebarProps) => {
   const progressPercent = (completedCount / (totalSteps - 1)) * 100;
 
   return (
-    <div className="fixed right-0 top-0 h-screen w-1.5 z-50 bg-muted/20">
+    <div className="fixed right-0 top-0 h-screen w-[3px] z-50 bg-muted/10 pointer-events-none">
       <div
-        className="w-full bg-primary rounded-b-full transition-all duration-700 ease-out progress-glow"
+        className="w-full bg-primary/80 rounded-b-full transition-all duration-1000 ease-out"
         style={{ height: `${progressPercent}%` }}
       />
     </div>
