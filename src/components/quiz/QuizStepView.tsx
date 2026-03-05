@@ -35,7 +35,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-[70px] pb-[70px]">
+      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-[70px] pb-[70px] overflow-y-auto scrollbar-none">
         <div className="relative z-10 max-w-4xl w-full space-y-5 md:space-y-6 animate-fade-in text-center">
           <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-16 mx-auto object-contain" />
 
@@ -77,7 +77,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── Interstitial ──
   if (step.type === "interstitial") {
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4">
+      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
         <div className="max-w-2xl w-full text-center space-y-10 animate-fade-in">
           <div className="w-16 h-16 mx-auto rounded-full bg-primary/15 flex items-center justify-center animate-float">
             <Sparkles className="w-8 h-8 text-primary" />
@@ -113,7 +113,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── Loading ──
   if (step.type === "loading") {
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4">
+      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
         <div className="max-w-md w-full text-center space-y-10 animate-fade-in">
           <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
           <LoadingAnimation />
@@ -132,7 +132,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     const scenario = motoScenarios[selectedScenarioIdx] || motoScenarios[2];
 
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto py-12">
+      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none py-12">
         <div className="max-w-2xl w-full space-y-8 animate-fade-in">
           <div className="text-center space-y-4">
             <div className="w-16 h-16 mx-auto rounded-full bg-primary/15 flex items-center justify-center animate-pulse-green">
@@ -174,7 +174,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
   // ── Default: Multiple Choice / Text ──
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4">
+    <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-xl w-full space-y-8 animate-fade-in">
         <div className="space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl leading-tight text-foreground">
@@ -269,7 +269,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
   const scenario = motoScenarios[selectedIdx] || motoScenarios[2];
 
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4">
+    <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-2xl w-full space-y-8 animate-fade-in">
         <div className="text-center space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
