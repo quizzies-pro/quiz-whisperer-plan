@@ -173,7 +173,6 @@ export const quizSteps: QuizStepData[] = [
     id: 12,
     title: "Analisando seu perfil...",
     type: "loading",
-    autoAdvanceMs: 6000,
     macroStep: 5,
   },
   {

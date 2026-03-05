@@ -19,9 +19,9 @@ interface QuizStepViewProps {
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
 
-  // Auto-advance for interstitial / loading
+  // Auto-advance (only when autoAdvanceMs is set)
   useEffect(() => {
-    if (step.autoAdvanceMs && (step.type === "interstitial" || step.type === "loading")) {
+    if (step.autoAdvanceMs) {
       const timer = setTimeout(() => onNext(), step.autoAdvanceMs);
       return () => clearTimeout(timer);
     }
