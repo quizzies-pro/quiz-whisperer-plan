@@ -417,12 +417,6 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (done) {
-      const timer = setTimeout(() => onNext(), 1200);
-      return () => clearTimeout(timer);
-    }
-  }, [done, onNext]);
 
   return (
     <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
