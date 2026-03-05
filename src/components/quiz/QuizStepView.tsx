@@ -35,43 +35,38 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex flex-col">
-        {/* Logo no topo */}
-        <div className="pt-10 md:pt-16 flex justify-center animate-fade-in">
-          <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-[70px] object-contain" />
-        </div>
+      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-8 md:pt-12">
+        <div className="relative z-10 max-w-4xl w-full space-y-5 md:space-y-6 animate-fade-in text-center">
+          <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-16 mx-auto object-contain" />
 
-        {/* Conteúdo centralizado */}
-        <div className="flex-1 flex items-center justify-center px-4">
-          <div className="relative z-10 max-w-4xl w-full space-y-5 md:space-y-7 animate-fade-in text-center -mt-8 md:-mt-12">
-            <h1 className="font-heading font-extrabold text-[1.4rem] sm:text-[1.8rem] md:text-[2.5rem] lg:text-[3rem] leading-[1.2]">
-              <span className="text-primary block">Comece a lucrar já no primeiro mês</span>
-              <span className="block text-foreground font-black mt-1">com a franquia mais segura do Brasil</span>
-            </h1>
-            <p className="text-[13px] md:text-[15px] text-foreground/60 font-body max-w-xl mx-auto leading-relaxed tracking-wide">
-              Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa
-              <br />do país: alugue motos para entregadores do iFood e Ubers.
-            </p>
+          <h1 className="font-heading font-extrabold text-[2rem] sm:text-[2.4rem] md:text-[3.2rem] leading-[1.08] tracking-[-0.02em] text-foreground">
+            <span className="text-primary block">Comece a lucrar já no primeiro mês</span>
+            <span className="block">com a franquia mais segura do Brasil</span>
+          </h1>
 
-            {/* Video placeholder */}
-            <div className="relative aspect-video w-full max-w-[680px] mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40 bg-card/60 backdrop-blur-sm">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <div className="w-14 h-14 md:w-[68px] md:h-[68px] rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
-                  <Play className="w-6 h-6 md:w-8 md:h-8 text-primary ml-0.5" />
-                </div>
-                <span className="text-xs text-muted-foreground font-body">Vídeo de apresentação</span>
+          <p className="text-sm md:text-[2rem] text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
+            Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa
+            <span className="block">do país: alugue motos para entregadores do iFood e Ubers.</span>
+          </p>
+
+          {/* Video placeholder */}
+          <div className="relative aspect-video w-full max-w-[680px] mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40 bg-card/60 backdrop-blur-sm">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <div className="w-14 h-14 md:w-[68px] md:h-[68px] rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
+                <Play className="w-6 h-6 md:w-8 md:h-8 text-primary ml-0.5" />
               </div>
+              <span className="text-xs text-muted-foreground font-body">Vídeo de apresentação</span>
             </div>
-
-            <p className="text-[13px] md:text-[15px] text-foreground/50 font-body max-w-lg mx-auto leading-relaxed">
-              Encontramos seus primeiros clientes e facilitamos seu investimento para
-              <br />que você comece a lucrar com sua empresa no menor tempo possível
-            </p>
-
-            <CTAButton onClick={onNext} className="text-sm md:text-base px-12 py-4 md:px-16 md:py-5 font-heading font-bold tracking-wider">
-              QUERO CONHECER A LOCAGORA
-            </CTAButton>
           </div>
+
+          <p className="text-sm md:text-[2rem] text-foreground/60 font-body max-w-xl mx-auto leading-relaxed">
+            Encontramos seus primeiros clientes e facilitamos seu investimento para
+            <span className="block">que você comece a lucrar com sua empresa no menor tempo possível</span>
+          </p>
+
+          <CTAButton onClick={onNext} className="text-sm md:text-base px-12 py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
+            QUERO CONHECER A LOCAGORA
+          </CTAButton>
         </div>
       </div>
     );
