@@ -77,7 +77,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── Interstitial ──
   if (step.type === "interstitial") {
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4">
+      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
         <div className="max-w-2xl w-full text-center space-y-10 animate-fade-in">
           <div className="w-16 h-16 mx-auto rounded-full bg-primary/15 flex items-center justify-center animate-float">
             <Sparkles className="w-8 h-8 text-primary" />
