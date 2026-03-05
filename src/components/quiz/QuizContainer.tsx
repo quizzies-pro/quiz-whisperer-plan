@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { quizSteps } from "@/lib/quiz-data";
 import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
+import bgHero from "@/assets/bg-hero.jpg";
 
 interface QuizContainerProps {
   initialStep?: number;
@@ -46,10 +47,18 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [currentStep, answers, handleNext]);
 
   return (
-    <div className="relative overflow-hidden bg-background min-h-screen">
+    <div className="relative overflow-hidden min-h-screen">
+      {/* Global background image */}
+      <div
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bgHero})` }}
+      />
+      {/* Overlay that darkens more as steps progress */}
+      <div className="fixed inset-0 bg-[#080F1C]/60" />
+
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
-      <div className="md:ml-14">
+      <div className="relative z-10 md:ml-14">
         <div
           className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ transform: `translateY(-${(currentStep - 1) * 100}vh)` }}
