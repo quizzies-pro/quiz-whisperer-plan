@@ -9,10 +9,14 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1100px",
       },
     },
     extend: {
+      fontFamily: {
+        heading: ["Montserrat", "sans-serif"],
+        body: ["Open Sans", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,28 +61,38 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        green: {
+          neon: "#00E64D",
+          mid: "#00C944",
+          dark: "#009933",
+        },
+        navy: {
+          deep: "#080F1C",
+          mid: "#0D1B2E",
+          light: "#112240",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xl: "20px",
+        pill: "9999px",
+      },
+      boxShadow: {
+        "green": "0 4px 24px rgba(0,230,77,0.30)",
+        "green-lg": "0 8px 40px rgba(0,230,77,0.40)",
+        "card-dark": "0 2px 16px rgba(0,0,0,0.18)",
+        "dark": "0 8px 32px rgba(0,0,0,0.50)",
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
