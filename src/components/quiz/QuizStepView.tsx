@@ -51,13 +51,14 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
           </p>
 
           {/* Video placeholder */}
-          <div className="relative aspect-video w-full max-w-[680px] mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40 bg-card/60 backdrop-blur-sm">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <div className="w-14 h-14 md:w-[68px] md:h-[68px] rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
-                <Play className="w-6 h-6 md:w-8 md:h-8 text-primary ml-0.5" />
-              </div>
-              <span className="text-xs text-muted-foreground font-body">Vídeo de apresentação</span>
-            </div>
+          <div className="relative aspect-video w-full max-w-[680px] mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
+            <iframe
+              src="https://www.youtube.com/embed/ppB407OeAUc"
+              title="LocaGora - Apresentação"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
           </div>
 
           <p className="text-sm md:text-base text-foreground/60 font-body max-w-xl mx-auto leading-relaxed">
