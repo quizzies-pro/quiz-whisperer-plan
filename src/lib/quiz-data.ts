@@ -21,6 +21,7 @@ export interface QuizStepData {
   id: number;
   title: string;
   subtitle?: string;
+  subtitleParts?: [string, string];
   type: QuizStepType;
   options?: QuizOption[];
   placeholder?: string;
@@ -47,7 +48,8 @@ export const quizSteps: QuizStepData[] = [
   {
     id: 2,
     title: "Qual é o seu nome?",
-    subtitle: "Estamos avaliando novos franqueados para as próximas cidades.\nPrecisamos de algumas informações.",
+    subtitle: "Estamos avaliando novos franqueados para as próximas cidades. Precisamos de algumas informações.",
+    subtitleParts: ["Estamos avaliando novos franqueados para as próximas cidades.", " Precisamos de algumas informações."],
     type: "text",
     inputType: "text",
     placeholder: "Digite seu nome",
