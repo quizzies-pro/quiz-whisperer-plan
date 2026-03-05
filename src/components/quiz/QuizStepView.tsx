@@ -461,19 +461,28 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
               ))}
             </div>
 
-            {/* Progress bar */}
+            {/* Progress bar or button */}
             <div className="pt-4 space-y-3">
-              <div className="h-3 bg-card rounded-full overflow-hidden card-border">
-                <div
-                  className="h-full bg-primary rounded-full transition-all duration-200 progress-glow"
-                  style={{ width: `${Math.min(progress, 100)}%` }}
-                />
-              </div>
-              <p className="text-sm text-muted-foreground font-body">
-                {progress < 100
-                  ? `Estamos atualizando seus dados... ${Math.floor(Math.min(progress, 100))}%`
-                  : "Dados atualizados com sucesso! ✓"}
-              </p>
+              {!done ? (
+                <>
+                  <div className="h-3 bg-card rounded-full overflow-hidden card-border">
+                    <div
+                      className="h-full bg-primary rounded-full transition-all duration-200 progress-glow"
+                      style={{ width: `${Math.min(progress, 100)}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground font-body">
+                    Estamos atualizando seus dados... {Math.floor(Math.min(progress, 100))}%
+                  </p>
+                </>
+              ) : (
+                <div className="animate-fade-in space-y-3">
+                  <p className="text-sm text-primary font-body font-bold">Dados atualizados com sucesso! ✓</p>
+                  <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
+                    CONTINUAR
+                  </CTAButton>
+                </div>
+              )}
             </div>
           </div>
         </div>
