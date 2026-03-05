@@ -493,6 +493,7 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 };
