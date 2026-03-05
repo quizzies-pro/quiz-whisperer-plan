@@ -35,20 +35,20 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex flex-col px-4">
+      <div className="h-screen w-full relative flex flex-col px-6 md:px-8">
         {/* Logo no topo */}
-        <div className="pt-6 md:pt-8 flex justify-center animate-fade-in">
-          <img src={logoLocagora} alt="LocaGora" className="h-12 md:h-16 object-contain" />
+        <div className="pt-8 md:pt-12 flex justify-center animate-fade-in">
+          <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-14 object-contain" />
         </div>
 
         {/* Conteúdo centralizado */}
-        <div className="flex-1 flex items-center justify-center -mt-4">
-          <div className="relative z-10 max-w-3xl w-full space-y-6 animate-fade-in text-center">
-            <h1 className="font-heading font-black text-[1.75rem] md:text-[2.8rem] leading-[1.1] text-foreground">
-              <span className="text-primary">Comece a lucrar já no primeiro mês</span>
-              <span className="block mt-2 text-foreground">com a franquia mais segura do Brasil</span>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="relative z-10 max-w-3xl w-full space-y-5 md:space-y-6 animate-fade-in text-center">
+            <h1 className="font-heading font-black text-xl md:text-[2.2rem] lg:text-[2.6rem] leading-[1.15] text-foreground">
+              <span className="text-primary">Comece a lucrar</span> já no primeiro mês
+              <span className="block mt-1 md:mt-2">com a franquia mais segura do Brasil</span>
             </h1>
-            <p className="text-sm md:text-base text-foreground/70 font-body max-w-xl mx-auto leading-relaxed">
+            <p className="text-xs md:text-sm text-foreground/65 font-body max-w-md mx-auto leading-relaxed">
               Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa
               <span className="block">do país: alugue motos para entregadores do iFood e Ubers.</span>
             </p>
@@ -63,7 +63,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               </div>
             </div>
 
-            <p className="text-sm text-foreground/60 font-body max-w-lg mx-auto">
+            <p className="text-xs md:text-sm text-foreground/55 font-body max-w-lg mx-auto">
               Encontramos seus primeiros clientes e facilitamos seu investimento para que você comece a lucrar no menor tempo possível
             </p>
 
