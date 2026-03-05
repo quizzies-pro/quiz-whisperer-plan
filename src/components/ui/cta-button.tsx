@@ -14,7 +14,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center gap-2.5 font-heading font-bold uppercase tracking-[0.06em] text-sm transition-all duration-300 rounded-pill",
+          "inline-flex items-center justify-center gap-2.5 font-heading font-bold uppercase tracking-[0.06em] text-sm transition-all duration-300 rounded-[10px]",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           "disabled:pointer-events-none disabled:opacity-40",
           variant === "primary" && [
