@@ -18,7 +18,6 @@ interface QuizStepViewProps {
 
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
-  const [formData, setFormData] = useState({ nome: "", email: "", whatsapp: "" });
 
   useEffect(() => {
     if (step.autoAdvanceMs) {
@@ -53,64 +52,6 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
           </div>
           <CTAButton onClick={onNext} className="text-lg px-12 py-5">
             COMEÇAR A AVALIAÇÃO
-            <ArrowRight className="w-5 h-5" />
-          </CTAButton>
-        </div>
-      </div>
-    );
-  }
-
-  // ── Form (User Capture) ──
-  if (step.type === "form") {
-    const isFormValid = formData.nome && formData.email && formData.whatsapp;
-    return (
-      <div className="h-screen w-full flex items-center justify-center px-4">
-        <div className="max-w-lg w-full space-y-8 animate-fade-in">
-          <div className="text-center space-y-3">
-            <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
-            {step.subtitle && <p className="text-muted-foreground font-body">{step.subtitle}</p>}
-          </div>
-          <div className="rounded-xl bg-card border border-border/30 p-8 space-y-5 shadow-card-dark">
-            <div className="space-y-2">
-              <label className="text-sm font-heading font-bold text-foreground uppercase tracking-wide">Nome</label>
-              <Input
-                value={formData.nome}
-                onChange={(e) => setFormData(p => ({ ...p, nome: e.target.value }))}
-                placeholder="Seu nome completo"
-                className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-12 rounded-lg"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-heading font-bold text-foreground uppercase tracking-wide">Email</label>
-              <Input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))}
-                placeholder="seu@email.com"
-                className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-12 rounded-lg"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-heading font-bold text-foreground uppercase tracking-wide">WhatsApp</label>
-              <Input
-                type="tel"
-                value={formData.whatsapp}
-                onChange={(e) => setFormData(p => ({ ...p, whatsapp: e.target.value }))}
-                placeholder="(00) 00000-0000"
-                className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-12 rounded-lg"
-              />
-            </div>
-          </div>
-          <CTAButton
-            onClick={() => {
-              onAnswer(JSON.stringify(formData));
-              onNext();
-            }}
-            disabled={!isFormValid}
-            fullWidth
-            className="py-5"
-          >
-            CONTINUAR A AVALIAÇÃO
             <ArrowRight className="w-5 h-5" />
           </CTAButton>
         </div>
@@ -173,13 +114,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
   // ── Result ──
   if (step.type === "result") {
-    let nome = "Candidato";
-    try {
-      const parsed = JSON.parse(answers[2] || "{}");
-      nome = parsed.nome || "Candidato";
-    } catch { nome = "Candidato"; }
+    const nome = answers[2] || "Candidato";
 
-    const selectedScenarioIdx = parseInt(answer || answers[9] || "2", 10);
+    const selectedScenarioIdx = parseInt(answer || answers[11] || "2", 10);
     const scenario = motoScenarios[selectedScenarioIdx] || motoScenarios[2];
 
     return (
