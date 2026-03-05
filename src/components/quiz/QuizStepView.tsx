@@ -35,34 +35,41 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex items-center justify-center px-4">
-        <div className="relative z-10 max-w-3xl w-full space-y-6 animate-fade-in text-center py-8">
-          <img src={logoLocagora} alt="LocaGora" className="h-12 md:h-16 mx-auto object-contain" />
-          <h1 className="font-heading font-black text-2xl md:text-[2.5rem] leading-[1.15] text-white drop-shadow-lg">
-            <span className="text-primary">Comece a lucrar</span> já no primeiro mês
-            <span className="block mt-1">com a franquia mais segura do Brasil</span>
-          </h1>
-          <p className="text-sm md:text-base text-white/70 font-body max-w-lg mx-auto leading-relaxed">
-            Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa do país: alugue motos para entregadores do iFood e Ubers.
-          </p>
+      <div className="h-screen w-full relative flex flex-col px-4">
+        {/* Logo no topo */}
+        <div className="pt-8 md:pt-10 flex justify-center animate-fade-in">
+          <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-14 object-contain" />
+        </div>
 
-          {/* Video placeholder */}
-          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden border border-primary/30 bg-[#080F1C]/60 backdrop-blur-sm shadow-dark">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
-                <Play className="w-6 h-6 md:w-7 md:h-7 text-primary ml-0.5" />
+        {/* Conteúdo centralizado no espaço restante */}
+        <div className="flex-1 flex items-center justify-center">
+          <div className="relative z-10 max-w-3xl w-full space-y-5 animate-fade-in text-center">
+            <h1 className="font-heading font-black text-2xl md:text-[2.5rem] leading-[1.15] text-foreground drop-shadow-lg">
+              <span className="text-primary">Comece a lucrar</span> já no primeiro mês
+              <span className="block mt-1">com a franquia mais segura do Brasil</span>
+            </h1>
+            <p className="text-sm md:text-base text-muted-foreground font-body max-w-lg mx-auto leading-relaxed">
+              Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa do país: alugue motos para entregadores do iFood e Ubers.
+            </p>
+
+            {/* Video placeholder */}
+            <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden border border-primary/30 bg-card/60 backdrop-blur-sm">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
+                  <Play className="w-6 h-6 md:w-7 md:h-7 text-primary ml-0.5" />
+                </div>
+                <span className="text-xs text-muted-foreground font-body">Vídeo de apresentação</span>
               </div>
-              <span className="text-xs text-white/50 font-body">Vídeo de apresentação</span>
             </div>
+
+            <p className="text-sm text-muted-foreground font-body max-w-lg mx-auto">
+              Encontramos seus primeiros clientes e facilitamos seu investimento para que você comece a lucrar no menor tempo possível
+            </p>
+
+            <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-4 md:px-12 md:py-5">
+              QUERO CONHECER A LOCAGORA
+            </CTAButton>
           </div>
-
-          <p className="text-sm text-white/60 font-body max-w-lg mx-auto">
-            Encontramos seus primeiros clientes e facilitamos seu investimento para que você comece a lucrar no menor tempo possível
-          </p>
-
-          <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-4 md:px-12 md:py-5">
-            QUERO CONHECER A LOCAGORA
-          </CTAButton>
         </div>
       </div>
     );
