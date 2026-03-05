@@ -19,9 +19,9 @@ interface QuizStepViewProps {
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
 
-  // Auto-advance for interstitial / loading
+  // Auto-advance (only when autoAdvanceMs is set)
   useEffect(() => {
-    if (step.autoAdvanceMs && (step.type === "interstitial" || step.type === "loading")) {
+    if (step.autoAdvanceMs) {
       const timer = setTimeout(() => onNext(), step.autoAdvanceMs);
       return () => clearTimeout(timer);
     }
@@ -83,9 +83,14 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               </div>
             ))}
           </div>
-          <p className="text-sm text-muted-foreground animate-pulse">
-            Avançando automaticamente...
-          </p>
+          <Button
+            onClick={onNext}
+            size="lg"
+            className="text-base px-8 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
+          >
+            Continuar
+            <ArrowRight className="w-5 h-5" />
+          </Button>
         </div>
       </div>
     );
@@ -155,6 +160,14 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               </div>
             ))}
           </div>
+          <Button
+            onClick={onNext}
+            size="lg"
+            className="text-base px-8 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
+          >
+            Ver resultado
+            <ArrowRight className="w-5 h-5" />
+          </Button>
         </div>
       </div>
     );
