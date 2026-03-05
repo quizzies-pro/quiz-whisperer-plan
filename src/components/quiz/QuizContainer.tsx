@@ -48,13 +48,19 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
   return (
     <div className="relative overflow-hidden min-h-screen">
-      {/* Global background image */}
+      {/* Background image — only visible on step 1 */}
       <div
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bgHero})` }}
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700"
+        style={{
+          backgroundImage: `url(${bgHero})`,
+          opacity: currentStep === 1 ? 1 : 0,
+        }}
       />
-      {/* Overlay that darkens more as steps progress */}
-      <div className="fixed inset-0 bg-[#080F1C]/0" />
+      {/* Dark base for other steps */}
+      <div
+        className="fixed inset-0 bg-background transition-opacity duration-700"
+        style={{ opacity: currentStep === 1 ? 0 : 1 }}
+      />
 
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
