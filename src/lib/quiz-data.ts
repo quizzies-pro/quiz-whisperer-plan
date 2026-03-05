@@ -47,7 +47,7 @@ export const quizSteps: QuizStepData[] = [
   {
     id: 2,
     title: "Qual é o seu nome?",
-    subtitle: "Estamos avaliando novos franqueados para as próximas cidades. Precisamos de algumas informações.",
+    subtitle: "Estamos avaliando novos franqueados para as próximas cidades.\nPrecisamos de algumas informações.",
     type: "text",
     inputType: "text",
     placeholder: "Digite seu nome",
