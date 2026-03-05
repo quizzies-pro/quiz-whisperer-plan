@@ -160,6 +160,14 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               </div>
             ))}
           </div>
+          <Button
+            onClick={onNext}
+            size="lg"
+            className="text-base px-8 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
+          >
+            Ver resultado
+            <ArrowRight className="w-5 h-5" />
+          </Button>
         </div>
       </div>
     );
