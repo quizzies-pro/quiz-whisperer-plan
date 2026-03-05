@@ -269,7 +269,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
   const scenario = motoScenarios[selectedIdx] || motoScenarios[2];
 
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4">
+    <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-2xl w-full space-y-8 animate-fade-in">
         <div className="text-center space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
