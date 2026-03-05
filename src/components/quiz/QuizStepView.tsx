@@ -39,9 +39,10 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
         <div className="relative z-10 max-w-4xl w-full space-y-5 md:space-y-6 animate-fade-in text-center">
           <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-16 mx-auto object-contain" />
 
-          <h1 className="font-heading font-extrabold text-[2rem] sm:text-[2.4rem] md:text-[3.2rem] leading-[1.08] tracking-[-0.02em] text-foreground">
-            <span className="text-primary block">Comece a lucrar já no primeiro mês</span>
-            <span className="block">com a franquia mais segura do Brasil</span>
+          <h1 className="font-heading font-extrabold text-lg sm:text-2xl md:text-[2rem] leading-[1.15] tracking-[-0.01em] text-foreground">
+            <span className="text-primary">Comece a lucrar já no primeiro mês</span>
+            <br />
+            <span className="font-black">com a franquia mais segura do Brasil</span>
           </h1>
 
           <p className="text-sm md:text-base text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
