@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LocaGora Design System v1.0 — Dark Navy + Neon Green */
+/* LocaGora Design System v1.1 — Matched to Landing Page */
 
 @layer base {
   :root {
@@ -19,45 +19,36 @@
 
     /* Green neon #00E64D → hsl(140 100% 45%) */
     --primary: 140 100% 45%;
-    /* Text on green = navy_deep */
     --primary-foreground: 216 55% 7%;
 
     /* Navy light #112240 → hsl(215 59% 16%) */
     --secondary: 215 59% 16%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 215 59% 16%;
-    --muted-foreground: 210 20% 70%;
+    --muted: 215 40% 20%;
+    --muted-foreground: 213 20% 65%;
 
     --accent: 215 59% 16%;
     --accent-foreground: 0 0% 100%;
 
-    /* Pink rival #FF2060 for destructive */
     --destructive: 344 100% 56%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 20% 18%;
-    --input: 215 20% 18%;
+    --border: 210 15% 15%;
+    --input: 215 30% 14%;
     --ring: 140 100% 45%;
 
     --radius: 0.75rem;
 
     /* Sidebar */
-    --sidebar-background: 214 55% 12%;
+    --sidebar-background: 214 55% 10%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 140 100% 45%;
     --sidebar-primary-foreground: 216 55% 7%;
     --sidebar-accent: 215 59% 16%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 215 20% 18%;
+    --sidebar-border: 210 15% 15%;
     --sidebar-ring: 140 100% 45%;
-
-    /* Custom tokens */
-    --green-mid: 140 100% 39%;
-    --green-dark: 140 100% 30%;
-    --green-glow: 0 4px 24px rgba(0,230,77,0.30);
-    --green-glow-lg: 0 8px 40px rgba(0,230,77,0.40);
-    --shadow-card: 0 2px 16px rgba(0,0,0,0.18);
   }
 }
 
@@ -75,33 +66,50 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 }
 
 /* Animations */
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes float-loop {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-6px); }
 }
 
 @keyframes pulse-green {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,77,0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(0,230,77,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,77,0.35); }
+  50% { box-shadow: 0 0 0 14px rgba(0,230,77,0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  animation: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
 }
 
 .animate-float {
@@ -110,4 +118,27 @@
 
 .animate-pulse-green {
   animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* Glass card effect matching landing page */
+.glass-card {
+  background: rgba(13, 27, 46, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+/* Green glow border for selected states */
+.glow-border {
+  border: 1.5px solid hsl(140 100% 45%);
+  box-shadow: 0 0 20px rgba(0, 230, 77, 0.15), inset 0 0 20px rgba(0, 230, 77, 0.03);
+}
+
+/* Subtle card border matching landing page */
+.card-border {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Progress bar green glow */
+.progress-glow {
+  box-shadow: 0 0 8px rgba(0, 230, 77, 0.4);
 }

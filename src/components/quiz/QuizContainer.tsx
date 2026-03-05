@@ -49,7 +49,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     <div className="relative overflow-hidden bg-background min-h-screen">
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
-      <div className="md:ml-16">
+      <div className="md:ml-14">
         <div
           className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ transform: `translateY(-${(currentStep - 1) * 100}vh)` }}
