@@ -4,7 +4,7 @@ import { QuizStepData, motoScenarios, MotoScenario } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, Play, CheckCircle2, Sparkles, MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
-import bgHero from "@/assets/bg-hero.jpg";
+
 
 interface QuizStepViewProps {
   step: QuizStepData;
