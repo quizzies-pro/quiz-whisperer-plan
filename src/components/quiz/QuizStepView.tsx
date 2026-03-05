@@ -181,7 +181,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
             {step.title}
           </h2>
           {step.subtitle && (
-            <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">{step.subtitle}</p>
+            <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed whitespace-pre-line">{step.subtitle}</p>
           )}
         </div>
 
