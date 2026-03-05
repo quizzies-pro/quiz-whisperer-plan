@@ -7,6 +7,7 @@ import { CTAButton } from "@/components/ui/cta-button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, Play, CheckCircle2, Sparkles, MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
 import PhoneInput from "./PhoneInput";
+import TestimonialWall from "./TestimonialWall";
 
 
 interface QuizStepViewProps {
