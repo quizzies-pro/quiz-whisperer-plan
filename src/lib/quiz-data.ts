@@ -81,7 +81,7 @@ export const quizSteps: QuizStepData[] = [
   // ── Stage 3: Profile Qualification ──
   {
     id: 5,
-    title: "O que melhor descreve o que você está buscando agora?",
+    title: "O que melhor representa o que você está procurando agora?",
     subtitle: "Responda com honestidade, isso nos ajuda a indicar o plano ideal para você.",
     type: "multiple-choice",
     required: true,
