@@ -20,7 +20,7 @@ interface QuizStepViewProps {
 
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
-
+  const [validationError, setValidationError] = useState("");
   useEffect(() => {
     if (step.autoAdvanceMs) {
       const timer = setTimeout(() => onNext(), step.autoAdvanceMs);
