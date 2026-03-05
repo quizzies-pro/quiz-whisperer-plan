@@ -174,7 +174,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
   // ── Default: Multiple Choice / Text ──
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4">
+    <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-xl w-full space-y-8 animate-fade-in">
         <div className="space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl leading-tight text-foreground">
