@@ -420,11 +420,11 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
   }, [increment]);
 
   useEffect(() => {
-    if (progress >= 100 && !isLovablePreview) {
+    if (progress >= 100) {
       const timer = setTimeout(() => onNext(), 800);
       return () => clearTimeout(timer);
     }
-  }, [progress, isLovablePreview, onNext]);
+  }, [progress, onNext]);
 
   return (
     <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
