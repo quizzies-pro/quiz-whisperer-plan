@@ -61,9 +61,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
             />
           </div>
 
-          <p className="text-sm md:text-base text-foreground/60 font-body max-w-xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
             Encontramos seus primeiros clientes e facilitamos seu investimento para
-            <span className="block">que você comece a lucrar com sua empresa no menor tempo possível</span>
+            que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
           </p>
 
           <CTAButton onClick={onNext} className="text-sm md:text-base px-12 py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
