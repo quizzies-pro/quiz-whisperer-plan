@@ -34,25 +34,18 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex items-center justify-center px-4 overflow-hidden">
-        {/* Background image with overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
-          style={{ backgroundImage: `url(${bgHero})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080F1C]/80 via-[#080F1C]/70 to-[#080F1C]/90" />
-
+      <div className="h-screen w-full relative flex items-center justify-center px-4">
         <div className="relative z-10 max-w-3xl w-full space-y-6 animate-fade-in text-center py-8">
-          <h1 className="font-heading font-black text-2xl md:text-[2.5rem] leading-[1.15] text-foreground drop-shadow-lg">
+          <h1 className="font-heading font-black text-2xl md:text-[2.5rem] leading-[1.15] text-white drop-shadow-lg">
             <span className="text-primary">Comece a lucrar</span> já no primeiro mês
             <span className="block mt-1">com a franquia mais segura do Brasil</span>
           </h1>
-          <p className="text-sm md:text-base text-white/65 font-body max-w-lg mx-auto leading-relaxed">
+          <p className="text-sm md:text-base text-white/70 font-body max-w-lg mx-auto leading-relaxed">
             Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa do país: alugue motos para entregadores do iFood e Ubers.
           </p>
 
           {/* Video placeholder */}
-          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden border border-primary/30 bg-[#0a1628] shadow-dark">
+          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden border border-primary/30 bg-[#080F1C]/60 backdrop-blur-sm shadow-dark">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
               <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
                 <Play className="w-6 h-6 md:w-7 md:h-7 text-primary ml-0.5" />
@@ -61,7 +54,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
             </div>
           </div>
 
-          <p className="text-sm text-white/55 font-body max-w-lg mx-auto">
+          <p className="text-sm text-white/60 font-body max-w-lg mx-auto">
             Encontramos seus primeiros clientes e facilitamos seu investimento para que você comece a lucrar no menor tempo possível
           </p>
 
