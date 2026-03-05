@@ -12,85 +12,85 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     name: "Carlos Silva",
-    role: "Franqueado em São Paulo",
-    text: "A LocaGora mudou minha vida financeira. Em 3 meses já tinha retorno do investimento.",
+    role: "Franqueado LocaGora - SP",
+    text: "A LocaGora mudou minha vida financeira. Em 3 meses já tinha retorno do investimento. Retorno em 3 meses!",
     highlight: "Retorno em 3 meses!",
     avatar: "https://i.pravatar.cc/80?img=12",
   },
   {
     name: "Ana Rodrigues",
-    role: "Franqueada em Belo Horizonte",
-    text: "O suporte da equipe é incrível. Me ajudaram em cada etapa da implantação.",
+    role: "Franqueada LocaGora - BH",
+    text: "O suporte da LocaGora é incrível. Me ajudaram em cada etapa, desde a compra das motos até os primeiros aluguéis. Suporte completo desde o início.",
     highlight: "Suporte completo desde o início.",
     avatar: "https://i.pravatar.cc/80?img=5",
   },
   {
     name: "Fernando Costa",
-    role: "Franqueado em Curitiba",
-    text: "Nunca imaginei que alugar motos pudesse gerar tanta renda passiva. Estou impressionado com os resultados.",
+    role: "Franqueado LocaGora - Curitiba",
+    text: "Com a LocaGora descobri que alugar motos para entregadores do iFood é o negócio mais lucrativo que já tive. Renda passiva real e consistente.",
     highlight: "Renda passiva real e consistente.",
     avatar: "https://i.pravatar.cc/80?img=53",
   },
   {
     name: "Juliana Mendes",
-    role: "Franqueada no Rio de Janeiro",
-    text: "A demanda por entregadores só cresce. Meus 10 veículos estão sempre alugados.",
+    role: "Franqueada LocaGora - RJ",
+    text: "A demanda por motos na LocaGora é absurda. Meus 10 veículos estão sempre alugados, nunca fico sem cliente. 100% de ocupação dos veículos.",
     highlight: "100% de ocupação dos veículos.",
     avatar: "https://i.pravatar.cc/80?img=9",
   },
   {
     name: "Roberto Almeida",
-    role: "Franqueado em Campinas",
-    text: "Saí do CLT e hoje faturo mais do que o dobro. A LocaGora me deu essa oportunidade.",
+    role: "Franqueado LocaGora - Campinas",
+    text: "Saí do CLT e hoje faturo mais do que o dobro com a LocaGora. Melhor decisão da minha vida. Faturamento dobrou após sair do CLT.",
     highlight: "Faturamento dobrou após sair do CLT.",
     avatar: "https://i.pravatar.cc/80?img=60",
   },
   {
     name: "Patrícia Nunes",
-    role: "Franqueada em Salvador",
-    text: "O modelo de negócio é à prova de crises. Entregas não param nunca.",
+    role: "Franqueada LocaGora - Salvador",
+    text: "O modelo da LocaGora é à prova de crises. Entregas não param nunca, e a receita é constante. Negócio à prova de crises.",
     highlight: "Negócio à prova de crises.",
     avatar: "https://i.pravatar.cc/80?img=20",
   },
   {
     name: "Diego Ferreira",
-    role: "Franqueado em Brasília",
-    text: "Com 5 motos já consigo uma renda excelente. Planejando expandir para 15.",
+    role: "Franqueado LocaGora - Brasília",
+    text: "Com 5 motos na LocaGora já consigo uma renda excelente. Planejando expandir para 15 motos ainda este ano. Escalando de 5 para 15 motos.",
     highlight: "Escalando de 5 para 15 motos.",
     avatar: "https://i.pravatar.cc/80?img=33",
   },
   {
     name: "Mariana Lopes",
-    role: "Franqueada em Recife",
-    text: "A facilidade de gestão me surpreendeu. O sistema da LocaGora resolve tudo.",
+    role: "Franqueada LocaGora - Recife",
+    text: "A facilidade de gestão da LocaGora me surpreendeu. O sistema resolve tudo, é muito prático. Gestão simplificada e eficiente.",
     highlight: "Gestão simplificada e eficiente.",
     avatar: "https://i.pravatar.cc/80?img=25",
   },
   {
     name: "Thiago Martins",
-    role: "Franqueado em Fortaleza",
-    text: "Investi e em menos de 6 meses já estava no lucro. Recomendo fortemente.",
+    role: "Franqueado LocaGora - Fortaleza",
+    text: "Investi na LocaGora e em menos de 6 meses já estava no lucro. Recomendo fortemente para qualquer pessoa. Lucro em menos de 6 meses.",
     highlight: "Lucro em menos de 6 meses.",
     avatar: "https://i.pravatar.cc/80?img=14",
   },
   {
     name: "Camila Santos",
-    role: "Franqueada em Porto Alegre",
-    text: "A LocaGora encontrou meus primeiros clientes. Não precisei me preocupar com nada.",
+    role: "Franqueada LocaGora - POA",
+    text: "A LocaGora encontrou meus primeiros clientes antes mesmo das motos chegarem. Não precisei me preocupar com nada. Clientes garantidos desde o início.",
     highlight: "Clientes garantidos desde o início.",
     avatar: "https://i.pravatar.cc/80?img=44",
   },
   {
     name: "Lucas Oliveira",
-    role: "Franqueado em Goiânia",
-    text: "O payback foi mais rápido do que imaginei. Já estou reinvestindo os lucros.",
+    role: "Franqueado LocaGora - Goiânia",
+    text: "O payback da LocaGora foi mais rápido do que imaginei. Já estou reinvestindo os lucros em mais motos. Payback acelerado e reinvestimento.",
     highlight: "Payback acelerado e reinvestimento.",
     avatar: "https://i.pravatar.cc/80?img=68",
   },
   {
     name: "Beatriz Cardoso",
-    role: "Franqueada em Manaus",
-    text: "Mesmo longe dos grandes centros, a demanda é altíssima. Negócio funciona em qualquer lugar.",
+    role: "Franqueada LocaGora - Manaus",
+    text: "Mesmo longe dos grandes centros, a demanda da LocaGora é altíssima. Funciona em qualquer cidade do Brasil.",
     highlight: "Funciona em qualquer cidade do Brasil.",
     avatar: "https://i.pravatar.cc/80?img=32",
   },
@@ -129,7 +129,6 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
 );
 
 const TestimonialWall = () => {
-  // Split into 4 columns
   const cols = [
     testimonials.slice(0, 3),
     testimonials.slice(3, 6),
@@ -138,13 +137,21 @@ const TestimonialWall = () => {
   ];
 
   return (
-    <div className="absolute inset-x-0 bottom-0 h-[50%] overflow-hidden pointer-events-none">
-      {/* Top fade */}
-      <div className="absolute inset-x-0 top-0 h-32 z-10 bg-gradient-to-b from-background to-transparent" />
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-24 z-10 bg-gradient-to-t from-background to-transparent" />
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Center radial shadow for readability */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background: "radial-gradient(ellipse 55% 45% at 50% 50%, hsl(216 55% 7% / 0.97) 0%, hsl(216 55% 7% / 0.85) 35%, hsl(216 55% 7% / 0.4) 60%, transparent 75%)",
+        }}
+      />
 
-      <div className="h-full flex gap-3 px-4 md:px-8 opacity-40">
+      {/* Top fade */}
+      <div className="absolute inset-x-0 top-0 h-40 z-[5] bg-gradient-to-b from-background via-background/80 to-transparent" />
+      {/* Bottom fade */}
+      <div className="absolute inset-x-0 bottom-0 h-32 z-[5] bg-gradient-to-t from-background via-background/80 to-transparent" />
+
+      <div className="h-full flex gap-3 px-4 md:px-8 opacity-50">
         {cols.map((col, colIdx) => (
           <div
             key={colIdx}
@@ -153,7 +160,6 @@ const TestimonialWall = () => {
               colIdx % 2 === 0 ? "animate-scroll-up" : "animate-scroll-down"
             )}
           >
-            {/* Duplicate for seamless loop */}
             {[...col, ...col].map((t, i) => (
               <TestimonialCard key={`${colIdx}-${i}`} testimonial={t} />
             ))}
