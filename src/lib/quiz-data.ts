@@ -164,28 +164,28 @@ export const quizSteps: QuizStepData[] = [
     ],
   },
 
-  // ── Stage 5: ROI Calculator ──
+  // ── Stage 6: ROI Calculator ──
   {
     id: 11,
     title: "Veja quanto você poderia lucrar com a LocaGora",
     subtitle: "Selecione um cenário e simule seu retorno.",
     type: "calculator",
-    macroStep: 5,
+    macroStep: 6,
   },
 
-  // ── Stage 6: Loading + Result ──
+  // ── Stage 7: Loading + Result ──
   {
     id: 12,
     title: "Analisando seu perfil...",
     type: "loading",
-    macroStep: 6,
+    macroStep: 7,
   },
   {
     id: 13,
     title: "Parabéns, você foi aprovado para avançar na avaliação da franquia.",
     subtitle: "Com base nas suas respostas você demonstra ter o perfil ideal para abrir uma franquia LocaGora na sua região.",
     type: "result",
-    macroStep: 6,
+    macroStep: 7,
   },
 ];
 
