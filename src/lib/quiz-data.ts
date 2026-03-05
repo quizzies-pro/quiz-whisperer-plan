@@ -21,6 +21,7 @@ export interface QuizStepData {
   id: number;
   title: string;
   subtitle?: string;
+  subtitleParts?: [string, string];
   type: QuizStepType;
   options?: QuizOption[];
   placeholder?: string;
