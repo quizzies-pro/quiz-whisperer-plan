@@ -178,7 +178,11 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
       <div className="max-w-xl w-full space-y-8 animate-fade-in">
         <div className="space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl leading-tight text-foreground">
-            {step.title}
+            {step.id === 3 && answers[2]
+              ? <>{answers[2]}, <span className="text-primary">qual é o seu email?</span></>
+              : step.id === 4 && answers[2]
+              ? <>{answers[2]}, <span className="text-primary">qual é o seu WhatsApp?</span></>
+              : step.title}
           </h2>
           {step.subtitle && (
             <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
