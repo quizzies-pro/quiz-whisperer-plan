@@ -221,8 +221,9 @@ export const motoScenarios: MotoScenario[] = [
 
 // Legacy compatibility
 export const investmentTiers: Record<string, { motos: number; lucroMensal: number; label: string }> = {
-  ate_20k: { motos: 2, lucroMensal: 1700, label: "Plano Starter — 2 motos" },
-  "20k_50k": { motos: 5, lucroMensal: 4250, label: "Plano Growth — 5 motos" },
-  "50k_100k": { motos: 10, lucroMensal: 8500, label: "Plano Premium — 10 motos" },
-  mais_100k: { motos: 20, lucroMensal: 17000, label: "Plano Master — 20 motos" },
+  menos_200k: { motos: 0, lucroMensal: 0, label: "Lista de espera" },
+  "200k_300k": { motos: 5, lucroMensal: 4250, label: "Plano Starter — 5 motos" },
+  "300k_500k": { motos: 10, lucroMensal: 8500, label: "Plano Growth — 10 motos" },
+  "500k_700k": { motos: 15, lucroMensal: 12750, label: "Plano Premium — 15 motos" },
+  mais_700k: { motos: 20, lucroMensal: 17000, label: "Plano Master — 20 motos" },
 };
