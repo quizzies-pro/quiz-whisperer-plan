@@ -481,14 +481,6 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
                   ? `Estamos atualizando seus dados... ${Math.floor(progress)}%`
                   : "Dados atualizados com sucesso! ✓"}
               </p>
-              {/* Botão fallback apenas no preview do Lovable */}
-              {progress >= 100 && isLovablePreview && (
-                <div className="animate-fade-in pt-2">
-                  <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
-                    CONTINUAR
-                  </CTAButton>
-                </div>
-              )}
             </div>
           </div>
         </div>
