@@ -132,7 +132,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     const scenario = motoScenarios[selectedScenarioIdx] || motoScenarios[2];
 
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto py-12">
+      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none py-12">
         <div className="max-w-2xl w-full space-y-8 animate-fade-in">
           <div className="text-center space-y-4">
             <div className="w-16 h-16 mx-auto rounded-full bg-primary/15 flex items-center justify-center animate-pulse-green">
