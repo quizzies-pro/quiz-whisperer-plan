@@ -41,7 +41,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
           {step.subtitle && (
             <p className="text-base md:text-lg text-muted-foreground font-body max-w-xl mx-auto">{step.subtitle}</p>
           )}
-          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-xl overflow-hidden card-border bg-card shadow-dark">
+          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden card-border bg-card shadow-dark">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
                 <Play className="w-7 h-7 md:w-8 md:h-8 text-primary ml-1" />
@@ -70,7 +70,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="rounded-xl glass-card p-5 space-y-3">
+              <div key={i} className="rounded-[10px] glass-card p-5 space-y-3">
                 <div className="w-10 h-10 rounded-full bg-primary/10 mx-auto flex items-center justify-center">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
                 </div>
@@ -130,7 +130,6 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
             <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
           </div>
 
-          {/* Stat cards */}
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             <StatCard icon={<DollarSign className="w-5 h-5" />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
             <StatCard icon={<TrendingUp className="w-5 h-5" />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
@@ -176,14 +175,14 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
                 key={option.id}
                 onClick={() => handleOptionClick(option.value)}
                 className={cn(
-                  "w-full text-left px-5 py-4 rounded-xl transition-all duration-300 flex items-center gap-4 group",
+                  "w-full text-left px-5 py-4 rounded-[10px] transition-all duration-300 flex items-center gap-4 group",
                   answer === option.value
                     ? "glow-border bg-primary/5"
                     : "card-border bg-card hover:bg-card/80 hover:-translate-y-[1px] hover:border-[rgba(255,255,255,0.12)]"
                 )}
               >
                 <span className={cn(
-                  "w-8 h-8 rounded-lg flex items-center justify-center text-sm font-heading font-bold shrink-0 transition-all duration-300",
+                  "w-8 h-8 rounded-[6px] flex items-center justify-center text-sm font-heading font-bold shrink-0 transition-all duration-300",
                   answer === option.value
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted/60 text-muted-foreground group-hover:text-primary group-hover:bg-primary/10"
@@ -209,7 +208,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               onChange={(e) => setLocalText(e.target.value)}
               onBlur={() => { if (localText) onAnswer(localText); }}
               placeholder={step.placeholder || "Digite aqui..."}
-              className="w-full h-14 px-5 rounded-xl bg-card card-border text-foreground text-base font-body placeholder:text-muted-foreground/60 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all"
+              className="w-full h-14 px-5 rounded-[10px] bg-card card-border text-foreground text-base font-body placeholder:text-muted-foreground/60 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && localText) {
                   onAnswer(localText);
@@ -254,14 +253,13 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           {step.subtitle && <p className="text-sm text-muted-foreground font-body">{step.subtitle}</p>}
         </div>
 
-        {/* Scenario selector */}
         <div className="grid grid-cols-4 gap-2 md:gap-3">
           {motoScenarios.map((s, idx) => (
             <button
               key={idx}
               onClick={() => { setSelectedIdx(idx); onAnswer(String(idx)); }}
               className={cn(
-                "rounded-xl p-3 md:p-4 text-center transition-all duration-300 font-heading",
+                "rounded-[10px] p-3 md:p-4 text-center transition-all duration-300 font-heading",
                 selectedIdx === idx
                   ? "glow-border bg-primary/10 scale-[1.03]"
                   : "card-border bg-card hover:-translate-y-[1px] hover:border-[rgba(255,255,255,0.12)]"
@@ -273,8 +271,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           ))}
         </div>
 
-        {/* Main result */}
-        <div className="rounded-xl glass-card p-6 md:p-8 space-y-6">
+        <div className="rounded-[10px] glass-card p-6 md:p-8 space-y-6">
           <div className="text-center space-y-1">
             <span className="text-xs text-muted-foreground font-body uppercase tracking-[0.18em]">Lucro mensal estimado</span>
             <p className="text-4xl md:text-5xl font-heading font-black text-primary leading-none">
@@ -301,13 +298,12 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
 };
 
 const MiniStat = ({ label, value }: { label: string; value: string }) => (
-  <div className="text-center space-y-1.5 rounded-lg bg-[rgba(0,0,0,0.2)] card-border p-3">
+  <div className="text-center space-y-1.5 rounded-[8px] bg-[rgba(0,0,0,0.2)] card-border p-3">
     <span className="text-[10px] text-muted-foreground font-body leading-tight block">{label}</span>
     <p className="font-heading font-black text-primary text-sm md:text-base leading-tight">{value}</p>
   </div>
 );
 
-// ── Sub-components ──
 const LoadingAnimation = () => {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
@@ -334,7 +330,7 @@ const LoadingAnimation = () => {
 
 const StatCard = ({ icon, label, value, highlight }: { icon: React.ReactNode; label: string; value: string; highlight?: boolean }) => (
   <div className={cn(
-    "rounded-xl p-4 md:p-5 space-y-2 glass-card",
+    "rounded-[10px] p-4 md:p-5 space-y-2 glass-card",
     highlight && "glow-border"
   )}>
     <div className="text-primary">{icon}</div>
