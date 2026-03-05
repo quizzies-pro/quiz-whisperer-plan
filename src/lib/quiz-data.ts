@@ -78,7 +78,7 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Stage 3: Profile Qualification ──
   {
-    id: 3,
+    id: 5,
     title: "Sua cidade possui mais de 100 mil habitantes?",
     subtitle: "Isso nos ajuda a avaliar o potencial da sua região.",
     type: "multiple-choice",
@@ -91,7 +91,7 @@ export const quizSteps: QuizStepData[] = [
     ],
   },
   {
-    id: 4,
+    id: 6,
     title: "Qual sua capacidade de investimento inicial?",
     subtitle: "Para manter a qualidade da nossa rede de franqueados avaliamos também a capacidade de investimento.",
     type: "multiple-choice",
@@ -106,7 +106,7 @@ export const quizSteps: QuizStepData[] = [
     ],
   },
   {
-    id: 5,
+    id: 7,
     title: "Você pretende:",
     type: "multiple-choice",
     required: true,
@@ -120,7 +120,7 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Stage 4: Entrepreneur Profile ──
   {
-    id: 6,
+    id: 8,
     title: "Você já teve negócio próprio?",
     subtitle: "Responda com honestidade. Isso nos ajuda a indicar o plano ideal para você.",
     type: "multiple-choice",
@@ -133,7 +133,7 @@ export const quizSteps: QuizStepData[] = [
     ],
   },
   {
-    id: 7,
+    id: 9,
     title: "Quanto tempo você pretende dedicar ao negócio?",
     type: "multiple-choice",
     required: true,
@@ -148,7 +148,7 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Interstitial ──
   {
-    id: 8,
+    id: 10,
     title: "Parabéns! 98% dos nossos maiores franqueados de sucesso têm características muito semelhantes às suas.",
     type: "interstitial",
     macroStep: 4,
@@ -156,7 +156,7 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Stage 5: ROI Calculator ──
   {
-    id: 9,
+    id: 11,
     title: "Veja quanto você poderia lucrar com a LocaGora",
     subtitle: "Selecione um cenário e simule seu retorno.",
     type: "calculator",
@@ -165,13 +165,13 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Stage 6: Loading + Result ──
   {
-    id: 10,
+    id: 12,
     title: "Analisando seu perfil...",
     type: "loading",
     macroStep: 6,
   },
   {
-    id: 11,
+    id: 13,
     title: "Parabéns, você foi aprovado para avançar na avaliação da franquia.",
     subtitle: "Com base nas suas respostas você demonstra ter o perfil ideal para abrir uma franquia LocaGora na sua região.",
     type: "result",
