@@ -54,7 +54,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         style={{ backgroundImage: `url(${bgHero})` }}
       />
       {/* Overlay that darkens more as steps progress */}
-      <div className="fixed inset-0 bg-[#080F1C]/60" />
+      <div className="fixed inset-0 bg-[#080F1C]/0" />
 
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
