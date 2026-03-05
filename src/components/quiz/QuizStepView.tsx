@@ -37,23 +37,24 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     return (
       <div className="h-screen w-full relative flex flex-col px-4">
         {/* Logo no topo */}
-        <div className="pt-8 md:pt-10 flex justify-center animate-fade-in">
-          <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-14 object-contain" />
+        <div className="pt-6 md:pt-8 flex justify-center animate-fade-in">
+          <img src={logoLocagora} alt="LocaGora" className="h-12 md:h-16 object-contain" />
         </div>
 
-        {/* Conteúdo centralizado no espaço restante */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className="relative z-10 max-w-3xl w-full space-y-5 animate-fade-in text-center">
-            <h1 className="font-heading font-black text-2xl md:text-[2.5rem] leading-[1.15] text-foreground drop-shadow-lg">
-              <span className="text-primary">Comece a lucrar</span> já no primeiro mês
-              <span className="block mt-1">com a franquia mais segura do Brasil</span>
+        {/* Conteúdo centralizado */}
+        <div className="flex-1 flex items-center justify-center -mt-4">
+          <div className="relative z-10 max-w-3xl w-full space-y-6 animate-fade-in text-center">
+            <h1 className="font-heading font-black text-[1.75rem] md:text-[2.8rem] leading-[1.1] text-foreground">
+              <span className="text-primary">Comece a lucrar já no primeiro mês</span>
+              <span className="block mt-2 text-foreground">com a franquia mais segura do Brasil</span>
             </h1>
-            <p className="text-sm md:text-base text-muted-foreground font-body max-w-lg mx-auto leading-relaxed">
-              Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa do país: alugue motos para entregadores do iFood e Ubers.
+            <p className="text-sm md:text-base text-foreground/70 font-body max-w-xl mx-auto leading-relaxed">
+              Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa
+              <span className="block">do país: alugue motos para entregadores do iFood e Ubers.</span>
             </p>
 
             {/* Video placeholder */}
-            <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden border border-primary/30 bg-card/60 backdrop-blur-sm">
+            <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40 bg-card/60 backdrop-blur-sm">
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
                 <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
                   <Play className="w-6 h-6 md:w-7 md:h-7 text-primary ml-0.5" />
@@ -62,7 +63,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground font-body max-w-lg mx-auto">
+            <p className="text-sm text-foreground/60 font-body max-w-lg mx-auto">
               Encontramos seus primeiros clientes e facilitamos seu investimento para que você comece a lucrar no menor tempo possível
             </p>
 
