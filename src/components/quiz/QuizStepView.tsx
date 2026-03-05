@@ -66,7 +66,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
           </p>
 
           <CTAButton onClick={onNext} className="text-sm md:text-base px-12 py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
-            QUERO CONHECER A LOCAGORA
+            COMEÇAR AGORA
           </CTAButton>
         </div>
       </div>
