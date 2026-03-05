@@ -7,43 +7,56 @@ interface CountryCode {
   dial: string;
   flag: string;
   name: string;
+  placeholder: string;
 }
 
 const countryCodes: CountryCode[] = [
-  { code: "BR", dial: "+55", flag: "🇧🇷", name: "Brasil" },
-  { code: "US", dial: "+1", flag: "🇺🇸", name: "Estados Unidos" },
-  { code: "PT", dial: "+351", flag: "🇵🇹", name: "Portugal" },
-  { code: "AR", dial: "+54", flag: "🇦🇷", name: "Argentina" },
-  { code: "CL", dial: "+56", flag: "🇨🇱", name: "Chile" },
-  { code: "CO", dial: "+57", flag: "🇨🇴", name: "Colômbia" },
-  { code: "MX", dial: "+52", flag: "🇲🇽", name: "México" },
-  { code: "PY", dial: "+595", flag: "🇵🇾", name: "Paraguai" },
-  { code: "UY", dial: "+598", flag: "🇺🇾", name: "Uruguai" },
-  { code: "PE", dial: "+51", flag: "🇵🇪", name: "Peru" },
-  { code: "EC", dial: "+593", flag: "🇪🇨", name: "Equador" },
-  { code: "BO", dial: "+591", flag: "🇧🇴", name: "Bolívia" },
-  { code: "VE", dial: "+58", flag: "🇻🇪", name: "Venezuela" },
-  { code: "ES", dial: "+34", flag: "🇪🇸", name: "Espanha" },
-  { code: "FR", dial: "+33", flag: "🇫🇷", name: "França" },
-  { code: "DE", dial: "+49", flag: "🇩🇪", name: "Alemanha" },
-  { code: "IT", dial: "+39", flag: "🇮🇹", name: "Itália" },
-  { code: "GB", dial: "+44", flag: "🇬🇧", name: "Reino Unido" },
-  { code: "JP", dial: "+81", flag: "🇯🇵", name: "Japão" },
-  { code: "CN", dial: "+86", flag: "🇨🇳", name: "China" },
-  { code: "IN", dial: "+91", flag: "🇮🇳", name: "Índia" },
-  { code: "AE", dial: "+971", flag: "🇦🇪", name: "Emirados Árabes" },
-  { code: "CA", dial: "+1", flag: "🇨🇦", name: "Canadá" },
-  { code: "AU", dial: "+61", flag: "🇦🇺", name: "Austrália" },
+  { code: "BR", dial: "+55", flag: "🇧🇷", name: "Brasil", placeholder: "(11) 99999-9999" },
+  { code: "US", dial: "+1", flag: "🇺🇸", name: "Estados Unidos", placeholder: "(555) 123-4567" },
+  { code: "MX", dial: "+52", flag: "🇲🇽", name: "México", placeholder: "(55) 1234-5678" },
+  { code: "PT", dial: "+351", flag: "🇵🇹", name: "Portugal", placeholder: "912 345 678" },
+  { code: "AR", dial: "+54", flag: "🇦🇷", name: "Argentina", placeholder: "11 2345-6789" },
+  { code: "CL", dial: "+56", flag: "🇨🇱", name: "Chile", placeholder: "9 1234 5678" },
+  { code: "CO", dial: "+57", flag: "🇨🇴", name: "Colômbia", placeholder: "312 345 6789" },
+  { code: "PY", dial: "+595", flag: "🇵🇾", name: "Paraguai", placeholder: "981 123 456" },
+  { code: "UY", dial: "+598", flag: "🇺🇾", name: "Uruguai", placeholder: "99 123 456" },
+  { code: "PE", dial: "+51", flag: "🇵🇪", name: "Peru", placeholder: "912 345 678" },
+  { code: "EC", dial: "+593", flag: "🇪🇨", name: "Equador", placeholder: "99 123 4567" },
+  { code: "BO", dial: "+591", flag: "🇧🇴", name: "Bolívia", placeholder: "7 123 4567" },
+  { code: "VE", dial: "+58", flag: "🇻🇪", name: "Venezuela", placeholder: "412 123 4567" },
+  { code: "ES", dial: "+34", flag: "🇪🇸", name: "Espanha", placeholder: "612 34 56 78" },
+  { code: "FR", dial: "+33", flag: "🇫🇷", name: "França", placeholder: "06 12 34 56 78" },
+  { code: "DE", dial: "+49", flag: "🇩🇪", name: "Alemanha", placeholder: "151 1234 5678" },
+  { code: "IT", dial: "+39", flag: "🇮🇹", name: "Itália", placeholder: "312 345 6789" },
+  { code: "GB", dial: "+44", flag: "🇬🇧", name: "Reino Unido", placeholder: "7911 123456" },
+  { code: "JP", dial: "+81", flag: "🇯🇵", name: "Japão", placeholder: "90 1234 5678" },
+  { code: "CN", dial: "+86", flag: "🇨🇳", name: "China", placeholder: "131 2345 6789" },
+  { code: "IN", dial: "+91", flag: "🇮🇳", name: "Índia", placeholder: "98765 43210" },
+  { code: "AE", dial: "+971", flag: "🇦🇪", name: "Emirados Árabes", placeholder: "50 123 4567" },
+  { code: "CA", dial: "+1", flag: "🇨🇦", name: "Canadá", placeholder: "(416) 123-4567" },
+  { code: "AU", dial: "+61", flag: "🇦🇺", name: "Austrália", placeholder: "412 345 678" },
 ];
 
 const formatPhone = (value: string, countryCode: string): string => {
   const digits = value.replace(/\D/g, "");
+  if (digits.length === 0) return "";
+
   if (countryCode === "BR") {
     if (digits.length <= 2) return `(${digits}`;
     if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
     return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
   }
-  // Generic formatting for other countries
+  if (countryCode === "MX") {
+    if (digits.length <= 2) return `(${digits}`;
+    if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6, 10)}`;
+  }
+  if (countryCode === "US" || countryCode === "CA") {
+    if (digits.length <= 3) return `(${digits}`;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  }
+  // Generic
   if (digits.length <= 3) return digits;
   if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
   return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 10)}`;
@@ -53,10 +66,9 @@ interface PhoneInputProps {
   value: string;
   onChange: (fullValue: string) => void;
   onSubmit: () => void;
-  placeholder?: string;
 }
 
-const PhoneInput = ({ value, onChange, onSubmit, placeholder }: PhoneInputProps) => {
+const PhoneInput = ({ value, onChange, onSubmit }: PhoneInputProps) => {
   const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
   const [isOpen, setIsOpen] = useState(false);
   const [phoneDigits, setPhoneDigits] = useState("");
@@ -74,7 +86,7 @@ const PhoneInput = ({ value, onChange, onSubmit, placeholder }: PhoneInputProps)
 
   const handlePhoneChange = (raw: string) => {
     const digits = raw.replace(/\D/g, "");
-    const maxLen = selectedCountry.code === "BR" ? 11 : 15;
+    const maxLen = (selectedCountry.code === "BR" || selectedCountry.code === "MX") ? 11 : 15;
     const trimmed = digits.slice(0, maxLen);
     setPhoneDigits(trimmed);
     const formatted = formatPhone(trimmed, selectedCountry.code);
@@ -84,6 +96,7 @@ const PhoneInput = ({ value, onChange, onSubmit, placeholder }: PhoneInputProps)
   const isValid = () => {
     const digits = phoneDigits.replace(/\D/g, "");
     if (selectedCountry.code === "BR") return digits.length >= 10 && digits.length <= 11;
+    if (selectedCountry.code === "MX") return digits.length >= 10 && digits.length <= 10;
     return digits.length >= 7;
   };
 
@@ -109,7 +122,8 @@ const PhoneInput = ({ value, onChange, onSubmit, placeholder }: PhoneInputProps)
                 onClick={() => {
                   setSelectedCountry(c);
                   setIsOpen(false);
-                  handlePhoneChange(phoneDigits);
+                  setPhoneDigits("");
+                  onChange("");
                 }}
                 className={cn(
                   "w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-primary/10 transition-colors text-sm font-body",
@@ -130,8 +144,8 @@ const PhoneInput = ({ value, onChange, onSubmit, placeholder }: PhoneInputProps)
         type="tel"
         value={formatPhone(phoneDigits, selectedCountry.code)}
         onChange={(e) => handlePhoneChange(e.target.value)}
-        placeholder={placeholder || "(00) 00000-0000"}
-        className="flex-1 h-14 px-5 rounded-[10px] bg-card card-border text-foreground text-base font-body placeholder:text-muted-foreground/60 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all"
+        placeholder={selectedCountry.placeholder}
+        className="flex-1 h-14 px-5 rounded-[10px] bg-card card-border text-foreground text-base font-body placeholder:text-muted-foreground/40 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all"
         onKeyDown={(e) => {
           if (e.key === "Enter" && isValid()) onSubmit();
         }}
