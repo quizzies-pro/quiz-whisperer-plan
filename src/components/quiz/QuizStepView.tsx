@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import ceoImage from "@/assets/ceo-locagora.png";
 import { cn } from "@/lib/utils";
