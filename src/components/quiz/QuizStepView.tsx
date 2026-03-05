@@ -173,13 +173,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
   // ── Result ──
   if (step.type === "result") {
-    let nome = "Candidato";
-    try {
-      const parsed = JSON.parse(answers[2] || "{}");
-      nome = parsed.nome || "Candidato";
-    } catch { nome = "Candidato"; }
+    const nome = answers[2] || "Candidato";
 
-    const selectedScenarioIdx = parseInt(answer || answers[9] || "2", 10);
+    const selectedScenarioIdx = parseInt(answer || answers[11] || "2", 10);
     const scenario = motoScenarios[selectedScenarioIdx] || motoScenarios[2];
 
     return (
