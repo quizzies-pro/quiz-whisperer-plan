@@ -64,7 +64,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
-      <div className="relative z-10 md:ml-14">
+      <div className="relative z-10">
         <div
           className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ transform: `translateY(-${(currentStep - 1) * 100}vh)` }}
