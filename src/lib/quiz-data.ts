@@ -82,7 +82,7 @@ export const quizSteps: QuizStepData[] = [
   {
     id: 5,
     title: "Qual dessas opções mais descreve o que você quer conquistar agora?",
-    subtitle: "Suas respostas nos ajudam a avaliar seu perfil e indicar a melhor oportunidade para você.",
+    subtitle: "Sua resposta nos ajuda a avaliar seu perfil e indicar a melhor oportunidade para você.",
     type: "multiple-choice",
     required: true,
     category: "busca",
