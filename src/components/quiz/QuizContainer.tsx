@@ -24,20 +24,13 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [isTransitioning]);
 
   const handleNext = useCallback(() => {
-    // Investment filter: < 200k skips calculator, goes to loading
-    if (currentStep === 10 && answers[10] === "menos_200k") {
-      // Skip calculator (step 11), go directly to loading (step 12)
-      goToStep(12);
-      return;
-    }
     goToStep(currentStep + 1);
-  }, [currentStep, answers, goToStep]);
+  }, [currentStep, goToStep]);
 
   const handleAnswer = useCallback((value: string) => {
     setAnswers((prev) => ({ ...prev, [currentStep]: value }));
   }, [currentStep]);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
@@ -53,7 +46,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [currentStep, answers, handleNext]);
 
   return (
-    <div className="relative overflow-hidden bg-background">
+    <div className="relative overflow-hidden bg-background min-h-screen">
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
       <div className="md:ml-16">

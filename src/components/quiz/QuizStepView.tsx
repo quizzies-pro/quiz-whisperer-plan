@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { QuizStepData, investmentTiers } from "@/lib/quiz-data";
-import { Button } from "@/components/ui/button";
+import { QuizStepData, motoScenarios, MotoScenario } from "@/lib/quiz-data";
+import { CTAButton } from "@/components/ui/cta-button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { ArrowRight, ArrowDown, Play, CheckCircle2, Sparkles, Calendar, MessageCircle } from "lucide-react";
+import { ArrowRight, Play, CheckCircle2, Sparkles, MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
 
 interface QuizStepViewProps {
   step: QuizStepData;
@@ -18,8 +18,8 @@ interface QuizStepViewProps {
 
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
+  const [formData, setFormData] = useState({ nome: "", email: "", whatsapp: "" });
 
-  // Auto-advance (only when autoAdvanceMs is set)
   useEffect(() => {
     if (step.autoAdvanceMs) {
       const timer = setTimeout(() => onNext(), step.autoAdvanceMs);
@@ -37,27 +37,82 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     return (
       <div className="h-screen w-full flex items-center justify-center px-4">
         <div className="max-w-3xl w-full space-y-8 animate-fade-in text-center">
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-foreground">
+          <h1 className="font-heading font-black text-3xl md:text-5xl leading-tight text-foreground">
             {step.title}
           </h1>
           {step.subtitle && (
-            <p className="text-lg text-muted-foreground">{step.subtitle}</p>
+            <p className="text-lg text-muted-foreground font-body">{step.subtitle}</p>
           )}
-          {/* Video placeholder */}
-          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-2xl bg-muted border-2 border-border overflow-hidden flex items-center justify-center">
+          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-xl bg-card border border-border/30 overflow-hidden flex items-center justify-center shadow-card-dark">
             <div className="flex flex-col items-center gap-3 text-muted-foreground">
-              <Play className="w-16 h-16" />
-              <span className="text-sm">Vídeo de apresentação</span>
+              <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green">
+                <Play className="w-8 h-8 text-primary ml-1" />
+              </div>
+              <span className="text-sm font-body">Vídeo de apresentação</span>
             </div>
           </div>
-          <Button
-            onClick={onNext}
-            size="lg"
-            className="text-base px-10 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
-          >
-            Começar avaliação
+          <CTAButton onClick={onNext} className="text-lg px-12 py-5">
+            COMEÇAR A AVALIAÇÃO
             <ArrowRight className="w-5 h-5" />
-          </Button>
+          </CTAButton>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Form (User Capture) ──
+  if (step.type === "form") {
+    const isFormValid = formData.nome && formData.email && formData.whatsapp;
+    return (
+      <div className="h-screen w-full flex items-center justify-center px-4">
+        <div className="max-w-lg w-full space-y-8 animate-fade-in">
+          <div className="text-center space-y-3">
+            <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
+            {step.subtitle && <p className="text-muted-foreground font-body">{step.subtitle}</p>}
+          </div>
+          <div className="rounded-xl bg-card border border-border/30 p-8 space-y-5 shadow-card-dark">
+            <div className="space-y-2">
+              <label className="text-sm font-heading font-bold text-foreground uppercase tracking-wide">Nome</label>
+              <Input
+                value={formData.nome}
+                onChange={(e) => setFormData(p => ({ ...p, nome: e.target.value }))}
+                placeholder="Seu nome completo"
+                className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-12 rounded-lg"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-heading font-bold text-foreground uppercase tracking-wide">Email</label>
+              <Input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))}
+                placeholder="seu@email.com"
+                className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-12 rounded-lg"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-heading font-bold text-foreground uppercase tracking-wide">WhatsApp</label>
+              <Input
+                type="tel"
+                value={formData.whatsapp}
+                onChange={(e) => setFormData(p => ({ ...p, whatsapp: e.target.value }))}
+                placeholder="(00) 00000-0000"
+                className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-12 rounded-lg"
+              />
+            </div>
+          </div>
+          <CTAButton
+            onClick={() => {
+              onAnswer(JSON.stringify(formData));
+              onNext();
+            }}
+            disabled={!isFormValid}
+            fullWidth
+            className="py-5"
+          >
+            CONTINUAR A AVALIAÇÃO
+            <ArrowRight className="w-5 h-5" />
+          </CTAButton>
         </div>
       </div>
     );
@@ -68,29 +123,28 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     return (
       <div className="h-screen w-full flex items-center justify-center px-4">
         <div className="max-w-2xl w-full text-center space-y-8 animate-fade-in">
-          <Sparkles className="w-16 h-16 mx-auto text-primary" />
-          <h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground">
+          <div className="w-20 h-20 mx-auto rounded-full bg-primary/20 flex items-center justify-center animate-float">
+            <Sparkles className="w-10 h-10 text-primary" />
+          </div>
+          <h2 className="font-heading font-bold text-2xl md:text-4xl leading-tight text-foreground">
             {step.title}
           </h2>
-          {/* Testimonials placeholder */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="rounded-xl bg-muted border border-border p-4 space-y-2">
-                <div className="w-10 h-10 rounded-full bg-primary/20 mx-auto" />
-                <p className="text-xs text-muted-foreground">
-                  "Depoimento de cliente #{i}"
+              <div key={i} className="rounded-xl bg-card border border-border/30 p-5 space-y-3 shadow-card-dark">
+                <div className="w-12 h-12 rounded-full bg-primary/10 mx-auto flex items-center justify-center">
+                  <CheckCircle2 className="w-6 h-6 text-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground font-body">
+                  "Depoimento de franqueado #{i}"
                 </p>
               </div>
             ))}
           </div>
-          <Button
-            onClick={onNext}
-            size="lg"
-            className="text-base px-8 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
-          >
-            Continuar
+          <CTAButton onClick={onNext} className="px-12 py-5">
+            CONTINUAR
             <ArrowRight className="w-5 h-5" />
-          </Button>
+          </CTAButton>
         </div>
       </div>
     );
@@ -98,51 +152,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
   // ── Calculator ──
   if (step.type === "calculator") {
-    const investimento = answers[10] || "200k_300k";
-    const tier = investmentTiers[investimento] || investmentTiers["200k_300k"];
-
-    return (
-      <div className="h-screen w-full flex items-center justify-center px-4">
-        <div className="max-w-2xl w-full space-y-8 animate-fade-in">
-          <h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground text-center">
-            {step.title}
-          </h2>
-          {step.subtitle && (
-            <p className="text-lg text-muted-foreground text-center">{step.subtitle}</p>
-          )}
-
-          <div className="rounded-2xl border-2 border-border bg-card p-8 space-y-6">
-            <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-1">
-                <span className="text-sm text-muted-foreground">Plano sugerido</span>
-                <p className="text-lg font-semibold text-foreground">{tier.label}</p>
-              </div>
-              <div className="space-y-1">
-                <span className="text-sm text-muted-foreground">Quantidade de motos</span>
-                <p className="text-lg font-semibold text-foreground">{tier.motos}</p>
-              </div>
-              <div className="space-y-1 col-span-2">
-                <span className="text-sm text-muted-foreground">Lucro mensal estimado</span>
-                <p className="text-3xl font-bold text-primary">
-                  {tier.lucroMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <Button
-              onClick={onNext}
-              size="lg"
-              className="text-base px-10 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
-            >
-              Quero garantir minha franquia LocaGora
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
+    return <CalculatorView step={step} onNext={onNext} onAnswer={onAnswer} answer={answer} />;
   }
 
   // ── Loading ──
@@ -150,24 +160,12 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     return (
       <div className="h-screen w-full flex items-center justify-center px-4">
         <div className="max-w-lg w-full text-center space-y-8 animate-fade-in">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">{step.title}</h2>
+          <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
           <LoadingAnimation />
-          {/* Social proof placeholders */}
-          <div className="grid grid-cols-3 gap-3 pt-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="rounded-xl bg-muted border border-border aspect-square flex items-center justify-center">
-                <span className="text-xs text-muted-foreground">Prova social #{i}</span>
-              </div>
-            ))}
-          </div>
-          <Button
-            onClick={onNext}
-            size="lg"
-            className="text-base px-8 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
-          >
-            Ver resultado
+          <CTAButton onClick={onNext} className="px-12 py-5">
+            VER RESULTADO
             <ArrowRight className="w-5 h-5" />
-          </Button>
+          </CTAButton>
         </div>
       </div>
     );
@@ -175,58 +173,49 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
   // ── Result ──
   if (step.type === "result") {
-    const nome = answers[2] || "Candidato";
-    const investimento = answers[10] || "200k_300k";
-    const tier = investmentTiers[investimento] || investmentTiers["200k_300k"];
-    const cidadeLabel =
-      answers[7] === "menos_50k" ? "< 50 mil hab." :
-      answers[7] === "50k_100k" ? "50-100 mil hab." :
-      "> 100 mil hab.";
+    let nome = "Candidato";
+    try {
+      const parsed = JSON.parse(answers[2] || "{}");
+      nome = parsed.nome || "Candidato";
+    } catch { nome = "Candidato"; }
+
+    const selectedScenarioIdx = parseInt(answer || answers[9] || "2", 10);
+    const scenario = motoScenarios[selectedScenarioIdx] || motoScenarios[2];
 
     return (
       <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto py-12">
         <div className="max-w-2xl w-full space-y-8 animate-fade-in">
           <div className="text-center space-y-4">
-            <CheckCircle2 className="w-16 h-16 mx-auto text-primary" />
-            <h2 className="text-2xl md:text-4xl font-bold text-foreground">
-              {nome}, parabéns! Seu perfil foi aprovado.
+            <div className="w-20 h-20 mx-auto rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green">
+              <CheckCircle2 className="w-10 h-10 text-primary" />
+            </div>
+            <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
+              {nome}, parabéns!
             </h2>
-            <p className="text-lg text-muted-foreground">{step.subtitle}</p>
+            <p className="font-heading font-bold text-xl text-primary">
+              Seu perfil foi aprovado.
+            </p>
+            <p className="text-muted-foreground font-body">{step.subtitle}</p>
           </div>
 
-          {/* Video placeholder */}
-          <div className="relative aspect-video w-full rounded-2xl bg-muted border-2 border-border overflow-hidden flex items-center justify-center">
-            <div className="flex flex-col items-center gap-3 text-muted-foreground">
-              <Play className="w-12 h-12" />
-              <span className="text-sm">Vídeo do fundador</span>
-            </div>
+          {/* Stat cards */}
+          <div className="grid grid-cols-2 gap-4">
+            <StatCard icon={<DollarSign />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
+            <StatCard icon={<TrendingUp />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
+            <StatCard icon={<BarChart3 />} label="ROI estimado" value={`${scenario.roiPercent}%`} />
+            <StatCard icon={<Clock />} label="Payback estimado" value={`${scenario.paybackMeses} meses`} />
           </div>
 
-          {/* Profile summary */}
-          <div className="rounded-2xl border-2 border-border bg-card p-6 space-y-4">
-            <h3 className="font-semibold text-foreground text-lg">Resumo do perfil</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <SummaryItem label="Região" value={cidadeLabel} />
-              <SummaryItem label="Investimento" value={investimento.replace(/_/g, " ")} />
-              <SummaryItem label="Plano sugerido" value={tier.label} />
-              <SummaryItem label="Lucro estimado" value={tier.lucroMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) + "/mês"} />
-            </div>
-          </div>
-
-          {/* Conversion CTAs */}
-          <div className="space-y-4 text-center">
-            <p className="text-muted-foreground font-medium">Escolha como quer dar o próximo passo</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-base px-8 py-6 rounded-xl gap-2 shadow-lg">
-                <Calendar className="w-5 h-5" />
-                Agendar minha apresentação
-              </Button>
-              <Button size="lg" variant="outline" className="text-base px-8 py-6 rounded-xl gap-2">
-                <MessageCircle className="w-5 h-5" />
-                Falar com consultor agora
-              </Button>
-            </div>
-            <p className="text-sm text-muted-foreground">
+          <div className="space-y-4 text-center pt-4">
+            <CTAButton
+              onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Fui%20aprovado%20no%20quiz%20da%20LocaGora!", "_blank")}
+              fullWidth
+              className="py-5 text-lg"
+            >
+              <MessageCircle className="w-5 h-5" />
+              FALAR COM UM ESPECIALISTA
+            </CTAButton>
+            <p className="text-sm text-muted-foreground font-body">
               Um consultor especializado entrará em contato com você em até 24 horas.
             </p>
           </div>
@@ -235,67 +224,41 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
     );
   }
 
-  // ── Default: Text / Multiple Choice / Welcome ──
-  const questionNumber = (() => {
-    // Count only answerable steps before this one
-    const answerableTypes = ["text", "multiple-choice"];
-    let count = 0;
-    // quiz-data imported by parent — we rely on step.id
-    for (let i = 2; i <= step.id; i++) {
-      // Steps 2+ that are text or multiple-choice
-      if (answerableTypes.includes(step.type) && i === step.id) {
-        count++;
-      } else if (i < step.id) {
-        count++;
-      }
-    }
-    return step.id - 1; // simplified
-  })();
-
+  // ── Default: Multiple Choice / Text ──
   return (
     <div className="h-screen w-full flex items-center justify-center px-4">
       <div className="max-w-2xl w-full space-y-8 animate-fade-in">
-        {step.type !== "welcome" && (
-          <span className="text-sm font-medium text-muted-foreground tracking-wider uppercase">
-            Pergunta {questionNumber}
-          </span>
-        )}
-
-        <h2 className={cn(
-          "font-bold leading-tight tracking-tight text-foreground",
-          step.type === "welcome" ? "text-4xl md:text-5xl" : "text-2xl md:text-3xl"
-        )}>
+        <h2 className="font-heading font-bold text-2xl md:text-3xl leading-tight text-foreground">
           {step.title}
         </h2>
-
         {step.subtitle && (
-          <p className="text-lg text-muted-foreground leading-relaxed">{step.subtitle}</p>
+          <p className="text-lg text-muted-foreground font-body leading-relaxed">{step.subtitle}</p>
         )}
 
         {step.type === "multiple-choice" && step.options && (
-          <div className="space-y-3 pt-4">
+          <div className="space-y-3 pt-2">
             {step.options.map((option, idx) => (
               <button
                 key={option.id}
                 onClick={() => handleOptionClick(option.value)}
                 className={cn(
-                  "w-full text-left px-6 py-4 rounded-xl border-2 transition-all duration-300 flex items-center gap-4 group",
+                  "w-full text-left px-6 py-4 rounded-xl border transition-all duration-300 flex items-center gap-4 group",
                   answer === option.value
-                    ? "border-primary bg-primary/5 shadow-md"
-                    : "border-border hover:border-primary/50 hover:bg-muted/50"
+                    ? "border-primary bg-primary/10 shadow-green"
+                    : "border-border/30 bg-card hover:border-primary/50 hover:bg-card/80 hover:-translate-y-0.5"
                 )}
               >
                 <span className={cn(
-                  "w-8 h-8 rounded-lg flex items-center justify-center text-sm font-semibold shrink-0 transition-colors duration-300",
+                  "w-9 h-9 rounded-lg flex items-center justify-center text-sm font-heading font-bold shrink-0 transition-all duration-300",
                   answer === option.value
                     ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
+                    : "bg-secondary text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
                 )}>
                   {String.fromCharCode(65 + idx)}
                 </span>
                 <span className={cn(
-                  "text-base md:text-lg font-medium transition-colors",
-                  answer === option.value ? "text-foreground" : "text-foreground/80"
+                  "text-base md:text-lg font-body transition-colors",
+                  answer === option.value ? "text-foreground font-semibold" : "text-foreground/80"
                 )}>
                   {option.label}
                 </span>
@@ -312,7 +275,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               onChange={(e) => setLocalText(e.target.value)}
               onBlur={() => { if (localText) onAnswer(localText); }}
               placeholder={step.placeholder || "Digite aqui..."}
-              className="text-lg py-6 px-4 border-2 rounded-xl"
+              className="text-lg py-6 px-4 bg-secondary border-border/50 rounded-xl text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && localText) {
                   onAnswer(localText);
@@ -325,25 +288,17 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
         {(step.type === "welcome" || step.type === "text") && (
           <div className="pt-4">
-            <Button
+            <CTAButton
               onClick={() => {
                 if (step.type === "text" && localText) onAnswer(localText);
                 onNext();
               }}
               disabled={step.type === "text" && !localText && step.required}
-              size="lg"
-              className="text-base px-8 py-6 rounded-xl gap-2 shadow-lg hover:shadow-xl transition-all"
+              className="px-12 py-5"
             >
-              {isFirst ? "Começar" : "Continuar"}
+              {isFirst ? "COMEÇAR" : "CONTINUAR"}
               <ArrowRight className="w-5 h-5" />
-            </Button>
-          </div>
-        )}
-
-        {isFirst && (
-          <div className="flex items-center gap-2 text-muted-foreground text-sm pt-8 animate-bounce">
-            <ArrowDown className="w-4 h-4" />
-            <span>ou pressione Enter ↵</span>
+            </CTAButton>
           </div>
         )}
       </div>
@@ -351,8 +306,73 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   );
 };
 
-// ── Sub-components ──
+// ── Calculator View ──
+const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData; onNext: () => void; onAnswer: (v: string) => void; answer?: string }) => {
+  const [selectedIdx, setSelectedIdx] = useState(parseInt(answer || "2", 10));
+  const scenario = motoScenarios[selectedIdx] || motoScenarios[2];
 
+  return (
+    <div className="h-screen w-full flex items-center justify-center px-4">
+      <div className="max-w-3xl w-full space-y-8 animate-fade-in">
+        <div className="text-center space-y-3">
+          <h2 className="font-heading font-bold text-2xl md:text-4xl text-foreground">{step.title}</h2>
+          {step.subtitle && <p className="text-muted-foreground font-body">{step.subtitle}</p>}
+        </div>
+
+        {/* Scenario selector */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {motoScenarios.map((s, idx) => (
+            <button
+              key={idx}
+              onClick={() => { setSelectedIdx(idx); onAnswer(String(idx)); }}
+              className={cn(
+                "rounded-xl p-4 text-center transition-all duration-300 border font-heading font-bold",
+                selectedIdx === idx
+                  ? "bg-primary text-primary-foreground border-primary shadow-green scale-105"
+                  : "bg-card text-foreground border-border/30 hover:border-primary/50 hover:-translate-y-0.5"
+              )}
+            >
+              <div className="text-2xl font-black">{s.motos}</div>
+              <div className="text-xs uppercase tracking-wide opacity-80">motos</div>
+            </button>
+          ))}
+        </div>
+
+        {/* Results */}
+        <div className="rounded-xl bg-card border border-border/30 p-8 shadow-card-dark space-y-6">
+          <div className="text-center space-y-2">
+            <span className="text-sm text-muted-foreground font-body uppercase tracking-wide">Lucro mensal estimado</span>
+            <p className="text-4xl md:text-5xl font-heading font-black text-primary">
+              {scenario.lucroMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+              <span className="text-lg font-bold text-muted-foreground"> /mês</span>
+            </p>
+          </div>
+          <div className="grid grid-cols-3 gap-4 pt-2">
+            <MiniStat label="Lucro líquido %" value={`${scenario.roiPercent}%`} />
+            <MiniStat label="Payback estimado" value={`${scenario.paybackMeses} meses`} />
+            <MiniStat label="Lucro anual" value={scenario.lucroAnual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })} />
+          </div>
+        </div>
+
+        <div className="text-center">
+          <CTAButton onClick={onNext} className="px-12 py-5 text-lg">
+            QUERO GARANTIR MINHA FRANQUIA
+            <ArrowRight className="w-5 h-5" />
+          </CTAButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MiniStat = ({ label, value }: { label: string; value: string }) => (
+  <div className="text-center space-y-1">
+    <span className="text-xs text-muted-foreground font-body">{label}</span>
+    <p className="font-heading font-black text-primary text-lg">{value}</p>
+  </div>
+);
+
+// ── Sub-components ──
 const LoadingAnimation = () => {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
@@ -364,18 +384,25 @@ const LoadingAnimation = () => {
 
   return (
     <div className="space-y-3">
-      <Progress value={progress} className="h-3" />
-      <p className="text-sm text-muted-foreground">
+      <Progress value={progress} className="h-3 bg-secondary" />
+      <p className="text-sm text-muted-foreground font-body">
         {progress < 30 ? "Verificando dados..." : progress < 60 ? "Analisando perfil..." : progress < 90 ? "Calculando compatibilidade..." : "Quase pronto..."}
       </p>
     </div>
   );
 };
 
-const SummaryItem = ({ label, value }: { label: string; value: string }) => (
-  <div className="space-y-1">
-    <span className="text-sm text-muted-foreground">{label}</span>
-    <p className="font-semibold text-foreground">{value}</p>
+const StatCard = ({ icon, label, value, highlight }: { icon: React.ReactNode; label: string; value: string; highlight?: boolean }) => (
+  <div className={cn(
+    "rounded-xl p-5 space-y-2 border shadow-card-dark",
+    highlight ? "bg-card border-primary/30" : "bg-card border-border/30"
+  )}>
+    <div className="text-primary w-5 h-5">{icon}</div>
+    <span className="text-xs text-muted-foreground font-body uppercase tracking-wide">{label}</span>
+    <p className={cn(
+      "font-heading font-black text-primary",
+      highlight ? "text-2xl" : "text-xl"
+    )}>{value}</p>
   </div>
 );
 
