@@ -144,13 +144,16 @@
   box-shadow: 0 0 8px rgba(0, 230, 77, 0.4);
 }
 
-/* Hide native scrollbar globally */
+/* Hide native scrollbar globally but allow scrolling */
 html, body {
   overflow: hidden;
+}
+
+/* Hide scrollbar for scrollable containers */
+.scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
+.scrollbar-none::-webkit-scrollbar {
   display: none;
 }
