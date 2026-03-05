@@ -34,15 +34,29 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4">
-        <div className="max-w-3xl w-full space-y-10 animate-fade-in text-center">
+      <div className="h-screen w-full relative flex items-center justify-center px-4">
+        {/* Background image with overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${bgHero})` }}
+        />
+        <div className="absolute inset-0 bg-[#080F1C]/85" />
+
+        {/* Green accent bars like the landing page */}
+        <div className="absolute left-0 top-[45%] w-full h-[6px] bg-primary/80 -skew-y-1" />
+        <div className="absolute left-0 top-[46%] w-full h-[3px] bg-primary/40 skew-y-1" />
+
+        <div className="relative z-10 max-w-3xl w-full space-y-8 animate-fade-in text-center">
           <h1 className="font-heading font-black text-3xl md:text-[2.75rem] leading-[1.15] text-foreground">
-            {step.title}
+            <span className="text-primary">Comece a lucrar</span> já no primeiro mês{"\n"}
+            <span className="block mt-1">com a franquia mais segura do Brasil</span>
           </h1>
-          {step.subtitle && (
-            <p className="text-base md:text-lg text-muted-foreground font-body max-w-xl mx-auto">{step.subtitle}</p>
-          )}
-          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden card-border bg-card shadow-dark">
+          <p className="text-sm md:text-base text-muted-foreground font-body max-w-xl mx-auto leading-relaxed">
+            Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa do país: alugue motos para entregadores do iFood e Ubers.
+          </p>
+
+          {/* Video placeholder */}
+          <div className="relative aspect-video w-full max-w-2xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40 bg-card shadow-dark">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 flex items-center justify-center animate-pulse-green cursor-pointer hover:bg-primary/30 transition-colors">
                 <Play className="w-7 h-7 md:w-8 md:h-8 text-primary ml-1" />
@@ -50,8 +64,13 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
               <span className="text-xs text-muted-foreground font-body">Vídeo de apresentação</span>
             </div>
           </div>
-          <CTAButton onClick={onNext} className="text-base px-10 py-5" showArrow>
-            COMEÇAR A AVALIAÇÃO
+
+          <p className="text-sm text-muted-foreground font-body max-w-lg mx-auto">
+            Encontramos seus primeiros clientes e facilitamos seu investimento para que você comece a lucrar com sua empresa no menor tempo possível
+          </p>
+
+          <CTAButton onClick={onNext} className="text-base px-12 py-5" showArrow>
+            QUERO CONHECER A LOCAGORA
           </CTAButton>
         </div>
       </div>
