@@ -143,3 +143,14 @@
 .progress-glow {
   box-shadow: 0 0 8px rgba(0, 230, 77, 0.4);
 }
+
+/* Hide native scrollbar globally */
+html, body {
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
