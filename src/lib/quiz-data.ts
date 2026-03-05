@@ -43,13 +43,36 @@ export const quizSteps: QuizStepData[] = [
     macroStep: 1,
   },
 
-  // ── Stage 2: User Capture (single form) ──
+  // ── Stage 2: User Capture (separate steps) ──
   {
     id: 2,
-    title: "Preencha seus dados para iniciar a avaliação",
+    title: "Qual é o seu nome?",
     subtitle: "Estamos avaliando novos franqueados para as próximas cidades. Precisamos de algumas informações.",
-    type: "form",
+    type: "text",
+    inputType: "text",
+    placeholder: "Digite seu nome",
     required: true,
+    category: "nome",
+    macroStep: 2,
+  },
+  {
+    id: 3,
+    title: "Qual é o seu email?",
+    type: "text",
+    inputType: "email",
+    placeholder: "seu@email.com",
+    required: true,
+    category: "email",
+    macroStep: 2,
+  },
+  {
+    id: 4,
+    title: "Qual é o seu número de WhatsApp?",
+    type: "text",
+    inputType: "tel",
+    placeholder: "(00) 00000-0000",
+    required: true,
+    category: "whatsapp",
     macroStep: 2,
   },
 
