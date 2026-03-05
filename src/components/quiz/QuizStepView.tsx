@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
+import ceoImage from "@/assets/ceo-locagora.png";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
