@@ -7,6 +7,7 @@ import { CTAButton } from "@/components/ui/cta-button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, Play, CheckCircle2, Sparkles, MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
 import PhoneInput from "./PhoneInput";
+import TestimonialWall from "./TestimonialWall";
 
 
 interface QuizStepViewProps {
@@ -429,7 +430,11 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
   // }, [progress, onNext]);
 
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
+    <div className="h-screen w-full relative overflow-hidden">
+      {/* Testimonial wall in bottom 50% */}
+      <TestimonialWall />
+
+      <div className="relative z-20 h-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-3xl w-full animate-fade-in">
         <div className="flex flex-col items-center gap-8 md:gap-10">
           {/* CEO Photo - grande */}
@@ -487,6 +492,7 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
