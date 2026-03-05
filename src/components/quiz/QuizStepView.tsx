@@ -401,7 +401,6 @@ const StatCard = ({ icon, label, value, highlight }: { icon: React.ReactNode; la
 // ── Interstitial View ──
 const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => void }) => {
   const [progress, setProgress] = useState(0);
-  const isLovablePreview = window.location.search.includes("__lovable_token");
   const DURATION_MS = 7000;
   const INTERVAL_MS = 70;
   const increment = 100 / (DURATION_MS / INTERVAL_MS);
@@ -420,11 +419,11 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
   }, [increment]);
 
   useEffect(() => {
-    if (progress >= 100 && !isLovablePreview) {
+    if (progress >= 100) {
       const timer = setTimeout(() => onNext(), 800);
       return () => clearTimeout(timer);
     }
-  }, [progress, isLovablePreview, onNext]);
+  }, [progress, onNext]);
 
   return (
     <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
@@ -482,14 +481,6 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
                   ? `Estamos atualizando seus dados... ${Math.floor(progress)}%`
                   : "Dados atualizados com sucesso! ✓"}
               </p>
-              {/* Botão fallback apenas no preview do Lovable */}
-              {progress >= 100 && isLovablePreview && (
-                <div className="animate-fade-in pt-2">
-                  <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
-                    CONTINUAR
-                  </CTAButton>
-                </div>
-              )}
             </div>
           </div>
         </div>
