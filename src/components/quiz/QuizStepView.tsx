@@ -463,51 +463,38 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           </div>
 
           {/* Comparativo: CDB e Selic */}
-          {(() => {
-            const inv = result.investimentoTotal;
-            const cdbTaxa = 0.1175;
-            const selicTaxa = 0.15;
-            const cdbMensal = inv * cdbTaxa / 12;
-            const cdbAnual = inv * cdbTaxa;
-            const cdbRoi = cdbTaxa / 12 * 100;
-            const selicMensal = inv * selicTaxa / 12;
-            const selicAnual = inv * selicTaxa;
-            const selicRoi = selicTaxa / 12 * 100;
-            return (
-              <div className="grid grid-cols-2 gap-3">
-                {/* CDB */}
-                <div className="rounded-[10px] glass-card p-3 sm:p-4 space-y-2">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-base">🏦</span>
-                    <h4 className="font-heading font-bold text-xs sm:text-sm text-foreground">CDB 100% CDI</h4>
-                  </div>
-                  <p className="text-[10px] text-muted-foreground/70 font-body">Ganho Passivo</p>
-                  <div className="space-y-1.5">
-                    <DetailRow label="Rendimento Mensal:" value={fmt(cdbMensal)} />
-                    <DetailRow label="Rendimento Anual:" value={fmt(cdbAnual)} />
-                    <div className="h-px bg-foreground/10" />
-                    <DetailRow label="ROI Mensal:" value={fmtPercent(cdbRoi)} />
-                    <DetailRow label="Taxa:" value="11,75% a.a." />
-                  </div>
-                </div>
-                {/* Selic */}
-                <div className="rounded-[10px] glass-card p-3 sm:p-4 space-y-2">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-base">🐷</span>
-                    <h4 className="font-heading font-bold text-xs sm:text-sm text-amber-400">Tesouro Selic</h4>
-                  </div>
-                  <p className="text-[10px] text-muted-foreground/70 font-body">Ganho Passivo</p>
-                  <div className="space-y-1.5">
-                    <DetailRow label="Rendimento Mensal:" value={fmt(selicMensal)} valueClassName="text-amber-400" />
-                    <DetailRow label="Rendimento Anual:" value={fmt(selicAnual)} valueClassName="text-amber-400" />
-                    <div className="h-px bg-foreground/10" />
-                    <DetailRow label="ROI Mensal:" value={fmtPercent(selicRoi)} valueClassName="text-amber-400" />
-                    <DetailRow label="Taxa:" value="15% a.a." valueClassName="text-amber-400" />
-                  </div>
-                </div>
+          <div className="grid grid-cols-2 gap-3">
+            {/* CDB */}
+            <div className="rounded-[10px] glass-card p-3 sm:p-4 space-y-2">
+              <div className="flex items-center gap-1.5">
+                <span className="text-base">🏦</span>
+                <h4 className="font-heading font-bold text-xs sm:text-sm text-foreground">CDB 100% CDI</h4>
               </div>
-            );
-          })()}
+              <p className="text-[10px] text-muted-foreground/70 font-body">Ganho Passivo</p>
+              <div className="space-y-1.5">
+                <DetailRow label="Rendimento Mensal:" value={fmt(result.cdbRendimentoMensal)} />
+                <DetailRow label="Rendimento Anual:" value={fmt(result.cdbRendimentoAnual)} />
+                <div className="h-px bg-foreground/10" />
+                <DetailRow label="ROI Mensal:" value={fmtPercent(result.cdbRoiMensal)} />
+                <DetailRow label="Taxa:" value="11,75% a.a." />
+              </div>
+            </div>
+            {/* Selic */}
+            <div className="rounded-[10px] glass-card p-3 sm:p-4 space-y-2">
+              <div className="flex items-center gap-1.5">
+                <span className="text-base">🐷</span>
+                <h4 className="font-heading font-bold text-xs sm:text-sm text-amber-400">Tesouro Selic</h4>
+              </div>
+              <p className="text-[10px] text-muted-foreground/70 font-body">Ganho Passivo</p>
+              <div className="space-y-1.5">
+                <DetailRow label="Rendimento Mensal:" value={fmt(result.selicRendimentoMensal)} valueClassName="text-amber-400" />
+                <DetailRow label="Rendimento Anual:" value={fmt(result.selicRendimentoAnual)} valueClassName="text-amber-400" />
+                <div className="h-px bg-foreground/10" />
+                <DetailRow label="ROI Mensal:" value={fmtPercent(result.selicRoiMensal)} valueClassName="text-amber-400" />
+                <DetailRow label="Taxa:" value="15% a.a." valueClassName="text-amber-400" />
+              </div>
+            </div>
+          </div>
 
           <p className="text-[9px] sm:text-[10px] text-muted-foreground/50 font-body text-center leading-relaxed max-w-xl mx-auto pb-2">
             Os valores apresentados são projeções baseadas em dados históricos e premissas de mercado. 
