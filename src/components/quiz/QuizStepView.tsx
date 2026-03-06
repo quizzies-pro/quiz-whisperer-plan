@@ -321,7 +321,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           <div className="flex flex-col items-center gap-2 sm:gap-2">
             <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-8 md:h-10 object-contain" />
             <p className="font-heading font-bold text-[11px] sm:text-sm md:text-base text-foreground/80 tracking-tight text-center">
-              Calculadora de Investimentos na Franquia <span className="text-primary">LocAgora</span>
+              Calculadora de Investimentos na Franquia Loca<span className="text-primary">go</span>ra
             </p>
           </div>
 
