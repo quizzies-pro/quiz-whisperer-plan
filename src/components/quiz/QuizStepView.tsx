@@ -325,7 +325,29 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           </p>
         </div>
 
-        {/* Moto selector */}
+        {/* Slider 1-30 motos */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground font-body">2 motos</span>
+            <span className="text-xs text-muted-foreground font-body">30 motos</span>
+          </div>
+          <input
+            type="range"
+            min={2}
+            max={30}
+            step={1}
+            value={selectedMotos}
+            onChange={(e) => handleSelect(parseInt(e.target.value, 10))}
+            className="w-full h-2 rounded-full appearance-none cursor-pointer bg-card card-border
+              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(0,230,77,0.5)] [&::-webkit-slider-thumb]:cursor-pointer
+              [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-[0_0_10px_rgba(0,230,77,0.5)] [&::-moz-range-thumb]:cursor-pointer"
+            style={{
+              background: `linear-gradient(to right, hsl(140 100% 45%) 0%, hsl(140 100% 45%) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) 100%)`,
+            }}
+          />
+        </div>
+
+        {/* Quick select buttons */}
         <div className="flex items-center justify-center gap-2 md:gap-3">
           {MOTO_OPTIONS.map((m) => (
             <button
