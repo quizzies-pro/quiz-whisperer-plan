@@ -214,7 +214,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
           {/* Video */}
           <div className="text-center">
-            <h3 className="font-heading font-black text-lg sm:text-xl md:text-2xl text-foreground mb-4">
+            <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground mb-4">
               Fillipe Félix tem uma <span className="text-primary">mensagem pra você!</span>
             </h3>
           </div>
