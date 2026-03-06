@@ -258,6 +258,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                 {/* Tablet mockups - carousel */}
                 <div className="flex justify-center">
                   <TabletCarousel />
+                </div>
 
                 {/* Text content */}
                 <div className="space-y-5">
