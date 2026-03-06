@@ -106,7 +106,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             />
           </div>
 
-          <p className="text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
+          <p className="text-sm sm:text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
             Encontramos seus primeiros clientes e facilitamos seu investimento para
             que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
           </p>
