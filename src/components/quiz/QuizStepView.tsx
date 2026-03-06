@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import ceoImage from "@/assets/ceo-locagora.png";
 import { cn } from "@/lib/utils";
-import { QuizStepData, motoScenarios, MotoScenario } from "@/lib/quiz-data";
+import { QuizStepData, motoScenarios, MotoScenario, MOTO_OPTIONS, calcularRetorno, CALC_CONSTANTS, type CalculatorResult } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, Play, CheckCircle2, Sparkles, MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
