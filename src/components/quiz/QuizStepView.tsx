@@ -473,6 +473,24 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               </div>
             </div>
 
+            {/* 1h/dia section */}
+            <div className="relative py-10 sm:py-14">
+              <div className="relative glass-card rounded-[var(--radius)] p-8 sm:p-10 md:p-12 text-center space-y-5 max-w-3xl mx-auto overflow-hidden">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[2px] bg-primary shadow-[0_0_20px_4px_hsl(140_100%_45%/0.5)]" />
+                <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-primary leading-tight">
+                  Você só precisa de 1h/dia<br />para tocar sua franquia
+                </h3>
+                <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed max-w-2xl mx-auto">
+                  Se você quer diversificar suas fontes de renda, mas não tem tempo para construir do zero um outro negócio, a franquia Loca<span className="text-primary font-bold">go</span>ra é a opção ideal. Em apenas uma hora do seu dia você consegue olhar os requerimentos da empresa e resolver o que precisa.
+                </p>
+                <CTAButton
+                  onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20conhecer%20a%20LocaGora!", "_blank")}
+                >
+                  QUERO CONHECER A LOCAGORA
+                </CTAButton>
+              </div>
+            </div>
+
             <p className="text-xs text-muted-foreground font-body text-center">
               Um consultor especializado entrará em contato com você em até 24 horas.
             </p>
