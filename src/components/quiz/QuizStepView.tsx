@@ -321,26 +321,26 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
 
             {/* Franchise CTA + Map section */}
-            <div className="py-8 sm:py-12">
+            <div className="py-8 sm:py-12 -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 rounded-2xl" style={{ background: 'hsl(0 0% 100%)' }}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
                 {/* Left: text + stats */}
                 <div className="space-y-5 text-center md:text-left">
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground uppercase leading-tight">
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl uppercase leading-tight" style={{ color: 'hsl(216 55% 7%)' }}>
                     Seja um franqueado Loca<span className="text-primary">go</span>ra e fature mais de
                   </h3>
                   <p className="font-heading font-black text-5xl sm:text-6xl md:text-7xl text-primary leading-none">
                     R$ {scenario.lucroAnual.toLocaleString("pt-BR")}
                   </p>
-                  <h4 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground uppercase leading-tight">
+                  <h4 className="font-heading font-black text-xl sm:text-2xl md:text-3xl uppercase leading-tight" style={{ color: 'hsl(216 55% 7%)' }}>
                     por ano em um dos setores que mais cresce no Brasil.
                   </h4>
                   <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto md:mx-0">
-                    <div className="rounded-[10px] glass-card p-4 text-center space-y-1">
-                      <p className="text-xs text-muted-foreground font-body">Lucro líquido mensal estimado</p>
+                    <div className="rounded-[10px] border border-border/20 p-4 text-center space-y-1" style={{ background: 'hsl(0 0% 96%)' }}>
+                      <p className="text-xs font-body" style={{ color: 'hsl(216 55% 7% / 0.6)' }}>Lucro líquido mensal estimado</p>
                       <p className="font-heading font-black text-lg sm:text-xl text-primary">DE 60 A 75%</p>
                     </div>
-                    <div className="rounded-[10px] glass-card p-4 text-center space-y-1">
-                      <p className="text-xs text-muted-foreground font-body">Payback estimado de</p>
+                    <div className="rounded-[10px] border border-border/20 p-4 text-center space-y-1" style={{ background: 'hsl(0 0% 96%)' }}>
+                      <p className="text-xs font-body" style={{ color: 'hsl(216 55% 7% / 0.6)' }}>Payback estimado de</p>
                       <p className="font-heading font-black text-lg sm:text-xl text-primary">{scenario.paybackMeses} MESES</p>
                     </div>
                   </div>
