@@ -314,135 +314,132 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
   const fmtPercent = (v: number) => `${v.toFixed(2)}%`;
 
   return (
-    <div className="h-screen w-full flex items-start justify-center px-4 overflow-y-auto scrollbar-none pt-[60px] pb-[80px]">
-      <div className="max-w-3xl w-full space-y-6 animate-fade-in">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">{step.title}</h2>
-          <p className="text-sm text-muted-foreground font-body">
-            Escolha com quantas motos você gostaria de começar.<br className="hidden md:inline" />
-            A simulação é baseada na média real dos franqueados ativos.
+    <div className="h-screen w-full flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-y-auto scrollbar-none px-4 pt-[60px] pb-6">
+        <div className="max-w-3xl w-full mx-auto space-y-6 animate-fade-in">
+          {/* Header */}
+          <div className="text-center space-y-2">
+            <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">{step.title}</h2>
+            <p className="text-sm text-muted-foreground font-body">
+              Escolha com quantas motos você gostaria de começar.<br className="hidden md:inline" />
+              A simulação é baseada na média real dos franqueados ativos.
+            </p>
+          </div>
+
+          {/* Moto counter + icon */}
+          <div className="flex flex-col items-center gap-1">
+            <div className="flex items-center gap-2">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
+                <circle cx="5" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="19" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
+                <path d="M5 17h2l2-5h4l3 5h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 12l-1-4h3l2 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="10" cy="7" r="1.5" fill="currentColor"/>
+              </svg>
+              <span className="text-foreground font-heading font-black text-5xl md:text-6xl">{selectedMotos}</span>
+            </div>
+            <span className="text-muted-foreground font-body text-sm tracking-wide">motos</span>
+          </div>
+
+          {/* Slider */}
+          <div className="space-y-1.5 px-2">
+            <input
+              type="range"
+              min={2}
+              max={30}
+              step={1}
+              value={selectedMotos}
+              onChange={(e) => handleSelect(parseInt(e.target.value, 10))}
+              className="w-full h-2 rounded-full appearance-none cursor-pointer
+                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-primary/30 [&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(0,230,77,0.5)] [&::-webkit-slider-thumb]:cursor-pointer
+                [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-primary/30 [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-[0_0_12px_rgba(0,230,77,0.5)] [&::-moz-range-thumb]:cursor-pointer"
+              style={{
+                background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) 100%)`,
+              }}
+            />
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-muted-foreground font-body">2 motos</span>
+              <span className="text-xs text-muted-foreground font-body">30 motos</span>
+            </div>
+          </div>
+
+          {/* Quick select buttons */}
+          <div className="flex items-center justify-center gap-2 md:gap-3">
+            {MOTO_OPTIONS.map((m) => (
+              <button
+                key={m}
+                onClick={() => handleSelect(m)}
+                className={cn(
+                  "rounded-[10px] px-4 py-2.5 md:px-6 md:py-3 font-heading font-bold text-sm md:text-base transition-all duration-300",
+                  selectedMotos === m
+                    ? "bg-primary text-primary-foreground scale-105 shadow-[0_0_20px_rgba(0,230,77,0.3)]"
+                    : "bg-card card-border text-foreground/70 hover:text-foreground hover:bg-card/80"
+                )}
+              >
+                {m}
+              </button>
+            ))}
+          </div>
+
+          {/* Main grid: Investment + Result */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Investment Details */}
+            <div className="rounded-[10px] glass-card p-5 space-y-4">
+              <h3 className="font-heading font-bold text-sm text-foreground/80 uppercase tracking-wider">Detalhes do Investimento</h3>
+              <div className="space-y-3">
+                <DetailRow label="Valor por Moto:" value={fmt(CALC_CONSTANTS.custoPorMoto)} />
+                <DetailRow label={`Investimento em Motos (${selectedMotos}x):`} value={fmt(selectedMotos * CALC_CONSTANTS.custoPorMoto)} />
+                <div className="h-px bg-foreground/10" />
+                <DetailRow label="Investimento Total:" value={fmt(result.investimentoTotal)} highlight />
+              </div>
+            </div>
+
+            {/* LocaGora Results */}
+            <div className="rounded-[10px] glow-border bg-card/80 p-5 space-y-4">
+              <div className="flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 text-primary" />
+                <h3 className="font-heading font-bold text-sm text-primary uppercase tracking-wider">Resultados LocaGora</h3>
+              </div>
+              <div className="space-y-3">
+                <DetailRow label="Lucro Mensal:" value={fmt(result.lucroMensal)} highlight />
+                <DetailRow label="Lucro Anual:" value={fmt(result.lucroAnual)} highlight />
+                <DetailRow label="ROI Mensal:" value={fmtPercent(result.roiMensal)} />
+                <div className="h-px bg-foreground/10" />
+                <DetailRow label="Payback:" value={`${result.paybackMeses} meses`} highlight />
+              </div>
+            </div>
+          </div>
+
+          {/* Projection */}
+          <div className="rounded-[10px] glass-card p-4">
+            <p className="text-xs text-muted-foreground font-body text-center mb-3">Projeção de ganhos acumulados</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="text-center">
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 1 ano</p>
+                <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual)}</p>
+                <span className="text-[10px] text-muted-foreground/60">projeção total</span>
+              </div>
+              <div className="text-center">
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 3 anos</p>
+                <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual * 3)}</p>
+                <span className="text-[10px] text-muted-foreground/60">projeção total</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Disclaimer */}
+          <p className="text-[10px] text-muted-foreground/50 font-body text-center leading-relaxed max-w-xl mx-auto pb-2">
+            Os valores apresentados são projeções baseadas em dados históricos e premissas de mercado. 
+            Rentabilidade passada não é garantia de rentabilidade futura. O investimento em franquias envolve riscos. 
+            Consulte um especialista antes de investir.
           </p>
         </div>
+      </div>
 
-        {/* Moto counter + icon */}
-        <div className="flex flex-col items-center gap-1">
-          <div className="flex items-center gap-2">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
-              <circle cx="5" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
-              <circle cx="19" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
-              <path d="M5 17h2l2-5h4l3 5h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M13 12l-1-4h3l2 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="10" cy="7" r="1.5" fill="currentColor"/>
-            </svg>
-            <span className="text-foreground font-heading font-black text-5xl md:text-6xl">{selectedMotos}</span>
-          </div>
-          <span className="text-muted-foreground font-body text-sm tracking-wide">motos</span>
-        </div>
-
-        {/* Slider */}
-        <div className="space-y-1.5 px-2">
-          <input
-            type="range"
-            min={2}
-            max={30}
-            step={1}
-            value={selectedMotos}
-            onChange={(e) => handleSelect(parseInt(e.target.value, 10))}
-            className="w-full h-2 rounded-full appearance-none cursor-pointer
-              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-primary/30 [&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(0,230,77,0.5)] [&::-webkit-slider-thumb]:cursor-pointer
-              [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-primary/30 [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-[0_0_12px_rgba(0,230,77,0.5)] [&::-moz-range-thumb]:cursor-pointer"
-            style={{
-              background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) 100%)`,
-            }}
-          />
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground font-body">2 motos</span>
-            <span className="text-xs text-muted-foreground font-body">30 motos</span>
-          </div>
-        </div>
-
-        {/* Quick select buttons */}
-        <div className="flex items-center justify-center gap-2 md:gap-3">
-          {MOTO_OPTIONS.map((m) => (
-            <button
-              key={m}
-              onClick={() => handleSelect(m)}
-              className={cn(
-                "rounded-[10px] px-4 py-2.5 md:px-6 md:py-3 font-heading font-bold text-sm md:text-base transition-all duration-300",
-                selectedMotos === m
-                  ? "bg-primary text-primary-foreground scale-105 shadow-[0_0_20px_rgba(0,230,77,0.3)]"
-                  : "bg-card card-border text-foreground/70 hover:text-foreground hover:bg-card/80"
-              )}
-            >
-              {m}
-            </button>
-          ))}
-        </div>
-
-        {/* Main grid: Investment + Result */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Investment Details */}
-          <div className="rounded-[10px] glass-card p-5 space-y-4">
-            <h3 className="font-heading font-bold text-sm text-foreground/80 uppercase tracking-wider">Detalhes do Investimento</h3>
-            <div className="space-y-3">
-              <DetailRow label="Valor por Moto:" value={fmt(CALC_CONSTANTS.custoPorMoto)} />
-              <DetailRow label={`Investimento em Motos (${selectedMotos}x):`} value={fmt(selectedMotos * CALC_CONSTANTS.custoPorMoto)} />
-              <div className="h-px bg-foreground/10" />
-              <DetailRow label="Investimento Total:" value={fmt(result.investimentoTotal)} highlight />
-            </div>
-          </div>
-
-          {/* LocaGora Results */}
-          <div className="rounded-[10px] glow-border bg-card/80 p-5 space-y-4">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-primary" />
-              <h3 className="font-heading font-bold text-sm text-primary uppercase tracking-wider">LOCAgora Franquias</h3>
-            </div>
-            <div className="space-y-3">
-              <DetailRow label="Lucro Mensal:" value={fmt(result.lucroMensal)} highlight />
-              <DetailRow label="Lucro Anual:" value={fmt(result.lucroAnual)} />
-              <DetailRow label="ROI Mensal:" value={fmtPercent(result.roiMensal)} highlight />
-              <DetailRow label="Payback:" value={`${result.paybackMeses} meses`} />
-            </div>
-          </div>
-        </div>
-
-        {/* Quanto você ganha a mais */}
-        <div className="rounded-[10px] glass-card p-5">
-          <h3 className="font-heading font-bold text-sm md:text-base text-center text-foreground mb-4">
-            <Sparkles className="w-4 h-4 inline text-primary mr-1" />
-            Quanto você ganha com a franquia?
-          </h3>
-          <div className="grid grid-cols-3 gap-3 text-center">
-            <div className="space-y-1">
-              <span className="text-[10px] text-muted-foreground font-body uppercase tracking-wider block">Por mês</span>
-              <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroMensal)}</p>
-              <span className="text-[10px] text-muted-foreground/60">lucro estimado</span>
-            </div>
-            <div className="space-y-1">
-              <span className="text-[10px] text-muted-foreground font-body uppercase tracking-wider block">Em 1 ano</span>
-              <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual)}</p>
-              <span className="text-[10px] text-muted-foreground/60">lucro acumulado</span>
-            </div>
-            <div className="space-y-1">
-              <span className="text-[10px] text-muted-foreground font-body uppercase tracking-wider block">Em 3 anos</span>
-              <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual * 3)}</p>
-              <span className="text-[10px] text-muted-foreground/60">projeção total</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Disclaimer */}
-        <p className="text-[10px] text-muted-foreground/50 font-body text-center leading-relaxed max-w-xl mx-auto">
-          Os valores apresentados são projeções baseadas em dados históricos e premissas de mercado. 
-          Rentabilidade passada não é garantia de rentabilidade futura. O investimento em franquias envolve riscos. 
-          Consulte um especialista antes de investir.
-        </p>
-
-        {/* CTA */}
-        <div className="text-center pt-1">
-          <CTAButton onClick={onNext} className="px-10 py-5 text-base" showArrow>
+      {/* Fixed CTA at bottom */}
+      <div className="shrink-0 px-4 py-4 bg-gradient-to-t from-background via-background to-transparent">
+        <div className="max-w-3xl mx-auto">
+          <CTAButton onClick={onNext} fullWidth className="py-5 text-base" showArrow>
             QUERO GARANTIR MINHA FRANQUIA
           </CTAButton>
         </div>
