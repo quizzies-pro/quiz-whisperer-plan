@@ -434,6 +434,14 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
       {/* Testimonial wall in bottom 50% */}
       <TestimonialWall />
 
+      {/* Circle shadow behind content for readability */}
+      <div
+        className="absolute z-[15] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, hsl(216 55% 7% / 1) 0%, hsl(216 55% 7% / 0.95) 30%, hsl(216 55% 7% / 0.8) 50%, hsl(216 55% 7% / 0.4) 70%, transparent 85%)",
+        }}
+      />
+
       <div className="relative z-20 h-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-3xl w-full animate-fade-in">
         <div className="flex flex-col items-center gap-8 md:gap-10">
