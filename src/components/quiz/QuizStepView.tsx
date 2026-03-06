@@ -123,12 +123,12 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                 <span className="font-heading font-bold text-sm text-foreground">Benefícios</span>
               </div>
               {/* Badges row */}
-              <div className="flex bg-card border-b border-border/20 py-3 px-6 gap-4">
+              <div className="flex bg-card border-b border-border/20 py-3 px-4 gap-3">
                 <div className="flex-1 flex justify-center">
-                  <span className="w-full text-center py-2 rounded-pill bg-destructive text-xs font-heading font-bold text-primary-foreground">Concorrentes</span>
+                  <span className="w-full text-center py-2.5 rounded-lg bg-destructive text-xs font-heading font-bold text-primary-foreground">Concorrentes</span>
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <span className="w-full text-center py-2 rounded-pill bg-primary text-xs font-heading font-bold text-primary-foreground">LocAgora</span>
+                  <span className="w-full text-center py-2.5 rounded-lg bg-primary text-xs font-heading font-bold text-primary-foreground">LocAgora</span>
                 </div>
               </div>
               {/* Benefit rows */}
