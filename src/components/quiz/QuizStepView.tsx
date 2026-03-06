@@ -1079,8 +1079,8 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="absolute -bottom-3 -right-3 w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg">
-              <CheckCircle2 className="w-6 h-6 text-primary-foreground" />
+            <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center shadow-lg">
+              <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
           </div>
 
