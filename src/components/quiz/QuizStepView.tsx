@@ -253,29 +253,31 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
 
             {/* Market Section */}
-            <div className="rounded-[10px] glass-card p-5 sm:p-8 max-w-4xl mx-auto">
-              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+            <div className="rounded-[10px] bg-card card-border p-6 sm:p-8 md:p-10">
+              <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 md:gap-8 items-center">
                 {/* Tablet mockups */}
-                <div className="relative w-[60%] sm:w-[45%] md:w-[40%] shrink-0 min-h-[200px] flex items-center justify-center">
-                  <img src={mockupTablet1} alt="Notícia sobre aluguel de motos" className="w-[85%] relative z-10 drop-shadow-2xl" />
-                  <img src={mockupTablet2} alt="Mercado de motos" className="w-[65%] absolute -bottom-3 -right-3 z-0 opacity-70 drop-shadow-xl" />
+                <div className="relative mx-auto md:mx-0 w-[220px] sm:w-[260px] md:w-[280px] h-[220px] sm:h-[260px] md:h-[280px]">
+                  <img src={mockupTablet1} alt="Notícia sobre aluguel de motos" className="absolute top-0 left-0 w-[75%] z-10 drop-shadow-2xl" />
+                  <img src={mockupTablet2} alt="Mercado de motos" className="absolute bottom-0 right-0 w-[65%] z-0 drop-shadow-xl" />
                 </div>
 
                 {/* Text content */}
-                <div className="flex-1 space-y-4">
-                  <h3 className="font-heading font-black text-xl sm:text-2xl md:text-[28px] text-foreground leading-snug">
-                    O mercado que <span className="text-primary">gera mais de 1,6 milhão de empregos no país</span> pode aumentar seu patrimônio
+                <div className="space-y-4">
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-[32px] text-foreground leading-[1.15]">
+                    O mercado que{" "}
+                    <span className="text-primary">gera mais de 1,6 milhão de empregos no país</span>{" "}
+                    pode aumentar seu patrimônio
                   </h3>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                  <p className="text-sm md:text-[15px] text-foreground/80 font-body leading-relaxed">
                     Se sua cidade tem mais de 100 mil habitantes e você quer empreender com uma margem de lucro maior que as demais franquias do mercado, ter uma franquia LocAgora é o que você precisa.
                   </p>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                  <p className="text-sm md:text-[15px] text-foreground/80 font-body leading-relaxed">
                     Muitas pessoas querem começar a trabalhar com entregas e transporte, mas não podem comprar uma moto, por isso a opção mais barata é alugar.
                   </p>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                  <p className="text-sm md:text-[15px] text-foreground/80 font-body leading-relaxed">
                     Com nossa franquia, você vai poder oferecer motos para uma demanda sedenta a um preço acessível. Junte-se a nós.
                   </p>
-                  <p className="text-sm text-foreground font-body leading-relaxed">
+                  <p className="text-sm md:text-base text-foreground font-body leading-relaxed text-center md:text-left pt-2">
                     Invista agora em uma <strong>franquia de locação de motos</strong> rentável e validada.
                   </p>
                 </div>
