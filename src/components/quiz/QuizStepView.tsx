@@ -1055,7 +1055,7 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
   }, [progress, onNext, isActive]);
 
   return (
-    <div className="h-screen w-full relative overflow-hidden">
+    <div className="h-full w-full relative overflow-hidden">
       {/* Testimonial wall in bottom 50% */}
       <TestimonialWall />
 
