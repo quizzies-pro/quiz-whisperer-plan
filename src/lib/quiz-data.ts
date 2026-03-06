@@ -218,7 +218,7 @@ export function getTierData(motos: number): { taxa: number; custoPorMoto: number
 
 export interface CalculatorResult {
   motos: number;
-  taxaFranquia: number;
+  custoPorMoto: number;
   tierLabel: string;
   investimentoMotos: number;
   investimentoTotal: number;
