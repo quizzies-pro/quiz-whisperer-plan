@@ -104,7 +104,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
           <div className="space-y-4 sm:space-y-5 pt-2 sm:pt-0">
             <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain" />
             <LoadingTitle />
-            <LoadingAnimation onComplete={onNext} />
+            <LoadingAnimation onComplete={onNext} isActive={isActive} />
           </div>
 
           {/* Comparison - Cards on mobile, Table on desktop */}
@@ -633,26 +633,42 @@ const LoadingTitle = () => {
   );
 };
 
-const LoadingAnimation = ({ onComplete }: { onComplete: () => void }) => {
+const LoadingAnimation = ({ onComplete, isActive }: { onComplete: () => void; isActive: boolean }) => {
   const [progress, setProgress] = useState(0);
   const hasAdvanced = useRef(false);
   const DURATION_MS = 10000;
   const INTERVAL_MS = 100;
   const increment = 100 / (DURATION_MS / INTERVAL_MS);
 
+  // Reset when becoming active
   useEffect(() => {
+    if (isActive) {
+      setProgress(0);
+      hasAdvanced.current = false;
+    }
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!isActive) return;
     const interval = setInterval(() => {
       setProgress((p) => {
-        const next = Math.min(p + increment, 100);
-        if (next >= 100 && !hasAdvanced.current) {
-          hasAdvanced.current = true;
-          setTimeout(() => onComplete(), 500);
+        if (p >= 100) {
+          clearInterval(interval);
+          return 100;
         }
-        return next;
+        return Math.min(p + increment, 100);
       });
     }, INTERVAL_MS);
     return () => clearInterval(interval);
-  }, [onComplete, increment]);
+  }, [isActive, increment]);
+
+  useEffect(() => {
+    if (progress >= 100 && !hasAdvanced.current && isActive) {
+      hasAdvanced.current = true;
+      const timer = setTimeout(() => onComplete(), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [progress, onComplete, isActive]);
 
   return (
     <div className="space-y-4">
