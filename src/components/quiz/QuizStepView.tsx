@@ -203,9 +203,6 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
         <div className="max-w-2xl w-full space-y-8 animate-fade-in">
           <div className="text-center space-y-4">
             <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4" />
-            <div className="w-16 h-16 mx-auto rounded-full bg-primary/15 flex items-center justify-center animate-pulse-green">
-              <CheckCircle2 className="w-8 h-8 text-primary" />
-            </div>
             <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
               {nome}, parabéns!
             </h2>
