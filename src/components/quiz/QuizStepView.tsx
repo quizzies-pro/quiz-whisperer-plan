@@ -7,6 +7,7 @@ import mapaBrasil from "@/assets/mapa-brasil.webp";
 import moto1 from "@/assets/moto-1.webp";
 import moto2 from "@/assets/moto-2.webp";
 import moto3 from "@/assets/moto-3.webp";
+import ceoFoto from "@/assets/ceo-foto.png";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario, MOTO_OPTIONS, calcularRetorno, CALC_CONSTANTS, type CalculatorResult } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
