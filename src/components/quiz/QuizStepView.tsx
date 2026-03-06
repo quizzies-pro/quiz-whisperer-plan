@@ -11,7 +11,7 @@ import { ArrowRight, Play, CheckCircle2, Sparkles, MessageCircle, TrendingUp, Do
 import PhoneInput from "./PhoneInput";
 import TestimonialWall from "./TestimonialWall";
 
-
+interface QuizStepViewProps {
   step: QuizStepData;
   answer: string | undefined;
   answers: Record<number, string>;
