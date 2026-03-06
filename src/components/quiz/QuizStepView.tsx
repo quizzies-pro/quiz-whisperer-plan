@@ -255,10 +255,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             {/* Market Section - full width like reference */}
             <div className="py-8 sm:py-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
-                {/* Tablet mockup - single large image like reference */}
+                {/* Tablet mockups - carousel */}
                 <div className="flex justify-center">
-                  <img src={mockupTablet1} alt="Notícia sobre aluguel de motos" className="w-[75%] sm:w-[80%] md:w-full max-w-[420px] drop-shadow-2xl" />
-                </div>
+                  <TabletCarousel />
 
                 {/* Text content */}
                 <div className="space-y-5">
