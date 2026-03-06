@@ -90,9 +90,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             <span className="font-black">com a franquia mais segura do Brasil</span>
           </h1>
 
-          <p className="text-sm md:text-base text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
             Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa
-            <span className="block">do país: alugue motos para entregadores do iFood e Ubers.</span>
+            do país: alugue motos para entregadores do iFood e Ubers.
           </p>
 
           {/* Video placeholder */}
