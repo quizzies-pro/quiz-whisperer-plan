@@ -257,6 +257,7 @@ export function calcularRetorno(motos: number): CalculatorResult {
   return {
     motos,
     taxaFranquia,
+    custoPorMoto,
     tierLabel,
     investimentoMotos,
     investimentoTotal,
