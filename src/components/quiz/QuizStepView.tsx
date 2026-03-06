@@ -327,7 +327,11 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
 
           {/* Header */}
           <div className="text-center space-y-2 sm:space-y-3">
-            <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-[28px] text-foreground leading-snug">{step.title}</h2>
+            <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-[28px] text-foreground leading-snug">
+              {step.type === "calculator" ? (
+                <>Veja quanto você poderia lucrar com a Loca<span className="text-primary">go</span>ra</>
+              ) : step.title}
+            </h2>
             <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
               Escolha com quantas motos você gostaria de começar.
               <span className="hidden sm:inline"><br />A simulação é baseada na média real dos franqueados ativos.</span>
