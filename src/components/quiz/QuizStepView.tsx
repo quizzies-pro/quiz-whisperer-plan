@@ -390,13 +390,13 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           </div>
 
           {/* Quick select buttons */}
-          <div className="flex items-center justify-center gap-2 sm:gap-2 md:gap-3">
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3">
             {MOTO_OPTIONS.map((m) => (
               <button
                 key={m}
                 onClick={() => handleSelect(m)}
                 className={cn(
-                  "rounded-[10px] px-5 py-3.5 sm:px-4 sm:py-2.5 md:px-6 md:py-3 font-heading font-bold text-base sm:text-sm md:text-base transition-all duration-300 min-w-[52px]",
+                  "rounded-[10px] px-3 py-2.5 sm:px-4 sm:py-2.5 md:px-6 md:py-3 font-heading font-bold text-sm sm:text-sm md:text-base transition-all duration-300 min-w-[44px] sm:min-w-[52px]",
                   selectedMotos === m
                     ? "bg-primary text-primary-foreground scale-105 shadow-[0_0_20px_rgba(0,230,77,0.3)]"
                     : "bg-card card-border text-foreground/70 hover:text-foreground hover:bg-card/80"
