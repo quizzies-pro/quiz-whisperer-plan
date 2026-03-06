@@ -317,6 +317,10 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
     <div className="h-screen w-full flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto scrollbar-none px-4 pt-[60px] pb-6">
         <div className="max-w-3xl w-full mx-auto space-y-6 animate-fade-in">
+          {/* Logo */}
+          <div className="flex justify-center">
+            <img src={logoLocagora} alt="LocaGora" className="h-8 md:h-10 object-contain" />
+          </div>
           {/* Header */}
           <div className="text-center space-y-2">
             <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">{step.title}</h2>
