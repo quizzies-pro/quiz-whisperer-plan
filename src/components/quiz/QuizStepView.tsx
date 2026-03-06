@@ -413,11 +413,13 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
             <div className="rounded-[10px] glass-card p-4 sm:p-5 space-y-3 sm:space-y-4">
               <h3 className="font-heading font-bold text-xs sm:text-sm text-foreground/80 uppercase tracking-wider">Detalhes do Investimento</h3>
               <div className="space-y-2 sm:space-y-3">
+                <DetailRow label="Taxa de Franquia:" value={fmt(result.taxaFranquia)} />
                 <DetailRow label="Valor por Moto:" value={fmt(CALC_CONSTANTS.custoPorMoto)} />
-                <DetailRow label={`Investimento (${selectedMotos}x):`} value={fmt(selectedMotos * CALC_CONSTANTS.custoPorMoto)} />
+                <DetailRow label={`Investimento em Motos (${selectedMotos}x):`} value={fmt(result.investimentoMotos)} />
                 <div className="h-px bg-foreground/10" />
                 <DetailRow label="Investimento Total:" value={fmt(result.investimentoTotal)} highlight />
               </div>
+              <p className="text-[10px] text-muted-foreground/50 font-body">🏷️ {result.tierLabel}</p>
             </div>
 
             {/* LocaGora Results */}
