@@ -232,11 +232,91 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
           </h3>
 
+          {/* Lucro Mensal - Hero */}
+          <div className="text-center py-5 rounded-[10px] bg-primary/5 border border-primary/20">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading mb-1">Lucro Mensal Estimado</p>
+            <p className="font-heading font-black text-4xl sm:text-5xl text-primary leading-none">
+              R$ {scenario.lucroMensal.toLocaleString("pt-BR")}
+            </p>
+            <p className="text-xs text-muted-foreground/70 mt-1.5 font-body">com {scenario.motos} motos</p>
+          </div>
+
+          {/* Stats grid */}
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             <StatCard icon={<DollarSign className="w-5 h-5" />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
             <StatCard icon={<TrendingUp className="w-5 h-5" />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
             <StatCard icon={<BarChart3 className="w-5 h-5" />} label="ROI Mensal" value={`${scenario.roiMensal.toFixed(2)}%`} />
             <StatCard icon={<Clock className="w-5 h-5" />} label="Payback estimado" value={`${scenario.paybackMeses} meses`} />
+          </div>
+
+          {/* Investment Details + Locagora Results */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div className="rounded-[10px] glass-card p-4 sm:p-5 space-y-3">
+              <h3 className="font-heading font-bold text-xs sm:text-sm text-foreground/80 uppercase tracking-wider">Detalhes do Investimento</h3>
+              <div className="space-y-2">
+                <DetailRow label="Taxa de Franquia:" value={`R$ ${scenario.taxaFranquia.toLocaleString("pt-BR")}`} />
+                <DetailRow label="Valor por Moto:" value={`R$ ${scenario.custoPorMoto.toLocaleString("pt-BR")}`} />
+                <DetailRow label={`Investimento em Motos (${scenario.motos}x):`} value={`R$ ${scenario.investimentoMotos.toLocaleString("pt-BR")}`} />
+                <div className="h-px bg-foreground/10" />
+                <DetailRow label="Investimento Total:" value={`R$ ${scenario.investimentoTotal.toLocaleString("pt-BR")}`} highlight />
+              </div>
+              <p className="text-[10px] text-muted-foreground/50 font-body">🏷️ {scenario.tierLabel}</p>
+            </div>
+
+            <div className="rounded-[10px] glow-border bg-card/80 p-4 sm:p-5 space-y-3">
+              <div className="flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 text-primary" />
+                <h3 className="font-heading font-bold text-xs sm:text-sm text-primary uppercase tracking-wider">Resultados Locagora</h3>
+              </div>
+              <div className="space-y-2">
+                <DetailRow label="Lucro Mensal:" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
+                <DetailRow label="Lucro Anual:" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} highlight />
+                <DetailRow label="ROI Mensal:" value={`${scenario.roiMensal.toFixed(2)}%`} />
+                <div className="h-px bg-foreground/10" />
+                <DetailRow label="Payback:" value={`${scenario.paybackMeses} meses`} highlight />
+              </div>
+            </div>
+          </div>
+
+          {/* Projections */}
+          <div className="rounded-[10px] glass-card p-3 sm:p-4">
+            <p className="text-[10px] sm:text-xs text-muted-foreground font-body text-center mb-2 sm:mb-3">Projeção de ganhos acumulados</p>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="text-center">
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 1 ano</p>
+                <p className="font-heading font-black text-primary text-base sm:text-lg md:text-xl">R$ {scenario.lucroAnual.toLocaleString("pt-BR")}</p>
+              </div>
+              <div className="text-center">
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 3 anos</p>
+                <p className="font-heading font-black text-primary text-base sm:text-lg md:text-xl">R$ {(scenario.lucroAnual * 3).toLocaleString("pt-BR")}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* CDB vs Selic comparison */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="rounded-[10px] glass-card p-3 sm:p-4 space-y-2">
+              <div className="flex items-center gap-1.5">
+                <span className="text-base">🏦</span>
+                <h4 className="font-heading font-bold text-xs sm:text-sm text-foreground">CDB 100% CDI</h4>
+              </div>
+              <div className="space-y-1.5">
+                <DetailRow label="Rend. Mensal:" value={`R$ ${scenario.cdbRendimentoMensal.toLocaleString("pt-BR")}`} />
+                <DetailRow label="Rend. Anual:" value={`R$ ${scenario.cdbRendimentoAnual.toLocaleString("pt-BR")}`} />
+                <DetailRow label="ROI Mensal:" value={`${scenario.cdbRoiMensal.toFixed(2)}%`} />
+              </div>
+            </div>
+            <div className="rounded-[10px] glass-card p-3 sm:p-4 space-y-2">
+              <div className="flex items-center gap-1.5">
+                <span className="text-base">🐷</span>
+                <h4 className="font-heading font-bold text-xs sm:text-sm text-amber-400">Tesouro Selic</h4>
+              </div>
+              <div className="space-y-1.5">
+                <DetailRow label="Rend. Mensal:" value={`R$ ${scenario.selicRendimentoMensal.toLocaleString("pt-BR")}`} valueClassName="text-amber-400" />
+                <DetailRow label="Rend. Anual:" value={`R$ ${scenario.selicRendimentoAnual.toLocaleString("pt-BR")}`} valueClassName="text-amber-400" />
+                <DetailRow label="ROI Mensal:" value={`${scenario.selicRoiMensal.toFixed(2)}%`} valueClassName="text-amber-400" />
+              </div>
+            </div>
           </div>
 
           <div className="space-y-4 text-center pt-2">
