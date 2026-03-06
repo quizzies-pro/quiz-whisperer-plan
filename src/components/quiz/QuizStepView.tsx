@@ -408,8 +408,15 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
                 <TrendingUp className="w-4 h-4 text-primary" />
                 <h3 className="font-heading font-bold text-xs sm:text-sm text-primary uppercase tracking-wider">Resultados LocaGora</h3>
               </div>
+
+              {/* Lucro Mensal - Hero destaque */}
+              <div className="text-center py-3 sm:py-4 rounded-[10px] bg-primary/5 border border-primary/20">
+                <p className="text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground font-heading mb-1">Lucro Mensal Estimado</p>
+                <p className="font-heading font-black text-3xl sm:text-4xl text-primary leading-none">{fmt(result.lucroMensal)}</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground/70 mt-1 font-body">por mês</p>
+              </div>
+
               <div className="space-y-2 sm:space-y-3">
-                <DetailRow label="Lucro Mensal:" value={fmt(result.lucroMensal)} highlight />
                 <DetailRow label="Lucro Anual:" value={fmt(result.lucroAnual)} highlight />
                 <DetailRow label="ROI Mensal:" value={fmtPercent(result.roiMensal)} />
                 <div className="h-px bg-foreground/10" />
