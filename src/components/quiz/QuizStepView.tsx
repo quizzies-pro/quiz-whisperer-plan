@@ -4,6 +4,9 @@ import ceoImage from "@/assets/ceo-locagora.png";
 import mockupTablet1 from "@/assets/mockup-tablet-1.webp";
 import mockupTablet2 from "@/assets/mockup-tablet-2.webp";
 import mapaBrasil from "@/assets/mapa-brasil.webp";
+import moto1 from "@/assets/moto-1.webp";
+import moto2 from "@/assets/moto-2.webp";
+import moto3 from "@/assets/moto-3.webp";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario, MOTO_OPTIONS, calcularRetorno, CALC_CONSTANTS, type CalculatorResult } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
@@ -430,6 +433,43 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                 ].map((video) => (
                   <VideoCard key={video.id} id={video.id} title={video.title} />
                 ))}
+              </div>
+            </div>
+
+            {/* Guarantee section */}
+            <div className="py-10 sm:py-14 space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
+                {/* Left: overlapping images */}
+                <div className="relative flex justify-center items-center h-[280px] sm:h-[340px] md:h-[400px]">
+                  <div className="absolute left-[5%] sm:left-[8%] top-[10%] w-[35%] rounded-[var(--radius)] overflow-hidden border-2 border-border/20 shadow-2xl rotate-[-4deg] z-10 hover:rotate-0 transition-transform duration-500">
+                    <img src={moto1} alt="Franqueado em moto" className="w-full h-full object-cover aspect-[3/4]" loading="lazy" />
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[5%] w-[38%] rounded-[var(--radius)] overflow-hidden border-2 border-primary/30 shadow-2xl z-20 hover:scale-105 transition-transform duration-500">
+                    <img src={moto2} alt="Motociclista com capacete" className="w-full h-full object-cover aspect-[3/4]" loading="lazy" />
+                  </div>
+                  <div className="absolute right-[5%] sm:right-[8%] top-[10%] w-[35%] rounded-[var(--radius)] overflow-hidden border-2 border-border/20 shadow-2xl rotate-[4deg] z-10 hover:rotate-0 transition-transform duration-500">
+                    <img src={moto3} alt="Entregador em moto" className="w-full h-full object-cover aspect-[3/4]" loading="lazy" />
+                  </div>
+                </div>
+
+                {/* Right: text */}
+                <div className="space-y-4 sm:space-y-5 text-center md:text-left">
+                  <span className="inline-block font-heading font-bold text-[10px] sm:text-xs uppercase tracking-widest text-primary border border-primary/30 rounded-full px-4 py-1.5">
+                    Garantido em cartório
+                  </span>
+                  <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground leading-tight">
+                    Encontramos seus primeiros clientes ou devolvemos todo o seu investimento
+                  </h3>
+                  <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
+                    Queremos que você comece sua franquia com um retorno imediato, além de encontrar seus primeiros clientes por você. Tudo isso garantido por um contrato assinado em cartório.
+                  </p>
+                  <CTAButton
+                    onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20conhecer%20a%20LocaGora!", "_blank")}
+                    className="mt-2"
+                  >
+                    QUERO CONHECER A LOCAGORA
+                  </CTAButton>
+                </div>
               </div>
             </div>
 
