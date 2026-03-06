@@ -633,14 +633,26 @@ const LoadingTitle = () => {
   );
 };
 
-const LoadingAnimation = () => {
+const LoadingAnimation = ({ onComplete }: { onComplete: () => void }) => {
   const [progress, setProgress] = useState(0);
+  const hasAdvanced = useRef(false);
+  const DURATION_MS = 10000;
+  const INTERVAL_MS = 100;
+  const increment = 100 / (DURATION_MS / INTERVAL_MS);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((p) => (p >= 100 ? 100 : p + 2));
-    }, 100);
+      setProgress((p) => {
+        const next = Math.min(p + increment, 100);
+        if (next >= 100 && !hasAdvanced.current) {
+          hasAdvanced.current = true;
+          setTimeout(() => onComplete(), 500);
+        }
+        return next;
+      });
+    }, INTERVAL_MS);
     return () => clearInterval(interval);
-  }, []);
+  }, [onComplete, increment]);
 
   return (
     <div className="space-y-4">
@@ -651,7 +663,7 @@ const LoadingAnimation = () => {
         />
       </div>
       <p className="text-sm text-muted-foreground font-body">
-        {progress < 30 ? "Verificando dados..." : progress < 60 ? "Analisando perfil..." : progress < 90 ? "Calculando compatibilidade..." : "Quase pronto..."}
+        {progress < 25 ? "Verificando dados..." : progress < 50 ? "Analisando perfil..." : progress < 75 ? "Calculando compatibilidade..." : progress < 100 ? "Quase pronto..." : "Concluído! ✓"}
       </p>
     </div>
   );
