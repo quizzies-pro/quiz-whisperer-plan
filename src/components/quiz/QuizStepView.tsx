@@ -3,6 +3,7 @@ import logoLocagora from "@/assets/logo-locagora.png";
 import ceoImage from "@/assets/ceo-locagora.png";
 import mockupTablet1 from "@/assets/mockup-tablet-1.webp";
 import mockupTablet2 from "@/assets/mockup-tablet-2.webp";
+import mapaBrasil from "@/assets/mapa-brasil.webp";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario, MOTO_OPTIONS, calcularRetorno, CALC_CONSTANTS, type CalculatorResult } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
