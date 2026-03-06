@@ -202,7 +202,54 @@ export const macroStepLabels: Record<number, string> = {
   7: "Resultado",
 };
 
-// Business scenarios (2, 5, 10, 20 motos)
+// ── Dynamic Calculator Constants (PRD) ──
+export const CALC_CONSTANTS = {
+  ticketMedioPorMoto: 1740,    // R$ 1.740/moto/mês (média dos planos)
+  outrasReceitasPercent: 0.12, // 12% receitas adicionais (multas, juros, tarifas)
+  margemLucro: 0.60,           // 60% margem após custos operacionais
+  custoPorMoto: 29000,         // R$ 29.000 (moto + equipamentos + taxas)
+};
+
+export const MOTO_OPTIONS = [2, 5, 10, 15, 20] as const;
+
+export interface CalculatorResult {
+  motos: number;
+  receitaAluguel: number;
+  outrasReceitas: number;
+  receitaTotal: number;
+  lucroMensal: number;
+  lucroAnual: number;
+  investimentoTotal: number;
+  paybackMeses: number;
+  roiMensal: number;
+}
+
+export function calcularRetorno(motos: number): CalculatorResult {
+  const { ticketMedioPorMoto, outrasReceitasPercent, margemLucro, custoPorMoto } = CALC_CONSTANTS;
+
+  const receitaAluguel = motos * ticketMedioPorMoto;
+  const outrasReceitas = receitaAluguel * outrasReceitasPercent;
+  const receitaTotal = receitaAluguel + outrasReceitas;
+  const lucroMensal = receitaTotal * margemLucro;
+  const lucroAnual = lucroMensal * 12;
+  const investimentoTotal = motos * custoPorMoto;
+  const paybackMeses = Math.ceil(investimentoTotal / lucroMensal);
+  const roiMensal = (lucroMensal / investimentoTotal) * 100;
+
+  return {
+    motos,
+    receitaAluguel,
+    outrasReceitas,
+    receitaTotal,
+    lucroMensal,
+    lucroAnual,
+    investimentoTotal,
+    paybackMeses,
+    roiMensal,
+  };
+}
+
+// Legacy motoScenarios for backward compat (result step)
 export interface MotoScenario {
   motos: number;
   lucroMensal: number;
@@ -212,18 +259,14 @@ export interface MotoScenario {
   label: string;
 }
 
-export const motoScenarios: MotoScenario[] = [
-  { motos: 2, lucroMensal: 1700, lucroAnual: 20400, roiPercent: 102, paybackMeses: 12, label: "2 Motos" },
-  { motos: 5, lucroMensal: 4250, lucroAnual: 51000, roiPercent: 102, paybackMeses: 12, label: "5 Motos" },
-  { motos: 10, lucroMensal: 8500, lucroAnual: 102000, roiPercent: 102, paybackMeses: 12, label: "10 Motos" },
-  { motos: 20, lucroMensal: 17000, lucroAnual: 204000, roiPercent: 102, paybackMeses: 12, label: "20 Motos" },
-];
-
-// Legacy compatibility
-export const investmentTiers: Record<string, { motos: number; lucroMensal: number; label: string }> = {
-  menos_200k: { motos: 0, lucroMensal: 0, label: "Lista de espera" },
-  "200k_300k": { motos: 5, lucroMensal: 4250, label: "Plano Starter — 5 motos" },
-  "300k_500k": { motos: 10, lucroMensal: 8500, label: "Plano Growth — 10 motos" },
-  "500k_700k": { motos: 15, lucroMensal: 12750, label: "Plano Premium — 15 motos" },
-  mais_700k: { motos: 20, lucroMensal: 17000, label: "Plano Master — 20 motos" },
-};
+export const motoScenarios: MotoScenario[] = MOTO_OPTIONS.map((m) => {
+  const r = calcularRetorno(m);
+  return {
+    motos: m,
+    lucroMensal: Math.round(r.lucroMensal),
+    lucroAnual: Math.round(r.lucroAnual),
+    roiPercent: Math.round(r.roiMensal * 100) / 100,
+    paybackMeses: r.paybackMeses,
+    label: `${m} Motos`,
+  };
+});
