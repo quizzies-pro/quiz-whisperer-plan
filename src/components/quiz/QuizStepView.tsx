@@ -252,6 +252,43 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               <StatCard icon={<Clock className="w-5 h-5" />} label="Payback estimado" value={`${scenario.paybackMeses} meses`} />
             </div>
 
+            {/* Profile Summary */}
+            <div className="rounded-[10px] glass-card p-5 sm:p-6 md:p-8">
+              <h3 className="font-heading font-bold text-sm sm:text-base text-foreground/80 uppercase tracking-wider mb-4">Resumo do seu perfil</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <ProfileItem
+                  label="Região"
+                  value={(() => {
+                    const v = answers[7];
+                    if (v === "menos_50k") return "Cidade até 50 mil hab.";
+                    if (v === "50k_100k") return "Cidade de 50-100 mil hab.";
+                    if (v === "mais_100k") return "Cidade +100 mil hab.";
+                    return "Não informado";
+                  })()}
+                />
+                <ProfileItem
+                  label="Capacidade"
+                  value={(() => {
+                    const v = answers[8];
+                    if (v === "sem_tempo") return "Sem tempo disponível";
+                    if (v === "1h") return "1 hora por dia";
+                    if (v === "algumas_horas") return "Algumas horas/semana";
+                    if (v === "integral") return "Dedicação integral";
+                    return "Não informado";
+                  })()}
+                />
+                <ProfileItem
+                  label="Plano sugerido"
+                  value={scenario.tierLabel.split(":")[0] || `${scenario.motos} motos`}
+                />
+                <ProfileItem
+                  label="Lucro estimado"
+                  value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}/mês`}
+                  highlight
+                />
+              </div>
+            </div>
+
             {/* Market Section - full width like reference */}
             <div className="py-8 sm:py-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
