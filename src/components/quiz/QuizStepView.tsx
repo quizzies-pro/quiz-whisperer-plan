@@ -102,7 +102,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
         <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-10 animate-fade-in">
           {/* Top section */}
           <div className="space-y-4 sm:space-y-5 pt-2 sm:pt-0">
-            <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4 sm:mb-6" />
+            <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-8 sm:mb-10" />
             <LoadingTitle />
             <LoadingAnimation onComplete={onNext} isActive={isActive} />
           </div>
