@@ -484,11 +484,8 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                 <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed max-w-2xl mx-auto">
                   Se você quer diversificar suas fontes de renda, mas não tem tempo para construir do zero um outro negócio, a franquia Loca<span className="text-primary font-bold">go</span>ra é a opção ideal. Em apenas uma hora do seu dia você consegue olhar os requerimentos da empresa e resolver o que precisa.
                 </p>
-                <CTAButton
-                  onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20conhecer%20a%20LocaGora!", "_blank")}
-                >
-                  QUERO CONHECER A LOCAGORA
-                </CTAButton>
+
+
               </div>
             </div>
 
@@ -519,15 +516,8 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                         Invista na franquia com o potencial mais lucrativo do país.
                       </p>
                     </div>
-                    <div className="pt-2">
-                      <CTAButton
-                        onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20LocaGora!", "_blank")}
-                        showArrow
-                        className="text-xs px-6 py-3"
-                      >
-                        FALE COM UM ESPECIALISTA
-                      </CTAButton>
-                    </div>
+
+
                   </div>
 
                   {/* CEO Image */}
