@@ -203,7 +203,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     return (
       <div className="h-screen w-full flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto scrollbar-none px-4 pt-[70px] pb-4">
-          <div className="max-w-2xl w-full mx-auto space-y-6 animate-fade-in">
+          <div className="max-w-5xl w-full mx-auto space-y-6 animate-fade-in">
             <div className="text-center space-y-4">
               <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4" />
               <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
@@ -291,7 +291,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
         {/* Fixed CTA at bottom */}
         <div className="shrink-0 px-3 sm:px-4 py-3 sm:py-4 bg-gradient-to-t from-background via-background to-transparent">
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-xl mx-auto">
             <CTAButton
               onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Fui%20aprovado%20no%20quiz%20da%20LocaGora!", "_blank")}
               fullWidth
