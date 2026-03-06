@@ -25,6 +25,10 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }, 500);
   }, [isTransitioning]);
 
+  const handleBack = useCallback(() => {
+    goToStep(currentStep - 1);
+  }, [currentStep, goToStep]);
+
   const handleNext = useCallback(() => {
     goToStep(currentStep + 1);
   }, [currentStep, goToStep]);
