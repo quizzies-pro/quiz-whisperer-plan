@@ -904,19 +904,6 @@ const TabletCarousel = () => {
           )}
         />
       ))}
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-4">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrent(idx)}
-            className={cn(
-              "w-2.5 h-2.5 rounded-full transition-all duration-300",
-              idx === current ? "bg-primary scale-110" : "bg-muted-foreground/30"
-            )}
-          />
-        ))}
-      </div>
     </div>
   );
 };
