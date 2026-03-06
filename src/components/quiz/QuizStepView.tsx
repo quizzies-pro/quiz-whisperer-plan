@@ -80,7 +80,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
+      <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
         <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
           <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
 
@@ -139,7 +139,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     ];
 
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
+      <div className="h-full w-full flex items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
         <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-10 animate-fade-in my-auto">
           {/* Top section */}
           <div className="space-y-4 sm:space-y-5">
@@ -240,7 +240,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     const scenario = calcularRetorno(selectedMotos);
 
     return (
-      <div className="h-screen w-full flex flex-col overflow-hidden">
+      <div className="h-full w-full flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-none px-4 pt-[70px] pb-4">
           <div className="max-w-5xl w-full mx-auto space-y-6 animate-fade-in">
             <div className="text-center space-y-4">
@@ -558,7 +558,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
   // ── Default: Multiple Choice / Text ──
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4 py-10 overflow-y-auto scrollbar-none">
+    <div className="h-full w-full flex items-center justify-center px-4 py-10 overflow-y-auto scrollbar-none">
       <div className="max-w-xl w-full space-y-8 animate-fade-in my-auto">
         <div className="space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl leading-tight text-foreground">
@@ -720,7 +720,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer, answers }: { step: Qui
   const fmtPercent = (v: number) => `${v.toFixed(2)}%`;
 
   return (
-    <div className="h-screen w-full flex flex-col overflow-hidden">
+    <div className="h-full w-full flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto scrollbar-none px-4 sm:px-4 pt-[72px] sm:pt-[60px] pb-4">
         <div className="max-w-3xl w-full mx-auto space-y-5 sm:space-y-6 animate-fade-in">
           {/* Logo + subtitle */}
@@ -1055,7 +1055,7 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
   }, [progress, onNext, isActive]);
 
   return (
-    <div className="h-screen w-full relative overflow-hidden">
+    <div className="h-full w-full relative overflow-hidden">
       {/* Testimonial wall in bottom 50% */}
       <TestimonialWall />
 
