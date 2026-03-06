@@ -141,7 +141,7 @@ export const quizSteps: QuizStepData[] = [
   {
     id: 9,
     title: "Parabéns, 98% dos nossos maiores clientes de sucesso tem características muito semelhantes a você!",
-    subtitle: "Só mais uma pergunta antes do seu resultado.",
+    subtitle: "Só mais 2 perguntas antes do seu resultado.",
     type: "interstitial",
     macroStep: 4,
   },
