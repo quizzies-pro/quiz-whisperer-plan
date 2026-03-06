@@ -80,7 +80,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
   // ── Interstitial ──
   if (step.type === "interstitial") {
-    return <InterstitialView step={step} onNext={onNext} answers={answers} />;
+    return <InterstitialView step={step} onNext={onNext} answers={answers} isActive={isActive} />;
   }
 
   // ── Calculator ──
