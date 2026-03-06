@@ -18,9 +18,10 @@ interface QuizStepViewProps {
   onNext: () => void;
   isFirst: boolean;
   isLast: boolean;
+  isActive: boolean;
 }
 
-const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
+const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActive }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
   const [validationError, setValidationError] = useState("");
   useEffect(() => {
