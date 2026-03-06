@@ -526,7 +526,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                     <img
                       src={ceoFoto}
                       alt="CEO LocaGora"
-                      className="w-full h-full object-cover object-top min-h-[300px] md:min-h-0"
+                      className="w-full h-full object-cover object-top max-h-[250px] sm:max-h-[300px] md:max-h-none"
                     />
                   </div>
                 </div>
