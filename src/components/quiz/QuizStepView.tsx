@@ -18,9 +18,10 @@ interface QuizStepViewProps {
   onNext: () => void;
   isFirst: boolean;
   isLast: boolean;
+  isActive: boolean;
 }
 
-const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: QuizStepViewProps) => {
+const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActive }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
   const [validationError, setValidationError] = useState("");
   useEffect(() => {
@@ -79,7 +80,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
 
   // ── Interstitial ──
   if (step.type === "interstitial") {
-    return <InterstitialView step={step} onNext={onNext} answers={answers} />;
+    return <InterstitialView step={step} onNext={onNext} answers={answers} isActive={isActive} />;
   }
 
   // ── Calculator ──
@@ -402,14 +403,23 @@ const StatCard = ({ icon, label, value, highlight }: { icon: React.ReactNode; la
 );
 
 // ── Interstitial View ──
-const InterstitialView = ({ step, onNext, answers }: { step: QuizStepData; onNext: () => void; answers: Record<number, string> }) => {
+const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepData; onNext: () => void; answers: Record<number, string>; isActive: boolean }) => {
   const [progress, setProgress] = useState(0);
   const hasAdvanced = useRef(false);
   const DURATION_MS = 10000;
   const INTERVAL_MS = 70;
   const increment = 100 / (DURATION_MS / INTERVAL_MS);
 
+  // Reset when becoming active
   useEffect(() => {
+    if (isActive) {
+      setProgress(0);
+      hasAdvanced.current = false;
+    }
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!isActive) return;
     const interval = setInterval(() => {
       setProgress((p) => {
         if (p >= 100) {
@@ -420,15 +430,15 @@ const InterstitialView = ({ step, onNext, answers }: { step: QuizStepData; onNex
       });
     }, INTERVAL_MS);
     return () => clearInterval(interval);
-  }, [increment]);
+  }, [isActive, increment]);
 
   useEffect(() => {
-    if (progress >= 100 && !hasAdvanced.current) {
+    if (progress >= 100 && !hasAdvanced.current && isActive) {
       hasAdvanced.current = true;
       const timer = setTimeout(() => onNext(), 800);
       return () => clearTimeout(timer);
     }
-  }, [progress, onNext]);
+  }, [progress, onNext, isActive]);
 
   return (
     <div className="h-screen w-full relative overflow-hidden">

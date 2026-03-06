@@ -97,6 +97,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
               onNext={handleNext}
               isFirst={step.id === 1}
               isLast={step.id === quizSteps.length}
+              isActive={step.id === currentStep}
             />
           ))}
         </div>
