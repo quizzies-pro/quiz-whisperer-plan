@@ -354,7 +354,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
             const getMotoMessage = (motos: number) => {
               if (motos <= 3) return "Ideal para testar o modelo LocAgora";
               if (motos <= 7) return "Renda extra com baixo risco";
-              if (motos <= 12) return "Operação sólida e escalável";
+              if (motos <= 12) return "Investimento mais recomendado para começar";
               if (motos <= 18) return "Crescimento acelerado";
               return "Domine o mercado da sua região";
             };
