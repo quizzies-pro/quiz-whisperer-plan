@@ -438,7 +438,7 @@ const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => 
       <div
         className="absolute z-[15] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] md:w-[900px] md:h-[900px] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, hsl(216 55% 7% / 1) 0%, hsl(216 55% 7% / 1) 35%, hsl(216 55% 7% / 0.9) 50%, hsl(216 55% 7% / 0.6) 65%, hsl(216 55% 7% / 0.2) 80%, transparent 90%)",
+          background: "radial-gradient(circle, hsl(216 55% 7% / 1) 0%, hsl(216 55% 7% / 1) 25%, hsl(216 55% 7% / 0.97) 35%, hsl(216 55% 7% / 0.88) 45%, hsl(216 55% 7% / 0.7) 55%, hsl(216 55% 7% / 0.45) 65%, hsl(216 55% 7% / 0.2) 75%, hsl(216 55% 7% / 0.07) 85%, transparent 95%)",
         }}
       />
 
