@@ -354,25 +354,25 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
 
             {/* Why invest section */}
-            <div className="text-center space-y-5 py-8">
-              <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground">
+            <div className="text-center space-y-5 py-10 sm:py-14" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2.5rem 9999px' }}>
+              <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-background">
                 Por quê investir na Loca<span className="text-primary">go</span>ra é o melhor negócio?
               </h3>
-              <p className="text-sm md:text-base text-muted-foreground font-body">
+              <p className="text-sm md:text-base text-background/60 font-body">
                 Somos uma marca em constante crescimento e com presença nacional!
               </p>
               <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
                 <div className="text-center">
                   <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+770</p>
-                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-foreground mt-1">Franquias Abertas</p>
+                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-background mt-1">Franquias Abertas</p>
                 </div>
-                <div className="text-center border-x border-border/30">
+                <div className="text-center border-x border-background/15">
                   <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+98</p>
-                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-foreground mt-1">Cidades Atendidas</p>
+                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-background mt-1">Cidades Atendidas</p>
                 </div>
                 <div className="text-center">
                   <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+100</p>
-                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-foreground mt-1">Lojas em Operação</p>
+                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-background mt-1">Lojas em Operação</p>
                 </div>
               </div>
             </div>
