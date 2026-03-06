@@ -262,9 +262,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             <CTAButton
               onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Fui%20aprovado%20no%20quiz%20da%20LocaGora!", "_blank")}
               fullWidth
-              className="py-5 text-base"
+              className="py-3.5 text-sm whitespace-nowrap"
             >
-              <MessageCircle className="w-5 h-5" />
+              <MessageCircle className="w-4 h-4 shrink-0" />
               FALAR COM UM ESPECIALISTA
             </CTAButton>
           </div>
