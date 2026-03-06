@@ -104,7 +104,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
           <div className="space-y-4 sm:space-y-5 pt-2 sm:pt-0">
             <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain" />
             <LoadingTitle />
-            <LoadingAnimation onComplete={onNext} />
+            <LoadingAnimation onComplete={onNext} isActive={isActive} />
           </div>
 
           {/* Comparison - Cards on mobile, Table on desktop */}
