@@ -315,20 +315,20 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden">
-      <div className="flex-1 overflow-y-auto scrollbar-none px-3 sm:px-4 pt-[40px] sm:pt-[60px] pb-4">
-        <div className="max-w-3xl w-full mx-auto space-y-4 sm:space-y-6 animate-fade-in">
+      <div className="flex-1 overflow-y-auto scrollbar-none px-4 sm:px-4 pt-[24px] sm:pt-[60px] pb-4">
+        <div className="max-w-3xl w-full mx-auto space-y-5 sm:space-y-6 animate-fade-in">
           {/* Logo + subtitle */}
-          <div className="flex flex-col items-center gap-1">
-            <img src={logoLocagora} alt="LocaGora" className="h-7 sm:h-8 md:h-10 object-contain" />
-            <p className="font-heading font-bold text-xs sm:text-sm md:text-base text-foreground/80 tracking-tight text-center">
+          <div className="flex flex-col items-center gap-2 sm:gap-2">
+            <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-8 md:h-10 object-contain" />
+            <p className="font-heading font-bold text-[11px] sm:text-sm md:text-base text-foreground/80 tracking-tight text-center">
               Calculadora de Investimentos na Franquia <span className="text-primary">LocAgora</span>
             </p>
           </div>
 
           {/* Header */}
-          <div className="text-center space-y-1 sm:space-y-2">
-            <h2 className="font-heading font-bold text-lg sm:text-xl md:text-2xl text-foreground leading-tight">{step.title}</h2>
-            <p className="text-xs sm:text-sm text-muted-foreground font-body leading-relaxed">
+          <div className="text-center space-y-2 sm:space-y-2">
+            <h2 className="font-heading font-bold text-[17px] sm:text-xl md:text-2xl text-foreground leading-snug">{step.title}</h2>
+            <p className="text-[11px] sm:text-sm text-muted-foreground font-body leading-relaxed">
               Escolha com quantas motos você gostaria de começar.
               <span className="hidden sm:inline"><br />A simulação é baseada na média real dos franqueados ativos.</span>
             </p>
