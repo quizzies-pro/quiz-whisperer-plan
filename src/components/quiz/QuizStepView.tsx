@@ -228,7 +228,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             />
           </div>
 
-          <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
+          <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground text-center">
             Veja os seus <span className="text-primary">lucros aprovados</span> para você!
           </h3>
 
