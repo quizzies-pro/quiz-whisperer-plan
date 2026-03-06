@@ -112,7 +112,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             <div className="text-center space-y-2 sm:space-y-3">
               <p className="font-heading font-bold text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase text-primary">Use seu lado racional</p>
               <h3 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-foreground leading-snug">
-                A Loca<span className="text-primary">go</span>ra é melhor não só pelo marketing...
+                {answers[2] ? `${answers[2]}, a` : "A"} Loca<span className="text-primary">go</span>ra é melhor não só pelo marketing...
               </h3>
             </div>
 
