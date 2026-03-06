@@ -321,58 +321,58 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
 
             {/* Franchise CTA + Map section */}
-            <div className="py-10 sm:py-14" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2.5rem 9999px' }}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
+            <div className="py-8 sm:py-10 md:py-14" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2rem 9999px' }}>
+              <div className="flex flex-col md:grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center max-w-5xl mx-auto">
                 {/* Left: text + stats */}
-                <div className="space-y-5 text-center md:text-left">
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-background uppercase leading-tight">
+                <div className="space-y-4 sm:space-y-5 text-center md:text-left order-2 md:order-1">
+                  <h3 className="font-heading font-black text-xl sm:text-2xl md:text-4xl text-background uppercase leading-tight">
                     Seja um franqueado Loca<span className="text-primary">go</span>ra e fature mais de
                   </h3>
-                  <p className="font-heading font-black text-5xl sm:text-6xl md:text-7xl text-primary leading-none">
+                  <p className="font-heading font-black text-4xl sm:text-5xl md:text-7xl text-primary leading-none">
                     R$ {scenario.lucroAnual.toLocaleString("pt-BR")}
                   </p>
-                  <h4 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-background uppercase leading-tight">
+                  <h4 className="font-heading font-black text-base sm:text-xl md:text-3xl text-background uppercase leading-tight">
                     por ano em um dos setores que mais cresce no Brasil.
                   </h4>
-                  <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto md:mx-0">
-                    <div className="rounded-[var(--radius)] bg-card p-4 text-center space-y-1">
-                      <p className="text-xs font-body text-foreground/70">Lucro líquido mensal estimado</p>
-                      <p className="font-heading font-black text-lg sm:text-xl text-primary">DE 60 A 75%</p>
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 max-w-sm sm:max-w-md mx-auto md:mx-0">
+                    <div className="rounded-[var(--radius)] bg-card p-3 sm:p-4 text-center space-y-1">
+                      <p className="text-[10px] sm:text-xs font-body text-foreground/70">Lucro líquido mensal estimado</p>
+                      <p className="font-heading font-black text-sm sm:text-lg md:text-xl text-primary">DE 60 A 75%</p>
                     </div>
-                    <div className="rounded-[var(--radius)] bg-card p-4 text-center space-y-1">
-                      <p className="text-xs font-body text-foreground/70">Payback estimado de</p>
-                      <p className="font-heading font-black text-lg sm:text-xl text-primary">{scenario.paybackMeses} MESES</p>
+                    <div className="rounded-[var(--radius)] bg-card p-3 sm:p-4 text-center space-y-1">
+                      <p className="text-[10px] sm:text-xs font-body text-foreground/70">Payback estimado de</p>
+                      <p className="font-heading font-black text-sm sm:text-lg md:text-xl text-primary">{scenario.paybackMeses} MESES</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Right: Brazil map */}
-                <div className="flex justify-center">
-                  <img src={mapaBrasil} alt="Mapa do Brasil - Onde estamos" className="w-full max-w-[400px] md:max-w-[450px] drop-shadow-xl" />
+                <div className="flex justify-center order-1 md:order-2">
+                  <img src={mapaBrasil} alt="Mapa do Brasil - Onde estamos" className="w-[200px] sm:w-[280px] md:w-full md:max-w-[450px] drop-shadow-xl" />
                 </div>
               </div>
             </div>
 
             {/* Why invest section */}
-            <div className="text-center space-y-5 py-10 sm:py-14" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2.5rem 9999px' }}>
-              <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-background">
+            <div className="text-center space-y-4 sm:space-y-5 py-8 sm:py-10 md:py-14" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2rem 9999px' }}>
+              <h3 className="font-heading font-black text-xl sm:text-2xl md:text-4xl text-background">
                 Por quê investir na Loca<span className="text-primary">go</span>ra é o melhor negócio?
               </h3>
-              <p className="text-sm md:text-base text-background/60 font-body">
+              <p className="text-xs sm:text-sm md:text-base text-background/60 font-body">
                 Somos uma marca em constante crescimento e com presença nacional!
               </p>
-              <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 max-w-3xl mx-auto">
                 <div className="text-center">
-                  <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+770</p>
-                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-background mt-1">Franquias Abertas</p>
+                  <p className="font-heading font-black text-2xl sm:text-3xl md:text-5xl text-primary">+770</p>
+                  <p className="font-heading font-bold text-[8px] sm:text-[10px] md:text-sm uppercase tracking-wider text-background mt-1">Franquias Abertas</p>
                 </div>
                 <div className="text-center border-x border-background/15">
-                  <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+98</p>
-                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-background mt-1">Cidades Atendidas</p>
+                  <p className="font-heading font-black text-2xl sm:text-3xl md:text-5xl text-primary">+98</p>
+                  <p className="font-heading font-bold text-[8px] sm:text-[10px] md:text-sm uppercase tracking-wider text-background mt-1">Cidades Atendidas</p>
                 </div>
                 <div className="text-center">
-                  <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+100</p>
-                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-background mt-1">Lojas em Operação</p>
+                  <p className="font-heading font-black text-2xl sm:text-3xl md:text-5xl text-primary">+100</p>
+                  <p className="font-heading font-bold text-[8px] sm:text-[10px] md:text-sm uppercase tracking-wider text-background mt-1">Lojas em Operação</p>
                 </div>
               </div>
             </div>
