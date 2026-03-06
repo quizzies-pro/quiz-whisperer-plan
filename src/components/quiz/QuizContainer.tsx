@@ -69,6 +69,17 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
+      {/* Back button */}
+      {currentStep > 1 && (
+        <button
+          onClick={handleBack}
+          className="fixed top-5 left-5 z-50 w-10 h-10 rounded-full bg-card/80 card-border flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-card transition-all duration-200"
+          aria-label="Voltar"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+      )}
+
       <div className="relative z-10">
         <div
           className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
