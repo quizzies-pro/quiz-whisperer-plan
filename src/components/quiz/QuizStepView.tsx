@@ -349,19 +349,20 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
             <span className="text-muted-foreground font-body text-xs sm:text-sm tracking-wide">motos</span>
           </div>
 
-          {/* Contextual message based on moto count */}
+          {/* Contextual message based on moto count — only for 2, 10, 30 */}
           {(() => {
-            const getMotoMessage = (motos: number) => {
+            const getMotoMessage = (motos: number): string | null => {
               if (motos <= 3) return "Ideal para testar o modelo LocAgora";
-              if (motos <= 7) return "Renda extra com baixo risco";
-              if (motos <= 12) return "Investimento mais recomendado para começar";
-              if (motos <= 18) return "Crescimento acelerado";
-              return "Domine o mercado da sua região";
+              if (motos >= 8 && motos <= 12) return "Investimento mais recomendado para começar";
+              if (motos >= 25) return "Investimento com a maior rentabilidade e menor Payback";
+              return null;
             };
+            const msg = getMotoMessage(selectedMotos);
+            if (!msg) return null;
             return (
               <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-[10px] glow-border bg-card/60 text-center">
                 <Sparkles className="w-4 h-4 text-primary shrink-0" />
-                <p className="text-xs sm:text-sm text-primary font-body leading-snug">{getMotoMessage(selectedMotos)}</p>
+                <p className="text-xs sm:text-sm text-primary font-body leading-snug">{msg}</p>
               </div>
             );
           })()}

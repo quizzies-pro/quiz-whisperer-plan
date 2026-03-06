@@ -210,7 +210,7 @@ export const CALC_CONSTANTS = {
   custoPorMoto: 29000,         // R$ 29.000 (moto + equipamentos + taxas)
 };
 
-export const MOTO_OPTIONS = [2, 5, 10, 15, 20] as const;
+export const MOTO_OPTIONS = [2, 5, 10, 15, 30] as const;
 
 export interface CalculatorResult {
   motos: number;
