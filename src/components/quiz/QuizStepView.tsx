@@ -212,6 +212,17 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
           </div>
 
+          {/* Video */}
+          <div className="relative aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
+            <iframe
+              src="https://www.youtube.com/embed/ppB407OeAUc"
+              title="LocaGora - Resultado"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
+          </div>
+
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             <StatCard icon={<DollarSign className="w-5 h-5" />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
             <StatCard icon={<TrendingUp className="w-5 h-5" />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
