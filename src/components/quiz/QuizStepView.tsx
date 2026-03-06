@@ -128,7 +128,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             <StatCard icon={<DollarSign className="w-5 h-5" />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
             <StatCard icon={<TrendingUp className="w-5 h-5" />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
-            <StatCard icon={<BarChart3 className="w-5 h-5" />} label="Lucro líquido" value={`${scenario.roiPercent}%`} />
+            <StatCard icon={<BarChart3 className="w-5 h-5" />} label="ROI Mensal" value={`${scenario.roiMensal.toFixed(2)}%`} />
             <StatCard icon={<Clock className="w-5 h-5" />} label="Payback estimado" value={`${scenario.paybackMeses} meses`} />
           </div>
 
