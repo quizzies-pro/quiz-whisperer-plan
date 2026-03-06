@@ -3,6 +3,7 @@ import logoLocagora from "@/assets/logo-locagora.png";
 import ceoImage from "@/assets/ceo-locagora.png";
 import mockupTablet1 from "@/assets/mockup-tablet-1.webp";
 import mockupTablet2 from "@/assets/mockup-tablet-2.webp";
+import mapaBrasil from "@/assets/mapa-brasil.webp";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario, MOTO_OPTIONS, calcularRetorno, CALC_CONSTANTS, type CalculatorResult } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
@@ -317,6 +318,39 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               <p className="text-center text-sm md:text-base text-foreground font-body mt-8">
                 Invista agora em uma <strong>franquia de locação de motos</strong> rentável e validada.
               </p>
+            </div>
+
+            {/* Franchise CTA + Map section */}
+            <div className="py-8 sm:py-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
+                {/* Left: text + stats */}
+                <div className="space-y-5 text-center md:text-left">
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground uppercase leading-tight">
+                    Seja um franqueado Loca<span className="text-primary">go</span>ra e fature mais de
+                  </h3>
+                  <p className="font-heading font-black text-5xl sm:text-6xl md:text-7xl text-primary leading-none">
+                    R$ {scenario.lucroAnual.toLocaleString("pt-BR")}
+                  </p>
+                  <h4 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground uppercase leading-tight">
+                    por ano em um dos setores que mais cresce no Brasil.
+                  </h4>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto md:mx-0">
+                    <div className="rounded-[10px] glass-card p-4 text-center space-y-1">
+                      <p className="text-xs text-muted-foreground font-body">Lucro líquido mensal estimado</p>
+                      <p className="font-heading font-black text-lg sm:text-xl text-primary">DE 60 A 75%</p>
+                    </div>
+                    <div className="rounded-[10px] glass-card p-4 text-center space-y-1">
+                      <p className="text-xs text-muted-foreground font-body">Payback estimado de</p>
+                      <p className="font-heading font-black text-lg sm:text-xl text-primary">{scenario.paybackMeses} MESES</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Brazil map */}
+                <div className="flex justify-center">
+                  <img src={mapaBrasil} alt="Mapa do Brasil - Onde estamos" className="w-full max-w-[400px] md:max-w-[450px] drop-shadow-xl" />
+                </div>
+              </div>
             </div>
 
             {/* Why invest section */}
