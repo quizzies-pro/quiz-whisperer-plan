@@ -7,6 +7,7 @@ import mapaBrasil from "@/assets/mapa-brasil.webp";
 import moto1 from "@/assets/moto-1.webp";
 import moto2 from "@/assets/moto-2.webp";
 import moto3 from "@/assets/moto-3.webp";
+import ceoFoto from "@/assets/ceo-foto.png";
 import { cn } from "@/lib/utils";
 import { QuizStepData, motoScenarios, MotoScenario, MOTO_OPTIONS, calcularRetorno, CALC_CONSTANTS, type CalculatorResult } from "@/lib/quiz-data";
 import { CTAButton } from "@/components/ui/cta-button";
@@ -488,6 +489,33 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                 >
                   QUERO CONHECER A LOCAGORA
                 </CTAButton>
+              </div>
+            </div>
+
+            {/* Sobre Nós section */}
+            <div className="relative py-10 sm:py-14">
+              <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
+                <div className="flex-1 space-y-5 text-left">
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground leading-tight">
+                    Sobre Nós
+                  </h3>
+                  <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
+                    Somos a número um em franquias de aluguel de motos no país e acreditamos que esse mercado une as duas formas de negócio mais rentáveis que existem: a de franquias e a de locomoção.
+                  </p>
+                  <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
+                    Oferecemos veículos de qualidade superior, a um preço acessível para que seus clientes te procurem.
+                  </p>
+                  <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
+                    Invista na franquia com o potencial mais lucrativo do país. Fale conosco no botão abaixo.
+                  </p>
+                </div>
+                <div className="w-[260px] sm:w-[300px] md:w-[340px] shrink-0">
+                  <img
+                    src={ceoFoto}
+                    alt="CEO LocaGora"
+                    className="w-full h-auto rounded-[var(--radius)] object-cover"
+                  />
+                </div>
               </div>
             </div>
 
