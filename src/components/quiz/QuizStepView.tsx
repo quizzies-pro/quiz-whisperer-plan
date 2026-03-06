@@ -359,9 +359,9 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
               return "Operação robusta para quem quer dominar o mercado da sua região";
             };
             return (
-              <div className="flex items-center justify-center gap-2.5 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/15 mx-auto max-w-[90%]">
-                <Sparkles className="w-3.5 h-3.5 text-primary/70 shrink-0" />
-                <p className="text-[11px] sm:text-xs text-primary/90 font-body leading-snug text-center">{getMotoMessage(selectedMotos)}</p>
+              <div className="flex items-center gap-2 px-4 py-3 rounded-[10px] glow-border bg-card/60 text-center">
+                <Sparkles className="w-4 h-4 text-primary shrink-0" />
+                <p className="text-xs sm:text-sm text-primary font-body leading-snug">{getMotoMessage(selectedMotos)}</p>
               </div>
             );
           })()}
