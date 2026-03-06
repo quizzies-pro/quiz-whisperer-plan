@@ -116,23 +116,41 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               </h3>
             </div>
 
-            {/* Mobile: compact card list */}
-            <div className="sm:hidden space-y-2.5">
+            {/* Mobile: styled mini-table */}
+            <div className="sm:hidden rounded-[10px] overflow-hidden card-border">
+              {/* Header row */}
+              <div className="flex items-center bg-card/80 border-b border-border/20">
+                <div className="flex-1 px-4 py-3">
+                  <span className="text-[11px] font-heading font-bold text-foreground/60">Benefícios</span>
+                </div>
+                <div className="w-16 py-3 text-center">
+                  <span className="inline-block px-2.5 py-1 rounded-md bg-destructive/80 text-[9px] font-heading font-bold text-primary-foreground">Outros</span>
+                </div>
+                <div className="w-16 py-3 text-center">
+                  <span className="inline-block px-1.5 py-1 rounded-md bg-primary text-[9px] font-heading font-bold text-primary-foreground">Locagora</span>
+                </div>
+              </div>
+              {/* Rows */}
               {benefits.map((benefit, idx) => (
-                <div key={idx} className="flex items-center gap-3 px-4 py-3 rounded-lg bg-card card-border">
-                  <span className="flex-1 text-xs font-body text-foreground/80 leading-snug">{benefit}</span>
-                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-destructive/15 shrink-0">
-                    <span className="text-destructive text-[10px] font-bold">✕</span>
-                  </span>
-                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/15 shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-                  </span>
+                <div key={idx} className={cn(
+                  "flex items-center bg-card",
+                  idx < benefits.length - 1 && "border-b border-border/10"
+                )}>
+                  <div className="flex-1 px-4 py-3.5">
+                    <span className="text-[11px] font-body text-foreground/80 leading-tight">{benefit}</span>
+                  </div>
+                  <div className="w-16 py-3.5 flex justify-center">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-destructive/15">
+                      <span className="text-destructive text-[10px] font-bold">✕</span>
+                    </span>
+                  </div>
+                  <div className="w-16 py-3.5 flex justify-center">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/15">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+                    </span>
+                  </div>
                 </div>
               ))}
-              <div className="flex justify-end gap-3 pr-4 pt-1">
-                <span className="text-[10px] font-heading font-bold text-destructive/70 w-6 text-center">Outros</span>
-                <span className="text-[10px] font-heading font-bold text-primary w-6 text-center">LOC</span>
-              </div>
             </div>
 
             {/* Desktop: full table */}
