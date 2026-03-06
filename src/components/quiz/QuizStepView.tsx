@@ -321,7 +321,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           <div className="flex flex-col items-center gap-2 sm:gap-2">
             <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-8 md:h-10 object-contain" />
             <p className="font-heading font-bold text-[11px] sm:text-sm md:text-base text-foreground/80 tracking-tight text-center">
-              Calculadora de Investimentos na Franquia <span className="text-primary">LocAgora</span>
+              Calculadora de Investimentos na Franquia Loca<span className="text-primary">go</span>ra
             </p>
           </div>
 
@@ -352,7 +352,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           {/* Contextual message based on moto count — only for 2, 10, 30 */}
           {(() => {
             const getMotoMessage = (motos: number): string | null => {
-              if (motos <= 3) return "Ideal para testar o modelo LocAgora";
+              if (motos <= 3) return "Ideal para testar o modelo Locagora";
               if (motos >= 8 && motos <= 12) return "Investimento mais recomendado para começar";
               if (motos >= 25) return "Maior rentabilidade e menor Payback";
               return null;
@@ -426,7 +426,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
             <div className="rounded-[10px] glow-border bg-card/80 p-4 sm:p-5 space-y-3 sm:space-y-4">
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary" />
-                <h3 className="font-heading font-bold text-xs sm:text-sm text-primary uppercase tracking-wider">Resultados LocaGora</h3>
+                <h3 className="font-heading font-bold text-xs sm:text-sm text-primary uppercase tracking-wider">Resultados Locagora</h3>
               </div>
 
               {/* Lucro Mensal - Hero destaque */}
