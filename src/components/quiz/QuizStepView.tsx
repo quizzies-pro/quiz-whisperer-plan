@@ -636,7 +636,7 @@ const LoadingTitle = () => {
 const LoadingAnimation = ({ onComplete, isActive }: { onComplete: () => void; isActive: boolean }) => {
   const [progress, setProgress] = useState(0);
   const hasAdvanced = useRef(false);
-  const DURATION_MS = 7000;
+  const DURATION_MS = 5000;
   const INTERVAL_MS = 100;
   const increment = 100 / (DURATION_MS / INTERVAL_MS);
 
@@ -703,7 +703,7 @@ const StatCard = ({ icon, label, value, highlight }: { icon: React.ReactNode; la
 const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepData; onNext: () => void; answers: Record<number, string>; isActive: boolean }) => {
   const [progress, setProgress] = useState(0);
   const hasAdvanced = useRef(false);
-  const DURATION_MS = 7000;
+  const DURATION_MS = 5000;
   const INTERVAL_MS = 70;
   const increment = 100 / (DURATION_MS / INTERVAL_MS);
 
