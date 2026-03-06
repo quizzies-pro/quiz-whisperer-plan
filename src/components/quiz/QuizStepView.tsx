@@ -85,7 +85,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
   // ── Calculator ──
   if (step.type === "calculator") {
-    return <CalculatorView step={step} onNext={onNext} onAnswer={onAnswer} answer={answer} />;
+    return <CalculatorView step={step} onNext={onNext} onAnswer={onAnswer} answer={answer} answers={answers} />;
   }
 
   // ── Loading ──
@@ -301,7 +301,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 };
 
 // ── Calculator View (Dynamic PRD) ──
-const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData; onNext: () => void; onAnswer: (v: string) => void; answer?: string }) => {
+const CalculatorView = ({ step, onNext, onAnswer, answer, answers }: { step: QuizStepData; onNext: () => void; onAnswer: (v: string) => void; answer?: string; answers: Record<number, string> }) => {
   const [selectedMotos, setSelectedMotos] = useState(parseInt(answer || "5", 10));
   const result = calcularRetorno(selectedMotos);
 
@@ -328,9 +328,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           {/* Header */}
           <div className="text-center space-y-2 sm:space-y-3">
             <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-[28px] text-foreground leading-snug">
-              {step.type === "calculator" ? (
-                <>Veja quanto você poderia lucrar com a Loca<span className="text-primary">go</span>ra</>
-              ) : step.title}
+              {answers[2] ? <>{answers[2]}, selecione</> : <>Selecione</>} o tamanho da sua franquia e veja o quanto lucrar com a Loca<span className="text-primary">go</span>ra.
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
               Escolha com quantas motos você gostaria de começar.
