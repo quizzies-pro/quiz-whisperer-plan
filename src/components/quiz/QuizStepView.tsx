@@ -521,12 +521,12 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                   </div>
 
                   {/* CEO Image */}
-                  <div className="relative w-full md:w-[280px] lg:w-[320px] shrink-0">
+                  <div className="relative w-full md:w-[320px] lg:w-[380px] shrink-0">
                     <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-card/80 via-transparent to-transparent z-10 pointer-events-none" />
                     <img
                       src={ceoFoto}
                       alt="CEO LocaGora"
-                      className="w-full h-full object-cover object-top max-h-[250px] sm:max-h-[300px] md:max-h-none"
+                      className="w-full h-full object-cover object-top max-h-[380px] sm:max-h-[420px] md:max-h-none"
                     />
                   </div>
                 </div>
