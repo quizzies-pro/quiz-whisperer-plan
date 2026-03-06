@@ -532,7 +532,7 @@ const DetailRow = ({ label, value, highlight, valueClassName }: { label: string;
     <span className="text-xs text-muted-foreground font-body">{label}</span>
     <span className={cn(
       "font-heading font-bold text-sm",
-      highlight ? "text-primary" : "text-foreground"
+      valueClassName ? valueClassName : highlight ? "text-primary" : "text-foreground"
     )}>{value}</span>
   </div>
 );
