@@ -202,50 +202,73 @@ export const macroStepLabels: Record<number, string> = {
   7: "Resultado",
 };
 
-// ── Dynamic Calculator Constants (PRD) ──
+// ── Dynamic Calculator Constants (real LOC data) ──
 export const CALC_CONSTANTS = {
-  ticketMedioPorMoto: 1740,    // R$ 1.740/moto/mês (média dos planos)
-  outrasReceitasPercent: 0.12, // 12% receitas adicionais (multas, juros, tarifas)
-  margemLucro: 0.60,           // 60% margem após custos operacionais
-  custoPorMoto: 29000,         // R$ 29.000 (moto + equipamentos + taxas)
+  lucroMensalPorMoto: 960,     // R$ 960/moto/mês (dado real)
+  custoPorMoto: 21000,         // R$ 21.000/moto
+  cdbRoiMensal: 0.0094,       // 0,94% ao mês (Taxa 11,75% a.a.)
+  selicRoiMensal: 0.0117,     // 1,17% ao mês (Taxa 15% a.a.)
 };
 
-export const MOTO_OPTIONS = [2, 5, 10, 15, 30] as const;
+// Tier-based franchise fee
+export function getTaxaFranquia(motos: number): { taxa: number; tierLabel: string } {
+  if (motos <= 3) return { taxa: 49990, tierLabel: "Tier 1 (2-3 motos): Taxa R$ 49.990 + R$ 21.000/moto" };
+  return { taxa: 79990, tierLabel: "Tier 2 (4-19 motos): Taxa R$ 79.990 + R$ 21.000/moto" };
+}
 
 export interface CalculatorResult {
   motos: number;
-  receitaAluguel: number;
-  outrasReceitas: number;
-  receitaTotal: number;
+  taxaFranquia: number;
+  tierLabel: string;
+  investimentoMotos: number;
+  investimentoTotal: number;
   lucroMensal: number;
   lucroAnual: number;
-  investimentoTotal: number;
-  paybackMeses: number;
   roiMensal: number;
+  paybackMeses: number;
+  // CDB comparison
+  cdbRendimentoMensal: number;
+  cdbRendimentoAnual: number;
+  cdbRoiMensal: number;
+  // Selic comparison
+  selicRendimentoMensal: number;
+  selicRendimentoAnual: number;
+  selicRoiMensal: number;
 }
 
 export function calcularRetorno(motos: number): CalculatorResult {
-  const { ticketMedioPorMoto, outrasReceitasPercent, margemLucro, custoPorMoto } = CALC_CONSTANTS;
+  const { lucroMensalPorMoto, custoPorMoto, cdbRoiMensal, selicRoiMensal } = CALC_CONSTANTS;
+  const { taxa: taxaFranquia, tierLabel } = getTaxaFranquia(motos);
 
-  const receitaAluguel = motos * ticketMedioPorMoto;
-  const outrasReceitas = receitaAluguel * outrasReceitasPercent;
-  const receitaTotal = receitaAluguel + outrasReceitas;
-  const lucroMensal = receitaTotal * margemLucro;
+  const investimentoMotos = motos * custoPorMoto;
+  const investimentoTotal = taxaFranquia + investimentoMotos;
+  const lucroMensal = motos * lucroMensalPorMoto;
   const lucroAnual = lucroMensal * 12;
-  const investimentoTotal = motos * custoPorMoto;
-  const paybackMeses = Math.ceil(investimentoTotal / lucroMensal);
   const roiMensal = (lucroMensal / investimentoTotal) * 100;
+  const paybackMeses = Math.ceil(investimentoTotal / lucroMensal);
+
+  const cdbRendimentoMensal = Math.round(investimentoTotal * cdbRoiMensal);
+  const cdbRendimentoAnual = Math.round(cdbRendimentoMensal * 12);
+
+  const selicRendimentoMensal = Math.round(investimentoTotal * selicRoiMensal);
+  const selicRendimentoAnual = Math.round(selicRendimentoMensal * 12);
 
   return {
     motos,
-    receitaAluguel,
-    outrasReceitas,
-    receitaTotal,
+    taxaFranquia,
+    tierLabel,
+    investimentoMotos,
+    investimentoTotal,
     lucroMensal,
     lucroAnual,
-    investimentoTotal,
-    paybackMeses,
     roiMensal,
+    paybackMeses,
+    cdbRendimentoMensal,
+    cdbRendimentoAnual,
+    cdbRoiMensal: cdbRoiMensal * 100,
+    selicRendimentoMensal,
+    selicRendimentoAnual,
+    selicRoiMensal: selicRoiMensal * 100,
   };
 }
 
