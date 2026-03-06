@@ -291,7 +291,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
         {/* Fixed CTA at bottom */}
         <div className="shrink-0 px-3 sm:px-4 py-3 sm:py-4 bg-gradient-to-t from-background via-background to-transparent">
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-xl mx-auto">
             <CTAButton
               onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Fui%20aprovado%20no%20quiz%20da%20LocaGora!", "_blank")}
               fullWidth
