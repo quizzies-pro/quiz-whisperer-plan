@@ -203,7 +203,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     return (
       <div className="h-screen w-full flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto scrollbar-none px-4 pt-[70px] pb-4">
-          <div className="max-w-2xl w-full mx-auto space-y-6 animate-fade-in">
+          <div className="max-w-5xl w-full mx-auto space-y-6 animate-fade-in">
             <div className="text-center space-y-4">
               <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4" />
               <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
