@@ -84,7 +84,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
         <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
           <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
 
-          <h1 className="font-heading font-extrabold text-lg sm:text-2xl md:text-[2rem] leading-[1.15] tracking-[-0.01em] text-foreground">
+          <h1 className="font-heading font-extrabold text-xl sm:text-3xl md:text-[2.25rem] leading-[1.15] tracking-[-0.01em] text-foreground">
             <span className="text-primary">Comece a lucrar já no primeiro mês</span>
             <br />
             <span className="font-black">com a franquia mais segura do Brasil</span>
