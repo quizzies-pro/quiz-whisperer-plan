@@ -321,7 +321,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
 
             {/* Franchise CTA + Map section */}
-            <div className="py-8 sm:py-10 md:py-14" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2rem 9999px' }}>
+            <div className="mt-8 sm:mt-10 md:mt-14 py-10 sm:py-12 md:py-16" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2.5rem 9999px' }}>
               <div className="flex flex-col md:grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center max-w-5xl mx-auto">
                 {/* Left: text + stats */}
                 <div className="space-y-4 sm:space-y-5 text-center md:text-left order-2 md:order-1">
