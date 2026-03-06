@@ -494,27 +494,51 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
             {/* Sobre Nós section */}
             <div className="relative py-10 sm:py-14">
-              <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
-                <div className="flex-1 space-y-5 text-left">
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground leading-tight">
-                    Sobre Nós
-                  </h3>
-                  <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
-                    Somos a número um em franquias de aluguel de motos no país e acreditamos que esse mercado une as duas formas de negócio mais rentáveis que existem: a de franquias e a de locomoção.
-                  </p>
-                  <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
-                    Oferecemos veículos de qualidade superior, a um preço acessível para que seus clientes te procurem.
-                  </p>
-                  <p className="text-sm sm:text-base text-muted-foreground font-body leading-relaxed">
-                    Invista na franquia com o potencial mais lucrativo do país. Fale conosco no botão abaixo.
-                  </p>
-                </div>
-                <div className="w-[260px] sm:w-[300px] md:w-[340px] shrink-0">
-                  <img
-                    src={ceoFoto}
-                    alt="CEO LocaGora"
-                    className="w-full h-auto rounded-[var(--radius)] object-cover"
-                  />
+              <div className="relative glass-card rounded-[var(--radius)] overflow-hidden max-w-4xl mx-auto">
+                {/* Top glow line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-40" />
+                
+                <div className="flex flex-col md:flex-row items-stretch">
+                  {/* Text content */}
+                  <div className="flex-1 p-8 sm:p-10 md:p-12 flex flex-col justify-center space-y-5">
+                    <div className="flex items-center gap-3 mb-1">
+                      <div className="w-8 h-[2px] bg-primary rounded-full" />
+                      <span className="text-primary text-xs font-heading font-bold uppercase tracking-[0.15em]">Quem somos</span>
+                    </div>
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl text-foreground leading-tight">
+                      Sobre a Loca<span className="text-primary">go</span>ra
+                    </h3>
+                    <div className="space-y-4">
+                      <p className="text-sm sm:text-base text-foreground/70 font-body leading-relaxed">
+                        Somos a número um em franquias de aluguel de motos no país e acreditamos que esse mercado une as duas formas de negócio mais rentáveis que existem: a de franquias e a de locomoção.
+                      </p>
+                      <p className="text-sm sm:text-base text-foreground/70 font-body leading-relaxed">
+                        Oferecemos veículos de qualidade superior, a um preço acessível para que seus clientes te procurem.
+                      </p>
+                      <p className="text-sm sm:text-base text-foreground font-body leading-relaxed font-semibold">
+                        Invista na franquia com o potencial mais lucrativo do país.
+                      </p>
+                    </div>
+                    <div className="pt-2">
+                      <CTAButton
+                        onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20LocaGora!", "_blank")}
+                        showArrow
+                        className="text-xs px-6 py-3"
+                      >
+                        FALE COM UM ESPECIALISTA
+                      </CTAButton>
+                    </div>
+                  </div>
+
+                  {/* CEO Image */}
+                  <div className="relative w-full md:w-[280px] lg:w-[320px] shrink-0">
+                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-card/80 via-transparent to-transparent z-10 pointer-events-none" />
+                    <img
+                      src={ceoFoto}
+                      alt="CEO LocaGora"
+                      className="w-full h-full object-cover object-top min-h-[300px] md:min-h-0"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
