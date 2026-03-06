@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { ChevronLeft } from "lucide-react";
 import { quizSteps } from "@/lib/quiz-data";
 import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
