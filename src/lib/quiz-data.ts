@@ -272,6 +272,8 @@ export function calcularRetorno(motos: number): CalculatorResult {
   };
 }
 
+export const MOTO_OPTIONS = [2, 5, 10, 15, 20, 30] as const;
+
 // Legacy motoScenarios for backward compat (result step)
 export interface MotoScenario {
   motos: number;
