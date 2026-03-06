@@ -163,11 +163,13 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst }: Quiz
           </h2>
           {step.subtitle && (
             <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
-              {step.subtitleParts ? (
-                <>
-                  {step.subtitleParts[0]}<br className="hidden md:inline" />{step.subtitleParts[1]}
-                </>
-              ) : step.subtitle}
+              {step.id === 10 && answers[2]
+                ? <>{answers[2]}, {step.subtitle.charAt(0).toLowerCase() + step.subtitle.slice(1)}</>
+                : step.subtitleParts ? (
+                  <>
+                    {step.subtitleParts[0]}<br className="hidden md:inline" />{step.subtitleParts[1]}
+                  </>
+                ) : step.subtitle}
             </p>
           )}
         </div>
