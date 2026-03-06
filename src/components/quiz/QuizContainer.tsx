@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { ChevronLeft } from "lucide-react";
 import { quizSteps } from "@/lib/quiz-data";
 import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
@@ -23,6 +24,10 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       setIsTransitioning(false);
     }, 500);
   }, [isTransitioning]);
+
+  const handleBack = useCallback(() => {
+    goToStep(currentStep - 1);
+  }, [currentStep, goToStep]);
 
   const handleNext = useCallback(() => {
     goToStep(currentStep + 1);
@@ -63,6 +68,17 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       />
 
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
+
+      {/* Back button */}
+      {currentStep > 1 && (
+        <button
+          onClick={handleBack}
+          className="fixed top-5 left-5 z-50 w-10 h-10 rounded-full bg-card/80 card-border flex items-center justify-center text-foreground/70 hover:text-foreground hover:bg-card transition-all duration-200"
+          aria-label="Voltar"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+      )}
 
       <div className="relative z-10">
         <div
