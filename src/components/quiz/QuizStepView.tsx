@@ -315,39 +315,42 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden">
-      <div className="flex-1 overflow-y-auto scrollbar-none px-4 pt-[60px] pb-6">
-        <div className="max-w-3xl w-full mx-auto space-y-6 animate-fade-in">
-          {/* Logo */}
-          <div className="flex flex-col items-center gap-2">
-            <img src={logoLocagora} alt="LocaGora" className="h-8 md:h-10 object-contain" />
-            <p className="font-heading font-bold text-sm md:text-base text-foreground/80 tracking-tight">Calculadora de Investimentos na Franquia <span className="text-primary">LocAgora</span></p>
+      <div className="flex-1 overflow-y-auto scrollbar-none px-3 sm:px-4 pt-[40px] sm:pt-[60px] pb-4">
+        <div className="max-w-3xl w-full mx-auto space-y-4 sm:space-y-6 animate-fade-in">
+          {/* Logo + subtitle */}
+          <div className="flex flex-col items-center gap-1">
+            <img src={logoLocagora} alt="LocaGora" className="h-7 sm:h-8 md:h-10 object-contain" />
+            <p className="font-heading font-bold text-xs sm:text-sm md:text-base text-foreground/80 tracking-tight text-center">
+              Calculadora de Investimentos na Franquia <span className="text-primary">LocAgora</span>
+            </p>
           </div>
+
           {/* Header */}
-          <div className="text-center space-y-2">
-            <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">{step.title}</h2>
-            <p className="text-sm text-muted-foreground font-body">
-              Escolha com quantas motos você gostaria de começar.<br className="hidden md:inline" />
-              A simulação é baseada na média real dos franqueados ativos.
+          <div className="text-center space-y-1 sm:space-y-2">
+            <h2 className="font-heading font-bold text-lg sm:text-xl md:text-2xl text-foreground leading-tight">{step.title}</h2>
+            <p className="text-xs sm:text-sm text-muted-foreground font-body leading-relaxed">
+              Escolha com quantas motos você gostaria de começar.
+              <span className="hidden sm:inline"><br />A simulação é baseada na média real dos franqueados ativos.</span>
             </p>
           </div>
 
           {/* Moto counter + icon */}
-          <div className="flex flex-col items-center gap-1">
-            <div className="flex items-center gap-2">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
+          <div className="flex flex-col items-center gap-0.5">
+            <div className="flex items-center gap-1.5">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary sm:w-8 sm:h-8">
                 <circle cx="5" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
                 <circle cx="19" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
                 <path d="M5 17h2l2-5h4l3 5h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M13 12l-1-4h3l2 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <circle cx="10" cy="7" r="1.5" fill="currentColor"/>
               </svg>
-              <span className="text-foreground font-heading font-black text-5xl md:text-6xl">{selectedMotos}</span>
+              <span className="text-foreground font-heading font-black text-4xl sm:text-5xl md:text-6xl">{selectedMotos}</span>
             </div>
-            <span className="text-muted-foreground font-body text-sm tracking-wide">motos</span>
+            <span className="text-muted-foreground font-body text-xs sm:text-sm tracking-wide">motos</span>
           </div>
 
           {/* Slider */}
-          <div className="space-y-1.5 px-2">
+          <div className="space-y-1 px-1 sm:px-2">
             <input
               type="range"
               min={2}
@@ -363,19 +366,19 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
               }}
             />
             <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground font-body">2 motos</span>
-              <span className="text-xs text-muted-foreground font-body">30 motos</span>
+              <span className="text-[10px] sm:text-xs text-muted-foreground font-body">2 motos</span>
+              <span className="text-[10px] sm:text-xs text-muted-foreground font-body">30 motos</span>
             </div>
           </div>
 
           {/* Quick select buttons */}
-          <div className="flex items-center justify-center gap-2 md:gap-3">
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3">
             {MOTO_OPTIONS.map((m) => (
               <button
                 key={m}
                 onClick={() => handleSelect(m)}
                 className={cn(
-                  "rounded-[10px] px-4 py-2.5 md:px-6 md:py-3 font-heading font-bold text-sm md:text-base transition-all duration-300",
+                  "rounded-[10px] px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 font-heading font-bold text-xs sm:text-sm md:text-base transition-all duration-300",
                   selectedMotos === m
                     ? "bg-primary text-primary-foreground scale-105 shadow-[0_0_20px_rgba(0,230,77,0.3)]"
                     : "bg-card card-border text-foreground/70 hover:text-foreground hover:bg-card/80"
@@ -387,25 +390,25 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           </div>
 
           {/* Main grid: Investment + Result */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {/* Investment Details */}
-            <div className="rounded-[10px] glass-card p-5 space-y-4">
-              <h3 className="font-heading font-bold text-sm text-foreground/80 uppercase tracking-wider">Detalhes do Investimento</h3>
-              <div className="space-y-3">
+            <div className="rounded-[10px] glass-card p-4 sm:p-5 space-y-3 sm:space-y-4">
+              <h3 className="font-heading font-bold text-xs sm:text-sm text-foreground/80 uppercase tracking-wider">Detalhes do Investimento</h3>
+              <div className="space-y-2 sm:space-y-3">
                 <DetailRow label="Valor por Moto:" value={fmt(CALC_CONSTANTS.custoPorMoto)} />
-                <DetailRow label={`Investimento em Motos (${selectedMotos}x):`} value={fmt(selectedMotos * CALC_CONSTANTS.custoPorMoto)} />
+                <DetailRow label={`Investimento (${selectedMotos}x):`} value={fmt(selectedMotos * CALC_CONSTANTS.custoPorMoto)} />
                 <div className="h-px bg-foreground/10" />
                 <DetailRow label="Investimento Total:" value={fmt(result.investimentoTotal)} highlight />
               </div>
             </div>
 
             {/* LocaGora Results */}
-            <div className="rounded-[10px] glow-border bg-card/80 p-5 space-y-4">
+            <div className="rounded-[10px] glow-border bg-card/80 p-4 sm:p-5 space-y-3 sm:space-y-4">
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary" />
-                <h3 className="font-heading font-bold text-sm text-primary uppercase tracking-wider">Resultados LocaGora</h3>
+                <h3 className="font-heading font-bold text-xs sm:text-sm text-primary uppercase tracking-wider">Resultados LocaGora</h3>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 <DetailRow label="Lucro Mensal:" value={fmt(result.lucroMensal)} highlight />
                 <DetailRow label="Lucro Anual:" value={fmt(result.lucroAnual)} highlight />
                 <DetailRow label="ROI Mensal:" value={fmtPercent(result.roiMensal)} />
@@ -416,24 +419,24 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           </div>
 
           {/* Projection */}
-          <div className="rounded-[10px] glass-card p-4">
-            <p className="text-xs text-muted-foreground font-body text-center mb-3">Projeção de ganhos acumulados</p>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="rounded-[10px] glass-card p-3 sm:p-4">
+            <p className="text-[10px] sm:text-xs text-muted-foreground font-body text-center mb-2 sm:mb-3">Projeção de ganhos acumulados</p>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div className="text-center">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 1 ano</p>
-                <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual)}</p>
-                <span className="text-[10px] text-muted-foreground/60">projeção total</span>
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 1 ano</p>
+                <p className="font-heading font-black text-primary text-base sm:text-lg md:text-xl">{fmt(result.lucroAnual)}</p>
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground/60">projeção total</span>
               </div>
               <div className="text-center">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 3 anos</p>
-                <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual * 3)}</p>
-                <span className="text-[10px] text-muted-foreground/60">projeção total</span>
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-muted-foreground/70 font-heading">Em 3 anos</p>
+                <p className="font-heading font-black text-primary text-base sm:text-lg md:text-xl">{fmt(result.lucroAnual * 3)}</p>
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground/60">projeção total</span>
               </div>
             </div>
           </div>
 
           {/* Disclaimer */}
-          <p className="text-[10px] text-muted-foreground/50 font-body text-center leading-relaxed max-w-xl mx-auto pb-2">
+          <p className="text-[9px] sm:text-[10px] text-muted-foreground/50 font-body text-center leading-relaxed max-w-xl mx-auto pb-2">
             Os valores apresentados são projeções baseadas em dados históricos e premissas de mercado. 
             Rentabilidade passada não é garantia de rentabilidade futura. O investimento em franquias envolve riscos. 
             Consulte um especialista antes de investir.
@@ -442,9 +445,9 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
       </div>
 
       {/* Fixed CTA at bottom */}
-      <div className="shrink-0 px-4 py-4 bg-gradient-to-t from-background via-background to-transparent">
+      <div className="shrink-0 px-3 sm:px-4 py-3 sm:py-4 bg-gradient-to-t from-background via-background to-transparent">
         <div className="max-w-3xl mx-auto">
-          <CTAButton onClick={onNext} fullWidth className="py-5 text-base" showArrow>
+          <CTAButton onClick={onNext} fullWidth className="py-4 sm:py-5 text-sm sm:text-base" showArrow>
             QUERO GARANTIR MINHA FRANQUIA
           </CTAButton>
         </div>
