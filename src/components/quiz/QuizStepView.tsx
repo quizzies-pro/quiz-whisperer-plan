@@ -106,8 +106,8 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
   // ── Result ──
   if (step.type === "result") {
     const nome = answers[2] || "Candidato";
-    const selectedScenarioIdx = parseInt(answer || answers[11] || "2", 10);
-    const scenario = motoScenarios[selectedScenarioIdx] || motoScenarios[2];
+    const selectedMotos = parseInt(answers[11] || "5", 10);
+    const scenario = calcularRetorno(selectedMotos);
 
     return (
       <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none py-12">
