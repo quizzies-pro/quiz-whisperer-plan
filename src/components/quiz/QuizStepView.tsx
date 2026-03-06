@@ -516,15 +516,8 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                         Invista na franquia com o potencial mais lucrativo do país.
                       </p>
                     </div>
-                    <div className="pt-2">
-                      <CTAButton
-                        onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20LocaGora!", "_blank")}
-                        showArrow
-                        className="text-xs px-6 py-3"
-                      >
-                        FALE COM UM ESPECIALISTA
-                      </CTAButton>
-                    </div>
+
+
                   </div>
 
                   {/* CEO Image */}
