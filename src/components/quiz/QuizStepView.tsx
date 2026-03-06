@@ -1069,10 +1069,10 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
 
       <div className="relative z-20 h-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-3xl w-full animate-fade-in">
-        <div className="flex flex-col items-center gap-8 md:gap-10">
-          {/* CEO Photo - grande */}
+        <div className="flex flex-col items-center gap-6 sm:gap-8 md:gap-10">
+          {/* CEO Photo */}
           <div className="relative">
-            <div className="w-60 h-60 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_rgba(34,197,94,0.2)]">
+            <div className="w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_rgba(34,197,94,0.2)]">
               <img
                 src={ceoImage}
                 alt="CEO LocaGora"
