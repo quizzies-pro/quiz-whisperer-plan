@@ -139,10 +139,10 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     ];
 
     return (
-      <div className="h-screen w-full flex items-start sm:items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
-        <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-10 animate-fade-in">
+      <div className="h-screen w-full flex items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
+        <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-10 animate-fade-in my-auto">
           {/* Top section */}
-          <div className="space-y-4 sm:space-y-5 pt-16 sm:pt-8">
+          <div className="space-y-4 sm:space-y-5">
             <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-8 sm:mb-10" />
             <LoadingTitle />
             <LoadingAnimation onComplete={onNext} isActive={isActive} />
