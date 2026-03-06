@@ -945,4 +945,11 @@ const TabletCarousel = () => {
   );
 };
 
+const ProfileItem = ({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) => (
+  <div className="space-y-1">
+    <p className="text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground/70 font-heading">{label}</p>
+    <p className={cn("font-heading font-bold text-sm sm:text-base", highlight ? "text-primary" : "text-foreground")}>{value}</p>
+  </div>
+);
+
 export default QuizStepView;
