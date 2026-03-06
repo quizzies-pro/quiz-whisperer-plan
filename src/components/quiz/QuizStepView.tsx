@@ -80,7 +80,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-[70px] pb-[70px] overflow-y-auto scrollbar-none">
+      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-[70px] pb-[120px] overflow-y-auto scrollbar-none">
         <div className="relative z-10 max-w-4xl w-full space-y-5 md:space-y-6 animate-fade-in text-center">
           <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-16 mx-auto object-contain" />
 
