@@ -527,7 +527,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
   );
 };
 
-const DetailRow = ({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) => (
+const DetailRow = ({ label, value, highlight, valueClassName }: { label: string; value: React.ReactNode; highlight?: boolean; valueClassName?: string }) => (
   <div className="flex items-center justify-between gap-2">
     <span className="text-xs text-muted-foreground font-body">{label}</span>
     <span className={cn(
