@@ -318,8 +318,9 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
       <div className="flex-1 overflow-y-auto scrollbar-none px-4 pt-[60px] pb-6">
         <div className="max-w-3xl w-full mx-auto space-y-6 animate-fade-in">
           {/* Logo */}
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-2">
             <img src={logoLocagora} alt="LocaGora" className="h-8 md:h-10 object-contain" />
+            <p className="font-heading font-bold text-sm md:text-base text-foreground/80 tracking-tight">Calculadora de Investimentos na Franquia <span className="text-primary">LocAgora</span></p>
           </div>
           {/* Header */}
           <div className="text-center space-y-2">
