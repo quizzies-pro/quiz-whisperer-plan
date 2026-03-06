@@ -442,13 +442,13 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                 {/* Left: vertical images with float animation */}
                 <div className="flex justify-center items-center gap-[-8px] sm:gap-0 relative py-4">
                   <div className="w-[32%] rounded-[var(--radius)] overflow-hidden border-2 border-primary/20 shadow-2xl z-10 -mr-2" style={{ animation: 'float-a 4s ease-in-out infinite' }}>
-                    <img src={moto1} alt="Franqueado em moto" className="w-full object-cover aspect-[3/4]" loading="lazy" />
+                    <img src={moto1} alt="Franqueado em moto" className="w-full object-cover aspect-[2/3]" loading="lazy" />
                   </div>
                   <div className="w-[36%] rounded-[var(--radius)] overflow-hidden border-2 border-primary/40 shadow-2xl z-20 relative top-4" style={{ animation: 'float-b 4s ease-in-out infinite' }}>
-                    <img src={moto2} alt="Motociclista com capacete" className="w-full object-cover aspect-[4/5]" loading="lazy" />
+                    <img src={moto2} alt="Motociclista com capacete" className="w-full object-cover aspect-[3/5]" loading="lazy" />
                   </div>
                   <div className="w-[32%] rounded-[var(--radius)] overflow-hidden border-2 border-primary/20 shadow-2xl z-10 -ml-2" style={{ animation: 'float-c 4s ease-in-out infinite' }}>
-                    <img src={moto3} alt="Entregador em moto" className="w-full object-cover aspect-[3/4]" loading="lazy" />
+                    <img src={moto3} alt="Entregador em moto" className="w-full object-cover aspect-[2/3]" loading="lazy" />
                   </div>
                 </div>
 
