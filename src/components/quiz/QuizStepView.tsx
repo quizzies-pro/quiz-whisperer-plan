@@ -138,15 +138,15 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                   idx < benefits.length - 1 && "border-b border-border/15"
                 )}>
                   <div className="text-center py-3 px-4">
-                    <span className="text-xs font-body text-foreground/90">{benefit}</span>
+                    <span className="text-sm font-body text-foreground/90">{benefit}</span>
                   </div>
-                  <div className="flex pb-4">
-                    <div className="flex-1 flex justify-center">
+                  <div className="flex gap-[1px] px-3 pb-3">
+                    <div className="flex-1 flex justify-center py-3 rounded-lg bg-background/60">
                       <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-destructive/15">
                         <span className="text-destructive text-xs font-bold">✕</span>
                       </span>
                     </div>
-                    <div className="flex-1 flex justify-center">
+                    <div className="flex-1 flex justify-center py-3 rounded-lg bg-background/60">
                       <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary/15">
                         <CheckCircle2 className="w-4 h-4 text-primary" />
                       </span>
