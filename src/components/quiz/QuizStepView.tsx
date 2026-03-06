@@ -80,9 +80,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
   // ── VSL ──
   if (step.type === "vsl") {
     return (
-      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-[70px] pb-[120px] overflow-y-auto scrollbar-none">
-        <div className="relative z-10 max-w-4xl w-full space-y-5 md:space-y-6 animate-fade-in text-center">
-          <img src={logoLocagora} alt="LocaGora" className="h-10 md:h-16 mx-auto object-contain" />
+      <div className="h-screen w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
+        <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
+          <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
 
           <h1 className="font-heading font-extrabold text-lg sm:text-2xl md:text-[2rem] leading-[1.15] tracking-[-0.01em] text-foreground">
             <span className="text-primary">Comece a lucrar já no primeiro mês</span>
@@ -90,13 +90,13 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             <span className="font-black">com a franquia mais segura do Brasil</span>
           </h1>
 
-          <p className="text-sm md:text-base text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
             Receba até R$ 20.000,00 por mês e garanta a franquia mais lucrativa
-            <span className="block">do país: alugue motos para entregadores do iFood e Ubers.</span>
+            do país: alugue motos para entregadores do iFood e Ubers.
           </p>
 
           {/* Video placeholder */}
-          <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-[680px] mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
+          <div className="relative aspect-video w-full max-w-[680px] mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
             <iframe
               src="https://www.youtube.com/embed/ppB407OeAUc"
               title="LocaGora - Apresentação"
@@ -106,12 +106,12 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             />
           </div>
 
-          <p className="text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
+          <p className="text-sm sm:text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
             Encontramos seus primeiros clientes e facilitamos seu investimento para
             que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
           </p>
 
-          <CTAButton onClick={onNext} className="text-sm md:text-base px-12 py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
+          <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
             COMEÇAR AGORA
           </CTAButton>
         </div>
@@ -139,10 +139,10 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     ];
 
     return (
-      <div className="h-screen w-full flex items-start sm:items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
-        <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-10 animate-fade-in">
+      <div className="h-screen w-full flex items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
+        <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-10 animate-fade-in my-auto">
           {/* Top section */}
-          <div className="space-y-4 sm:space-y-5 pt-16 sm:pt-8">
+          <div className="space-y-4 sm:space-y-5">
             <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-8 sm:mb-10" />
             <LoadingTitle />
             <LoadingAnimation onComplete={onNext} isActive={isActive} />
@@ -526,7 +526,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                     <img
                       src={ceoFoto}
                       alt="CEO LocaGora"
-                      className="w-full h-full object-cover object-top min-h-[300px] md:min-h-0"
+                      className="w-full h-full object-cover object-top max-h-[250px] sm:max-h-[300px] md:max-h-none"
                     />
                   </div>
                 </div>
@@ -1069,18 +1069,18 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
 
       <div className="relative z-20 h-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
       <div className="max-w-3xl w-full animate-fade-in">
-        <div className="flex flex-col items-center gap-8 md:gap-10">
-          {/* CEO Photo - grande */}
+        <div className="flex flex-col items-center gap-6 sm:gap-8 md:gap-10">
+          {/* CEO Photo */}
           <div className="relative">
-            <div className="w-60 h-60 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_rgba(34,197,94,0.2)]">
+            <div className="w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_rgba(34,197,94,0.2)]">
               <img
                 src={ceoImage}
                 alt="CEO LocaGora"
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="absolute -bottom-3 -right-3 w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg">
-              <CheckCircle2 className="w-6 h-6 text-primary-foreground" />
+            <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center shadow-lg">
+              <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
           </div>
 
@@ -1091,7 +1091,7 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
               <span className="text-xs font-heading font-bold text-primary uppercase tracking-wider">Excelente Perfil!</span>
             </div>
 
-            <h2 className="font-heading font-black text-xl md:text-3xl leading-tight text-foreground">
+            <h2 className="font-heading font-black text-lg sm:text-xl md:text-3xl leading-tight text-foreground">
               {step.title}
             </h2>
 
