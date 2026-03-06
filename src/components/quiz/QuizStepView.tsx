@@ -352,7 +352,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           {/* Contextual message based on moto count — only for 2, 10, 30 */}
           {(() => {
             const getMotoMessage = (motos: number): string | null => {
-              if (motos <= 3) return "Ideal para testar o modelo LocAgora";
+              if (motos <= 3) return "Ideal para testar o modelo Locagora";
               if (motos >= 8 && motos <= 12) return "Investimento mais recomendado para começar";
               if (motos >= 25) return "Maior rentabilidade e menor Payback";
               return null;
