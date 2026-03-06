@@ -129,7 +129,13 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
 );
 
 const TestimonialWall = () => {
-  const cols = [
+  // Mobile: 2 columns, Desktop: 4 columns
+  const mobileCols = [
+    testimonials.filter((_, i) => i % 2 === 0),
+    testimonials.filter((_, i) => i % 2 === 1),
+  ];
+
+  const desktopCols = [
     testimonials.slice(0, 3),
     testimonials.slice(3, 6),
     testimonials.slice(6, 9),
@@ -151,8 +157,26 @@ const TestimonialWall = () => {
       {/* Bottom fade */}
       <div className="absolute inset-x-0 bottom-0 h-24 z-[5] bg-gradient-to-t from-background via-background/80 to-transparent" />
 
-      <div className="h-full flex gap-3 px-4 md:px-8 opacity-50">
-        {cols.map((col, colIdx) => (
+      {/* Mobile: 2 columns */}
+      <div className="h-full flex gap-2 px-3 opacity-50 md:hidden">
+        {mobileCols.map((col, colIdx) => (
+          <div
+            key={colIdx}
+            className={cn(
+              "flex-1 flex flex-col gap-2",
+              colIdx % 2 === 0 ? "animate-scroll-up" : "animate-scroll-down"
+            )}
+          >
+            {[...col, ...col].map((t, i) => (
+              <TestimonialCard key={`m-${colIdx}-${i}`} testimonial={t} />
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: 4 columns */}
+      <div className="h-full hidden md:flex gap-3 px-8 opacity-50">
+        {desktopCols.map((col, colIdx) => (
           <div
             key={colIdx}
             className={cn(
@@ -161,7 +185,7 @@ const TestimonialWall = () => {
             )}
           >
             {[...col, ...col].map((t, i) => (
-              <TestimonialCard key={`${colIdx}-${i}`} testimonial={t} />
+              <TestimonialCard key={`d-${colIdx}-${i}`} testimonial={t} />
             ))}
           </div>
         ))}
