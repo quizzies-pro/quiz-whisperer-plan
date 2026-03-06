@@ -1091,7 +1091,7 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
               <span className="text-xs font-heading font-bold text-primary uppercase tracking-wider">Excelente Perfil!</span>
             </div>
 
-            <h2 className="font-heading font-black text-xl md:text-3xl leading-tight text-foreground">
+            <h2 className="font-heading font-black text-lg sm:text-xl md:text-3xl leading-tight text-foreground">
               {step.title}
             </h2>
 
