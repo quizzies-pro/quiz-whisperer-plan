@@ -253,17 +253,17 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
 
             {/* Market Section */}
-            <div className="rounded-[10px] glass-card p-5 sm:p-8 space-y-5">
-              <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
+            <div className="rounded-[10px] glass-card p-5 sm:p-8 max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
                 {/* Tablet mockups */}
-                <div className="relative w-full sm:w-1/2 flex items-center justify-center">
-                  <img src={mockupTablet1} alt="Notícia sobre aluguel de motos" className="w-[70%] sm:w-[75%] rounded-lg relative z-10" />
-                  <img src={mockupTablet2} alt="Mercado de motos" className="w-[55%] sm:w-[60%] rounded-lg absolute -bottom-2 -right-2 sm:-right-4 z-0 opacity-80" />
+                <div className="relative w-[60%] sm:w-[45%] md:w-[40%] shrink-0 min-h-[200px] flex items-center justify-center">
+                  <img src={mockupTablet1} alt="Notícia sobre aluguel de motos" className="w-[85%] relative z-10 drop-shadow-2xl" />
+                  <img src={mockupTablet2} alt="Mercado de motos" className="w-[65%] absolute -bottom-3 -right-3 z-0 opacity-70 drop-shadow-xl" />
                 </div>
 
                 {/* Text content */}
-                <div className="w-full sm:w-1/2 space-y-4">
-                  <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground leading-snug">
+                <div className="flex-1 space-y-4">
+                  <h3 className="font-heading font-black text-xl sm:text-2xl md:text-[28px] text-foreground leading-snug">
                     O mercado que <span className="text-primary">gera mais de 1,6 milhão de empregos no país</span> pode aumentar seu patrimônio
                   </h3>
                   <p className="text-sm text-muted-foreground font-body leading-relaxed">
@@ -275,7 +275,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                   <p className="text-sm text-muted-foreground font-body leading-relaxed">
                     Com nossa franquia, você vai poder oferecer motos para uma demanda sedenta a um preço acessível. Junte-se a nós.
                   </p>
-                  <p className="text-sm text-foreground font-body text-center sm:text-left leading-relaxed">
+                  <p className="text-sm text-foreground font-body leading-relaxed">
                     Invista agora em uma <strong>franquia de locação de motos</strong> rentável e validada.
                   </p>
                 </div>
