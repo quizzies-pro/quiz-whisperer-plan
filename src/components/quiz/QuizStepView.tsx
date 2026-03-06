@@ -379,6 +379,50 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               </div>
             </div>
 
+            {/* Franchisee testimonials videos */}
+            <div className="py-10 sm:py-14 space-y-6 sm:space-y-8">
+              <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
+                Confira o que os franqueados dizem
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto">
+                {[
+                  { id: "rl-AYQ90-YU", title: "Case de Sucesso" },
+                  { id: "6qa_JlGQQW8", title: "Viva a Experiência" },
+                  { id: "hlEn0HbV36U", title: "Vivência" },
+                  { id: "vtoTG4_fOBk", title: "Crescimento" },
+                  { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
+                  { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
+                ].map((video) => (
+                  <a
+                    key={video.id}
+                    href={`https://youtu.be/${video.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative rounded-[var(--radius)] overflow-hidden border border-border/30 hover:border-primary/40 transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <div className="aspect-video relative">
+                      <img
+                        src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors duration-300 flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-3 bg-card">
+                      <p className="font-heading font-bold text-xs sm:text-sm text-foreground truncate">{video.title}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
             <p className="text-xs text-muted-foreground font-body text-center">
               Um consultor especializado entrará em contato com você em até 24 horas.
             </p>
