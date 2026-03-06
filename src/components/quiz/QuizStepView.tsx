@@ -92,7 +92,8 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
   if (step.type === "loading") {
     return (
       <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
-        <div className="max-w-md w-full text-center space-y-10 animate-fade-in">
+      <div className="max-w-md w-full text-center space-y-10 animate-fade-in">
+          <img src={logoLocagora} alt="Locagora" className="h-10 md:h-14 mx-auto object-contain" />
           <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
           <LoadingAnimation />
           <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
