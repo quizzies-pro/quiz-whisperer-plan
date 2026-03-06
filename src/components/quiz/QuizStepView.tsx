@@ -426,7 +426,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
             <div className="rounded-[10px] glow-border bg-card/80 p-4 sm:p-5 space-y-3 sm:space-y-4">
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary" />
-                <h3 className="font-heading font-bold text-xs sm:text-sm text-primary uppercase tracking-wider">Resultados LocaGora</h3>
+                <h3 className="font-heading font-bold text-xs sm:text-sm text-primary uppercase tracking-wider">Resultados Locagora</h3>
               </div>
 
               {/* Lucro Mensal - Hero destaque */}
