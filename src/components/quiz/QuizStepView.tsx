@@ -23,6 +23,41 @@ interface QuizStepViewProps {
   isActive: boolean;
 }
 
+const VideoCard = ({ id, title }: { id: string; title: string }) => {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div className="group relative rounded-[var(--radius)] overflow-hidden border border-border/30 transition-all duration-300">
+      {playing ? (
+        <div className="aspect-video">
+          <iframe
+            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+            title={title}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      ) : (
+        <button onClick={() => setPlaying(true)} className="w-full text-left">
+          <div className="aspect-video relative">
+            <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} alt={title} className="w-full h-full object-cover" loading="lazy" />
+            <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors duration-300 flex items-center justify-center">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-destructive rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-foreground ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div className="p-3 bg-card">
+            <p className="font-heading font-bold text-xs sm:text-sm text-foreground truncate">{title}</p>
+          </div>
+        </button>
+      )}
+    </div>
+  );
+};
+
 const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActive }: QuizStepViewProps) => {
   const [localText, setLocalText] = useState(answer || "");
   const [validationError, setValidationError] = useState("");
@@ -393,32 +428,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                   { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
                   { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
                 ].map((video) => (
-                  <a
-                    key={video.id}
-                    href={`https://youtu.be/${video.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative rounded-[var(--radius)] overflow-hidden border border-border/30 hover:border-primary/40 transition-all duration-300 hover:scale-[1.02]"
-                  >
-                    <div className="aspect-video relative">
-                      <img
-                        src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
-                        alt={video.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors duration-300 flex items-center justify-center">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-3 bg-card">
-                      <p className="font-heading font-bold text-xs sm:text-sm text-foreground truncate">{video.title}</p>
-                    </div>
-                  </a>
+                  <VideoCard key={video.id} id={video.id} title={video.title} />
                 ))}
               </div>
             </div>
