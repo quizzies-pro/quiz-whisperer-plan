@@ -580,12 +580,14 @@ const DetailRow = ({ label, value, highlight, valueClassName }: { label: string;
 const LoadingTitle = () => {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
-    const timer = setTimeout(() => setPhase(1), 2500);
-    return () => clearTimeout(timer);
+    const interval = setInterval(() => {
+      setPhase((p) => (p === 0 ? 1 : 0));
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
   const texts = ["Aguarde um momento", "Analisando seu perfil..."];
   return (
-    <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground animate-[pulse_3s_ease-in-out_infinite]" style={{ animationDuration: "2.5s" }}>
+    <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground animate-[pulse_2.5s_ease-in-out_infinite]">
       <span key={phase} className="animate-fade-in inline-block">{texts[phase]}</span>
     </h2>
   );
