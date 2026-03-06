@@ -228,6 +228,10 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             />
           </div>
 
+          <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
+            Veja os seus <span className="text-primary">lucros aprovados</span> para você!
+          </h3>
+
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             <StatCard icon={<DollarSign className="w-5 h-5" />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
             <StatCard icon={<TrendingUp className="w-5 h-5" />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
