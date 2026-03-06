@@ -97,7 +97,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [currentStep, answers, handleNext]);
 
   return (
-    <div className="relative overflow-hidden" style={{ minHeight: stepHeight }}>
+    <div className="relative overflow-hidden" style={{ height: `${stepHeight}px` }}>
       {/* Background image — only visible on step 1 */}
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700"
@@ -125,13 +125,13 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         </button>
       )}
 
-      <div className="relative z-10">
+      <div className="relative z-10 h-full w-full overflow-hidden">
         <div
           className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ transform: `translateY(-${(currentStep - 1) * stepHeight}px)` }}
         >
           {quizSteps.map((step) => (
-            <div key={step.id} style={{ height: stepHeight }}>
+            <div key={step.id} style={{ height: `${stepHeight}px`, width: "100%", overflow: "hidden" }}>
               <QuizStepView
                 step={step}
                 answer={answers[step.id]}
