@@ -315,7 +315,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden">
-      <div className="flex-1 overflow-y-auto scrollbar-none px-4 sm:px-4 pt-[48px] sm:pt-[60px] pb-4">
+      <div className="flex-1 overflow-y-auto scrollbar-none px-4 sm:px-4 pt-[72px] sm:pt-[60px] pb-4">
         <div className="max-w-3xl w-full mx-auto space-y-5 sm:space-y-6 animate-fade-in">
           {/* Logo + subtitle */}
           <div className="flex flex-col items-center gap-2 sm:gap-2">
