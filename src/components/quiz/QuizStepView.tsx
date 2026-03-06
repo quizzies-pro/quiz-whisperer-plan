@@ -334,14 +334,16 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
                   <h4 className="font-heading font-black text-base sm:text-xl md:text-3xl text-background uppercase leading-tight">
                     por ano em um dos setores que mais cresce no Brasil.
                   </h4>
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 max-w-sm sm:max-w-md mx-auto md:mx-0">
-                    <div className="rounded-[var(--radius)] bg-card p-3 sm:p-4 text-center space-y-1">
-                      <p className="text-[10px] sm:text-xs font-body text-foreground/70">Lucro líquido mensal estimado</p>
-                      <p className="font-heading font-black text-sm sm:text-lg md:text-xl text-primary">DE 60 A 75%</p>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-sm sm:max-w-md mx-auto md:mx-0">
+                    <div className="rounded-[var(--radius)] bg-card p-4 sm:p-5 text-center space-y-2 border border-primary/10 shadow-lg shadow-primary/5 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+                      <p className="text-[10px] sm:text-xs font-body text-foreground/60 uppercase tracking-wider relative">Lucro líquido mensal estimado</p>
+                      <p className="font-heading font-black text-lg sm:text-xl md:text-2xl text-primary relative">DE 60 A 75%</p>
                     </div>
-                    <div className="rounded-[var(--radius)] bg-card p-3 sm:p-4 text-center space-y-1">
-                      <p className="text-[10px] sm:text-xs font-body text-foreground/70">Payback estimado de</p>
-                      <p className="font-heading font-black text-sm sm:text-lg md:text-xl text-primary">{scenario.paybackMeses} MESES</p>
+                    <div className="rounded-[var(--radius)] bg-card p-4 sm:p-5 text-center space-y-2 border border-primary/10 shadow-lg shadow-primary/5 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+                      <p className="text-[10px] sm:text-xs font-body text-foreground/60 uppercase tracking-wider relative">Payback estimado de</p>
+                      <p className="font-heading font-black text-lg sm:text-xl md:text-2xl text-primary relative">{scenario.paybackMeses} MESES</p>
                     </div>
                   </div>
                 </div>
