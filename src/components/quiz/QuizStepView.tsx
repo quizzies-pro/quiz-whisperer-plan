@@ -496,11 +496,11 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
                   </div>
                   <p className="text-[10px] text-muted-foreground/70 font-body">Ganho Passivo</p>
                   <div className="space-y-1.5">
-                    <DetailRow label="Rendimento Mensal:" value={<span className="text-amber-400">{fmt(selicMensal)}</span>} />
-                    <DetailRow label="Rendimento Anual:" value={<span className="text-amber-400">{fmt(selicAnual)}</span>} />
+                    <DetailRow label="Rendimento Mensal:" value={fmt(selicMensal)} valueClassName="text-amber-400" />
+                    <DetailRow label="Rendimento Anual:" value={fmt(selicAnual)} valueClassName="text-amber-400" />
                     <div className="h-px bg-foreground/10" />
-                    <DetailRow label="ROI Mensal:" value={<span className="text-amber-400">{fmtPercent(selicRoi)}</span>} />
-                    <DetailRow label="Taxa:" value={<span className="text-amber-400">15% a.a.</span>} />
+                    <DetailRow label="ROI Mensal:" value={fmtPercent(selicRoi)} valueClassName="text-amber-400" />
+                    <DetailRow label="Taxa:" value="15% a.a." valueClassName="text-amber-400" />
                   </div>
                 </div>
               </div>
