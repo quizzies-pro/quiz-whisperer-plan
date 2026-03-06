@@ -42,6 +42,8 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       if (e.key === "Enter") {
         const step = quizSteps.find((s) => s.id === currentStep);
         if (!step) return;
+        // Don't handle Enter globally for text inputs — they handle it themselves
+        if (step.type === "text") return;
         if (step.type === "vsl" || step.type === "welcome" || answers[currentStep]) {
           handleNext();
         }
