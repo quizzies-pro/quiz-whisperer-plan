@@ -139,7 +139,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     ];
 
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
+      <div className="h-full w-full flex items-center justify-center px-4 sm:px-6 py-6 sm:py-10 overflow-y-auto scrollbar-none">
         <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-10 animate-fade-in my-auto">
           {/* Top section */}
           <div className="space-y-4 sm:space-y-5">
