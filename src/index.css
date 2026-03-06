@@ -95,6 +95,21 @@
   50% { transform: translateY(-6px); }
 }
 
+@keyframes float-a {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes float-c {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 @keyframes pulse-green {
   0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,77,0.35); }
   50% { box-shadow: 0 0 0 14px rgba(0,230,77,0); }
