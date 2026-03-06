@@ -206,7 +206,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
               {nome}, parabéns!
             </h2>
-            <p className="font-heading font-bold text-lg md:text-xl text-primary">
+            <p className="font-heading font-bold text-xl md:text-2xl text-primary">
               Seu perfil foi aprovado.
             </p>
             <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
