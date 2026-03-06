@@ -352,11 +352,11 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           {/* Contextual message based on moto count */}
           {(() => {
             const getMotoMessage = (motos: number) => {
-              if (motos <= 3) return "Investimento para quem ainda tem dúvidas sobre a rentabilidade e deseja testar o modelo LocAgora";
-              if (motos <= 7) return "Perfil de quem busca uma renda extra consistente com baixo risco operacional";
-              if (motos <= 12) return "Modelo ideal para quem quer uma operação sólida e escalável na sua cidade";
-              if (motos <= 18) return "Perfil empreendedor com visão de crescimento acelerado e alta rentabilidade";
-              return "Operação robusta para quem quer dominar o mercado da sua região";
+              if (motos <= 3) return "Ideal para testar o modelo LocAgora";
+              if (motos <= 7) return "Renda extra com baixo risco";
+              if (motos <= 12) return "Operação sólida e escalável";
+              if (motos <= 18) return "Crescimento acelerado";
+              return "Domine o mercado da sua região";
             };
             return (
               <div className="flex items-center gap-2 px-4 py-3 rounded-[10px] glow-border bg-card/60 text-center">
