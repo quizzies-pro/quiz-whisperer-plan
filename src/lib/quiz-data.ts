@@ -150,7 +150,7 @@ export const quizSteps: QuizStepData[] = [
   {
     id: 10,
     title: "Qual faixa representa sua disponibilidade de investimento hoje?",
-    subtitle: "Para manter a qualidade da nossa rede de franqueados e garantir o sucesso de cada um dos nossos parceiros, avaliamos também a capacidade de investimento. Cada plano exige um capital inicial diferente e queremos indicar o caminho certo para o seu momento.",
+    subtitle: "Para garantir o sucesso dos nossos franqueados, também avaliamos a capacidade de investimento. Cada plano exige um capital inicial diferente.",
     type: "multiple-choice",
     required: true,
     category: "investimento",
