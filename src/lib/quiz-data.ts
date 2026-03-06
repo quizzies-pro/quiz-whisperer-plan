@@ -205,15 +205,15 @@ export const macroStepLabels: Record<number, string> = {
 // ── Dynamic Calculator Constants (real LOC data) ──
 export const CALC_CONSTANTS = {
   lucroMensalPorMoto: 960,     // R$ 960/moto/mês (dado real)
-  custoPorMoto: 21000,         // R$ 21.000/moto
   cdbRoiMensal: 0.0094,       // 0,94% ao mês (Taxa 11,75% a.a.)
   selicRoiMensal: 0.0117,     // 1,17% ao mês (Taxa 15% a.a.)
 };
 
-// Tier-based franchise fee
-export function getTaxaFranquia(motos: number): { taxa: number; tierLabel: string } {
-  if (motos <= 3) return { taxa: 49990, tierLabel: "Tier 1 (2-3 motos): Taxa R$ 49.990 + R$ 21.000/moto" };
-  return { taxa: 79990, tierLabel: "Tier 2 (4-19 motos): Taxa R$ 79.990 + R$ 21.000/moto" };
+// Tier-based franchise fee + cost per moto
+export function getTierData(motos: number): { taxa: number; custoPorMoto: number; tierLabel: string } {
+  if (motos <= 3) return { taxa: 49990, custoPorMoto: 21000, tierLabel: "Tier 1 (2-3 motos): Taxa R$ 49.990 + R$ 21.000/moto" };
+  if (motos <= 19) return { taxa: 79990, custoPorMoto: 21000, tierLabel: "Tier 2 (4-19 motos): Taxa R$ 79.990 + R$ 21.000/moto" };
+  return { taxa: 110000, custoPorMoto: 20000, tierLabel: "Tier 3 (20+ motos): Taxa R$ 110.000 + R$ 20.000/moto" };
 }
 
 export interface CalculatorResult {
