@@ -167,7 +167,7 @@ export const quizSteps: QuizStepData[] = [
   // ── Stage 6: ROI Calculator ──
   {
     id: 11,
-    title: "Veja quanto você poderia lucrar com a LocaGora",
+    title: "Veja quanto você poderia lucrar com a Locagora",
     subtitle: "Selecione um cenário e simule seu retorno.",
     type: "calculator",
     macroStep: 6,
