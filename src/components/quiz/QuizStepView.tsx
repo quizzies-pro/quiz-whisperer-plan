@@ -199,58 +199,66 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     const scenario = calcularRetorno(selectedMotos);
 
     return (
-      <div className="h-screen w-full flex items-start justify-center px-4 overflow-y-auto scrollbar-none pt-[70px] pb-12">
-        <div className="max-w-2xl w-full space-y-6 animate-fade-in">
-          <div className="text-center space-y-4">
-            <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4" />
-            <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
-              {nome}, parabéns!
-            </h2>
-            <p className="font-heading font-bold text-xl md:text-2xl text-primary">
-              Seu perfil foi aprovado.
-            </p>
-            <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
-          </div>
+      <div className="h-screen w-full flex flex-col overflow-hidden">
+        <div className="flex-1 overflow-y-auto scrollbar-none px-4 pt-[70px] pb-4">
+          <div className="max-w-2xl w-full mx-auto space-y-6 animate-fade-in">
+            <div className="text-center space-y-4">
+              <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4" />
+              <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
+                {nome}, parabéns!
+              </h2>
+              <p className="font-heading font-bold text-xl md:text-2xl text-primary">
+                Seu perfil foi aprovado.
+              </p>
+              <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
+            </div>
 
-          {/* Video */}
-          <div className="text-center">
-            <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground mb-4">
-              Fillipe Félix tem uma <span className="text-primary">mensagem pra você!</span>
+            {/* Video */}
+            <div className="text-center">
+              <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground mb-4">
+                Fillipe Félix tem uma <span className="text-primary">mensagem pra você!</span>
+              </h3>
+            </div>
+            <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
+              <iframe
+                src="https://www.youtube.com/embed/ppB407OeAUc"
+                title="LocaGora - Resultado"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+
+            <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground text-center">
+              Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
             </h3>
-          </div>
-          <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
-            <iframe
-              src="https://www.youtube.com/embed/ppB407OeAUc"
-              title="LocaGora - Resultado"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
-            />
-          </div>
 
-          <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground text-center">
-            Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
-          </h3>
+            {/* Lucro Mensal - Hero */}
+            <div className="text-center py-5 rounded-[10px] bg-primary/5 border border-primary/20">
+              <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading mb-1">Lucro Mensal Estimado</p>
+              <p className="font-heading font-black text-4xl sm:text-5xl text-primary leading-none">
+                R$ {scenario.lucroMensal.toLocaleString("pt-BR")}
+              </p>
+              <p className="text-xs text-muted-foreground/70 mt-1.5 font-body">com {scenario.motos} motos</p>
+            </div>
 
-          {/* Lucro Mensal - Hero */}
-          <div className="text-center py-5 rounded-[10px] bg-primary/5 border border-primary/20">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading mb-1">Lucro Mensal Estimado</p>
-            <p className="font-heading font-black text-4xl sm:text-5xl text-primary leading-none">
-              R$ {scenario.lucroMensal.toLocaleString("pt-BR")}
+            {/* Stats grid */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
+              <StatCard icon={<DollarSign className="w-5 h-5" />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
+              <StatCard icon={<TrendingUp className="w-5 h-5" />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
+              <StatCard icon={<BarChart3 className="w-5 h-5" />} label="ROI Mensal" value={`${scenario.roiMensal.toFixed(2)}%`} />
+              <StatCard icon={<Clock className="w-5 h-5" />} label="Payback estimado" value={`${scenario.paybackMeses} meses`} />
+            </div>
+
+            <p className="text-xs text-muted-foreground font-body text-center">
+              Um consultor especializado entrará em contato com você em até 24 horas.
             </p>
-            <p className="text-xs text-muted-foreground/70 mt-1.5 font-body">com {scenario.motos} motos</p>
           </div>
+        </div>
 
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-3 md:gap-4">
-            <StatCard icon={<DollarSign className="w-5 h-5" />} label="Lucro mensal estimado" value={`R$ ${scenario.lucroMensal.toLocaleString("pt-BR")}`} highlight />
-            <StatCard icon={<TrendingUp className="w-5 h-5" />} label="Lucro anual estimado" value={`R$ ${scenario.lucroAnual.toLocaleString("pt-BR")}`} />
-            <StatCard icon={<BarChart3 className="w-5 h-5" />} label="ROI Mensal" value={`${scenario.roiMensal.toFixed(2)}%`} />
-            <StatCard icon={<Clock className="w-5 h-5" />} label="Payback estimado" value={`${scenario.paybackMeses} meses`} />
-          </div>
-
-
-          <div className="space-y-4 text-center pt-2">
+        {/* Fixed CTA at bottom */}
+        <div className="shrink-0 px-3 sm:px-4 py-3 sm:py-4 bg-gradient-to-t from-background via-background to-transparent">
+          <div className="max-w-2xl mx-auto">
             <CTAButton
               onClick={() => window.open("https://wa.me/5500000000000?text=Ol%C3%A1!%20Fui%20aprovado%20no%20quiz%20da%20LocaGora!", "_blank")}
               fullWidth
@@ -259,9 +267,6 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               <MessageCircle className="w-5 h-5" />
               FALAR COM UM ESPECIALISTA
             </CTAButton>
-            <p className="text-xs text-muted-foreground font-body">
-              Um consultor especializado entrará em contato com você em até 24 horas.
-            </p>
           </div>
         </div>
       </div>
