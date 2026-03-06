@@ -301,7 +301,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 };
 
 // ── Calculator View (Dynamic PRD) ──
-const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData; onNext: () => void; onAnswer: (v: string) => void; answer?: string }) => {
+const CalculatorView = ({ step, onNext, onAnswer, answer, answers }: { step: QuizStepData; onNext: () => void; onAnswer: (v: string) => void; answer?: string; answers: Record<number, string> }) => {
   const [selectedMotos, setSelectedMotos] = useState(parseInt(answer || "5", 10));
   const result = calcularRetorno(selectedMotos);
 
