@@ -325,12 +325,23 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
           </p>
         </div>
 
-        {/* Slider 1-30 motos */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground font-body">2 motos</span>
-            <span className="text-xs text-muted-foreground font-body">30 motos</span>
+        {/* Moto counter + icon */}
+        <div className="flex flex-col items-center gap-1">
+          <div className="flex items-center gap-2">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
+              <circle cx="5" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
+              <circle cx="19" cy="17" r="3" stroke="currentColor" strokeWidth="2"/>
+              <path d="M5 17h2l2-5h4l3 5h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M13 12l-1-4h3l2 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="10" cy="7" r="1.5" fill="currentColor"/>
+            </svg>
+            <span className="text-foreground font-heading font-black text-5xl md:text-6xl">{selectedMotos}</span>
           </div>
+          <span className="text-muted-foreground font-body text-sm tracking-wide">motos</span>
+        </div>
+
+        {/* Slider */}
+        <div className="space-y-1.5 px-2">
           <input
             type="range"
             min={2}
@@ -338,13 +349,17 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
             step={1}
             value={selectedMotos}
             onChange={(e) => handleSelect(parseInt(e.target.value, 10))}
-            className="w-full h-2 rounded-full appearance-none cursor-pointer bg-card card-border
-              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(0,230,77,0.5)] [&::-webkit-slider-thumb]:cursor-pointer
-              [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-[0_0_10px_rgba(0,230,77,0.5)] [&::-moz-range-thumb]:cursor-pointer"
+            className="w-full h-2 rounded-full appearance-none cursor-pointer
+              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-primary/30 [&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(0,230,77,0.5)] [&::-webkit-slider-thumb]:cursor-pointer
+              [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-primary/30 [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-[0_0_12px_rgba(0,230,77,0.5)] [&::-moz-range-thumb]:cursor-pointer"
             style={{
-              background: `linear-gradient(to right, hsl(140 100% 45%) 0%, hsl(140 100% 45%) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) 100%)`,
+              background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) ${((selectedMotos - 2) / 28) * 100}%, hsl(214 55% 12%) 100%)`,
             }}
           />
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground font-body">2 motos</span>
+            <span className="text-xs text-muted-foreground font-body">30 motos</span>
+          </div>
         </div>
 
         {/* Quick select buttons */}
@@ -364,11 +379,6 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
             </button>
           ))}
         </div>
-
-        <p className="text-center text-xs text-muted-foreground/70 font-body">
-          <span className="text-primary font-heading font-bold text-2xl md:text-3xl">{selectedMotos}</span>
-          <span className="ml-2">motos selecionadas</span>
-        </p>
 
         {/* Main grid: Investment + Result */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
