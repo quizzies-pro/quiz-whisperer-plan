@@ -577,6 +577,20 @@ const DetailRow = ({ label, value, highlight, valueClassName }: { label: string;
   </div>
 );
 
+const LoadingTitle = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timer = setTimeout(() => setPhase(1), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+  const texts = ["Aguarde um momento", "Analisando seu perfil..."];
+  return (
+    <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground animate-[pulse_3s_ease-in-out_infinite]" style={{ animationDuration: "2.5s" }}>
+      <span key={phase} className="animate-fade-in inline-block">{texts[phase]}</span>
+    </h2>
+  );
+};
+
 const LoadingAnimation = () => {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
