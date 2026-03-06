@@ -199,8 +199,8 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
     const scenario = calcularRetorno(selectedMotos);
 
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none py-12">
-        <div className="max-w-2xl w-full space-y-8 animate-fade-in">
+      <div className="h-screen w-full flex items-start justify-center px-4 overflow-y-auto scrollbar-none pt-[70px] pb-12">
+        <div className="max-w-2xl w-full space-y-6 animate-fade-in">
           <div className="text-center space-y-4">
             <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4" />
             <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
