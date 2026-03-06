@@ -400,7 +400,7 @@ const StatCard = ({ icon, label, value, highlight }: { icon: React.ReactNode; la
 );
 
 // ── Interstitial View ──
-const InterstitialView = ({ step, onNext }: { step: QuizStepData; onNext: () => void }) => {
+const InterstitialView = ({ step, onNext, answers }: { step: QuizStepData; onNext: () => void; answers: Record<number, string> }) => {
   const [progress, setProgress] = useState(0);
   const hasAdvanced = useRef(false);
   const DURATION_MS = 10000;
