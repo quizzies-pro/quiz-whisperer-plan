@@ -300,56 +300,118 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
   );
 };
 
-// ── Calculator View ──
+// ── Calculator View (Dynamic PRD) ──
 const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData; onNext: () => void; onAnswer: (v: string) => void; answer?: string }) => {
-  const [selectedIdx, setSelectedIdx] = useState(parseInt(answer || "2", 10));
-  const scenario = motoScenarios[selectedIdx] || motoScenarios[2];
+  const [selectedMotos, setSelectedMotos] = useState(parseInt(answer || "5", 10));
+  const result = calcularRetorno(selectedMotos);
+
+  const handleSelect = (motos: number) => {
+    setSelectedMotos(motos);
+    onAnswer(String(motos));
+  };
+
+  const fmt = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const fmtPercent = (v: number) => `${v.toFixed(2)}%`;
 
   return (
-    <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
-      <div className="max-w-2xl w-full space-y-8 animate-fade-in">
-        <div className="text-center space-y-3">
-          <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
-          {step.subtitle && <p className="text-sm text-muted-foreground font-body">{step.subtitle}</p>}
+    <div className="h-screen w-full flex items-start justify-center px-4 overflow-y-auto scrollbar-none pt-[60px] pb-[80px]">
+      <div className="max-w-3xl w-full space-y-6 animate-fade-in">
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">{step.title}</h2>
+          <p className="text-sm text-muted-foreground font-body">
+            Escolha com quantas motos você gostaria de começar.<br className="hidden md:inline" />
+            A simulação é baseada na média real dos franqueados ativos.
+          </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 md:gap-3">
-          {motoScenarios.map((s, idx) => (
+        {/* Moto selector */}
+        <div className="flex items-center justify-center gap-2 md:gap-3">
+          {MOTO_OPTIONS.map((m) => (
             <button
-              key={idx}
-              onClick={() => { setSelectedIdx(idx); onAnswer(String(idx)); }}
+              key={m}
+              onClick={() => handleSelect(m)}
               className={cn(
-                "rounded-[10px] p-3 md:p-4 text-center transition-all duration-300 font-heading",
-                selectedIdx === idx
-                  ? "glow-border bg-primary/10 scale-[1.03]"
-                  : "card-border bg-card hover:-translate-y-[1px] hover:border-[rgba(255,255,255,0.12)]"
+                "rounded-[10px] px-4 py-2.5 md:px-6 md:py-3 font-heading font-bold text-sm md:text-base transition-all duration-300",
+                selectedMotos === m
+                  ? "bg-primary text-primary-foreground scale-105 shadow-[0_0_20px_rgba(0,230,77,0.3)]"
+                  : "bg-card card-border text-foreground/70 hover:text-foreground hover:bg-card/80"
               )}
             >
-              <div className={cn("text-xl md:text-2xl font-black", selectedIdx === idx ? "text-primary" : "text-foreground")}>{s.motos}</div>
-              <div className="text-[10px] md:text-xs uppercase tracking-wider text-muted-foreground">motos</div>
+              {m}
             </button>
           ))}
         </div>
 
-        <div className="rounded-[10px] glass-card p-6 md:p-8 space-y-6">
-          <div className="text-center space-y-1">
-            <span className="text-xs text-muted-foreground font-body uppercase tracking-[0.18em]">Lucro mensal estimado</span>
-            <p className="text-4xl md:text-5xl font-heading font-black text-primary leading-none">
-              {scenario.lucroMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-              <span className="text-base font-bold text-muted-foreground ml-1">/mês</span>
-            </p>
+        <p className="text-center text-xs text-muted-foreground/70 font-body">
+          <span className="text-primary font-heading font-bold text-2xl md:text-3xl">{selectedMotos}</span>
+          <span className="ml-2">motos selecionadas</span>
+        </p>
+
+        {/* Main grid: Investment + Result */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Investment Details */}
+          <div className="rounded-[10px] glass-card p-5 space-y-4">
+            <h3 className="font-heading font-bold text-sm text-foreground/80 uppercase tracking-wider">Detalhes do Investimento</h3>
+            <div className="space-y-3">
+              <DetailRow label="Valor por Moto:" value={fmt(CALC_CONSTANTS.custoPorMoto)} />
+              <DetailRow label={`Investimento em Motos (${selectedMotos}x):`} value={fmt(selectedMotos * CALC_CONSTANTS.custoPorMoto)} />
+              <div className="h-px bg-foreground/10" />
+              <DetailRow label="Investimento Total:" value={fmt(result.investimentoTotal)} highlight />
+            </div>
           </div>
-          <div className="h-px bg-[rgba(255,255,255,0.06)]" />
-          <div className="grid grid-cols-3 gap-3">
-            <MiniStat label="Lucro líquido %" value={`DE 60 A ${scenario.roiPercent}%`} />
-            <MiniStat label="Payback estimado" value={`${scenario.paybackMeses} A 29 MESES`} />
-            <MiniStat label="Lucro anual" value={scenario.lucroAnual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })} />
+
+          {/* LocaGora Results */}
+          <div className="rounded-[10px] glow-border bg-card/80 p-5 space-y-4">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-primary" />
+              <h3 className="font-heading font-bold text-sm text-primary uppercase tracking-wider">LOCAgora Franquias</h3>
+            </div>
+            <div className="space-y-3">
+              <DetailRow label="Lucro Mensal:" value={fmt(result.lucroMensal)} highlight />
+              <DetailRow label="Lucro Anual:" value={fmt(result.lucroAnual)} />
+              <DetailRow label="ROI Mensal:" value={fmtPercent(result.roiMensal)} highlight />
+              <DetailRow label="Payback:" value={`${result.paybackMeses} meses`} />
+            </div>
           </div>
         </div>
 
-        <div className="text-center">
+        {/* Quanto você ganha a mais */}
+        <div className="rounded-[10px] glass-card p-5">
+          <h3 className="font-heading font-bold text-sm md:text-base text-center text-foreground mb-4">
+            <Sparkles className="w-4 h-4 inline text-primary mr-1" />
+            Quanto você ganha com a franquia?
+          </h3>
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div className="space-y-1">
+              <span className="text-[10px] text-muted-foreground font-body uppercase tracking-wider block">Por mês</span>
+              <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroMensal)}</p>
+              <span className="text-[10px] text-muted-foreground/60">lucro estimado</span>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] text-muted-foreground font-body uppercase tracking-wider block">Em 1 ano</span>
+              <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual)}</p>
+              <span className="text-[10px] text-muted-foreground/60">lucro acumulado</span>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] text-muted-foreground font-body uppercase tracking-wider block">Em 3 anos</span>
+              <p className="font-heading font-black text-primary text-lg md:text-xl">{fmt(result.lucroAnual * 3)}</p>
+              <span className="text-[10px] text-muted-foreground/60">projeção total</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Disclaimer */}
+        <p className="text-[10px] text-muted-foreground/50 font-body text-center leading-relaxed max-w-xl mx-auto">
+          Os valores apresentados são projeções baseadas em dados históricos e premissas de mercado. 
+          Rentabilidade passada não é garantia de rentabilidade futura. O investimento em franquias envolve riscos. 
+          Consulte um especialista antes de investir.
+        </p>
+
+        {/* CTA */}
+        <div className="text-center pt-1">
           <CTAButton onClick={onNext} className="px-10 py-5 text-base" showArrow>
-            QUERO CONHECER A LOCAGORA
+            QUERO GARANTIR MINHA FRANQUIA
           </CTAButton>
         </div>
       </div>
@@ -357,10 +419,13 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
   );
 };
 
-const MiniStat = ({ label, value }: { label: string; value: string }) => (
-  <div className="text-center space-y-1.5 rounded-[8px] bg-[rgba(0,0,0,0.2)] card-border p-3">
-    <span className="text-[10px] text-muted-foreground font-body leading-tight block">{label}</span>
-    <p className="font-heading font-black text-primary text-sm md:text-base leading-tight">{value}</p>
+const DetailRow = ({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) => (
+  <div className="flex items-center justify-between gap-2">
+    <span className="text-xs text-muted-foreground font-body">{label}</span>
+    <span className={cn(
+      "font-heading font-bold text-sm",
+      highlight ? "text-primary" : "text-foreground"
+    )}>{value}</span>
   </div>
 );
 
