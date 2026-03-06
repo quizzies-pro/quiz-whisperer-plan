@@ -116,38 +116,41 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               </h3>
             </div>
 
-            {/* Mobile: styled mini-table */}
+            {/* Mobile: card-style layout matching reference */}
             <div className="sm:hidden rounded-[10px] overflow-hidden card-border">
-              {/* Header row */}
-              <div className="flex items-center bg-card/80 border-b border-border/20">
-                <div className="flex-1 px-4 py-3">
-                  <span className="text-[11px] font-heading font-bold text-foreground/60">Benefícios</span>
+              {/* Header */}
+              <div className="text-center py-4 bg-card border-b border-border/20">
+                <span className="font-heading font-bold text-sm text-foreground">Benefícios</span>
+              </div>
+              {/* Badges row */}
+              <div className="flex bg-card border-b border-border/20">
+                <div className="flex-1 flex justify-center py-3">
+                  <span className="inline-block px-5 py-1.5 rounded-md bg-destructive/80 text-xs font-heading font-bold text-primary-foreground">Concorrentes</span>
                 </div>
-                <div className="w-16 py-3 text-center">
-                  <span className="inline-block px-2.5 py-1 rounded-md bg-destructive/80 text-[9px] font-heading font-bold text-primary-foreground">Outros</span>
-                </div>
-                <div className="w-16 py-3 text-center">
-                  <span className="inline-block px-1.5 py-1 rounded-md bg-primary text-[9px] font-heading font-bold text-primary-foreground">Locagora</span>
+                <div className="flex-1 flex justify-center py-3">
+                  <span className="inline-block px-5 py-1.5 rounded-md bg-primary text-xs font-heading font-bold text-primary-foreground">LocAgora</span>
                 </div>
               </div>
-              {/* Rows */}
+              {/* Benefit rows */}
               {benefits.map((benefit, idx) => (
                 <div key={idx} className={cn(
-                  "flex items-center bg-card",
-                  idx < benefits.length - 1 && "border-b border-border/10"
+                  "bg-card",
+                  idx < benefits.length - 1 && "border-b border-border/15"
                 )}>
-                  <div className="flex-1 px-4 py-3.5">
-                    <span className="text-[11px] font-body text-foreground/80 leading-tight">{benefit}</span>
+                  <div className="text-center py-3 px-4">
+                    <span className="text-xs font-body text-foreground/90">{benefit}</span>
                   </div>
-                  <div className="w-16 py-3.5 flex justify-center">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-destructive/15">
-                      <span className="text-destructive text-[10px] font-bold">✕</span>
-                    </span>
-                  </div>
-                  <div className="w-16 py-3.5 flex justify-center">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/15">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-                    </span>
+                  <div className="flex pb-4">
+                    <div className="flex-1 flex justify-center">
+                      <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-destructive/15">
+                        <span className="text-destructive text-xs font-bold">✕</span>
+                      </span>
+                    </div>
+                    <div className="flex-1 flex justify-center">
+                      <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary/15">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
