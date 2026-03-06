@@ -237,8 +237,8 @@ export interface CalculatorResult {
 }
 
 export function calcularRetorno(motos: number): CalculatorResult {
-  const { lucroMensalPorMoto, custoPorMoto, cdbRoiMensal, selicRoiMensal } = CALC_CONSTANTS;
-  const { taxa: taxaFranquia, tierLabel } = getTaxaFranquia(motos);
+  const { lucroMensalPorMoto, cdbRoiMensal, selicRoiMensal } = CALC_CONSTANTS;
+  const { taxa: taxaFranquia, custoPorMoto, tierLabel } = getTierData(motos);
 
   const investimentoMotos = motos * custoPorMoto;
   const investimentoTotal = taxaFranquia + investimentoMotos;
