@@ -439,16 +439,16 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             {/* Guarantee section */}
             <div className="py-10 sm:py-14 space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
-                {/* Left: overlapping images */}
-                <div className="relative flex justify-center items-center h-[280px] sm:h-[340px] md:h-[400px]">
-                  <div className="absolute left-[5%] sm:left-[8%] top-[10%] w-[35%] rounded-[var(--radius)] overflow-hidden border-2 border-border/20 shadow-2xl rotate-[-4deg] z-10 hover:rotate-0 transition-transform duration-500">
-                    <img src={moto1} alt="Franqueado em moto" className="w-full h-full object-cover aspect-[3/4]" loading="lazy" />
+                {/* Left: vertical images with float animation */}
+                <div className="flex justify-center items-end gap-3 sm:gap-4 h-[280px] sm:h-[340px] md:h-[400px]">
+                  <div className="w-[30%] rounded-[var(--radius)] overflow-hidden border-2 border-border/20 shadow-2xl self-end" style={{ animation: 'float-a 4s ease-in-out infinite' }}>
+                    <img src={moto1} alt="Franqueado em moto" className="w-full object-cover aspect-[3/4]" loading="lazy" />
                   </div>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[5%] w-[38%] rounded-[var(--radius)] overflow-hidden border-2 border-primary/30 shadow-2xl z-20 hover:scale-105 transition-transform duration-500">
-                    <img src={moto2} alt="Motociclista com capacete" className="w-full h-full object-cover aspect-[3/4]" loading="lazy" />
+                  <div className="w-[33%] rounded-[var(--radius)] overflow-hidden border-2 border-primary/30 shadow-2xl self-start" style={{ animation: 'float-b 4s ease-in-out infinite' }}>
+                    <img src={moto2} alt="Motociclista com capacete" className="w-full object-cover aspect-[3/4]" loading="lazy" />
                   </div>
-                  <div className="absolute right-[5%] sm:right-[8%] top-[10%] w-[35%] rounded-[var(--radius)] overflow-hidden border-2 border-border/20 shadow-2xl rotate-[4deg] z-10 hover:rotate-0 transition-transform duration-500">
-                    <img src={moto3} alt="Entregador em moto" className="w-full h-full object-cover aspect-[3/4]" loading="lazy" />
+                  <div className="w-[30%] rounded-[var(--radius)] overflow-hidden border-2 border-border/20 shadow-2xl self-end" style={{ animation: 'float-c 4s ease-in-out infinite' }}>
+                    <img src={moto3} alt="Entregador em moto" className="w-full object-cover aspect-[3/4]" loading="lazy" />
                   </div>
                 </div>
 
