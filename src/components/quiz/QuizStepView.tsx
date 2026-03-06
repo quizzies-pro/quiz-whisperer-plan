@@ -720,7 +720,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer, answers }: { step: Qui
   const fmtPercent = (v: number) => `${v.toFixed(2)}%`;
 
   return (
-    <div className="h-screen w-full flex flex-col overflow-hidden">
+    <div className="h-full w-full flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto scrollbar-none px-4 sm:px-4 pt-[72px] sm:pt-[60px] pb-4">
         <div className="max-w-3xl w-full mx-auto space-y-5 sm:space-y-6 animate-fade-in">
           {/* Logo + subtitle */}
