@@ -255,9 +255,9 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             {/* Market Section - full width like reference */}
             <div className="py-8 sm:py-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
-                {/* Tablet mockup - single large image like reference */}
+                {/* Tablet mockups - carousel */}
                 <div className="flex justify-center">
-                  <img src={mockupTablet1} alt="Notícia sobre aluguel de motos" className="w-[75%] sm:w-[80%] md:w-full max-w-[420px] drop-shadow-2xl" />
+                  <TabletCarousel />
                 </div>
 
                 {/* Text content */}
@@ -875,6 +875,47 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
           </div>
         </div>
       </div>
+      </div>
+    </div>
+  );
+};
+
+const TabletCarousel = () => {
+  const [current, setCurrent] = useState(0);
+  const images = [mockupTablet1, mockupTablet2];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((c) => (c + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full max-w-[420px]">
+      {images.map((src, idx) => (
+        <img
+          key={idx}
+          src={src}
+          alt={`Mockup tablet ${idx + 1}`}
+          className={cn(
+            "w-full drop-shadow-2xl transition-opacity duration-700 absolute inset-0",
+            idx === current ? "opacity-100 relative" : "opacity-0"
+          )}
+        />
+      ))}
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-4">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            className={cn(
+              "w-2.5 h-2.5 rounded-full transition-all duration-300",
+              idx === current ? "bg-primary scale-110" : "bg-muted-foreground/30"
+            )}
+          />
+        ))}
       </div>
     </div>
   );
