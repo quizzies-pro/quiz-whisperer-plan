@@ -469,10 +469,9 @@ const InterstitialView = ({ step, onNext, answers }: { step: QuizStepData; onNex
               {step.title}
             </h2>
 
-            {step.subtitle && (
-              <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
-                {step.subtitle}
-              </p>
+            <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
+              {answers[2] ? `${answers[2]}, para` : "Para"} garantir o sucesso dos nossos franqueados, também avaliamos a capacidade de investimento. Cada plano exige um capital inicial diferente.
+            </p>
             )}
 
             <div className="flex flex-wrap justify-center gap-3 pt-1">
