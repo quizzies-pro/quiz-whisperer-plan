@@ -85,7 +85,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
   // ── Calculator ──
   if (step.type === "calculator") {
-    return <CalculatorView step={step} onNext={onNext} onAnswer={onAnswer} answer={answer} />;
+    return <CalculatorView step={step} onNext={onNext} onAnswer={onAnswer} answer={answer} answers={answers} />;
   }
 
   // ── Loading ──
