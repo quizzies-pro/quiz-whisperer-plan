@@ -187,9 +187,6 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
           </div>
 
-          <CTAButton onClick={onNext} className="px-10 sm:px-12 py-4 sm:py-5" showArrow>
-            VER RESULTADO
-          </CTAButton>
         </div>
       </div>
     );
