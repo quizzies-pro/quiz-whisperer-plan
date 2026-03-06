@@ -953,7 +953,7 @@ const LoadingTitle = () => {
 const LoadingAnimation = ({ onComplete, isActive }: { onComplete: () => void; isActive: boolean }) => {
   const [progress, setProgress] = useState(0);
   const hasAdvanced = useRef(false);
-  const DURATION_MS = 5000;
+  const DURATION_MS = 4000;
   const INTERVAL_MS = 100;
   const increment = 100 / (DURATION_MS / INTERVAL_MS);
 
