@@ -1067,8 +1067,8 @@ const InterstitialView = ({ step, onNext, answers, isActive }: { step: QuizStepD
         }}
       />
 
-      <div className="relative z-20 h-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
-      <div className="max-w-3xl w-full animate-fade-in">
+      <div className="relative z-20 h-full flex items-center justify-center px-4 py-6 overflow-y-auto overflow-x-hidden scrollbar-none">
+      <div className="max-w-3xl w-full animate-fade-in my-auto">
         <div className="flex flex-col items-center gap-6 sm:gap-8 md:gap-10">
           {/* CEO Photo */}
           <div className="relative">

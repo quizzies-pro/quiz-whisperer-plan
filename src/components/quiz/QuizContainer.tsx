@@ -13,37 +13,45 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [stepHeight, setStepHeight] = useState(window.innerHeight);
-  const initialHeight = useRef(window.innerHeight);
+  const getViewportHeight = () => Math.round(window.visualViewport?.height ?? window.innerHeight);
+  const [stepHeight, setStepHeight] = useState(getViewportHeight);
+  const stableHeightRef = useRef(getViewportHeight());
 
-  // Capture stable height on mount and orientation change only (not keyboard)
+  // Keep step height stable on mobile (ignore virtual keyboard shrink)
   useEffect(() => {
-    const updateHeight = () => {
-      // Only update if the change is significant (orientation change, not keyboard)
-      const newHeight = window.innerHeight;
-      const diff = Math.abs(newHeight - initialHeight.current);
-      // Keyboard typically changes height by 200-400px; orientation changes more
-      if (diff > 400 || newHeight > initialHeight.current) {
-        initialHeight.current = newHeight;
-        setStepHeight(newHeight);
+    const applyHeight = (height: number) => {
+      stableHeightRef.current = height;
+      setStepHeight(height);
+    };
+
+    const handleResize = () => {
+      const nextHeight = getViewportHeight();
+      // Keyboard usually shrinks viewport a lot; ignore those changes.
+      if (nextHeight >= stableHeightRef.current - 60) {
+        applyHeight(nextHeight);
       }
     };
 
-    // Use resize + orientationchange
-    window.addEventListener("orientationchange", () => {
-      setTimeout(() => {
-        initialHeight.current = window.innerHeight;
-        setStepHeight(window.innerHeight);
-      }, 200);
-    });
+    const handleOrientationChange = () => {
+      window.setTimeout(() => {
+        applyHeight(getViewportHeight());
+      }, 250);
+    };
 
-    // Also set on initial load with a small delay for accurate measurement
-    const timeout = setTimeout(() => {
-      initialHeight.current = window.innerHeight;
-      setStepHeight(window.innerHeight);
+    const timeout = window.setTimeout(() => {
+      applyHeight(getViewportHeight());
     }, 100);
 
-    return () => clearTimeout(timeout);
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleOrientationChange);
+    window.visualViewport?.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleOrientationChange);
+      window.visualViewport?.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const answeredSteps = Object.keys(answers).map(Number);
@@ -89,7 +97,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [currentStep, answers, handleNext]);
 
   return (
-    <div className="relative overflow-hidden" style={{ minHeight: stepHeight }}>
+    <div className="relative overflow-hidden" style={{ height: `${stepHeight}px` }}>
       {/* Background image — only visible on step 1 */}
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700"
@@ -117,13 +125,13 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         </button>
       )}
 
-      <div className="relative z-10">
+      <div className="relative z-10 h-full w-full overflow-hidden">
         <div
           className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ transform: `translateY(-${(currentStep - 1) * stepHeight}px)` }}
         >
           {quizSteps.map((step) => (
-            <div key={step.id} style={{ height: stepHeight }}>
+            <div key={step.id} style={{ height: `${stepHeight}px`, width: "100%", overflow: "hidden" }}>
               <QuizStepView
                 step={step}
                 answer={answers[step.id]}
