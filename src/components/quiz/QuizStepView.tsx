@@ -359,7 +359,7 @@ const CalculatorView = ({ step, onNext, onAnswer, answer }: { step: QuizStepData
               return "Domine o mercado da sua região";
             };
             return (
-              <div className="flex items-center gap-2 px-4 py-3 rounded-[10px] glow-border bg-card/60 text-center">
+              <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-[10px] glow-border bg-card/60 text-center">
                 <Sparkles className="w-4 h-4 text-primary shrink-0" />
                 <p className="text-xs sm:text-sm text-primary font-body leading-snug">{getMotoMessage(selectedMotos)}</p>
               </div>
