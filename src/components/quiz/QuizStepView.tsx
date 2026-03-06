@@ -356,7 +356,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
             </div>
 
             {/* Why invest section */}
-            <div className="text-center space-y-4 sm:space-y-5 py-8 sm:py-10 md:py-14" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2rem 9999px' }}>
+            <div className="text-center space-y-4 sm:space-y-5 py-8 sm:py-10 md:py-14 pb-12 sm:pb-16 md:pb-20" style={{ background: 'hsl(0 0% 100%)', margin: '0 -9999px', padding: '2rem 9999px 3.5rem 9999px' }}>
               <h3 className="font-heading font-black text-xl sm:text-2xl md:text-4xl text-background">
                 Por quê investir na Loca<span className="text-primary">go</span>ra é o melhor negócio?
               </h3>
