@@ -91,11 +91,59 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
   // ── Loading ──
   if (step.type === "loading") {
     return (
-      <div className="h-screen w-full flex items-center justify-center px-4 overflow-y-auto scrollbar-none">
-      <div className="max-w-md w-full text-center space-y-10 animate-fade-in">
+      <div className="h-screen w-full flex items-center justify-center px-4 py-8 overflow-y-auto scrollbar-none">
+        <div className="max-w-2xl w-full text-center space-y-8 animate-fade-in">
           <img src={logoLocagora} alt="Locagora" className="h-10 md:h-14 mx-auto object-contain" />
           <h2 className="font-heading font-bold text-2xl md:text-3xl text-foreground">{step.title}</h2>
           <LoadingAnimation />
+
+          {/* Comparison Table */}
+          <div className="space-y-4 text-left">
+            <div className="text-center space-y-2">
+              <p className="font-heading font-bold text-xs sm:text-sm tracking-[0.2em] uppercase text-primary">Use seu lado racional</p>
+              <h3 className="font-heading font-extrabold text-lg sm:text-2xl text-foreground leading-snug">
+                A Loca<span className="text-primary">go</span>ra é melhor não só pelo marketing...
+              </h3>
+              <p className="font-heading font-bold text-sm sm:text-base text-foreground/70">
+                Vantagens da franquia de locação de motos Loca<span className="text-primary">go</span>ra
+              </p>
+            </div>
+
+            <div className="rounded-[10px] overflow-hidden card-border">
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs sm:text-sm font-heading font-bold text-foreground/80 bg-card">Benefícios</th>
+                    <th className="px-4 py-3 text-center text-xs sm:text-sm font-heading font-bold text-primary-foreground bg-destructive/80 w-[120px] sm:w-[160px]">Concorrentes</th>
+                    <th className="px-4 py-3 text-center text-xs sm:text-sm font-heading font-bold text-primary-foreground bg-primary w-[120px] sm:w-[160px]">Loca<span className="opacity-100">go</span>ra</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    "Lucro no primeiro mês",
+                    "Sem contratação de funcionários",
+                    "Facilidade na compra de produtos",
+                    "Não exige tempo integral de dedicação",
+                  ].map((benefit, idx) => (
+                    <tr key={idx} className="border-t border-border/30">
+                      <td className="px-4 py-4 text-xs sm:text-sm font-body text-foreground/80 bg-card">{benefit}</td>
+                      <td className="px-4 py-4 text-center bg-card">
+                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-destructive/20">
+                          <span className="text-destructive text-xs font-bold">✕</span>
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 text-center bg-card">
+                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/20">
+                          <CheckCircle2 className="w-4 h-4 text-primary" />
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
             VER RESULTADO
           </CTAButton>
