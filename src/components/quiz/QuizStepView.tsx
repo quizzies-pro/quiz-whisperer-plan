@@ -389,7 +389,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
 
                 {/* Right: Brazil map */}
                 <div className="flex justify-center order-1 md:order-2">
-                  <img src={mapaBrasil} alt="Mapa do Brasil - Onde estamos" className="w-[200px] sm:w-[280px] md:w-full md:max-w-[450px] drop-shadow-xl" />
+                  <img src={mapaBrasil} alt="Mapa do Brasil - Onde estamos" className="w-[320px] sm:w-[400px] md:w-full md:max-w-[500px] drop-shadow-xl" />
                 </div>
               </div>
             </div>
