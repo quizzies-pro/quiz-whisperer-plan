@@ -229,7 +229,7 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
           </div>
 
           <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground text-center">
-            Veja os seus <span className="text-primary">lucros aprovados</span> para você!
+            Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
           </h3>
 
           <div className="grid grid-cols-2 gap-3 md:gap-4">
