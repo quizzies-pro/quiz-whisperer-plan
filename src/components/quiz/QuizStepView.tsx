@@ -213,6 +213,11 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
           </div>
 
           {/* Video */}
+          <div className="text-center">
+            <h3 className="font-heading font-black text-lg sm:text-xl md:text-2xl text-foreground mb-4">
+              Fillipe Félix tem uma <span className="text-primary">mensagem pra você!</span>
+            </h3>
+          </div>
           <div className="relative aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
             <iframe
               src="https://www.youtube.com/embed/ppB407OeAUc"
