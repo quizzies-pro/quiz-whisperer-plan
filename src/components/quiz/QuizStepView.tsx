@@ -319,6 +319,30 @@ const QuizStepView = ({ step, answer, answers, onAnswer, onNext, isFirst, isActi
               </p>
             </div>
 
+            {/* Why invest section */}
+            <div className="text-center space-y-5 py-8">
+              <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground">
+                Por quê investir na Loca<span className="text-primary">go</span>ra é o melhor negócio?
+              </h3>
+              <p className="text-sm md:text-base text-muted-foreground font-body">
+                Somos uma marca em constante crescimento e com presença nacional!
+              </p>
+              <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
+                <div className="text-center">
+                  <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+770</p>
+                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-foreground mt-1">Franquias Abertas</p>
+                </div>
+                <div className="text-center border-x border-border/30">
+                  <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+98</p>
+                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-foreground mt-1">Cidades Atendidas</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-primary">+100</p>
+                  <p className="font-heading font-bold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider text-foreground mt-1">Lojas em Operação</p>
+                </div>
+              </div>
+            </div>
+
             <p className="text-xs text-muted-foreground font-body text-center">
               Um consultor especializado entrará em contato com você em até 24 horas.
             </p>
