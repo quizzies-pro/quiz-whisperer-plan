@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { ChevronLeft } from "lucide-react";
 import { quizSteps } from "@/lib/quiz-data";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,6 +9,8 @@ import bgHero from "@/assets/bg-hero.jpg";
 interface QuizContainerProps {
   initialStep?: number;
 }
+
+const RENDER_WINDOW = 1; // Render current ± 1 steps
 
 const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   const [currentStep, setCurrentStep] = useState(initialStep);
@@ -27,7 +29,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
     const handleResize = () => {
       const nextHeight = getViewportHeight();
-      // Keyboard usually shrinks viewport a lot; ignore those changes.
       if (nextHeight >= stableHeightRef.current - 60) {
         applyHeight(nextHeight);
       }
@@ -57,10 +58,18 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
   const answeredSteps = Object.keys(answers).map(Number);
 
+  // Determine which steps to render (current ± RENDER_WINDOW)
+  const visibleStepIds = useMemo(() => {
+    const ids = new Set<number>();
+    for (let i = currentStep - RENDER_WINDOW; i <= currentStep + RENDER_WINDOW; i++) {
+      if (i >= 1 && i <= quizSteps.length) ids.add(i);
+    }
+    return ids;
+  }, [currentStep]);
+
   const goToStep = useCallback((step: number) => {
     if (step < 1 || step > quizSteps.length || isTransitioning) return;
     setIsTransitioning(true);
-    // Blur any focused input to dismiss keyboard before transitioning
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
@@ -165,16 +174,21 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         >
           {quizSteps.map((step) => (
             <div key={step.id} style={{ height: `${stepHeight}px`, width: "100%", overflow: "hidden" }}>
-              <QuizStepView
-                step={step}
-                answer={answers[step.id]}
-                answers={answers}
-                onAnswer={handleAnswer}
-                onNext={handleNext}
-                isFirst={step.id === 1}
-                isLast={step.id === quizSteps.length}
-                isActive={step.id === currentStep}
-              />
+              {visibleStepIds.has(step.id) ? (
+                <QuizStepView
+                  step={step}
+                  answer={answers[step.id]}
+                  answers={answers}
+                  onAnswer={handleAnswer}
+                  onNext={handleNext}
+                  isFirst={step.id === 1}
+                  isLast={step.id === quizSteps.length}
+                  isActive={step.id === currentStep}
+                />
+              ) : (
+                // Empty placeholder — same height, no content rendered
+                <div className="h-full w-full" />
+              )}
             </div>
           ))}
         </div>
