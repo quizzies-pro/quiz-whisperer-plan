@@ -100,29 +100,41 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   // Stable external ID for Meta CAPI session tracking
   const externalIdRef = useRef(crypto.randomUUID());
 
-  // Helper to fire Meta Pixel client-side
-  const firePixelEvent = useCallback((eventName: string) => {
+  // Helper to read Meta cookies (_fbc, _fbp)
+  const getCookie = useCallback((name: string): string | undefined => {
+    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+    return match ? match[2] : undefined;
+  }, []);
+
+  // Helper to fire Meta Pixel client-side with event_id for deduplication
+  const firePixelEvent = useCallback((eventName: string, eventId: string) => {
     if (typeof window.fbq === "function") {
-      window.fbq("track", eventName);
-      console.log(`Meta Pixel [${eventName}] fired client-side`);
+      window.fbq("track", eventName, {}, { eventID: eventId });
+      console.log(`Meta Pixel [${eventName}] fired with eventID: ${eventId}`);
     }
   }, []);
 
   // Helper to send Meta CAPI events (server-side) + Pixel (client-side)
   const sendMetaEvent = useCallback(async (eventName: string) => {
-    // Client-side pixel (for Pixel Helper visibility)
-    firePixelEvent(eventName);
+    // Generate unique event_id for deduplication
+    const eventId = crypto.randomUUID();
+
+    // Client-side pixel with eventID
+    firePixelEvent(eventName, eventId);
 
     // Server-side CAPI
     try {
       const { error } = await supabase.functions.invoke("send-to-meta-capi", {
         body: {
           event_name: eventName,
+          event_id: eventId,
           name: answers[2] || "",
           email: answers[3] || "",
           phone: answers[4] || "",
           client_ua: navigator.userAgent,
           external_id: externalIdRef.current,
+          fbc: getCookie("_fbc") || "",
+          fbp: getCookie("_fbp") || "",
           answers: {
             "5": answers[5] || "",
             "6": answers[6] || "",
@@ -138,7 +150,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     } catch (err) {
       console.error(`Failed to send Meta CAPI [${eventName}]:`, err);
     }
-  }, [answers, firePixelEvent]);
+  }, [answers, firePixelEvent, getCookie]);
 
   // Send PageView on initial load
   const sentPageViewRef = useRef(false);
