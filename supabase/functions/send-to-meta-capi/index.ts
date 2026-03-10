@@ -93,7 +93,7 @@ serve(async (req) => {
       event_name,
       event_time: Math.floor(Date.now() / 1000),
       action_source: "website",
-      event_source_url: "https://quizlocagora.lovable.app",
+      event_source_url: "https://aplicacao.franquiaslocagora.com",
       user_data: userData,
     };
 
