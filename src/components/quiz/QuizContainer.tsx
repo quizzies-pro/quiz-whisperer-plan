@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { ChevronLeft } from "lucide-react";
 import { quizSteps } from "@/lib/quiz-data";
+import { supabase } from "@/integrations/supabase/client";
 import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
 import bgHero from "@/assets/bg-hero.jpg";
