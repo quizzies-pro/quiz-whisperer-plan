@@ -6,7 +6,6 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// SHA-256 hash helper for PII normalization (Meta requires lowercase + sha256)
 async function sha256(value: string): Promise<string> {
   const data = new TextEncoder().encode(value.trim().toLowerCase());
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
@@ -15,7 +14,6 @@ async function sha256(value: string): Promise<string> {
     .join("");
 }
 
-// Strip phone to digits only
 function normalizePhone(phone: string): string {
   return phone.replace(/\D/g, "");
 }
@@ -38,7 +36,7 @@ serve(async (req) => {
     }
 
     const body = await req.json();
-    const { event_name, email, phone, name, answers, client_ip, client_ua } = body;
+    const { event_name, event_id, email, phone, name, answers, client_ua, fbc, fbp, external_id } = body;
 
     if (!event_name) {
       return new Response(
@@ -46,6 +44,12 @@ serve(async (req) => {
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    // Get real client IP from request headers (set by CDN/proxy)
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() 
+      || req.headers.get("x-real-ip") 
+      || req.headers.get("cf-connecting-ip")
+      || null;
 
     // Build user_data with hashed PII
     const userData: Record<string, unknown> = {};
@@ -59,15 +63,19 @@ serve(async (req) => {
       if (parts[0]) userData.fn = [await sha256(parts[0])];
       if (parts.length > 1) userData.ln = [await sha256(parts[parts.length - 1])];
     }
-    if (client_ip) userData.client_ip_address = client_ip;
+    if (clientIp) userData.client_ip_address = clientIp;
     if (client_ua) userData.client_user_agent = client_ua;
     userData.country = [await sha256("br")];
 
-    // For anonymous events (PageView/ViewContent) without PII, generate an external_id
-    // so Meta has at least one identifier to work with
-    if (!email && !phone) {
-      const externalId = body.external_id || crypto.randomUUID();
-      userData.external_id = [await sha256(externalId)];
+    // Meta click/browser cookies for attribution
+    if (fbc) userData.fbc = fbc;
+    if (fbp) userData.fbp = fbp;
+
+    // Stable external_id for session linking
+    if (external_id) {
+      userData.external_id = [await sha256(external_id)];
+    } else if (!email && !phone) {
+      userData.external_id = [await sha256(crypto.randomUUID())];
     }
 
     // Build custom_data from quiz answers
@@ -81,18 +89,20 @@ serve(async (req) => {
       if (answers["11"]) customData.qtd_motos = answers["11"];
     }
 
-    const eventPayload = {
-      data: [
-        {
-          event_name,
-          event_time: Math.floor(Date.now() / 1000),
-          action_source: "website",
-          event_source_url: "https://quizlocagora.lovable.app",
-          user_data: userData,
-          custom_data: Object.keys(customData).length > 0 ? customData : undefined,
-        },
-      ],
+    const eventData: Record<string, unknown> = {
+      event_name,
+      event_time: Math.floor(Date.now() / 1000),
+      action_source: "website",
+      event_source_url: "https://quizlocagora.lovable.app",
+      user_data: userData,
     };
+
+    // event_id for deduplication between Pixel and CAPI
+    if (event_id) eventData.event_id = event_id;
+
+    if (Object.keys(customData).length > 0) eventData.custom_data = customData;
+
+    const eventPayload = { data: [eventData] };
 
     console.log("Sending to Meta CAPI:", JSON.stringify(eventPayload));
 
