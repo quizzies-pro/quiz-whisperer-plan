@@ -56,12 +56,19 @@ serve(async (req) => {
     }
     if (name) {
       const parts = name.trim().split(/\s+/);
-      userData.fn = [await sha256(parts[0])];
+      if (parts[0]) userData.fn = [await sha256(parts[0])];
       if (parts.length > 1) userData.ln = [await sha256(parts[parts.length - 1])];
     }
     if (client_ip) userData.client_ip_address = client_ip;
     if (client_ua) userData.client_user_agent = client_ua;
     userData.country = [await sha256("br")];
+
+    // For anonymous events (PageView/ViewContent) without PII, generate an external_id
+    // so Meta has at least one identifier to work with
+    if (!email && !phone) {
+      const externalId = body.external_id || crypto.randomUUID();
+      userData.external_id = [await sha256(externalId)];
+    }
 
     // Build custom_data from quiz answers
     const customData: Record<string, string> = {};
