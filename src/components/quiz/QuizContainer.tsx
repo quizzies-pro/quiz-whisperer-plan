@@ -91,6 +91,9 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     setAnswers((prev) => ({ ...prev, [currentStep]: value }));
   }, [currentStep]);
 
+  // Stable external ID for Meta CAPI session tracking
+  const externalIdRef = useRef(crypto.randomUUID());
+
   // Helper to send Meta CAPI events
   const sendMetaEvent = useCallback(async (eventName: string) => {
     try {
@@ -101,6 +104,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
           email: answers[3] || "",
           phone: answers[4] || "",
           client_ua: navigator.userAgent,
+          external_id: externalIdRef.current,
           answers: {
             "5": answers[5] || "",
             "6": answers[6] || "",
