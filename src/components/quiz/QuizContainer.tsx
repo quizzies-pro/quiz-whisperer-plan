@@ -82,6 +82,38 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     setAnswers((prev) => ({ ...prev, [currentStep]: value }));
   }, [currentStep]);
 
+  // Send lead data to RD Station when reaching the result step (13)
+  const sentToRdRef = useRef(false);
+  useEffect(() => {
+    if (currentStep === 13 && !sentToRdRef.current) {
+      sentToRdRef.current = true;
+      const sendLead = async () => {
+        try {
+          const { error } = await supabase.functions.invoke("send-to-rdstation", {
+            body: {
+              name: answers[2] || "",
+              email: answers[3] || "",
+              phone: answers[4] || "",
+              answers: {
+                "5": answers[5] || "",
+                "6": answers[6] || "",
+                "7": answers[7] || "",
+                "8": answers[8] || "",
+                "10": answers[10] || "",
+                "11": answers[11] || "",
+              },
+            },
+          });
+          if (error) console.error("RD Station send error:", error);
+          else console.log("Lead sent to RD Station successfully");
+        } catch (err) {
+          console.error("Failed to send lead to RD Station:", err);
+        }
+      };
+      sendLead();
+    }
+  }, [currentStep, answers]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
