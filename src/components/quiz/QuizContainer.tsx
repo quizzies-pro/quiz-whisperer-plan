@@ -6,6 +6,12 @@ import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
 import bgHero from "@/assets/bg-hero.jpg";
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 interface QuizContainerProps {
   initialStep?: number;
 }
