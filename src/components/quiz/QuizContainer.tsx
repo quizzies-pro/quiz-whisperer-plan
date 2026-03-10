@@ -6,6 +6,12 @@ import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
 import bgHero from "@/assets/bg-hero.jpg";
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 interface QuizContainerProps {
   initialStep?: number;
 }
@@ -94,8 +100,20 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   // Stable external ID for Meta CAPI session tracking
   const externalIdRef = useRef(crypto.randomUUID());
 
-  // Helper to send Meta CAPI events
+  // Helper to fire Meta Pixel client-side
+  const firePixelEvent = useCallback((eventName: string) => {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", eventName);
+      console.log(`Meta Pixel [${eventName}] fired client-side`);
+    }
+  }, []);
+
+  // Helper to send Meta CAPI events (server-side) + Pixel (client-side)
   const sendMetaEvent = useCallback(async (eventName: string) => {
+    // Client-side pixel (for Pixel Helper visibility)
+    firePixelEvent(eventName);
+
+    // Server-side CAPI
     try {
       const { error } = await supabase.functions.invoke("send-to-meta-capi", {
         body: {
@@ -120,7 +138,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     } catch (err) {
       console.error(`Failed to send Meta CAPI [${eventName}]:`, err);
     }
-  }, [answers]);
+  }, [answers, firePixelEvent]);
 
   // Send PageView on initial load
   const sentPageViewRef = useRef(false);
