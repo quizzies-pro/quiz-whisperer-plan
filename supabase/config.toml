@@ -1,7 +1,1 @@
-project_id = "uxuvwfamluwrzucvrohe"
-
-[functions.send-to-rdstation]
-verify_jwt = false
-
-[functions.send-to-meta-capi]
-verify_jwt = false
+project_id = "krtnihxiiapvkudpehoj"
