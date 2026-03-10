@@ -118,6 +118,24 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }
   }, [answers]);
 
+  // Send PageView on initial load
+  const sentPageViewRef = useRef(false);
+  useEffect(() => {
+    if (!sentPageViewRef.current) {
+      sentPageViewRef.current = true;
+      sendMetaEvent("PageView");
+    }
+  }, [sendMetaEvent]);
+
+  // Send ViewContent on each step change (except step 1 which gets PageView)
+  const lastTrackedStepRef = useRef(initialStep);
+  useEffect(() => {
+    if (currentStep !== lastTrackedStepRef.current && currentStep > 1) {
+      lastTrackedStepRef.current = currentStep;
+      sendMetaEvent("ViewContent");
+    }
+  }, [currentStep, sendMetaEvent]);
+
   // Send Lead event after WhatsApp capture (step 5 means step 4 was just completed)
   const sentLeadRef = useRef(false);
   useEffect(() => {
