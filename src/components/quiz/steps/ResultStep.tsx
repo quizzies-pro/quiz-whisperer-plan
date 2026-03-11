@@ -63,6 +63,23 @@ const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
             Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
           </h3>
 
+          {/* Moto quantity selector */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+            {MOTO_OPTIONS.map((qty) => (
+              <button
+                key={qty}
+                onClick={() => setSelectedMotos(qty)}
+                className={`px-4 sm:px-6 py-2.5 rounded-full font-heading font-bold text-sm sm:text-base transition-all duration-200 border-2 ${
+                  selectedMotos === qty
+                    ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/30 scale-105"
+                    : "bg-card border-primary/20 text-foreground/70 hover:border-primary/50 hover:text-foreground"
+                }`}
+              >
+                {qty} Motos
+              </button>
+            ))}
+          </div>
+
           {/* Lucro Mensal Hero */}
           <div className="text-center py-5 rounded-[10px] bg-primary/5 border border-primary/20">
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-heading mb-1">Lucro Mensal Estimado</p>
