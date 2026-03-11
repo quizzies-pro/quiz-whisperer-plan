@@ -178,7 +178,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   // Send lead to RD Station + CompleteRegistration to Meta at result step (12)
   const sentToRdRef = useRef(false);
   useEffect(() => {
-    if (currentStep === 12 && !sentToRdRef.current) {
+    if (currentStep === 12 && !sentToRdRef.current && answers[2] && answers[3]) {
       sentToRdRef.current = true;
 
       // RD Station
