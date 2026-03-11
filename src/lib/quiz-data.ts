@@ -164,28 +164,19 @@ export const quizSteps: QuizStepData[] = [
     ],
   },
 
-  // ── Stage 6: ROI Calculator ──
+  // ── Stage 6: Loading + Result ──
   {
     id: 11,
-    title: "Veja quanto você poderia lucrar com a Locagora",
-    subtitle: "Selecione um cenário e simule seu retorno.",
-    type: "calculator",
-    macroStep: 6,
-  },
-
-  // ── Stage 7: Loading + Result ──
-  {
-    id: 12,
     title: "Analisando seu perfil...",
     type: "loading",
-    macroStep: 7,
+    macroStep: 6,
   },
   {
-    id: 13,
+    id: 12,
     title: "Parabéns, você foi aprovado para avançar na avaliação da franquia.",
     subtitle: "Com base nas suas respostas você demonstra ter o perfil ideal para abrir uma franquia LocaGora na sua região.",
     type: "result",
-    macroStep: 7,
+    macroStep: 6,
   },
 ];
 
@@ -198,8 +189,7 @@ export const macroStepLabels: Record<number, string> = {
   3: "Qualificação",
   4: "Perfil",
   5: "Investimento",
-  6: "Simulação",
-  7: "Resultado",
+  6: "Resultado",
 };
 
 // ── Dynamic Calculator Constants (real LOC data) ──
