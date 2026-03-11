@@ -49,7 +49,6 @@ serve(async (req) => {
         cf_tamanho_cidade: answers?.["7"] || "",
         cf_disponibilidade_tempo: answers?.["8"] || "",
         cf_faixa_investimento: answers?.["10"] || "",
-        cf_qtd_motos: answers?.["11"] || "",
       },
     };
 
