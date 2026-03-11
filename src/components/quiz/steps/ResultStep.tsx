@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import mapaBrasil from "@/assets/mapa-brasil.webp";
 import ceoFoto from "@/assets/ceo-foto.png";
 import { MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
 import { CTAButton } from "@/components/ui/cta-button";
-import { calcularRetorno, type QuizStepData } from "@/lib/quiz-data";
+import { calcularRetorno, MOTO_OPTIONS, type QuizStepData } from "@/lib/quiz-data";
 import { StatCard, ProfileItem, VideoCard, TabletCarousel } from "./shared";
 
 interface ResultStepProps {
@@ -14,8 +14,8 @@ interface ResultStepProps {
 
 const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
   const nome = answers[2] || "Candidato";
-  const selectedMotos = parseInt(answers[11] || "5", 10);
-  const scenario = calcularRetorno(selectedMotos);
+  const [selectedMotos, setSelectedMotos] = useState(5);
+  const scenario = useMemo(() => calcularRetorno(selectedMotos), [selectedMotos]);
 
   // Lazy load moto images
   const [motoImages, setMotoImages] = React.useState<string[]>([]);
