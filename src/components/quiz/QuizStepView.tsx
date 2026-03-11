@@ -2,7 +2,6 @@ import React from "react";
 import type { QuizStepData } from "@/lib/quiz-data";
 import VSLStep from "./steps/VSLStep";
 import InterstitialStep from "./steps/InterstitialStep";
-import CalculatorStep from "./steps/CalculatorStep";
 import LoadingStep from "./steps/LoadingStep";
 import ResultStep from "./steps/ResultStep";
 import DefaultStep from "./steps/DefaultStep";
