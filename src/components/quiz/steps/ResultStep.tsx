@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import mapaBrasil from "@/assets/mapa-brasil.webp";
 import ceoFoto from "@/assets/ceo-foto.png";
 import { MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
 import { CTAButton } from "@/components/ui/cta-button";
-import { calcularRetorno, type QuizStepData } from "@/lib/quiz-data";
+import { calcularRetorno, MOTO_OPTIONS, type QuizStepData } from "@/lib/quiz-data";
 import { StatCard, ProfileItem, VideoCard, TabletCarousel } from "./shared";
 
 interface ResultStepProps {
@@ -14,8 +14,8 @@ interface ResultStepProps {
 
 const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
   const nome = answers[2] || "Candidato";
-  const selectedMotos = parseInt(answers[11] || "5", 10);
-  const scenario = calcularRetorno(selectedMotos);
+  const [selectedMotos, setSelectedMotos] = useState(5);
+  const scenario = useMemo(() => calcularRetorno(selectedMotos), [selectedMotos]);
 
   // Lazy load moto images
   const [motoImages, setMotoImages] = React.useState<string[]>([]);
@@ -62,6 +62,23 @@ const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
           <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground text-center">
             Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
           </h3>
+
+          {/* Moto quantity selector */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+            {MOTO_OPTIONS.map((qty) => (
+              <button
+                key={qty}
+                onClick={() => setSelectedMotos(qty)}
+                className={`px-4 sm:px-6 py-2.5 rounded-full font-heading font-bold text-sm sm:text-base transition-all duration-200 border-2 ${
+                  selectedMotos === qty
+                    ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/30 scale-105"
+                    : "bg-card border-primary/20 text-foreground/70 hover:border-primary/50 hover:text-foreground"
+                }`}
+              >
+                {qty} Motos
+              </button>
+            ))}
+          </div>
 
           {/* Lucro Mensal Hero */}
           <div className="text-center py-5 rounded-[10px] bg-primary/5 border border-primary/20">
