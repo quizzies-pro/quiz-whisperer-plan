@@ -63,21 +63,31 @@ const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
             Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
           </h3>
 
-          {/* Moto quantity selector */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {MOTO_OPTIONS.map((qty) => (
-              <button
-                key={qty}
-                onClick={() => setSelectedMotos(qty)}
-                className={`px-4 sm:px-6 py-2.5 rounded-full font-heading font-bold text-sm sm:text-base transition-all duration-200 border-2 ${
-                  selectedMotos === qty
-                    ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/30 scale-105"
-                    : "bg-card border-primary/20 text-foreground/70 hover:border-primary/50 hover:text-foreground"
-                }`}
-              >
-                {qty} Motos
-              </button>
-            ))}
+          {/* Moto quantity slider */}
+          <div className="space-y-3 px-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-muted-foreground font-heading uppercase tracking-wider">Quantidade de motos</span>
+              <span className="font-heading font-black text-lg text-primary">{selectedMotos} motos</span>
+            </div>
+            <input
+              type="range"
+              min={MOTO_OPTIONS[0]}
+              max={MOTO_OPTIONS[MOTO_OPTIONS.length - 1]}
+              step={1}
+              value={selectedMotos}
+              onChange={(e) => setSelectedMotos(Number(e.target.value))}
+              className="w-full h-2 rounded-full appearance-none cursor-pointer bg-primary/20 accent-primary
+                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
+                [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:shadow-lg
+                [&::-webkit-slider-thumb]:shadow-primary/40 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-primary-foreground
+                [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full
+                [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-primary-foreground"
+            />
+            <div className="flex justify-between text-[10px] text-muted-foreground/50 font-heading">
+              {MOTO_OPTIONS.map((qty) => (
+                <span key={qty}>{qty}</span>
+              ))}
+            </div>
           </div>
 
           {/* Lucro Mensal Hero */}
