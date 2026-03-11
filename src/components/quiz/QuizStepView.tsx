@@ -26,9 +26,6 @@ const QuizStepView = React.memo(({ step, answer, answers, onAnswer, onNext, isFi
     return <InterstitialStep step={step} onNext={onNext} answers={answers} isActive={isActive} />;
   }
 
-  if (step.type === "calculator") {
-    return <CalculatorStep step={step} onNext={onNext} onAnswer={onAnswer} answer={answer} answers={answers} />;
-  }
 
   if (step.type === "loading") {
     return <LoadingStep step={step} onNext={onNext} answers={answers} isActive={isActive} />;
