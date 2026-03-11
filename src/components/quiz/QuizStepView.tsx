@@ -2,7 +2,6 @@ import React from "react";
 import type { QuizStepData } from "@/lib/quiz-data";
 import VSLStep from "./steps/VSLStep";
 import InterstitialStep from "./steps/InterstitialStep";
-import CalculatorStep from "./steps/CalculatorStep";
 import LoadingStep from "./steps/LoadingStep";
 import ResultStep from "./steps/ResultStep";
 import DefaultStep from "./steps/DefaultStep";
@@ -27,9 +26,6 @@ const QuizStepView = React.memo(({ step, answer, answers, onAnswer, onNext, isFi
     return <InterstitialStep step={step} onNext={onNext} answers={answers} isActive={isActive} />;
   }
 
-  if (step.type === "calculator") {
-    return <CalculatorStep step={step} onNext={onNext} onAnswer={onAnswer} answer={answer} answers={answers} />;
-  }
 
   if (step.type === "loading") {
     return <LoadingStep step={step} onNext={onNext} answers={answers} isActive={isActive} />;
