@@ -24,14 +24,14 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => (
         do país: alugue motos para entregadores do iFood e Ubers.
       </p>
 
-      <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
-        <iframe
-          src="https://www.youtube.com/embed/ppB407OeAUc"
-          title="LocaGora - Apresentação"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="absolute inset-0 w-full h-full"
-          loading="lazy"
+      <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40 bg-black">
+        <video
+          src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/videos/vsl.mp4`}
+          controls
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-contain"
+          poster=""
         />
       </div>
 
