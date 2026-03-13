@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Quiz from "./pages/Quiz";
 import QuizStep from "./pages/QuizStep";
+import Disqualified from "./pages/Disqualified";
 import NotFound from "./pages/NotFound";
 
 const stepRoutes = [
