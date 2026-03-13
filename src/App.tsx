@@ -48,6 +48,7 @@ const App = () => (
           <Route path="/quiz/step/10" element={<QuizStep />} />
           <Route path="/quiz/step/11" element={<QuizStep />} />
           <Route path="/quiz/step/:id" element={<QuizStep />} />
+          <Route path="/desqualificado" element={<Disqualified />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
