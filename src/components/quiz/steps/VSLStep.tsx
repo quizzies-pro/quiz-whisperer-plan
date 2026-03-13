@@ -18,6 +18,20 @@ const CTA_DELAY_SECONDS = 14; // TODO: voltar para 150 (2:30)
 const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   const scriptLoaded = useRef(false);
   const [showCTA, setShowCTA] = useState(false);
+  const [ctaOutOfView, setCtaOutOfView] = useState(false);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Observe inline CTA button visibility (mobile)
+  useEffect(() => {
+    if (!showCTA || !ctaRef.current || !scrollRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setCtaOutOfView(!entry.isIntersecting),
+      { root: scrollRef.current, threshold: 0.1 }
+    );
+    observer.observe(ctaRef.current);
+    return () => observer.disconnect();
+  }, [showCTA]);
 
   useEffect(() => {
     if (scriptLoaded.current) return;
@@ -61,7 +75,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   }, []);
 
   return (
-  <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] scrollbar-none overflow-y-auto">
+  <div ref={scrollRef} className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] scrollbar-none overflow-y-auto">
     {/* Scrollable background image (mobile + desktop) */}
     <div
       className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
@@ -103,9 +117,11 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       {/* CTA + Social proof — only after timer */}
       {showCTA && (
         <div className="space-y-8 animate-fade-in">
+        <div ref={ctaRef}>
           <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
             COMEÇAR AVALIAÇÃO AGORA
           </CTAButton>
+        </div>
 
           {/* Testimonial videos */}
           <div className="space-y-4 sm:space-y-6">
@@ -136,8 +152,8 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       </div>
     </div>
 
-    {/* Fixed bottom CTA — mobile only, visible after timer */}
-    {showCTA && (
+    {/* Fixed bottom CTA — mobile only, when inline CTA scrolls out of view */}
+    {showCTA && ctaOutOfView && (
       <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden p-4 bg-gradient-to-t from-background via-background/95 to-transparent">
         <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide">
           COMEÇAR AVALIAÇÃO AGORA
