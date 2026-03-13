@@ -15,6 +15,7 @@ interface DefaultStepProps {
 }
 
 const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFirst }: DefaultStepProps) => {
+  const navigate = useNavigate();
   const [localText, setLocalText] = useState(answer || "");
   const [validationError, setValidationError] = useState("");
 
