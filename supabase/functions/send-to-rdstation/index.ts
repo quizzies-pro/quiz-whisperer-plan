@@ -39,9 +39,8 @@ serve(async (req) => {
     const quizSummary = [
       `Objetivo: ${answers?.["5"] || "N/A"}`,
       `Experiência: ${answers?.["6"] || "N/A"}`,
-      `Cidade: ${answers?.["7"] || "N/A"}`,
-      `Tempo: ${answers?.["8"] || "N/A"}`,
-      `Investimento: ${answers?.["10"] || "N/A"}`,
+      `Tempo: ${answers?.["7"] || "N/A"}`,
+      `Investimento: ${answers?.["9"] || "N/A"}`,
     ].join(" | ");
 
     const payload = {

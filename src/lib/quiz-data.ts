@@ -111,19 +111,6 @@ export const quizSteps: QuizStepData[] = [
   // ── Stage 4: Entrepreneur Profile ──
   {
     id: 7,
-    title: "Qual é o tamanho aproximado da sua cidade?",
-    type: "multiple-choice",
-    required: true,
-    category: "tamanho_cidade",
-    macroStep: 4,
-    options: [
-      { id: "a", label: "Menos de 50 mil habitantes", value: "menos_50k" },
-      { id: "b", label: "Entre 50 mil e 100 mil habitantes", value: "50k_100k" },
-      { id: "c", label: "Mais de 100 mil habitantes", value: "mais_100k" },
-    ],
-  },
-  {
-    id: 8,
     title: "Quanto tempo por dia você conseguiria dedicar ao negócio?",
     type: "multiple-choice",
     required: true,
@@ -139,7 +126,7 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Interstitial ──
   {
-    id: 9,
+    id: 8,
     title: "Parabéns, 98% dos nossos maiores clientes de sucesso tem características muito semelhantes a você!",
     subtitle: "Só mais 2 perguntas antes do seu resultado.",
     type: "interstitial",
@@ -148,7 +135,7 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Stage 5: Investment Qualification ──
   {
-    id: 10,
+    id: 9,
     title: "Qual faixa representa sua disponibilidade de investimento hoje?",
     subtitle: "Para garantir o sucesso dos nossos franqueados, também avaliamos a capacidade de investimento. Cada plano exige um capital inicial diferente.",
     type: "multiple-choice",
@@ -166,13 +153,13 @@ export const quizSteps: QuizStepData[] = [
 
   // ── Stage 6: Loading + Result ──
   {
-    id: 11,
+    id: 10,
     title: "Analisando seu perfil...",
     type: "loading",
     macroStep: 6,
   },
   {
-    id: 12,
+    id: 11,
     title: "Parabéns, você foi aprovado para avançar na avaliação da franquia.",
     subtitle: "Com base nas suas respostas você demonstra ter o perfil ideal para abrir uma franquia LocaGora na sua região.",
     type: "result",

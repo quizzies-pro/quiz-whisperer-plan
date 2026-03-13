@@ -15,13 +15,11 @@ const stepRoutes = [
   { path: "/quiz/step/4", label: "4-WhatsApp" },
   { path: "/quiz/step/5", label: "5-Motivação" },
   { path: "/quiz/step/6", label: "6-Experiência" },
-  { path: "/quiz/step/7", label: "7-Cidade" },
-  { path: "/quiz/step/8", label: "8-Tempo" },
-  { path: "/quiz/step/9", label: "9-Interstitial" },
-  { path: "/quiz/step/10", label: "10-Investimento" },
-  { path: "/quiz/step/11", label: "11-Calculadora" },
-  { path: "/quiz/step/12", label: "12-Loading" },
-  { path: "/quiz/step/13", label: "13-Resultado" },
+  { path: "/quiz/step/7", label: "7-Tempo" },
+  { path: "/quiz/step/8", label: "8-Interstitial" },
+  { path: "/quiz/step/9", label: "9-Investimento" },
+  { path: "/quiz/step/10", label: "10-Loading" },
+  { path: "/quiz/step/11", label: "11-Resultado" },
 ];
 
 // Used by Lovable to show routes in the preview navigation
@@ -48,8 +46,6 @@ const App = () => (
           <Route path="/quiz/step/9" element={<QuizStep />} />
           <Route path="/quiz/step/10" element={<QuizStep />} />
           <Route path="/quiz/step/11" element={<QuizStep />} />
-          <Route path="/quiz/step/12" element={<QuizStep />} />
-          <Route path="/quiz/step/13" element={<QuizStep />} />
           <Route path="/quiz/step/:id" element={<QuizStep />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
