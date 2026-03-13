@@ -191,8 +191,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
             "5": answers[5] || "",
             "6": answers[6] || "",
             "7": answers[7] || "",
-            "8": answers[8] || "",
-            "10": answers[10] || "",
+            "9": answers[9] || "",
           },
         },
       }).then(({ error }) => {
