@@ -1,1 +1,7 @@
 project_id = "krtnihxiiapvkudpehoj"
+
+[functions.send-to-rdstation]
+verify_jwt = false
+
+[functions.send-to-meta-capi]
+verify_jwt = false
