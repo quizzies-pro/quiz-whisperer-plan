@@ -133,12 +133,21 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       </div>
 
       {/* Footer mark */}
-      <div className="pt-6 pb-4">
+      <div className="pt-6 pb-20 sm:pb-4">
         <p className="text-[10px] text-foreground/30 font-body tracking-wider uppercase">
           © {new Date().getFullYear()} LocaGora · Todos os direitos reservados
         </p>
       </div>
     </div>
+
+    {/* Fixed bottom CTA — mobile only, visible after timer */}
+    {showCTA && (
+      <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden p-4 bg-gradient-to-t from-background via-background/95 to-transparent">
+        <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide">
+          COMEÇAR AGORA
+        </CTAButton>
+      </div>
+    )}
   </div>
 );
 });
