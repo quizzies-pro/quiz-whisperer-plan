@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { CTAButton } from "@/components/ui/cta-button";
 import PhoneInput from "../PhoneInput";
@@ -14,6 +15,7 @@ interface DefaultStepProps {
 }
 
 const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFirst }: DefaultStepProps) => {
+  const navigate = useNavigate();
   const [localText, setLocalText] = useState(answer || "");
   const [validationError, setValidationError] = useState("");
 
@@ -25,6 +27,11 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
   }, [step, onNext]);
 
   const handleOptionClick = (value: string) => {
+    // Disqualify if user selects "sem_tempo" on step 7
+    if (step.id === 7 && value === "sem_tempo") {
+      navigate("/desqualificado");
+      return;
+    }
     onAnswer(value);
     setTimeout(() => onNext(), 400);
   };

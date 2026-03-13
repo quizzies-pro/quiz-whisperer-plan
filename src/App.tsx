@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Quiz from "./pages/Quiz";
 import QuizStep from "./pages/QuizStep";
+import Disqualified from "./pages/Disqualified";
 import NotFound from "./pages/NotFound";
 
 const stepRoutes = [
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/quiz/step/10" element={<QuizStep />} />
           <Route path="/quiz/step/11" element={<QuizStep />} />
           <Route path="/quiz/step/:id" element={<QuizStep />} />
+          <Route path="/desqualificado" element={<Disqualified />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
