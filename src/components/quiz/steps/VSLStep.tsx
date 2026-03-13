@@ -87,7 +87,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         👇 Assista o vídeo agora! 👇
       </p>
 
-      <div className="w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
+      <div className="w-full max-w-3xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
         {/* @ts-ignore – VTurb custom element */}
         <vturb-smartplayer
           id="vid-69b32d2c4601d16cb0664cf7"
