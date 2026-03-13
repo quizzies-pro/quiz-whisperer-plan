@@ -25,7 +25,7 @@ const Disqualified = () => {
 
         <div className="space-y-3 pt-2">
           <CTAButton
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/quiz/step/7")}
             fullWidth
             className="py-4"
           >
