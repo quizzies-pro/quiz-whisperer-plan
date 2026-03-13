@@ -26,7 +26,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   return (
   <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
     {/* Bottom gradient fade to black (mobile) */}
-    <div className="fixed bottom-0 left-0 right-0 h-48 sm:h-40 bg-gradient-to-t from-background via-background/80 to-transparent z-[5] pointer-events-none" />
+    
 
     <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
