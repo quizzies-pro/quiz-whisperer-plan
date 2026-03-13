@@ -25,6 +25,9 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
   return (
   <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
+    {/* Bottom gradient fade to black (mobile) */}
+    <div className="fixed bottom-0 left-0 right-0 h-32 sm:h-40 bg-gradient-to-t from-background to-transparent z-[5] pointer-events-none" />
+
     <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
 
@@ -55,6 +58,13 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
         COMEÇAR AGORA
       </CTAButton>
+
+      {/* Footer mark */}
+      <div className="pt-6 pb-4">
+        <p className="text-[10px] text-foreground/30 font-body tracking-wider uppercase">
+          © {new Date().getFullYear()} LocaGora · Todos os direitos reservados
+        </p>
+      </div>
     </div>
   </div>
 );
