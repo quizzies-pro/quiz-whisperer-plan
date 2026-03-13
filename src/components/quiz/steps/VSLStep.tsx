@@ -3,7 +3,6 @@ import logoLocagora from "@/assets/logo-locagora.png";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
 import type { QuizStepData } from "@/lib/quiz-data";
-import type { QuizStepData } from "@/lib/quiz-data";
 
 interface VSLStepProps {
   step: QuizStepData;
