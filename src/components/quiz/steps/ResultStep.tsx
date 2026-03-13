@@ -42,22 +42,6 @@ const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
             <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
           </div>
 
-          {/* Video */}
-          <div className="text-center">
-            <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground mb-4">
-              Fillipe Félix tem uma <span className="text-primary">mensagem pra você!</span>
-            </h3>
-          </div>
-          <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
-            <iframe
-              src="https://www.youtube.com/embed/ppB407OeAUc"
-              title="LocaGora - Resultado"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
-              loading="lazy"
-            />
-          </div>
 
           <h3 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground text-center">
             Veja o seu lucro com a <span className="text-primary">franquia aprovada</span> pra você!
