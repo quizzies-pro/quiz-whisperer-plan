@@ -100,37 +100,33 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
       </p>
 
-      {/* CTA + Social proof — appears after 2:30 */}
-      <div
-        className={`space-y-8 transition-all duration-700 ease-out ${
-          showCTA
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-      >
-        <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
-          COMEÇAR AVALIAÇÃO AGORA
-        </CTAButton>
+      {/* CTA + Social proof — only after timer */}
+      {showCTA && (
+        <div className="space-y-8 animate-fade-in">
+          <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
+            COMEÇAR AVALIAÇÃO AGORA
+          </CTAButton>
 
-        {/* Testimonial videos */}
-        <div className="space-y-4 sm:space-y-6">
-          <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
-            Confira o que os franqueados dizem
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto">
-            {[
-              { id: "rl-AYQ90-YU", title: "Case de Sucesso" },
-              { id: "6qa_JlGQQW8", title: "Viva a Experiência" },
-              { id: "hlEn0HbV36U", title: "Vivência" },
-              { id: "vtoTG4_fOBk", title: "Crescimento" },
-              { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
-              { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
-            ].map((video) => (
-              <VideoCard key={video.id} id={video.id} title={video.title} />
-            ))}
+          {/* Testimonial videos */}
+          <div className="space-y-4 sm:space-y-6">
+            <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
+              Confira o que os franqueados dizem
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto">
+              {[
+                { id: "rl-AYQ90-YU", title: "Case de Sucesso" },
+                { id: "6qa_JlGQQW8", title: "Viva a Experiência" },
+                { id: "hlEn0HbV36U", title: "Vivência" },
+                { id: "vtoTG4_fOBk", title: "Crescimento" },
+                { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
+                { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
+              ].map((video) => (
+                <VideoCard key={video.id} id={video.id} title={video.title} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Footer mark */}
       <div className="pt-6 pb-20 sm:pb-4">
