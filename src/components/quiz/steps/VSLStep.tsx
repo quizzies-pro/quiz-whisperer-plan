@@ -62,9 +62,9 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
   return (
   <div className={`h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] scrollbar-none ${showCTA ? 'overflow-y-auto' : 'overflow-hidden'}`}>
-    {/* Mobile: scrollable background image */}
+    {/* Scrollable background image (mobile + desktop) */}
     <div
-      className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat sm:hidden pointer-events-none"
+      className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
       style={{ backgroundImage: `url(${bgHero})` }}
     >
       <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
