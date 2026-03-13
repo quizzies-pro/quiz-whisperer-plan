@@ -22,6 +22,21 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const pauseAndNext = React.useCallback(() => {
+    try {
+      const iframe = document.querySelector<HTMLIFrameElement>(
+        'vturb-smartplayer iframe, #vid-69b32d2c4601d16cb0664cf7 iframe'
+      );
+      if (iframe?.contentWindow) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ type: "smartplayer", action: "pause" }),
+          "*"
+        );
+      }
+    } catch { /* ignore */ }
+    onNext();
+  }, [onNext]);
+
   // Observe inline CTA button visibility (mobile)
   useEffect(() => {
     if (!showCTA || !ctaRef.current || !scrollRef.current) return;
@@ -118,7 +133,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       {showCTA && (
         <div className="space-y-8 animate-fade-in">
         <div ref={ctaRef}>
-          <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
+          <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
             COMEÇAR AVALIAÇÃO AGORA
           </CTAButton>
         </div>
@@ -155,7 +170,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     {/* Fixed bottom CTA — mobile only, when inline CTA scrolls out of view */}
     {showCTA && ctaOutOfView && (
       <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden p-4 bg-gradient-to-t from-background via-background/95 to-transparent">
-        <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide">
+        <CTAButton onClick={pauseAndNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide">
           COMEÇAR AVALIAÇÃO AGORA
         </CTAButton>
       </div>
