@@ -32,6 +32,11 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
       navigate("/desqualificado");
       return;
     }
+    // Disqualify if user selects "menos_200k" on step 9
+    if (step.id === 9 && value === "menos_200k") {
+      navigate("/sem-investimento");
+      return;
+    }
     onAnswer(value);
     setTimeout(() => onNext(), 400);
   };
