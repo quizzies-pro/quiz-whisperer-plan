@@ -152,8 +152,8 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       </div>
     </div>
 
-    {/* Fixed bottom CTA — mobile only, visible after timer */}
-    {showCTA && (
+    {/* Fixed bottom CTA — mobile only, when inline CTA scrolls out of view */}
+    {showCTA && ctaOutOfView && (
       <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden p-4 bg-gradient-to-t from-background via-background/95 to-transparent">
         <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide">
           COMEÇAR AVALIAÇÃO AGORA
