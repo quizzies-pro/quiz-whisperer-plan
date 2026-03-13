@@ -12,7 +12,7 @@ interface VSLStepProps {
 const VTURB_SCRIPT_URL =
   "https://scripts.converteai.net/24b2503b-80e1-4a01-93e4-fc585d3a548f/players/69b32d2c4601d16cb0664cf7/v4/player.js";
 
-const CTA_DELAY_SECONDS = 150; // 2:30
+const CTA_DELAY_SECONDS = 14; // TODO: voltar para 150 (2:30)
 
 const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   const scriptLoaded = useRef(false);
