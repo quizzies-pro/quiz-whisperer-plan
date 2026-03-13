@@ -57,7 +57,8 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       </CTAButton>
     </div>
   </div>
-));
+);
+});
 VSLStep.displayName = "VSLStep";
 
 export default VSLStep;
