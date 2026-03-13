@@ -82,7 +82,12 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         />
       </div>
 
-      {/* CTA section — appears after 2:30 */}
+      <p className="text-sm sm:text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
+        Encontramos seus primeiros clientes e facilitamos seu investimento para
+        que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
+      </p>
+
+      {/* CTA button — appears after 2:30 */}
       <div
         className={`transition-all duration-700 ease-out ${
           showCTA
@@ -90,12 +95,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
             : "opacity-0 translate-y-4 pointer-events-none"
         }`}
       >
-        <p className="text-sm sm:text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
-          Encontramos seus primeiros clientes e facilitamos seu investimento para
-          que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
-        </p>
-
-        <CTAButton onClick={onNext} className="mt-4 sm:mt-5 text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
+        <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
           COMEÇAR AGORA
         </CTAButton>
       </div>
