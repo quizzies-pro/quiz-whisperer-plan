@@ -53,6 +53,7 @@ serve(async (req) => {
         name,
         personal_phone: phone || "",
         "cf_quiz-locagora": quizSummary,
+        cf_origem: "Quiz LocaGora",
       },
     };
 
