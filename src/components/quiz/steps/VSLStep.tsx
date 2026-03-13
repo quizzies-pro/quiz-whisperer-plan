@@ -75,6 +75,10 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         do país: alugue motos para entregadores do iFood e Ubers.
       </p>
 
+      <p className="font-heading font-bold text-sm sm:text-base text-primary animate-pulse">
+        👇 Assista o vídeo agora! 👇
+      </p>
+
       <div className="w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
         {/* @ts-ignore – VTurb custom element */}
         <vturb-smartplayer
