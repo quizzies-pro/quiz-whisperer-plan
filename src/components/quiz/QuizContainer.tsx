@@ -229,11 +229,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
           opacity: currentStep === 1 ? 1 : 0,
         }}
       />
-      {/* Dark overlay on step 1 for text readability */}
-      <div
-        className="fixed inset-0 bg-background/50 transition-opacity duration-700"
-        style={{ opacity: currentStep === 1 ? 1 : 0 }}
-      />
       {/* Dark base for other steps */}
       <div
         className="fixed inset-0 bg-background transition-opacity duration-700"
