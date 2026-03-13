@@ -61,7 +61,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   }, []);
 
   return (
-  <div className={`h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] scrollbar-none ${showCTA ? 'overflow-y-auto' : 'overflow-hidden'}`}>
+  <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] scrollbar-none overflow-y-auto">
     {/* Scrollable background image (mobile + desktop) */}
     <div
       className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
