@@ -223,15 +223,15 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     <div className="relative overflow-hidden" style={{ height: `${stepHeight}px` }}>
       {/* Background image — only visible on step 1 */}
       <div
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700"
+        className="fixed inset-0 bg-cover bg-top sm:bg-center bg-no-repeat transition-opacity duration-700"
         style={{
           backgroundImage: `url(${bgHero})`,
           opacity: currentStep === 1 ? 1 : 0,
         }}
       />
-      {/* Dark overlay on step 1 for readability */}
+      {/* Dark overlay on step 1 for text readability */}
       <div
-        className="fixed inset-0 bg-background/70 transition-opacity duration-700"
+        className="fixed inset-0 bg-background/50 transition-opacity duration-700"
         style={{ opacity: currentStep === 1 ? 1 : 0 }}
       />
       {/* Dark base for other steps */}
