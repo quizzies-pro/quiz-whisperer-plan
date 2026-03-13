@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import { CTAButton } from "@/components/ui/cta-button";
 import type { QuizStepData } from "@/lib/quiz-data";
@@ -11,8 +11,11 @@ interface VSLStepProps {
 const VTURB_SCRIPT_URL =
   "https://scripts.converteai.net/24b2503b-80e1-4a01-93e4-fc585d3a548f/players/69b32d2c4601d16cb0664cf7/v4/player.js";
 
+const CTA_DELAY_SECONDS = 150; // 2:30
+
 const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   const scriptLoaded = useRef(false);
+  const [showCTA, setShowCTA] = useState(false);
 
   useEffect(() => {
     if (scriptLoaded.current) return;
@@ -23,11 +26,40 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     document.head.appendChild(s);
   }, []);
 
+  // Listen for VTurb smartplayer timeupdate events
+  useEffect(() => {
+    if (showCTA) return; // Already visible, stop listening
+
+    const handleMessage = (e: MessageEvent) => {
+      try {
+        if (typeof e.data === "string") {
+          const data = JSON.parse(e.data);
+          if (
+            data.type === "smartplayer" &&
+            data.event === "timeupdate" &&
+            typeof data.currentTime === "number" &&
+            data.currentTime >= CTA_DELAY_SECONDS
+          ) {
+            setShowCTA(true);
+          }
+        }
+      } catch {
+        // ignore non-JSON messages
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, [showCTA]);
+
+  // Fallback timer in case VTurb postMessage doesn't fire
+  useEffect(() => {
+    const timer = setTimeout(() => setShowCTA(true), CTA_DELAY_SECONDS * 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
   <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
-    {/* Bottom gradient fade to black (mobile) */}
-    
-
     <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
 
@@ -50,14 +82,23 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         />
       </div>
 
-      <p className="text-sm sm:text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
-        Encontramos seus primeiros clientes e facilitamos seu investimento para
-        que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
-      </p>
+      {/* CTA section — appears after 2:30 */}
+      <div
+        className={`transition-all duration-700 ease-out ${
+          showCTA
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      >
+        <p className="text-sm sm:text-base md:text-lg font-heading font-bold text-foreground max-w-xl mx-auto leading-relaxed tracking-tight">
+          Encontramos seus primeiros clientes e facilitamos seu investimento para
+          que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
+        </p>
 
-      <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
-        COMEÇAR AGORA
-      </CTAButton>
+        <CTAButton onClick={onNext} className="mt-4 sm:mt-5 text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
+          COMEÇAR AGORA
+        </CTAButton>
+      </div>
 
       {/* Footer mark */}
       <div className="pt-6 pb-4">
