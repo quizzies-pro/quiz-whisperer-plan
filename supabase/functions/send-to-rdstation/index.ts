@@ -52,10 +52,8 @@ serve(async (req) => {
         email,
         name,
         personal_phone: phone || "",
-        custom_fields: {
-          cf_quiz_locagora: quizSummary,
-          cf_plug_opportunity_origin: "Quiz LocaGora",
-        },
+        cf_quiz_locagora: quizSummary,
+        cf_plug_opportunity_origin: "Quiz LocaGora",
       },
     };
 
