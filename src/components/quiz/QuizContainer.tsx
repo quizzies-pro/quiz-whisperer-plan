@@ -224,13 +224,13 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       {/* Dark base — always present */}
       <div className="fixed inset-0 bg-background" />
 
-      {/* Background image — only visible on step 1, with bottom fade */}
+      {/* Background image — only visible on step 1, scrolls on mobile, fixed on desktop */}
       <div
-        className="fixed inset-0 transition-opacity duration-700"
+        className="absolute sm:fixed inset-0 transition-opacity duration-700"
         style={{ opacity: currentStep === 1 ? 1 : 0 }}
       >
         <div
-          className="absolute inset-0 bg-cover bg-[center_top_-4rem] sm:bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${bgHero})` }}
         />
         {/* Smooth fade to background at the bottom */}
