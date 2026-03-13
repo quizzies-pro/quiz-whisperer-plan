@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
+import bgHero from "@/assets/bg-hero.jpg";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
 import type { QuizStepData } from "@/lib/quiz-data";
