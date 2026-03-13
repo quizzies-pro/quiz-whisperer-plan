@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import { CTAButton } from "@/components/ui/cta-button";
 import type { QuizStepData } from "@/lib/quiz-data";
@@ -8,7 +8,22 @@ interface VSLStepProps {
   onNext: () => void;
 }
 
-const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => (
+const VTURB_SCRIPT_URL =
+  "https://scripts.converteai.net/24b2503b-80e1-4a01-93e4-fc585d3a548f/players/69b32d2c4601d16cb0664cf7/v4/player.js";
+
+const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
+  const scriptLoaded = useRef(false);
+
+  useEffect(() => {
+    if (scriptLoaded.current) return;
+    scriptLoaded.current = true;
+    const s = document.createElement("script");
+    s.src = VTURB_SCRIPT_URL;
+    s.async = true;
+    document.head.appendChild(s);
+  }, []);
+
+  return (
   <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
     <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
@@ -24,14 +39,11 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => (
         do país: alugue motos para entregadores do iFood e Ubers.
       </p>
 
-      <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40 bg-black">
-        <video
-          src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/videos/vsl.mp4`}
-          controls
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-contain"
-          poster=""
+      <div className="relative aspect-[9/16] sm:aspect-video w-full max-w-xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
+        {/* @ts-ignore – VTurb custom element */}
+        <vturb-smartplayer
+          id="vid-69b32d2c4601d16cb0664cf7"
+          style={{ display: "block", margin: "0 auto", width: "100%" }}
         />
       </div>
 
@@ -45,7 +57,8 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => (
       </CTAButton>
     </div>
   </div>
-));
+);
+});
 VSLStep.displayName = "VSLStep";
 
 export default VSLStep;
