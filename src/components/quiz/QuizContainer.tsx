@@ -224,17 +224,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       {/* Dark base — always present */}
       <div className="fixed inset-0 bg-background" />
 
-      {/* Background image — only visible on step 1 (desktop only, fixed) */}
-      <div
-        className="hidden sm:block fixed inset-0 transition-opacity duration-700"
-        style={{ opacity: currentStep === 1 ? 1 : 0 }}
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${bgHero})` }}
-        />
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
-      </div>
 
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
