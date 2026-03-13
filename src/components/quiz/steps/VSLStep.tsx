@@ -109,7 +109,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         }`}
       >
         <CTAButton onClick={onNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
-          COMEÇAR AGORA
+          COMEÇAR AVALIAÇÃO AGORA
         </CTAButton>
 
         {/* Testimonial videos */}
