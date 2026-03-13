@@ -62,6 +62,13 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
   return (
   <div className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] overflow-y-auto scrollbar-none">
+    {/* Mobile: scrollable background image */}
+    <div
+      className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat sm:hidden pointer-events-none"
+      style={{ backgroundImage: `url(${bgHero})` }}
+    >
+      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
+    </div>
     <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain" />
 
