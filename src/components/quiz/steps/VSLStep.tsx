@@ -18,6 +18,20 @@ const CTA_DELAY_SECONDS = 14; // TODO: voltar para 150 (2:30)
 const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   const scriptLoaded = useRef(false);
   const [showCTA, setShowCTA] = useState(false);
+  const [ctaOutOfView, setCtaOutOfView] = useState(false);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Observe inline CTA button visibility (mobile)
+  useEffect(() => {
+    if (!showCTA || !ctaRef.current || !scrollRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setCtaOutOfView(!entry.isIntersecting),
+      { root: scrollRef.current, threshold: 0.1 }
+    );
+    observer.observe(ctaRef.current);
+    return () => observer.disconnect();
+  }, [showCTA]);
 
   useEffect(() => {
     if (scriptLoaded.current) return;
