@@ -35,7 +35,15 @@ serve(async (req) => {
       );
     }
 
-    // Map quiz answers to RD Station custom fields
+    // Consolidate quiz answers into a single custom field
+    const quizSummary = [
+      `Objetivo: ${answers?.["5"] || "N/A"}`,
+      `Experiência: ${answers?.["6"] || "N/A"}`,
+      `Cidade: ${answers?.["7"] || "N/A"}`,
+      `Tempo: ${answers?.["8"] || "N/A"}`,
+      `Investimento: ${answers?.["10"] || "N/A"}`,
+    ].join(" | ");
+
     const payload = {
       event_type: "CONVERSION",
       event_family: "CDP",
@@ -44,11 +52,7 @@ serve(async (req) => {
         email,
         name,
         personal_phone: phone || "",
-        cf_objetivo: answers?.["5"] || "",
-        cf_experiencia_investimento: answers?.["6"] || "",
-        cf_tamanho_cidade: answers?.["7"] || "",
-        cf_disponibilidade_tempo: answers?.["8"] || "",
-        cf_faixa_investimento: answers?.["10"] || "",
+        "cf_quiz-locagora": quizSummary,
       },
     };
 
