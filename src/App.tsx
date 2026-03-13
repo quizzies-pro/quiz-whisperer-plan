@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Quiz from "./pages/Quiz";
 import QuizStep from "./pages/QuizStep";
 import Disqualified from "./pages/Disqualified";
+import InvestmentDisqualified from "./pages/InvestmentDisqualified";
 import NotFound from "./pages/NotFound";
 
 const stepRoutes = [
