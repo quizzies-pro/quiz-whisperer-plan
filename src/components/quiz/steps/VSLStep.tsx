@@ -22,6 +22,21 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const pauseAndNext = React.useCallback(() => {
+    try {
+      const iframe = document.querySelector<HTMLIFrameElement>(
+        'vturb-smartplayer iframe, #vid-69b32d2c4601d16cb0664cf7 iframe'
+      );
+      if (iframe?.contentWindow) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ type: "smartplayer", action: "pause" }),
+          "*"
+        );
+      }
+    } catch { /* ignore */ }
+    onNext();
+  }, [onNext]);
+
   // Observe inline CTA button visibility (mobile)
   useEffect(() => {
     if (!showCTA || !ctaRef.current || !scrollRef.current) return;
