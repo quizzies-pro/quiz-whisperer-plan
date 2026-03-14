@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 
 import { quizSteps } from "@/lib/quiz-data";
 import { supabase } from "@/integrations/supabase/client";
+import { useFbCookies } from "@/hooks/use-fb-cookies";
 import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
 import bgHero from "@/assets/bg-hero.jpg";
@@ -97,11 +98,8 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   // Stable external ID for Meta CAPI session tracking
   const externalIdRef = useRef(crypto.randomUUID());
 
-  // Helper to read Meta cookies (_fbc, _fbp)
-  const getCookie = useCallback((name: string): string | undefined => {
-    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
-    return match ? match[2] : undefined;
-  }, []);
+  // First-party Meta cookies (generated manually if Pixel didn't create them)
+  const { fbc, fbp } = useFbCookies();
 
   // Helper to fire Meta Pixel client-side with event_id for deduplication
   const firePixelEvent = useCallback((eventName: string, eventId: string) => {
@@ -130,8 +128,8 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
           phone: answers[4] || "",
           client_ua: navigator.userAgent,
           external_id: externalIdRef.current,
-          fbc: getCookie("_fbc") || "",
-          fbp: getCookie("_fbp") || "",
+          fbc: fbc || "",
+          fbp: fbp || "",
           answers: {
             "5": answers[5] || "",
             "6": answers[6] || "",
@@ -145,7 +143,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     } catch (err) {
       console.error(`Failed to send Meta CAPI [${eventName}]:`, err);
     }
-  }, [answers, firePixelEvent, getCookie]);
+  }, [answers, firePixelEvent, fbc, fbp]);
 
   // Send PageView on initial load
   const sentPageViewRef = useRef(false);
