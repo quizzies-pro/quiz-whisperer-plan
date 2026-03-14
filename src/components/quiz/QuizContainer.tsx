@@ -128,8 +128,8 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
           phone: answers[4] || "",
           client_ua: navigator.userAgent,
           external_id: externalIdRef.current,
-          fbc: getCookie("_fbc") || "",
-          fbp: getCookie("_fbp") || "",
+          fbc: fbc || "",
+          fbp: fbp || "",
           answers: {
             "5": answers[5] || "",
             "6": answers[6] || "",
