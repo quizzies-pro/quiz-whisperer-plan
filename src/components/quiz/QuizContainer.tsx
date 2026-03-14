@@ -143,7 +143,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     } catch (err) {
       console.error(`Failed to send Meta CAPI [${eventName}]:`, err);
     }
-  }, [answers, firePixelEvent, getCookie]);
+  }, [answers, firePixelEvent, fbc, fbp]);
 
   // Send PageView on initial load
   const sentPageViewRef = useRef(false);
