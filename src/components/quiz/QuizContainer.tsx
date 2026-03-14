@@ -98,11 +98,8 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   // Stable external ID for Meta CAPI session tracking
   const externalIdRef = useRef(crypto.randomUUID());
 
-  // Helper to read Meta cookies (_fbc, _fbp)
-  const getCookie = useCallback((name: string): string | undefined => {
-    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
-    return match ? match[2] : undefined;
-  }, []);
+  // First-party Meta cookies (generated manually if Pixel didn't create them)
+  const { fbc, fbp } = useFbCookies();
 
   // Helper to fire Meta Pixel client-side with event_id for deduplication
   const firePixelEvent = useCallback((eventName: string, eventId: string) => {
