@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 
 import { quizSteps } from "@/lib/quiz-data";
 import { supabase } from "@/integrations/supabase/client";
+import { useFbCookies } from "@/hooks/use-fb-cookies";
 import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
 import bgHero from "@/assets/bg-hero.jpg";
