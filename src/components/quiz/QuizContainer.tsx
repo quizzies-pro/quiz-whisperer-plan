@@ -90,8 +90,31 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     goToStep(currentStep + 1);
   }, [currentStep, goToStep]);
 
-  // Stable external ID for Meta CAPI session tracking
+  // Stable session ID for lead deduplication + Meta CAPI tracking
+  const sessionIdRef = useRef(crypto.randomUUID());
   const externalIdRef = useRef(crypto.randomUUID());
+
+  // Save lead to database progressively (upsert by session_id)
+  const saveLead = useCallback((updatedAnswers: Record<number, string>, step: number) => {
+    supabase.functions.invoke("save-lead", {
+      body: {
+        session_id: sessionIdRef.current,
+        name: updatedAnswers[2] || "",
+        email: updatedAnswers[3] || "",
+        phone: updatedAnswers[4] || "",
+        current_step: step,
+        answers: {
+          "5": updatedAnswers[5] || "",
+          "6": updatedAnswers[6] || "",
+          "7": updatedAnswers[7] || "",
+          "9": updatedAnswers[9] || "",
+        },
+      },
+    }).then(({ error }) => {
+      if (error) console.error(`save-lead error (step ${step}):`, error);
+      else console.log(`Lead saved to DB (step ${step})`);
+    }).catch((err) => console.error(`Failed to save lead (step ${step}):`, err));
+  }, []);
 
   // First-party Meta cookies (generated manually if Pixel didn't create them)
   const { fbc, fbp } = useFbCookies();
