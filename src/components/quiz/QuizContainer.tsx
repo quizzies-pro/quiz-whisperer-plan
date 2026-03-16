@@ -92,8 +92,30 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [currentStep, goToStep]);
 
   const handleAnswer = useCallback((value: string) => {
-    setAnswers((prev) => ({ ...prev, [currentStep]: value }));
-  }, [currentStep]);
+    setAnswers((prev) => {
+      const updated = { ...prev, [currentStep]: value };
+
+      // Send lead to RD Station + Meta immediately when user submits WhatsApp (step 4)
+      if (currentStep === 4 && !sentLeadRef.current) {
+        sentLeadRef.current = true;
+        sendMetaEvent("Lead");
+
+        supabase.functions.invoke("send-to-rdstation", {
+          body: {
+            name: updated[2] || "",
+            email: updated[3] || "",
+            phone: updated[4] || "",
+            answers: { "5": "", "6": "", "7": "", "9": "" },
+          },
+        }).then(({ error }) => {
+          if (error) console.error("RD Station early send error:", error);
+          else console.log("Lead sent to RD Station on step 4 click");
+        }).catch((err) => console.error("Failed to send early lead to RD Station:", err));
+      }
+
+      return updated;
+    });
+  }, [currentStep, sendMetaEvent]);
 
   // Stable external ID for Meta CAPI session tracking
   const externalIdRef = useRef(crypto.randomUUID());
