@@ -237,7 +237,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
       // Google Sheets - append lead row
       supabase.functions.invoke("send-to-google-sheets", {
-        body: leadPayload,
+        body: { ...leadPayload, current_step: 11 },
       }).then(({ error }) => {
         if (error) console.error("Google Sheets error:", error);
         else console.log("Lead sent to Google Sheets (step 11)");

@@ -97,7 +97,6 @@ serve(async (req) => {
     const now = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
 
     const row = [
-      now,
       name || "",
       leadEmail || "",
       phone || "",
@@ -105,10 +104,12 @@ serve(async (req) => {
       answers?.["6"] || "",
       answers?.["7"] || "",
       answers?.["9"] || "",
+      String(body.current_step || ""),
+      now,
     ];
 
     const sheetsRes = await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:H:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:I:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
       {
         method: "POST",
         headers: {
