@@ -18,26 +18,32 @@ export type Database = {
         Row: {
           answers: Json | null
           created_at: string
+          current_step: number | null
           email: string
           id: string
           name: string
           phone: string | null
+          session_id: string | null
         }
         Insert: {
           answers?: Json | null
           created_at?: string
-          email: string
-          id?: string
-          name: string
-          phone?: string | null
-        }
-        Update: {
-          answers?: Json | null
-          created_at?: string
+          current_step?: number | null
           email?: string
           id?: string
           name?: string
           phone?: string | null
+          session_id?: string | null
+        }
+        Update: {
+          answers?: Json | null
+          created_at?: string
+          current_step?: number | null
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          session_id?: string | null
         }
         Relationships: []
       }

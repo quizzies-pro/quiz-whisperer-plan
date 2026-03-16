@@ -36,23 +36,7 @@ serve(async (req) => {
       );
     }
 
-    // Save lead to database
-    try {
-      const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-      const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-      const sb = createClient(supabaseUrl, supabaseKey);
-      const { error: dbError } = await sb.from("quiz_leads").insert({
-        name,
-        email,
-        phone: phone || "",
-        answers: answers || {},
-      });
-      if (dbError) console.error("DB insert error:", dbError);
-      else console.log("Lead saved to database");
-    } catch (dbErr) {
-      console.error("Failed to save lead to DB:", dbErr);
-    }
-
+    // Lead is now saved progressively by the save-lead function
 
     const quizSummary = [
       `Objetivo: ${answers?.["5"] || "N/A"}`,
