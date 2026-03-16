@@ -37,11 +37,10 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
     cleaned = cleaned.slice(1, -1);
   }
   cleaned = cleaned
-    .replace(/\\n/g, "\n")
+    .replace(/\\n/g, "")
     .replace(/-----BEGIN PRIVATE KEY-----/g, "")
     .replace(/-----END PRIVATE KEY-----/g, "")
-    .replace(/[\r\n\s]/g, "")
-    .trim();
+    .replace(/[^A-Za-z0-9+/=]/g, ""); // Keep ONLY valid base64 chars
   
   console.log("PEM cleaned length:", cleaned.length, "first 10:", cleaned.substring(0, 10));
   
