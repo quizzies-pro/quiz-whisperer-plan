@@ -100,6 +100,9 @@ serve(async (req) => {
 
     // Restore escaped newlines in private key (secrets may store \\n literally)
     const fixedKey = privateKey.replace(/\\n/g, "\n");
+    console.log("Private key starts with:", fixedKey.substring(0, 40));
+    console.log("Private key length:", fixedKey.length);
+    console.log("Contains BEGIN PRIVATE KEY:", fixedKey.includes("BEGIN PRIVATE KEY"));
 
     const accessToken = await getAccessToken(email, fixedKey);
 
