@@ -191,13 +191,13 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   }, [currentStep, answers, sendMetaEvent]);
 
 
-  // Send lead to RD Station + CompleteRegistration to Meta at result step (11)
+  // Update lead on RD Station with complete answers + CompleteRegistration to Meta at result step (11)
   const sentToRdRef = useRef(false);
   useEffect(() => {
     if (currentStep === 11 && !sentToRdRef.current && answers[2] && answers[3]) {
       sentToRdRef.current = true;
 
-      // RD Station
+      // RD Station - update with complete quiz answers
       supabase.functions.invoke("send-to-rdstation", {
         body: {
           name: answers[2] || "",
@@ -211,9 +211,9 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
           },
         },
       }).then(({ error }) => {
-        if (error) console.error("RD Station send error:", error);
-        else console.log("Lead sent to RD Station successfully");
-      }).catch((err) => console.error("Failed to send lead to RD Station:", err));
+        if (error) console.error("RD Station update error:", error);
+        else console.log("Lead updated on RD Station with complete answers (step 11)");
+      }).catch((err) => console.error("Failed to update lead on RD Station:", err));
 
       // Meta CAPI - CompleteRegistration
       sendMetaEvent("CompleteRegistration");
