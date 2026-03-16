@@ -215,23 +215,33 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     if (currentStep === 11 && !sentToRdRef.current && answers[2] && answers[3]) {
       sentToRdRef.current = true;
 
+      const leadPayload = {
+        name: answers[2] || "",
+        email: answers[3] || "",
+        phone: answers[4] || "",
+        answers: {
+          "5": answers[5] || "",
+          "6": answers[6] || "",
+          "7": answers[7] || "",
+          "9": answers[9] || "",
+        },
+      };
+
       // RD Station - update with complete quiz answers
       supabase.functions.invoke("send-to-rdstation", {
-        body: {
-          name: answers[2] || "",
-          email: answers[3] || "",
-          phone: answers[4] || "",
-          answers: {
-            "5": answers[5] || "",
-            "6": answers[6] || "",
-            "7": answers[7] || "",
-            "9": answers[9] || "",
-          },
-        },
+        body: leadPayload,
       }).then(({ error }) => {
         if (error) console.error("RD Station update error:", error);
         else console.log("Lead updated on RD Station with complete answers (step 11)");
       }).catch((err) => console.error("Failed to update lead on RD Station:", err));
+
+      // Google Sheets - append lead row
+      supabase.functions.invoke("send-to-google-sheets", {
+        body: leadPayload,
+      }).then(({ error }) => {
+        if (error) console.error("Google Sheets error:", error);
+        else console.log("Lead sent to Google Sheets (step 11)");
+      }).catch((err) => console.error("Failed to send to Google Sheets:", err));
 
       // Meta CAPI - CompleteRegistration
       sendMetaEvent("CompleteRegistration");
