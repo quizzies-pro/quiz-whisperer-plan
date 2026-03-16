@@ -163,12 +163,30 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }
   }, [currentStep, sendMetaEvent]);
 
-  // Send Lead event after WhatsApp capture (step 5 means step 4 was just completed)
+  // Send Lead event + RD Station after WhatsApp capture (step 5 means step 4 was just completed)
   const sentLeadRef = useRef(false);
   useEffect(() => {
     if (currentStep === 5 && !sentLeadRef.current && answers[4]) {
       sentLeadRef.current = true;
       sendMetaEvent("Lead");
+
+      // Send lead to RD Station immediately (before they can drop off)
+      supabase.functions.invoke("send-to-rdstation", {
+        body: {
+          name: answers[2] || "",
+          email: answers[3] || "",
+          phone: answers[4] || "",
+          answers: {
+            "5": "",
+            "6": "",
+            "7": "",
+            "9": "",
+          },
+        },
+      }).then(({ error }) => {
+        if (error) console.error("RD Station early send error:", error);
+        else console.log("Lead sent to RD Station early (step 5)");
+      }).catch((err) => console.error("Failed to send early lead to RD Station:", err));
     }
   }, [currentStep, answers, sendMetaEvent]);
 
