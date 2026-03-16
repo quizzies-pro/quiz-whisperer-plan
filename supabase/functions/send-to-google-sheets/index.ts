@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { decode as decodeBase64 } from "https://deno.land/std@0.168.0/encoding/base64.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -29,12 +30,21 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
   const payloadB64 = b64url(enc.encode(JSON.stringify(payload)));
   const signingInput = `${headerB64}.${payloadB64}`;
 
-  // Import the RSA private key
-  const pemBody = privateKeyPem
-    .replace(/-----BEGIN PRIVATE KEY-----/, "")
-    .replace(/-----END PRIVATE KEY-----/, "")
-    .replace(/\s/g, "");
-  const keyBuf = Uint8Array.from(atob(pemBody), (c) => c.charCodeAt(0));
+  // Import the RSA private key — handle various escape formats
+  let cleaned = privateKeyPem;
+  // Remove surrounding quotes if present
+  if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
+    cleaned = cleaned.slice(1, -1);
+  }
+  cleaned = cleaned
+    .replace(/\\n/g, "")
+    .replace(/-----BEGIN PRIVATE KEY-----/g, "")
+    .replace(/-----END PRIVATE KEY-----/g, "")
+    .replace(/[^A-Za-z0-9+/=]/g, ""); // Keep ONLY valid base64 chars
+  
+  console.log("PEM cleaned length:", cleaned.length, "first 10:", cleaned.substring(0, 10));
+  
+  const keyBuf = decodeBase64(cleaned);
 
   const key = await crypto.subtle.importKey(
     "pkcs8",
@@ -91,6 +101,9 @@ serve(async (req) => {
 
     // Restore escaped newlines in private key (secrets may store \\n literally)
     const fixedKey = privateKey.replace(/\\n/g, "\n");
+    console.log("Private key starts with:", fixedKey.substring(0, 40));
+    console.log("Private key length:", fixedKey.length);
+    console.log("Contains BEGIN PRIVATE KEY:", fixedKey.includes("BEGIN PRIVATE KEY"));
 
     const accessToken = await getAccessToken(email, fixedKey);
 
