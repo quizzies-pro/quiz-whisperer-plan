@@ -165,6 +165,10 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     setAnswers((prev) => {
       const updated = { ...prev, [currentStep]: value };
 
+      // Save lead to DB on every answer (progressive upsert)
+      saveLead(updated, currentStep);
+
+      // Send to RD Station + Meta Lead event on step 4 (WhatsApp)
       if (currentStep === 4 && !sentLeadRef.current) {
         sentLeadRef.current = true;
         sendMetaEvent("Lead");
@@ -184,7 +188,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
       return updated;
     });
-  }, [currentStep, sendMetaEvent]);
+  }, [currentStep, sendMetaEvent, saveLead]);
 
   // Send PageView on initial load
   const sentPageViewRef = useRef(false);
