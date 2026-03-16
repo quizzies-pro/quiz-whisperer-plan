@@ -112,7 +112,7 @@ serve(async (req) => {
     const row = [
       name || "",
       leadEmail || "",
-      phone || "",
+      phone ? `'${phone}` : "",
       answers?.["5"] || "",
       answers?.["6"] || "",
       answers?.["7"] || "",
