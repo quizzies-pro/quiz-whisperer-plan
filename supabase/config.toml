@@ -5,3 +5,9 @@ verify_jwt = false
 
 [functions.send-to-meta-capi]
 verify_jwt = false
+
+[functions.send-to-google-sheets]
+verify_jwt = false
+
+[functions.save-lead]
+verify_jwt = false
