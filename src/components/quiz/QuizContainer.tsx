@@ -86,14 +86,9 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }, 500);
   }, [isTransitioning]);
 
-
   const handleNext = useCallback(() => {
     goToStep(currentStep + 1);
   }, [currentStep, goToStep]);
-
-  const handleAnswer = useCallback((value: string) => {
-    setAnswers((prev) => ({ ...prev, [currentStep]: value }));
-  }, [currentStep]);
 
   // Stable external ID for Meta CAPI session tracking
   const externalIdRef = useRef(crypto.randomUUID());
@@ -111,13 +106,8 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
   // Helper to send Meta CAPI events (server-side) + Pixel (client-side)
   const sendMetaEvent = useCallback(async (eventName: string) => {
-    // Generate unique event_id for deduplication
     const eventId = crypto.randomUUID();
-
-    // Client-side pixel with eventID
     firePixelEvent(eventName, eventId);
-
-    // Server-side CAPI
     try {
       const { error } = await supabase.functions.invoke("send-to-meta-capi", {
         body: {
@@ -145,6 +135,34 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }
   }, [answers, firePixelEvent, fbc, fbp]);
 
+  // Send Lead to RD Station immediately when user submits WhatsApp (step 4 click)
+  const sentLeadRef = useRef(false);
+
+  const handleAnswer = useCallback((value: string) => {
+    setAnswers((prev) => {
+      const updated = { ...prev, [currentStep]: value };
+
+      if (currentStep === 4 && !sentLeadRef.current) {
+        sentLeadRef.current = true;
+        sendMetaEvent("Lead");
+
+        supabase.functions.invoke("send-to-rdstation", {
+          body: {
+            name: updated[2] || "",
+            email: updated[3] || "",
+            phone: updated[4] || "",
+            answers: { "5": "", "6": "", "7": "", "9": "" },
+          },
+        }).then(({ error }) => {
+          if (error) console.error("RD Station early send error:", error);
+          else console.log("Lead sent to RD Station on step 4 click");
+        }).catch((err) => console.error("Failed to send early lead to RD Station:", err));
+      }
+
+      return updated;
+    });
+  }, [currentStep, sendMetaEvent]);
+
   // Send PageView on initial load
   const sentPageViewRef = useRef(false);
   useEffect(() => {
@@ -162,33 +180,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       sendMetaEvent("ViewContent");
     }
   }, [currentStep, sendMetaEvent]);
-
-  // Send Lead event + RD Station after WhatsApp capture (step 5 means step 4 was just completed)
-  const sentLeadRef = useRef(false);
-  useEffect(() => {
-    if (currentStep === 5 && !sentLeadRef.current && answers[4]) {
-      sentLeadRef.current = true;
-      sendMetaEvent("Lead");
-
-      // Send lead to RD Station immediately (before they can drop off)
-      supabase.functions.invoke("send-to-rdstation", {
-        body: {
-          name: answers[2] || "",
-          email: answers[3] || "",
-          phone: answers[4] || "",
-          answers: {
-            "5": "",
-            "6": "",
-            "7": "",
-            "9": "",
-          },
-        },
-      }).then(({ error }) => {
-        if (error) console.error("RD Station early send error:", error);
-        else console.log("Lead sent to RD Station early (step 5)");
-      }).catch((err) => console.error("Failed to send early lead to RD Station:", err));
-    }
-  }, [currentStep, answers, sendMetaEvent]);
 
 
   // Update lead on RD Station with complete answers + CompleteRegistration to Meta at result step (11)
