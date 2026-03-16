@@ -31,20 +31,21 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
   const signingInput = `${headerB64}.${payloadB64}`;
 
   // Import the RSA private key — handle various escape formats
-  const pemBody = privateKeyPem
+  let cleaned = privateKeyPem;
+  // Remove surrounding quotes if present
+  if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
+    cleaned = cleaned.slice(1, -1);
+  }
+  cleaned = cleaned
+    .replace(/\\n/g, "\n")
     .replace(/-----BEGIN PRIVATE KEY-----/g, "")
     .replace(/-----END PRIVATE KEY-----/g, "")
-    .replace(/\\n/g, "\n")
-    .replace(/\r?\n/g, "")
-    .replace(/\s/g, "")
+    .replace(/[\r\n\s]/g, "")
     .trim();
   
-  let keyBuf: Uint8Array;
-  try {
-    keyBuf = Uint8Array.from(atob(pemBody), (c) => c.charCodeAt(0));
-  } catch (e) {
-    throw new Error(`Failed to decode base64 PEM. Length: ${pemBody.length}, first 20 chars: ${pemBody.substring(0, 20)}`);
-  }
+  console.log("PEM cleaned length:", cleaned.length, "first 10:", cleaned.substring(0, 10));
+  
+  const keyBuf = decodeBase64(cleaned);
 
   const key = await crypto.subtle.importKey(
     "pkcs8",
