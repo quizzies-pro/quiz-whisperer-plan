@@ -29,12 +29,21 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
   const payloadB64 = b64url(enc.encode(JSON.stringify(payload)));
   const signingInput = `${headerB64}.${payloadB64}`;
 
-  // Import the RSA private key
+  // Import the RSA private key — handle various escape formats
   const pemBody = privateKeyPem
-    .replace(/-----BEGIN PRIVATE KEY-----/, "")
-    .replace(/-----END PRIVATE KEY-----/, "")
-    .replace(/\s/g, "");
-  const keyBuf = Uint8Array.from(atob(pemBody), (c) => c.charCodeAt(0));
+    .replace(/-----BEGIN PRIVATE KEY-----/g, "")
+    .replace(/-----END PRIVATE KEY-----/g, "")
+    .replace(/\\n/g, "\n")
+    .replace(/\r?\n/g, "")
+    .replace(/\s/g, "")
+    .trim();
+  
+  let keyBuf: Uint8Array;
+  try {
+    keyBuf = Uint8Array.from(atob(pemBody), (c) => c.charCodeAt(0));
+  } catch (e) {
+    throw new Error(`Failed to decode base64 PEM. Length: ${pemBody.length}, first 20 chars: ${pemBody.substring(0, 20)}`);
+  }
 
   const key = await crypto.subtle.importKey(
     "pkcs8",
