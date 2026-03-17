@@ -183,26 +183,16 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         sentLeadRef.current = true;
         sendMetaEvent("Lead");
 
-        const earlyPayload = {
-          name: updated[2] || "",
-          email: updated[3] || "",
-          phone: updated[4] || "",
-          answers: { "5": "", "6": "", "7": "", "9": "" },
-        };
-
         supabase.functions.invoke("send-to-rdstation", {
-          body: earlyPayload,
+          body: {
+            name: updated[2] || "",
+            email: updated[3] || "",
+            phone: updated[4] || "",
+            answers: { "5": "", "6": "", "7": "", "9": "" },
+          },
         }).then(({ error }) => {
           if (error) console.error("RD Station early send error:", error);
-          else console.log("Lead sent to RD Station on step 4 click");
         }).catch((err) => console.error("Failed to send early lead to RD Station:", err));
-
-        supabase.functions.invoke("send-to-google-sheets", {
-          body: { ...earlyPayload, current_step: 4 },
-        }).then(({ error }) => {
-          if (error) console.error("Google Sheets early send error:", error);
-          else console.log("Lead sent to Google Sheets on step 4 click");
-        }).catch((err) => console.error("Failed to send early lead to Google Sheets:", err));
       }
 
       return updated;
