@@ -30,9 +30,7 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
   const payloadB64 = b64url(enc.encode(JSON.stringify(payload)));
   const signingInput = `${headerB64}.${payloadB64}`;
 
-  // Import the RSA private key — handle various escape formats
   let cleaned = privateKeyPem;
-  // Remove surrounding quotes if present
   if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
     cleaned = cleaned.slice(1, -1);
   }
@@ -40,10 +38,8 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
     .replace(/\\n/g, "")
     .replace(/-----BEGIN PRIVATE KEY-----/g, "")
     .replace(/-----END PRIVATE KEY-----/g, "")
-    .replace(/[^A-Za-z0-9+/=]/g, ""); // Keep ONLY valid base64 chars
-  
-  console.log("PEM cleaned length:", cleaned.length, "first 10:", cleaned.substring(0, 10));
-  
+    .replace(/[^A-Za-z0-9+/=]/g, "");
+
   const keyBuf = decodeBase64(cleaned);
 
   const key = await crypto.subtle.importKey(
@@ -57,7 +53,6 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
   const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", key, enc.encode(signingInput));
   const jwt = `${signingInput}.${b64url(signature)}`;
 
-  // Exchange JWT for access token
   const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -71,18 +66,37 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
   return tokenData.access_token;
 }
 
+// Helper: fetch all rows from the sheet
+async function getSheetData(accessToken: string, sheetId: string): Promise<string[][]> {
+  const res = await fetch(
+    `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:I`,
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  );
+  const data = await res.json();
+  return data.values || [];
+}
+
+// Helper: find row index by email (column B = index 1)
+function findRowByEmail(rows: string[][], email: string): number {
+  for (let i = 1; i < rows.length; i++) { // skip header
+    if (rows[i]?.[1]?.toLowerCase() === email.toLowerCase()) {
+      return i + 1; // 1-indexed for Sheets API
+    }
+  }
+  return -1;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const email = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_EMAIL");
+    const saEmail = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_EMAIL");
     const privateKey = Deno.env.get("GOOGLE_PRIVATE_KEY");
     const sheetId = Deno.env.get("GOOGLE_SHEET_ID");
 
-    if (!email || !privateKey || !sheetId) {
-      console.error("Missing Google Sheets credentials");
+    if (!saEmail || !privateKey || !sheetId) {
       return new Response(JSON.stringify({ error: "Google Sheets not configured" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -99,13 +113,8 @@ serve(async (req) => {
       });
     }
 
-    // Restore escaped newlines in private key (secrets may store \\n literally)
     const fixedKey = privateKey.replace(/\\n/g, "\n");
-    console.log("Private key starts with:", fixedKey.substring(0, 40));
-    console.log("Private key length:", fixedKey.length);
-    console.log("Contains BEGIN PRIVATE KEY:", fixedKey.includes("BEGIN PRIVATE KEY"));
-
-    const accessToken = await getAccessToken(email, fixedKey);
+    const accessToken = await getAccessToken(saEmail, fixedKey);
 
     const now = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
 
@@ -121,17 +130,42 @@ serve(async (req) => {
       now,
     ];
 
-    const sheetsRes = await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:I:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ values: [row] }),
-      }
-    );
+    // Check if lead already exists by email
+    const existingRows = await getSheetData(accessToken, sheetId);
+    const existingRowIndex = leadEmail ? findRowByEmail(existingRows, leadEmail) : -1;
+
+    let sheetsRes: Response;
+
+    if (existingRowIndex > 0) {
+      // UPDATE existing row
+      const range = `A${existingRowIndex}:I${existingRowIndex}`;
+      sheetsRes = await fetch(
+        `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?valueInputOption=USER_ENTERED`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ values: [row] }),
+        }
+      );
+      console.log(`Lead UPDATED in row ${existingRowIndex} (${leadEmail})`);
+    } else {
+      // APPEND new row
+      sheetsRes = await fetch(
+        `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:I:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ values: [row] }),
+        }
+      );
+      console.log(`Lead APPENDED (${leadEmail})`);
+    }
 
     const sheetsData = await sheetsRes.json();
     if (!sheetsRes.ok) {
@@ -141,8 +175,6 @@ serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-
-    console.log("Lead appended to Google Sheets:", sheetsData.updates?.updatedRange);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
