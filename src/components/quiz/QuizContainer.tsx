@@ -241,16 +241,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         body: leadPayload,
       }).then(({ error }) => {
         if (error) console.error("RD Station update error:", error);
-        else console.log("Lead updated on RD Station with complete answers (step 11)");
       }).catch((err) => console.error("Failed to update lead on RD Station:", err));
-
-      // Google Sheets - append lead row
-      supabase.functions.invoke("send-to-google-sheets", {
-        body: { ...leadPayload, current_step: 11 },
-      }).then(({ error }) => {
-        if (error) console.error("Google Sheets error:", error);
-        else console.log("Lead sent to Google Sheets (step 11)");
-      }).catch((err) => console.error("Failed to send to Google Sheets:", err));
 
       // Meta CAPI - CompleteRegistration
       sendMetaEvent("CompleteRegistration");
