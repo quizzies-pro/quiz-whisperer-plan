@@ -94,26 +94,36 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   const sessionIdRef = useRef(crypto.randomUUID());
   const externalIdRef = useRef(crypto.randomUUID());
 
-  // Save lead to database progressively (upsert by session_id)
+  // Save lead to database + Google Sheets progressively
   const saveLead = useCallback((updatedAnswers: Record<number, string>, step: number) => {
-    supabase.functions.invoke("save-lead", {
-      body: {
-        session_id: sessionIdRef.current,
-        name: updatedAnswers[2] || "",
-        email: updatedAnswers[3] || "",
-        phone: updatedAnswers[4] || "",
-        current_step: step,
-        answers: {
-          "5": updatedAnswers[5] || "",
-          "6": updatedAnswers[6] || "",
-          "7": updatedAnswers[7] || "",
-          "9": updatedAnswers[9] || "",
-        },
+    const leadPayload = {
+      name: updatedAnswers[2] || "",
+      email: updatedAnswers[3] || "",
+      phone: updatedAnswers[4] || "",
+      current_step: step,
+      answers: {
+        "5": updatedAnswers[5] || "",
+        "6": updatedAnswers[6] || "",
+        "7": updatedAnswers[7] || "",
+        "9": updatedAnswers[9] || "",
       },
+    };
+
+    // Save to DB
+    supabase.functions.invoke("save-lead", {
+      body: { session_id: sessionIdRef.current, ...leadPayload },
     }).then(({ error }) => {
       if (error) console.error(`save-lead error (step ${step}):`, error);
-      else console.log(`Lead saved to DB (step ${step})`);
     }).catch((err) => console.error(`Failed to save lead (step ${step}):`, err));
+
+    // Sync to Google Sheets (upsert by email)
+    if (updatedAnswers[2] || updatedAnswers[3]) {
+      supabase.functions.invoke("send-to-google-sheets", {
+        body: leadPayload,
+      }).then(({ error }) => {
+        if (error) console.error(`Google Sheets error (step ${step}):`, error);
+      }).catch((err) => console.error(`Failed to sync Sheets (step ${step}):`, err));
+    }
   }, []);
 
   // First-party Meta cookies (generated manually if Pixel didn't create them)
@@ -173,26 +183,16 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         sentLeadRef.current = true;
         sendMetaEvent("Lead");
 
-        const earlyPayload = {
-          name: updated[2] || "",
-          email: updated[3] || "",
-          phone: updated[4] || "",
-          answers: { "5": "", "6": "", "7": "", "9": "" },
-        };
-
         supabase.functions.invoke("send-to-rdstation", {
-          body: earlyPayload,
+          body: {
+            name: updated[2] || "",
+            email: updated[3] || "",
+            phone: updated[4] || "",
+            answers: { "5": "", "6": "", "7": "", "9": "" },
+          },
         }).then(({ error }) => {
           if (error) console.error("RD Station early send error:", error);
-          else console.log("Lead sent to RD Station on step 4 click");
         }).catch((err) => console.error("Failed to send early lead to RD Station:", err));
-
-        supabase.functions.invoke("send-to-google-sheets", {
-          body: { ...earlyPayload, current_step: 4 },
-        }).then(({ error }) => {
-          if (error) console.error("Google Sheets early send error:", error);
-          else console.log("Lead sent to Google Sheets on step 4 click");
-        }).catch((err) => console.error("Failed to send early lead to Google Sheets:", err));
       }
 
       return updated;
@@ -241,16 +241,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         body: leadPayload,
       }).then(({ error }) => {
         if (error) console.error("RD Station update error:", error);
-        else console.log("Lead updated on RD Station with complete answers (step 11)");
       }).catch((err) => console.error("Failed to update lead on RD Station:", err));
-
-      // Google Sheets - append lead row
-      supabase.functions.invoke("send-to-google-sheets", {
-        body: { ...leadPayload, current_step: 11 },
-      }).then(({ error }) => {
-        if (error) console.error("Google Sheets error:", error);
-        else console.log("Lead sent to Google Sheets (step 11)");
-      }).catch((err) => console.error("Failed to send to Google Sheets:", err));
 
       // Meta CAPI - CompleteRegistration
       sendMetaEvent("CompleteRegistration");
