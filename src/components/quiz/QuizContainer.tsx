@@ -171,15 +171,15 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   // Send Lead to RD Station immediately when user submits WhatsApp (step 4 click)
   const sentLeadRef = useRef(false);
 
-  const handleAnswer = useCallback((value: string) => {
+  const handleAnswer = useCallback((stepId: number, value: string) => {
     setAnswers((prev) => {
-      const updated = { ...prev, [currentStep]: value };
+      const updated = { ...prev, [stepId]: value };
 
       // Save lead to DB on every answer (progressive upsert)
-      saveLead(updated, currentStep);
+      saveLead(updated, stepId);
 
       // Send to RD Station + Meta Lead event on step 4 (WhatsApp)
-      if (currentStep === 4 && !sentLeadRef.current) {
+      if (stepId === 4 && !sentLeadRef.current) {
         sentLeadRef.current = true;
         sendMetaEvent("Lead");
 
@@ -197,7 +197,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
       return updated;
     });
-  }, [currentStep, sendMetaEvent, saveLead]);
+  }, [sendMetaEvent, saveLead]);
 
   // Send PageView on initial load
   const sentPageViewRef = useRef(false);
@@ -284,7 +284,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
                   step={step}
                   answer={answers[step.id]}
                   answers={answers}
-                  onAnswer={handleAnswer}
+                  onAnswer={(value: string) => handleAnswer(step.id, value)}
                   onNext={handleNext}
                   isFirst={step.id === 1}
                   isLast={step.id === quizSteps.length}
