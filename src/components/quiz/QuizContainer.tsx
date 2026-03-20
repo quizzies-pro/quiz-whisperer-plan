@@ -284,7 +284,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
                   step={step}
                   answer={answers[step.id]}
                   answers={answers}
-                  onAnswer={handleAnswer}
+                  onAnswer={(value: string) => handleAnswer(step.id, value)}
                   onNext={handleNext}
                   isFirst={step.id === 1}
                   isLast={step.id === quizSteps.length}
