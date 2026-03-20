@@ -135,7 +135,6 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
                 type={step.inputType || "text"}
                 value={localText}
                 onChange={(e) => { setLocalText(e.target.value); setValidationError(""); }}
-                onBlur={() => { if (localText) onAnswer(localText); }}
                 placeholder={step.placeholder || "Digite aqui..."}
                 className={cn(
                   "w-full h-14 px-5 rounded-[10px] bg-card card-border text-foreground text-base font-body placeholder:text-muted-foreground/60 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all",
