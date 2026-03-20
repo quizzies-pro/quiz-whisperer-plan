@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.save-lead]
 verify_jwt = false
+
+[functions.rebuild-sheet]
+verify_jwt = false
