@@ -38,7 +38,7 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
       return;
     }
     onAnswer(value);
-    setTimeout(() => onNext(), 400);
+    onNext();
   };
 
   return (
