@@ -17,7 +17,7 @@ const CTA_DELAY_SECONDS = 90; // 1:30
 
 const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   const scriptLoaded = useRef(false);
-  const [showCTA, setShowCTA] = useState(false);
+  const [showCTA, setShowCTA] = useState(true);
   const [ctaOutOfView, setCtaOutOfView] = useState(false);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
