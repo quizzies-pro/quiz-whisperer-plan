@@ -71,7 +71,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
     {/* Scrollable background image (mobile + desktop) */}
     <div
-      className="absolute inset-x-0 top-0 h-[120vh] sm:h-[100vh] bg-cover bg-top sm:bg-center bg-no-repeat pointer-events-none"
+      className="absolute inset-x-0 top-0 h-[120vh] sm:h-[100vh] bg-cover bg-right-top sm:bg-center bg-no-repeat pointer-events-none"
       style={{ backgroundImage: `url(${bgHero})` }}
     >
       <div className="absolute inset-x-0 bottom-0 h-[30%] sm:h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
