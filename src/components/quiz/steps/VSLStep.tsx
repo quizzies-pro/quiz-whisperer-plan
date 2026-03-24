@@ -99,12 +99,16 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       </p>
     </div>
 
-    {/* Scrollable background image (mobile + desktop) */}
-    <div
-      className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
+    {/* Background images — top hero + bottom testimonials */}
+    <div className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
       style={{ backgroundImage: `url(${bgHero})` }}
     >
       <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
+    </div>
+    <div className="absolute inset-x-0 bottom-0 h-[60%] bg-cover bg-center bg-no-repeat pointer-events-none"
+      style={{ backgroundImage: `url(${bgBottom})` }}
+    >
+      <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-background to-transparent" />
     </div>
     <div className="relative z-10 max-w-5xl w-full space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in text-center px-4 pt-10 sm:pt-16 pb-[100px] sm:pb-[120px]">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-4 sm:mb-8" />
@@ -134,14 +138,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
       {/* CTA + Social proof — only after timer */}
       {showCTA && (
-        <div className="space-y-8 animate-fade-in relative">
-        {/* Background image for bottom section */}
-        <div
-          className="absolute inset-0 -mx-4 bg-cover bg-center bg-no-repeat pointer-events-none -z-10"
-          style={{ backgroundImage: `url(${bgBottom})` }}
-        >
-          <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-background to-transparent" />
-        </div>
+        <div className="space-y-8 animate-fade-in">
         <div ref={ctaRef}>
           <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
             COMEÇAR AVALIAÇÃO AGORA
