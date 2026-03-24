@@ -112,9 +112,8 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         A franquia que <span className="text-primary">converte R$200.000</span> em ganhos de <span className="text-primary">R$20.000 mensais</span> ou mais
       </h1>
 
-      <p className="text-sm sm:text-base md:text-lg text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
-        Receba de 20 mil a 40 mil de lucro líquido por mês com apenas 1h de dedicação
-        por dia. <span className="font-bold text-foreground">Fazemos tudo para você enquanto você só acompanha os números:</span>
+      <p className="text-base sm:text-lg md:text-xl text-foreground/70 font-body max-w-3xl mx-auto leading-relaxed">
+        Receba de 20 mil a 40 mil de lucro líquido por mês com apenas 1h de dedicação por dia. <span className="font-bold text-foreground">Fazemos tudo para você enquanto você só acompanha os números:</span>
       </p>
 
       <p className="font-heading font-bold text-sm sm:text-base text-primary animate-pulse">
