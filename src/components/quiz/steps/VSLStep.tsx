@@ -89,12 +89,17 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
 
 
-      <div className="w-full max-w-3xl mx-auto rounded-[10px] overflow-hidden">
-        {/* @ts-ignore – VTurb custom element */}
-        <vturb-smartplayer
-          id="vid-69b32d2c4601d16cb0664cf7"
-          style={{ display: "block", margin: "0 auto", width: "100%" }}
-        />
+      <div id="vimeo-player" className="w-full max-w-3xl mx-auto rounded-[10px] overflow-hidden">
+        <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+          <iframe
+            src="https://player.vimeo.com/video/1176398208?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+            title="A franquia que converte R$200.000 em ganhos de R$20.000 mensais ou mais"
+          />
+        </div>
       </div>
 
       <p className="text-base sm:text-lg md:text-xl font-heading font-normal text-foreground max-w-3xl mx-auto leading-relaxed tracking-tight">
