@@ -108,10 +108,10 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     </div>
 
     {/* Background image — top hero */}
-    <div className="absolute inset-x-0 top-0 h-[115vh] bg-cover bg-center bg-no-repeat pointer-events-none"
+    <div className="absolute inset-x-0 top-0 h-[130vh] bg-cover bg-center bg-no-repeat pointer-events-none"
       style={{ backgroundImage: `url(${bgHero})` }}
     >
-      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-background/90 via-background/45 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-background via-background/70 via-[55%] to-transparent" />
       <div className="absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-background to-transparent" />
       <div className="absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-background to-transparent" />
     </div>
