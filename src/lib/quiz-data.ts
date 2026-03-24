@@ -31,6 +31,7 @@ export interface QuizStepData {
   autoAdvanceMs?: number;
   videoUrl?: string;
   macroStep?: number;
+  bgImage?: string;
 }
 
 export const quizSteps: QuizStepData[] = [
