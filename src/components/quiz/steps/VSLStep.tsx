@@ -10,28 +10,18 @@ interface VSLStepProps {
   onNext: () => void;
 }
 
-const VTURB_SCRIPT_URL =
-  "https://scripts.converteai.net/24b2503b-80e1-4a01-93e4-fc585d3a548f/players/69b32d2c4601d16cb0664cf7/v4/player.js";
-
-const CTA_DELAY_SECONDS = 90; // 1:30
-
 const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
-  const scriptLoaded = useRef(false);
   const [showCTA, setShowCTA] = useState(true);
   const [ctaOutOfView, setCtaOutOfView] = useState(false);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const vimeoPlayerRef = useRef<any>(null);
+  const scriptLoaded = useRef(false);
 
   const pauseAndNext = React.useCallback(() => {
     try {
-      const iframe = document.querySelector<HTMLIFrameElement>(
-        'vturb-smartplayer iframe, #vid-69b32d2c4601d16cb0664cf7 iframe'
-      );
-      if (iframe?.contentWindow) {
-        iframe.contentWindow.postMessage(
-          JSON.stringify({ type: "smartplayer", action: "pause" }),
-          "*"
-        );
+      if (vimeoPlayerRef.current) {
+        vimeoPlayerRef.current.pause();
       }
     } catch { /* ignore */ }
     onNext();
@@ -48,47 +38,28 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     return () => observer.disconnect();
   }, [showCTA]);
 
+  // Load Vimeo Player API and init player
   useEffect(() => {
     if (scriptLoaded.current) return;
     scriptLoaded.current = true;
-    const s = document.createElement("script");
-    s.src = VTURB_SCRIPT_URL;
-    s.async = true;
-    document.head.appendChild(s);
-  }, []);
 
-  // Listen for VTurb smartplayer timeupdate events
-  useEffect(() => {
-    if (showCTA) return; // Already visible, stop listening
-
-    const handleMessage = (e: MessageEvent) => {
-      try {
-        if (typeof e.data === "string") {
-          const data = JSON.parse(e.data);
-          if (
-            data.type === "smartplayer" &&
-            data.event === "timeupdate" &&
-            typeof data.currentTime === "number" &&
-            data.currentTime >= CTA_DELAY_SECONDS
-          ) {
-            setShowCTA(true);
-          }
-        }
-      } catch {
-        // ignore non-JSON messages
+    const initPlayer = () => {
+      const iframe = document.querySelector<HTMLIFrameElement>('#vimeo-player iframe');
+      if (iframe && (window as any).Vimeo) {
+        vimeoPlayerRef.current = new (window as any).Vimeo.Player(iframe);
       }
     };
 
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
-  }, [showCTA]);
-
-  // Fallback timer in case VTurb postMessage doesn't fire
-  useEffect(() => {
-    const timer = setTimeout(() => setShowCTA(true), CTA_DELAY_SECONDS * 1000);
-    return () => clearTimeout(timer);
+    if ((window as any).Vimeo) {
+      initPlayer();
+    } else {
+      const s = document.createElement("script");
+      s.src = "https://player.vimeo.com/api/player.js";
+      s.async = true;
+      s.onload = initPlayer;
+      document.head.appendChild(s);
+    }
   }, []);
-
   return (
     <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto">
     {/* Green banner strip */}
