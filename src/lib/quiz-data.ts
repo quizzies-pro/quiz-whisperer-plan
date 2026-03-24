@@ -57,6 +57,7 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "nome",
     macroStep: 2,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
   },
   {
     id: 3,
