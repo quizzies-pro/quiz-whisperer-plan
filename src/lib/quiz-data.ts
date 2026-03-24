@@ -32,6 +32,7 @@ export interface QuizStepData {
   videoUrl?: string;
   macroStep?: number;
   bgImage?: string;
+  bgImageMobile?: string;
 }
 
 export const quizSteps: QuizStepData[] = [
@@ -58,6 +59,7 @@ export const quizSteps: QuizStepData[] = [
     category: "nome",
     macroStep: 2,
     bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
   },
   {
     id: 3,
