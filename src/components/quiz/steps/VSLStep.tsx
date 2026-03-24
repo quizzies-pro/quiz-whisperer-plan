@@ -140,8 +140,15 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           </CTAButton>
         </div>
 
-          {/* Testimonial videos */}
-          <div className="space-y-4 sm:space-y-6">
+          {/* Testimonial videos with background */}
+          <div className="relative space-y-4 sm:space-y-6 py-10 sm:py-14 -mx-4 px-4">
+            {/* Bottom background image */}
+            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none -z-10"
+              style={{ backgroundImage: `url(${bgBottom})` }}
+            >
+              <div className="absolute inset-x-0 top-0 h-[120px] bg-gradient-to-b from-background to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-[80px] bg-gradient-to-t from-background to-transparent" />
+            </div>
             <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
               Confira o que os franqueados dizem
             </h3>
