@@ -126,7 +126,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         />
       </div>
 
-      <p className="text-base sm:text-lg md:text-xl font-heading font-bold text-foreground max-w-2xl mx-auto leading-relaxed tracking-tight">
+      <p className="text-base sm:text-lg md:text-xl font-heading font-bold text-foreground max-w-3xl mx-auto leading-relaxed tracking-tight">
         Encontramos seus primeiros clientes e facilitamos seu investimento para
         que você comece a lucrar com sua empresa no <span className="text-primary">menor tempo possível</span>
       </p>
