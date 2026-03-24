@@ -94,10 +94,10 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto"
       style={{
         backgroundColor: "hsl(var(--background))",
-        backgroundImage: `linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background)) 54%, hsl(var(--background) / 0.88) 64%, hsl(var(--background) / 0.45) 74%, transparent 84%), url(${bgBottom})`,
-        backgroundPosition: "center top, center bottom",
-        backgroundRepeat: "no-repeat, no-repeat",
-        backgroundSize: "100% 100%, 100% auto",
+        backgroundImage: `url(${bgBottom})`,
+        backgroundPosition: "center bottom",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
     {/* Green banner strip */}
@@ -108,10 +108,10 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     </div>
 
     {/* Background image — top hero */}
-    <div className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
+    <div className="absolute inset-x-0 top-0 h-[115vh] bg-cover bg-center bg-no-repeat pointer-events-none"
       style={{ backgroundImage: `url(${bgHero})` }}
     >
-      <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-background via-background/60 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-background/90 via-background/45 to-transparent" />
       <div className="absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-background to-transparent" />
       <div className="absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-background to-transparent" />
     </div>
