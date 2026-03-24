@@ -90,7 +90,14 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   }, []);
 
   return (
-  <div ref={scrollRef} className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] scrollbar-none overflow-y-auto">
+    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto">
+    {/* Green banner strip */}
+    <div className="w-full bg-primary py-2.5 sm:py-3 text-center flex-shrink-0 z-20">
+      <p className="font-heading font-extrabold text-xs sm:text-sm md:text-base text-primary-foreground tracking-widest uppercase">
+        Exclusivo para quem quer investir em franquias
+      </p>
+    </div>
+
     {/* Scrollable background image (mobile + desktop) */}
     <div
       className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
