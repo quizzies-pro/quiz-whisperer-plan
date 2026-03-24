@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import bgHero from "@/assets/bg-hero.jpg";
-const bgHeroMobile = "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
 import type { QuizStepData } from "@/lib/quiz-data";
