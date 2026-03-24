@@ -116,9 +116,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         Receba de 20 mil a 40 mil de lucro líquido por mês com apenas 1h de dedicação por dia. <span className="font-bold text-foreground">Fazemos tudo para você enquanto você só acompanha os números:</span>
       </p>
 
-      <p className="font-heading font-bold text-sm sm:text-base text-primary animate-pulse">
-        👇 Assista o vídeo agora! 👇
-      </p>
+
 
       <div className="w-full max-w-3xl mx-auto rounded-[10px] overflow-hidden border-2 border-primary/40">
         {/* @ts-ignore – VTurb custom element */}
