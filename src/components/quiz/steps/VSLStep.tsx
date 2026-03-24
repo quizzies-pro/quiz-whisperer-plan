@@ -108,7 +108,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     <div className="relative z-10 max-w-5xl w-full space-y-6 sm:space-y-10 md:space-y-12 animate-fade-in text-center px-4 pt-10 sm:pt-20 pb-[100px] sm:pb-[120px]">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-4 sm:mb-8" />
 
-      <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-[2.75rem] md:leading-[1.6] leading-[1.4] tracking-[-0.02em] text-foreground max-w-5xl mx-auto" style={{ lineHeight: 1.6 }}>
+      <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-[2.75rem] tracking-[-0.02em] text-foreground max-w-5xl mx-auto" style={{ lineHeight: 1.2 }}>
         A franquia que <span className="text-primary">converte R$200.000</span> em ganhos de <span className="text-primary">R$20.000 mensais</span> ou mais
       </h1>
 
