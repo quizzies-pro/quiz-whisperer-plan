@@ -109,9 +109,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-4 sm:mb-8" />
 
       <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-5xl leading-[1.15] tracking-[-0.01em] text-foreground">
-        A franquia que <span className="text-primary">converte R$200.000</span> em
-        <br />
-        ganhos de <span className="text-primary">R$20.000 mensais</span> ou mais
+        A franquia que <span className="text-primary">converte R$200.000</span> em ganhos de <span className="text-primary">R$20.000 mensais</span> ou mais
       </h1>
 
       <p className="text-sm sm:text-base md:text-lg text-foreground/70 font-body max-w-2xl mx-auto leading-relaxed">
