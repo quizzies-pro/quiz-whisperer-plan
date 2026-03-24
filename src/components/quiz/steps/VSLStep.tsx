@@ -76,8 +76,6 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     >
       <div className="absolute inset-x-0 bottom-0 h-[30%] sm:h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
     </div>
-      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
-    </div>
     <div className="relative z-10 max-w-5xl w-full space-y-3 sm:space-y-6 md:space-y-8 animate-fade-in text-center px-4 pt-6 sm:pt-16 pb-[100px] sm:pb-[120px]">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-4 sm:mb-8" />
 

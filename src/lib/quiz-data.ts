@@ -32,6 +32,7 @@ export interface QuizStepData {
   videoUrl?: string;
   macroStep?: number;
   bgImage?: string;
+  bgImageMobile?: string;
 }
 
 export const quizSteps: QuizStepData[] = [
