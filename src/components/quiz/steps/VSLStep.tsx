@@ -90,7 +90,14 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   }, []);
 
   return (
-  <div ref={scrollRef} className="h-full w-full relative flex items-start justify-center px-4 pt-12 sm:pt-[70px] pb-[100px] sm:pb-[120px] scrollbar-none overflow-y-auto">
+    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto">
+    {/* Green banner strip */}
+    <div className="w-full bg-primary py-2.5 sm:py-3 text-center flex-shrink-0 z-20">
+      <p className="font-heading font-extrabold text-xs sm:text-sm md:text-base text-primary-foreground tracking-widest uppercase">
+        Exclusivo para quem quer investir em franquias
+      </p>
+    </div>
+
     {/* Scrollable background image (mobile + desktop) */}
     <div
       className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
@@ -98,7 +105,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     >
       <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
     </div>
-    <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center">
+    <div className="relative z-10 max-w-4xl w-full space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in text-center px-4 pt-8 sm:pt-12 pb-[100px] sm:pb-[120px]">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-2 sm:mb-3" />
 
       <h1 className="font-heading font-extrabold text-xl sm:text-3xl md:text-[2.25rem] leading-[1.15] tracking-[-0.01em] text-foreground">
