@@ -93,10 +93,11 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   return (
     <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto"
       style={{
-        backgroundImage: `linear-gradient(to bottom, transparent 50%, transparent 60%), url(${bgBottom})`,
-        backgroundPosition: 'center bottom',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100% auto',
+        backgroundColor: "hsl(var(--background))",
+        backgroundImage: `linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background)) 54%, hsl(var(--background) / 0.88) 64%, hsl(var(--background) / 0.45) 74%, transparent 84%), url(${bgBottom})`,
+        backgroundPosition: "center top, center bottom",
+        backgroundRepeat: "no-repeat, no-repeat",
+        backgroundSize: "100% 100%, 100% auto",
       }}
     >
     {/* Green banner strip */}
