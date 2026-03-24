@@ -99,18 +99,11 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       </p>
     </div>
 
-    {/* Background images — top hero + bottom full page */}
-    <div className="absolute inset-0 pointer-events-none">
-      <div className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bgHero})` }}
-      >
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
-      </div>
-      <div className="absolute inset-x-0 top-[80vh] bottom-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bgBottom})` }}
-      >
-        <div className="absolute inset-x-0 top-0 h-[200px] bg-gradient-to-b from-background to-transparent" />
-      </div>
+    {/* Background image — top hero */}
+    <div className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
+      style={{ backgroundImage: `url(${bgHero})` }}
+    >
+      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
     </div>
     <div className="relative z-10 max-w-5xl w-full space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in text-center px-4 pt-10 sm:pt-16 pb-[100px] sm:pb-[120px]">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-4 sm:mb-8" />
@@ -147,8 +140,15 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           </CTAButton>
         </div>
 
-          {/* Testimonial videos */}
-          <div className="space-y-4 sm:space-y-6">
+          {/* Testimonial videos with background */}
+          <div className="relative space-y-4 sm:space-y-6 py-10 sm:py-14 -mx-4 px-4">
+            {/* Bottom background image */}
+            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none -z-10"
+              style={{ backgroundImage: `url(${bgBottom})` }}
+            >
+              <div className="absolute inset-x-0 top-0 h-[120px] bg-gradient-to-b from-background to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-[80px] bg-gradient-to-t from-background to-transparent" />
+            </div>
             <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
               Confira o que os franqueados dizem
             </h3>
