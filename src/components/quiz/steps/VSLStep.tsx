@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import bgHero from "@/assets/bg-hero.jpg";
+import bgBottom from "@/assets/bg-bottom.webp";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
 import type { QuizStepData } from "@/lib/quiz-data";
@@ -133,7 +134,14 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
       {/* CTA + Social proof — only after timer */}
       {showCTA && (
-        <div className="space-y-8 animate-fade-in">
+        <div className="space-y-8 animate-fade-in relative">
+        {/* Background image for bottom section */}
+        <div
+          className="absolute inset-0 -mx-4 bg-cover bg-center bg-no-repeat pointer-events-none -z-10"
+          style={{ backgroundImage: `url(${bgBottom})` }}
+        >
+          <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-background to-transparent" />
+        </div>
         <div ref={ctaRef}>
           <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
             COMEÇAR AVALIAÇÃO AGORA
