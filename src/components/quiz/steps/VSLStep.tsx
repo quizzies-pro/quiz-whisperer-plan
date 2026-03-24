@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
 import bgHero from "@/assets/bg-hero.jpg";
-import bgBottom from "@/assets/bg-bottom.webp";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
 import type { QuizStepData } from "@/lib/quiz-data";
@@ -91,15 +90,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
   }, []);
 
   return (
-    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto"
-      style={{
-        backgroundColor: "hsl(var(--background))",
-        backgroundImage: `url(${bgBottom})`,
-        backgroundPosition: "center bottom",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
+    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto">
     {/* Green banner strip */}
     <div className="w-full bg-primary py-2.5 sm:py-3 text-center flex-shrink-0 z-20">
       <p className="font-heading font-extrabold text-xs sm:text-sm md:text-base text-primary-foreground tracking-widest uppercase">
@@ -107,13 +98,12 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
       </p>
     </div>
 
-    {/* Background image — top hero */}
-    <div className="absolute inset-x-0 top-0 h-[130vh] bg-cover bg-center bg-no-repeat pointer-events-none"
+    {/* Scrollable background image (mobile + desktop) */}
+    <div
+      className="absolute inset-x-0 top-0 h-[100vh] bg-cover bg-center bg-no-repeat pointer-events-none"
       style={{ backgroundImage: `url(${bgHero})` }}
     >
-      <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-background via-background/70 via-[55%] to-transparent" />
-      <div className="absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-background to-transparent" />
-      <div className="absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-background to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
     </div>
     <div className="relative z-10 max-w-5xl w-full space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in text-center px-4 pt-10 sm:pt-16 pb-[100px] sm:pb-[120px]">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-4 sm:mb-8" />
