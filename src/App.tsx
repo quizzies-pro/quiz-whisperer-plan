@@ -12,16 +12,14 @@ import NotFound from "./pages/NotFound";
 
 const stepRoutes = [
   { path: "/quiz/step/1", label: "1-VSL" },
-  { path: "/quiz/step/2", label: "2-Nome" },
-  { path: "/quiz/step/3", label: "3-Email" },
-  { path: "/quiz/step/4", label: "4-WhatsApp" },
-  { path: "/quiz/step/5", label: "5-Motivação" },
-  { path: "/quiz/step/6", label: "6-Experiência" },
-  { path: "/quiz/step/7", label: "7-Tempo" },
-  { path: "/quiz/step/8", label: "8-Interstitial" },
-  { path: "/quiz/step/9", label: "9-Investimento" },
-  { path: "/quiz/step/10", label: "10-Loading" },
-  { path: "/quiz/step/11", label: "11-Resultado" },
+  { path: "/quiz/step/2", label: "2-Welcome" },
+  { path: "/quiz/step/3", label: "3-Interesse" },
+  { path: "/quiz/step/4", label: "4-Nome" },
+  { path: "/quiz/step/5", label: "5-Email" },
+  { path: "/quiz/step/6", label: "6-WhatsApp" },
+  { path: "/quiz/step/7", label: "7-Interstitial" },
+  { path: "/quiz/step/8", label: "8-Investimento" },
+  { path: "/quiz/step/9", label: "9-Resultado" },
 ];
 
 // Used by Lovable to show routes in the preview navigation
@@ -46,8 +44,6 @@ const App = () => (
           <Route path="/quiz/step/7" element={<QuizStep />} />
           <Route path="/quiz/step/8" element={<QuizStep />} />
           <Route path="/quiz/step/9" element={<QuizStep />} />
-          <Route path="/quiz/step/10" element={<QuizStep />} />
-          <Route path="/quiz/step/11" element={<QuizStep />} />
           <Route path="/quiz/step/:id" element={<QuizStep />} />
           <Route path="/desqualificado" element={<Disqualified />} />
           <Route path="/sem-investimento" element={<InvestmentDisqualified />} />
