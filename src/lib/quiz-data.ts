@@ -158,6 +158,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "investimento",
     macroStep: 5,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
     options: [
       { id: "a", label: "Menos de 200 Mil", value: "menos_200k" },
       { id: "b", label: "200 Mil a 300 Mil", value: "200k_300k" },
