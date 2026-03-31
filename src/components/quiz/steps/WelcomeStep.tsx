@@ -91,7 +91,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
       {/* Fixed bottom CTA — mobile only */}
       {ctaOutOfView && (
         <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden p-4 bg-gradient-to-t from-background via-background/95 to-transparent">
-          <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide uppercase" showArrow>
+          <CTAButton onClick={onNext} className="w-full text-base py-4.5 font-heading font-extrabold tracking-wide uppercase shadow-green" showArrow>
             {step.buttonLabel || "CONTINUAR"}
           </CTAButton>
         </div>
