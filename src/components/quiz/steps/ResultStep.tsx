@@ -1,7 +1,5 @@
 import React, { useState, useMemo } from "react";
 import logoLocagora from "@/assets/logo-locagora.png";
-import mapaBrasil from "@/assets/mapa-brasil.webp";
-import ceoFoto from "@/assets/ceo-foto.png";
 import { MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
 import { CTAButton } from "@/components/ui/cta-button";
 import { calcularRetorno, MOTO_OPTIONS, type QuizStepData } from "@/lib/quiz-data";
