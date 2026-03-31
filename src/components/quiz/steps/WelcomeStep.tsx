@@ -29,7 +29,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
       <div className="relative z-10 flex-1 flex items-center justify-center px-6 sm:px-10 lg:px-16 py-4">
         <div className="max-w-6xl w-full animate-fade-in">
           {/* Desktop: image left, text right — vertically centered */}
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0">
+          <div className="flex flex-col md:flex-row items-center gap-1 md:gap-0">
 
             {/* Image — takes ~55% on desktop */}
             <div className="order-1 w-[300px] sm:w-[340px] md:w-[55%] md:flex-shrink-0 flex items-center justify-center md:justify-start md:-ml-4 lg:-ml-8">
