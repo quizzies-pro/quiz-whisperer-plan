@@ -56,7 +56,7 @@ export const quizSteps: QuizStepData[] = [
   // ── STEP 1 do Quiz: Welcome ──
   {
     id: 2,
-    title: "Vou te apresentar nossa franquia ainda hoje para você.",
+    title: "Vou apresentar nossa franquia ainda hoje para você.",
     subtitle: "Você gostaria de ter ganhos de até R$20.000,00 por mês?",
     type: "welcome",
     buttonLabel: "Quero ganhos de até R$20.000,00",
