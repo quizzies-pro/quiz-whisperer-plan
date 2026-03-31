@@ -70,6 +70,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "email",
     macroStep: 2,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
   },
   {
     id: 4,
@@ -80,6 +82,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "whatsapp",
     macroStep: 2,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
   },
 
   // ── Stage 3: Profile Qualification ──
@@ -91,6 +95,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "busca",
     macroStep: 3,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
     options: [
       { id: "a", label: "Quero uma renda extra sem abrir mão do que já faço", value: "renda_extra" },
       { id: "b", label: "Quero diversificar meus investimentos com mais rentabilidade", value: "diversificar" },
@@ -105,6 +111,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "negocio_investimento",
     macroStep: 3,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
     options: [
       { id: "a", label: "Sim, tenho negócio(s) ativo(s)", value: "negocio_ativo" },
       { id: "b", label: "Sim, tenho investimentos (CDB, ações, fundos...)", value: "investimentos" },
@@ -120,6 +128,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "tempo",
     macroStep: 4,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
     options: [
       { id: "a", label: "Não tenho tempo para me dedicar", value: "sem_tempo" },
       { id: "b", label: "Você tem 1 hora por dia para se dedicar?", value: "1h" },
@@ -135,6 +145,8 @@ export const quizSteps: QuizStepData[] = [
     subtitle: "Só mais 2 perguntas antes do seu resultado.",
     type: "interstitial",
     macroStep: 4,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
   },
 
   // ── Stage 5: Investment Qualification ──
@@ -146,6 +158,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "investimento",
     macroStep: 5,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
     options: [
       { id: "a", label: "Menos de 200 Mil", value: "menos_200k" },
       { id: "b", label: "200 Mil a 300 Mil", value: "200k_300k" },
@@ -161,6 +175,8 @@ export const quizSteps: QuizStepData[] = [
     title: "Analisando seu perfil...",
     type: "loading",
     macroStep: 6,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
   },
   {
     id: 11,
@@ -168,6 +184,8 @@ export const quizSteps: QuizStepData[] = [
     subtitle: "Com base nas suas respostas você demonstra ter o perfil ideal para abrir uma franquia LocaGora na sua região.",
     type: "result",
     macroStep: 6,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
   },
 ];
 
