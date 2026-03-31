@@ -32,7 +32,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0">
 
             {/* Image — takes ~55% on desktop */}
-            <div className="order-1 w-[220px] sm:w-[260px] md:w-[55%] md:flex-shrink-0 flex items-center justify-center md:justify-start md:-ml-4 lg:-ml-8">
+            <div className="order-1 w-[300px] sm:w-[340px] md:w-[55%] md:flex-shrink-0 flex items-center justify-center md:justify-start md:-ml-4 lg:-ml-8">
               <img
                 src={HERO_IMAGE}
                 alt="Franquia LocaGora"
