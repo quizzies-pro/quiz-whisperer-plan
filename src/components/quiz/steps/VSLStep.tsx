@@ -64,7 +64,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto">
     {/* Green banner strip */}
     <div className="w-full bg-primary py-2.5 sm:py-3 text-center flex-shrink-0 z-20">
-      <p className="font-heading font-extrabold text-xs sm:text-sm md:text-base text-primary-foreground tracking-widest uppercase">
+      <p className="font-heading font-extrabold sm:text-sm md:text-base text-primary-foreground tracking-widest uppercase text-sm">
         Exclusivo para quem quer investir em franquias
       </p>
     </div>
