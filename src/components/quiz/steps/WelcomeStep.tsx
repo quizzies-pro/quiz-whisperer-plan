@@ -32,7 +32,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0">
 
             {/* Image — takes ~55% on desktop */}
-            <div className="order-1 w-[220px] sm:w-[260px] md:w-[55%] md:flex-shrink-0 flex items-center justify-center md:justify-start md:-ml-4 lg:-ml-8">
+            <div className="order-1 w-[300px] sm:w-[340px] md:w-[55%] md:flex-shrink-0 flex items-center justify-center md:justify-start md:-ml-4 lg:-ml-8">
               <img
                 src={HERO_IMAGE}
                 alt="Franquia LocaGora"
@@ -55,7 +55,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
               <div ref={ctaRef} className="pt-1 sm:pt-3">
                 <CTAButton
                   onClick={onNext}
-                  className="text-sm sm:text-base md:text-lg px-8 py-4 sm:px-10 sm:py-5 md:px-12 md:py-5 font-heading font-bold tracking-wide w-full md:w-auto uppercase"
+                  className="text-base sm:text-lg md:text-xl px-10 py-5 sm:px-12 sm:py-6 md:px-14 md:py-6 font-heading font-extrabold tracking-wide w-full md:w-auto uppercase shadow-green hover:shadow-green-lg"
                   showArrow
                 >
                   {step.buttonLabel || "CONTINUAR"}
@@ -91,7 +91,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
       {/* Fixed bottom CTA — mobile only */}
       {ctaOutOfView && (
         <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden p-4 bg-gradient-to-t from-background via-background/95 to-transparent">
-          <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide uppercase" showArrow>
+          <CTAButton onClick={onNext} className="w-full text-base py-4.5 font-heading font-extrabold tracking-wide uppercase shadow-green" showArrow>
             {step.buttonLabel || "CONTINUAR"}
           </CTAButton>
         </div>
