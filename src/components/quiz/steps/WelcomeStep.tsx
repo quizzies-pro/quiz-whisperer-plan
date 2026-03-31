@@ -55,7 +55,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
               <div ref={ctaRef} className="pt-1 sm:pt-3">
                 <CTAButton
                   onClick={onNext}
-                  className="text-sm sm:text-base md:text-lg px-8 py-4 sm:px-10 sm:py-5 md:px-12 md:py-5 font-heading font-bold tracking-wide w-full md:w-auto uppercase"
+                  className="text-base sm:text-lg md:text-xl px-10 py-5 sm:px-12 sm:py-6 md:px-14 md:py-6 font-heading font-extrabold tracking-wide w-full md:w-auto uppercase shadow-green hover:shadow-green-lg"
                   showArrow
                 >
                   {step.buttonLabel || "CONTINUAR"}
