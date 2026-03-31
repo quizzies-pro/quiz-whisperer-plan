@@ -33,7 +33,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
           {/* Desktop: side by side | Mobile: stacked */}
           <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12">
             {/* Left: Text content */}
-            <div className="flex-1 text-center md:text-left space-y-4 sm:space-y-6 order-2 md:order-1">
+            <div className="flex-1 text-center md:text-left space-y-4 sm:space-y-6 order-2 md:order-2">
 
               <h1 className="font-heading font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-foreground leading-[1.15] tracking-[-0.01em]">
                 {step.title}
