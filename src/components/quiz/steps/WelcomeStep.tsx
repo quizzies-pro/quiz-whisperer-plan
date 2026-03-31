@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import logoLocagora from "@/assets/logo-locagora.png";
 import { CTAButton } from "@/components/ui/cta-button";
 import type { QuizStepData } from "@/lib/quiz-data";
 
@@ -27,28 +26,36 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
 
   return (
     <div ref={scrollRef} className="h-full w-full relative flex flex-col overflow-y-auto scrollbar-none">
-      {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
-        <div className="max-w-4xl w-full animate-fade-in">
-          {/* Desktop: side by side | Mobile: stacked */}
-          <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12">
-            {/* Left: Text content */}
-            <div className="flex-1 text-center md:text-left space-y-4 sm:space-y-6 order-2 md:order-2">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-6 sm:px-10 lg:px-16">
+        <div className="max-w-6xl w-full animate-fade-in">
+          {/* Desktop: image left, text right — vertically centered */}
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0">
 
-              <h1 className="font-heading font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-foreground leading-[1.15] tracking-[-0.01em]">
+            {/* Image — takes ~55% on desktop */}
+            <div className="order-1 w-[220px] sm:w-[260px] md:w-[55%] md:flex-shrink-0 flex items-center justify-center md:justify-start md:-ml-4 lg:-ml-8">
+              <img
+                src={HERO_IMAGE}
+                alt="Franquia LocaGora"
+                className="w-full max-w-[600px] h-auto object-contain"
+              />
+            </div>
+
+            {/* Text — takes ~45% on desktop */}
+            <div className="order-2 flex-1 text-center md:text-left space-y-5 sm:space-y-6 md:pl-4 lg:pl-8">
+              <h1 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground leading-[1.12] tracking-[-0.02em]">
                 {step.title}
               </h1>
 
               {step.subtitle && (
-                <p className="font-heading font-bold text-lg sm:text-xl md:text-2xl text-primary leading-snug">
+                <p className="font-heading font-bold text-lg sm:text-xl md:text-2xl lg:text-[1.7rem] text-primary leading-snug">
                   {step.subtitle}
                 </p>
               )}
 
-              <div ref={ctaRef} className="pt-2 sm:pt-4">
+              <div ref={ctaRef} className="pt-1 sm:pt-3">
                 <CTAButton
                   onClick={onNext}
-                  className="text-sm sm:text-base px-8 py-4 sm:px-10 sm:py-5 font-heading font-bold tracking-wide w-full md:w-auto"
+                  className="text-sm sm:text-base md:text-lg px-8 py-4 sm:px-10 sm:py-5 md:px-12 md:py-5 font-heading font-bold tracking-wide w-full md:w-auto uppercase"
                   showArrow
                 >
                   {step.buttonLabel || "CONTINUAR"}
@@ -61,19 +68,10 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
                 </p>
               )}
             </div>
-
-            {/* Right: Hero image */}
-            <div className="flex-shrink-0 order-1 md:order-1 w-[200px] sm:w-[240px] md:w-[400px] lg:w-[480px] xl:w-[520px]">
-              <img
-                src={HERO_IMAGE}
-                alt="Franquia LocaGora"
-                className="w-full h-auto object-contain"
-              />
-            </div>
           </div>
 
-          {/* Trust badges */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 mt-6 sm:mt-8">
+          {/* Trust badges — centered */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6 md:mt-10">
             {[
               "✓ Lucro de até R$20.000/mês",
               "✓ Apenas 1h/dia",
@@ -93,7 +91,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
       {/* Fixed bottom CTA — mobile only */}
       {ctaOutOfView && (
         <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden p-4 bg-gradient-to-t from-background via-background/95 to-transparent">
-          <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide" showArrow>
+          <CTAButton onClick={onNext} className="w-full text-sm py-3.5 font-heading font-bold tracking-wide uppercase" showArrow>
             {step.buttonLabel || "CONTINUAR"}
           </CTAButton>
         </div>
