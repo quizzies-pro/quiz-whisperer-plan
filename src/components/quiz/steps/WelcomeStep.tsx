@@ -76,7 +76,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
                 />
               </div>
             </div>
-          </div>
+            </div>
 
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 mt-6 sm:mt-8">
