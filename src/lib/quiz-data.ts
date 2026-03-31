@@ -15,6 +15,7 @@ export interface QuizOption {
   label: string;
   value: string;
   category?: string;
+  link?: string; // External URL — navigates away instead of advancing
 }
 
 export interface QuizStepData {
@@ -33,10 +34,16 @@ export interface QuizStepData {
   macroStep?: number;
   bgImage?: string;
   bgImageMobile?: string;
+  buttonLabel?: string;
+  privacyText?: string;
+  highlightText?: string; // Big highlighted text for interstitials
 }
 
+const BG_DESKTOP = "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp";
+const BG_MOBILE = "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png";
+
 export const quizSteps: QuizStepData[] = [
-  // ── Stage 1: VSL ──
+  // ── Página de abertura (VSL) ──
   {
     id: 1,
     title: "Descubra como pessoas comuns estão faturando com franquias de motos.",
@@ -46,9 +53,39 @@ export const quizSteps: QuizStepData[] = [
     macroStep: 1,
   },
 
-  // ── Stage 2: User Capture (separate steps) ──
+  // ── STEP 1 do Quiz: Welcome ──
   {
     id: 2,
+    title: "Vou te apresentar nossa franquia ainda hoje para você.",
+    subtitle: "Você gostaria de ter ganhos de até R$20.000,00 por mês?",
+    type: "welcome",
+    buttonLabel: "Quero ganhos de até R$20.000,00",
+    privacyText: "Clicando acima você aceita nossas Políticas de Privacidade.",
+    macroStep: 2,
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
+  },
+
+  // ── STEP 2 do Quiz: O que procura? ──
+  {
+    id: 3,
+    title: "Perfeito! Para isso preciso de algumas informações rápidas.",
+    subtitle: "O que você está procurando na LocAgora?",
+    type: "multiple-choice",
+    required: true,
+    category: "interesse",
+    macroStep: 2,
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
+    options: [
+      { id: "a", label: "Quero alugar uma moto.", value: "alugar_moto", link: "https://locagoraveiculos.com.br" },
+      { id: "b", label: "Tenho interesse na Franquia.", value: "interesse_franquia" },
+    ],
+  },
+
+  // ── STEP 3 do Quiz: Nome ──
+  {
+    id: 4,
     title: "Qual é o seu nome?",
     subtitle: "Estamos avaliando novos franqueados para as próximas cidades. Precisamos de algumas informações.",
     subtitleParts: ["Estamos avaliando novos franqueados para as próximas cidades.", " Precisamos de algumas informações."],
@@ -57,135 +94,79 @@ export const quizSteps: QuizStepData[] = [
     placeholder: "Digite seu nome",
     required: true,
     category: "nome",
-    macroStep: 2,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
+    macroStep: 3,
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
   },
+
+  // ── STEP 4 do Quiz: Email ──
   {
-    id: 3,
+    id: 5,
     title: "Qual é o seu email?",
     type: "text",
     inputType: "email",
     placeholder: "seu@email.com",
     required: true,
     category: "email",
-    macroStep: 2,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
+    macroStep: 3,
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
   },
+
+  // ── STEP 5 do Quiz: WhatsApp ──
   {
-    id: 4,
+    id: 6,
     title: "Qual é o seu número de WhatsApp?",
     type: "text",
     inputType: "tel",
     placeholder: "(00) 00000-0000",
     required: true,
     category: "whatsapp",
-    macroStep: 2,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
+    macroStep: 3,
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
   },
 
-  // ── Stage 3: Profile Qualification ──
-  {
-    id: 5,
-    title: "Qual dessas opções mais descreve o que você quer conquistar agora?",
-    subtitle: "Sua resposta nos ajuda a avaliar seu perfil e indicar a melhor oportunidade para você.",
-    type: "multiple-choice",
-    required: true,
-    category: "busca",
-    macroStep: 3,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
-    options: [
-      { id: "a", label: "Quero uma renda extra sem abrir mão do que já faço", value: "renda_extra" },
-      { id: "b", label: "Quero diversificar meus investimentos com mais rentabilidade", value: "diversificar" },
-      { id: "c", label: "Quero empreender com uma franquia validada", value: "empreender" },
-      { id: "d", label: "Estou conhecendo a oportunidade por curiosidade", value: "curiosidade" },
-    ],
-  },
-  {
-    id: 6,
-    title: "Você já tem algum negócio ativo ou investimento financeiro?",
-    type: "multiple-choice",
-    required: true,
-    category: "negocio_investimento",
-    macroStep: 3,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
-    options: [
-      { id: "a", label: "Sim, tenho negócio(s) ativo(s)", value: "negocio_ativo" },
-      { id: "b", label: "Sim, tenho investimentos (CDB, ações, fundos...)", value: "investimentos" },
-      { id: "c", label: "Não, esse seria meu primeiro investimento", value: "primeiro" },
-    ],
-  },
-
-  // ── Stage 4: Entrepreneur Profile ──
+  // ── STEP 6 do Quiz: Interstitial ──
   {
     id: 7,
-    title: "Quanto tempo por dia você conseguiria dedicar ao negócio?",
-    type: "multiple-choice",
-    required: true,
-    category: "tempo",
-    macroStep: 4,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
-    options: [
-      { id: "a", label: "Não tenho tempo para me dedicar", value: "sem_tempo" },
-      { id: "b", label: "Você tem 1 hora por dia para se dedicar?", value: "1h" },
-      { id: "c", label: "Algumas horas por semana", value: "algumas_horas" },
-      { id: "d", label: "Tenho disponibilidade para dedicação integral", value: "integral" },
-    ],
-  },
-
-  // ── Interstitial ──
-  {
-    id: 8,
-    title: "Parabéns, 98% dos nossos maiores clientes de sucesso tem características muito semelhantes a você!",
-    subtitle: "Só mais 2 perguntas antes do seu resultado.",
+    title: "Estamos preparando algo pra você",
+    highlightText: "Você sabia que um franqueado com 10 motos, lucra R$ 12.000 por mês?",
     type: "interstitial",
     macroStep: 4,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
   },
 
-  // ── Stage 5: Investment Qualification ──
+  // ── STEP 7 do Quiz: Investimento ──
   {
-    id: 9,
-    title: "Qual faixa representa sua disponibilidade de investimento hoje?",
-    subtitle: "Para garantir o sucesso dos nossos franqueados, também avaliamos a capacidade de investimento. Cada plano exige um capital inicial diferente.",
+    id: 8,
+    title: "Qual valor você pretende investir na compra de motos?",
+    subtitle: "Antes de verificar sua disponibilidade de investimento, gostaria de informar que, para se tornar um franqueado da Locagora, é necessário ter pelo menos 200 mil disponíveis para investir.",
     type: "multiple-choice",
     required: true,
     category: "investimento",
     macroStep: 5,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
     options: [
       { id: "a", label: "Menos de 200 Mil", value: "menos_200k" },
       { id: "b", label: "200 Mil a 300 Mil", value: "200k_300k" },
       { id: "c", label: "300 Mil a 500 Mil", value: "300k_500k" },
       { id: "d", label: "500 Mil a 700 Mil", value: "500k_700k" },
-      { id: "e", label: "Mais de 700 Mil", value: "mais_700k" },
+      { id: "e", label: "Acima de 700 Mil", value: "mais_700k" },
     ],
   },
 
-  // ── Stage 6: Loading + Result ──
+  // ── STEP 8 do Quiz: Resultado ──
   {
-    id: 10,
-    title: "Analisando seu perfil...",
-    type: "loading",
-    macroStep: 6,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
-  },
-  {
-    id: 11,
+    id: 9,
     title: "Parabéns, você foi aprovado para avançar na avaliação da franquia.",
     subtitle: "Com base nas suas respostas você demonstra ter o perfil ideal para abrir uma franquia LocaGora na sua região.",
     type: "result",
     macroStep: 6,
-    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
-    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
+    bgImage: BG_DESKTOP,
+    bgImageMobile: BG_MOBILE,
   },
 ];
 
@@ -194,9 +175,9 @@ export const totalSteps = quizSteps.length;
 // Macro step labels for sidebar
 export const macroStepLabels: Record<number, string> = {
   1: "Apresentação",
-  2: "Seus dados",
-  3: "Qualificação",
-  4: "Perfil",
+  2: "Interesse",
+  3: "Seus dados",
+  4: "Preparação",
   5: "Investimento",
   6: "Resultado",
 };
@@ -226,11 +207,9 @@ export interface CalculatorResult {
   lucroAnual: number;
   roiMensal: number;
   paybackMeses: number;
-  // CDB comparison
   cdbRendimentoMensal: number;
   cdbRendimentoAnual: number;
   cdbRoiMensal: number;
-  // Selic comparison
   selicRendimentoMensal: number;
   selicRendimentoAnual: number;
   selicRoiMensal: number;
@@ -275,7 +254,6 @@ export function calcularRetorno(motos: number): CalculatorResult {
 
 export const MOTO_OPTIONS = [2, 5, 10, 15, 20, 30] as const;
 
-// Legacy motoScenarios for backward compat (result step)
 export interface MotoScenario {
   motos: number;
   lucroMensal: number;
