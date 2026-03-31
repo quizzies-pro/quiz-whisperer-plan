@@ -15,16 +15,6 @@ const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
   const [selectedMotos, setSelectedMotos] = useState(5);
   const scenario = useMemo(() => calcularRetorno(selectedMotos), [selectedMotos]);
 
-  // Lazy load moto images
-  const [motoImages, setMotoImages] = React.useState<string[]>([]);
-  React.useEffect(() => {
-    Promise.all([
-      import("@/assets/moto-1.webp"),
-      import("@/assets/moto-2.webp"),
-      import("@/assets/moto-3.webp"),
-    ]).then(([a, b, c]) => setMotoImages([a.default, b.default, c.default]));
-  }, []);
-
   return (
     <div className="h-full w-full flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-none px-4 pt-[70px] pb-4">
