@@ -13,7 +13,7 @@ interface ResultStepProps {
 }
 
 const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
-  const nome = answers[2] || "Candidato";
+  const nome = answers[4] || "Candidato";
   const [selectedMotos, setSelectedMotos] = useState(5);
   const scenario = useMemo(() => calcularRetorno(selectedMotos), [selectedMotos]);
 
