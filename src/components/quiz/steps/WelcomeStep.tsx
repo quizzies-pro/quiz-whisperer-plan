@@ -70,12 +70,10 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
             {/* Right: Hero image */}
             <div className="flex-shrink-0 order-1 md:order-2 w-[200px] sm:w-[240px] md:w-[400px] lg:w-[480px] xl:w-[520px]">
               <img
-                  src={HERO_IMAGE}
-                  alt="Franquia LocaGora"
-                  className="relative w-full h-auto object-contain"
-                />
-              </div>
-            </div>
+                src={HERO_IMAGE}
+                alt="Franquia LocaGora"
+                className="w-full h-auto object-contain"
+              />
             </div>
 
           {/* Trust badges */}
