@@ -249,11 +249,11 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       {currentStep >= 2 && (
         <>
           <div
-            className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none hidden sm:block z-[1]"
+            className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none hidden sm:block z-[1] opacity-70"
             style={{ backgroundImage: `url(https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp)` }}
           />
           <div
-            className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none sm:hidden z-[1]"
+            className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none sm:hidden z-[1] opacity-70"
             style={{ backgroundImage: `url(https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png)` }}
           />
         </>
