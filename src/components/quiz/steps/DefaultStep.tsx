@@ -43,20 +43,6 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
 
   return (
     <div className="h-full w-full relative flex items-center justify-center px-4 py-10 overflow-y-auto scrollbar-none">
-      {/* Desktop background */}
-      {step.bgImage && (
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none hidden sm:block"
-          style={{ backgroundImage: `url(${step.bgImage})` }}
-        />
-      )}
-      {/* Mobile background */}
-      {(step.bgImageMobile || step.bgImage) && (
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none sm:hidden"
-          style={{ backgroundImage: `url(${step.bgImageMobile || step.bgImage})` }}
-        />
-      )}
       <div className="max-w-xl w-full space-y-8 animate-fade-in my-auto relative z-10">
         <div className="space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl leading-tight text-foreground">

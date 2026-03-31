@@ -268,7 +268,19 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       {/* Dark base — always present */}
       <div className="fixed inset-0 bg-background" />
 
-
+      {/* Static quiz background — visible from step 2 onwards */}
+      {currentStep >= 2 && (
+        <>
+          <div
+            className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none hidden sm:block z-[1]"
+            style={{ backgroundImage: `url(https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp)` }}
+          />
+          <div
+            className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none sm:hidden z-[1]"
+            style={{ backgroundImage: `url(https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png)` }}
+          />
+        </>
+      )}
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
 
 
