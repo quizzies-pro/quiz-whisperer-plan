@@ -128,6 +128,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "tempo",
     macroStep: 4,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
     options: [
       { id: "a", label: "Não tenho tempo para me dedicar", value: "sem_tempo" },
       { id: "b", label: "Você tem 1 hora por dia para se dedicar?", value: "1h" },
