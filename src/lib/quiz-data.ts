@@ -95,6 +95,8 @@ export const quizSteps: QuizStepData[] = [
     required: true,
     category: "busca",
     macroStep: 3,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
     options: [
       { id: "a", label: "Quero uma renda extra sem abrir mão do que já faço", value: "renda_extra" },
       { id: "b", label: "Quero diversificar meus investimentos com mais rentabilidade", value: "diversificar" },
