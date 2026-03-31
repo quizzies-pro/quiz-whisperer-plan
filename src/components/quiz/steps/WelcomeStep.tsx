@@ -69,13 +69,10 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
 
             {/* Right: Hero image */}
             <div className="flex-shrink-0 order-1 md:order-2 w-[200px] sm:w-[240px] md:w-[400px] lg:w-[480px] xl:w-[520px]">
-              <div className="relative">
-                {/* Glow behind image */}
-                <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-3xl scale-90 pointer-events-none" />
-                <img
+              <img
                   src={HERO_IMAGE}
                   alt="Franquia LocaGora"
-                  className="relative w-full h-auto object-contain drop-shadow-[0_20px_60px_rgba(0,230,77,0.15)]"
+                  className="relative w-full h-auto object-contain"
                 />
               </div>
             </div>
