@@ -68,7 +68,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
             </div>
 
             {/* Right: Hero image */}
-            <div className="flex-shrink-0 order-1 md:order-2 w-[200px] sm:w-[240px] md:w-[320px] lg:w-[380px]">
+            <div className="flex-shrink-0 order-1 md:order-2 w-[200px] sm:w-[240px] md:w-[400px] lg:w-[480px] xl:w-[520px]">
               <div className="relative">
                 {/* Glow behind image */}
                 <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-3xl scale-90 pointer-events-none" />
