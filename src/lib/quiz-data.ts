@@ -145,6 +145,8 @@ export const quizSteps: QuizStepData[] = [
     subtitle: "Só mais 2 perguntas antes do seu resultado.",
     type: "interstitial",
     macroStep: 4,
+    bgImage: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp",
+    bgImageMobile: "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774317562/Capa_para_Reels_Instagram_Minimalista_Simples_Cores_Neutras_1080_x_1921_px_nmdvaa.png",
   },
 
   // ── Stage 5: Investment Qualification ──
