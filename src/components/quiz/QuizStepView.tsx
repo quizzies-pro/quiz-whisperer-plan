@@ -1,6 +1,7 @@
 import React from "react";
 import type { QuizStepData } from "@/lib/quiz-data";
 import VSLStep from "./steps/VSLStep";
+import WelcomeStep from "./steps/WelcomeStep";
 import InterstitialStep from "./steps/InterstitialStep";
 import ResultStep from "./steps/ResultStep";
 import DefaultStep from "./steps/DefaultStep";
@@ -19,6 +20,10 @@ interface QuizStepViewProps {
 const QuizStepView = React.memo(({ step, answer, answers, onAnswer, onNext, isFirst, isLast, isActive }: QuizStepViewProps) => {
   if (step.type === "vsl") {
     return <VSLStep step={step} onNext={onNext} />;
+  }
+
+  if (step.type === "welcome") {
+    return <WelcomeStep step={step} onNext={onNext} />;
   }
 
   if (step.type === "interstitial") {
