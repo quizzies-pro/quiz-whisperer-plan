@@ -3,7 +3,7 @@ import logoLocagora from "@/assets/logo-locagora.png";
 import { MessageCircle, TrendingUp, DollarSign, Clock, BarChart3 } from "lucide-react";
 import { CTAButton } from "@/components/ui/cta-button";
 import { calcularRetorno, MOTO_OPTIONS, type QuizStepData } from "@/lib/quiz-data";
-import { StatCard, ProfileItem, VideoCard, TabletCarousel } from "./shared";
+import { StatCard, ProfileItem } from "./shared";
 
 interface ResultStepProps {
   step: QuizStepData;
