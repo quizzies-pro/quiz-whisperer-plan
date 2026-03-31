@@ -12,6 +12,7 @@ interface ResultStepProps {
 
 const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
   const nome = answers[4] || "Candidato";
+  const isUnderInvestment = answers[8] === "menos_200k";
   const [selectedMotos, setSelectedMotos] = useState(5);
   const scenario = useMemo(() => calcularRetorno(selectedMotos), [selectedMotos]);
 
@@ -21,13 +22,29 @@ const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
         <div className="max-w-5xl w-full mx-auto space-y-6 animate-fade-in">
           <div className="text-center space-y-4">
             <img src={logoLocagora} alt="Locagora" className="h-8 sm:h-10 md:h-14 mx-auto object-contain mb-4" />
-            <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
-              {nome}, parabéns!
-            </h2>
-            <p className="font-heading font-bold text-xl md:text-2xl text-primary">
-              Seu perfil foi aprovado.
-            </p>
-            <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
+            {isUnderInvestment ? (
+              <>
+                <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
+                  Muito obrigado pela sua aplicação, {nome}!
+                </h2>
+                <p className="font-heading font-bold text-xl md:text-2xl text-primary">
+                  Estamos analisando o seu perfil!
+                </p>
+                <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">
+                  Com base nas suas respostas você demonstra ter interesse real em abrir uma franquia LocaGora, temos alguns pontos que precisamos tratar para continuarmos.
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="font-heading font-black text-2xl md:text-4xl text-foreground">
+                  {nome}, parabéns!
+                </h2>
+                <p className="font-heading font-bold text-xl md:text-2xl text-primary">
+                  Seu perfil foi aprovado.
+                </p>
+                <p className="text-muted-foreground font-body text-sm md:text-base max-w-lg mx-auto">{step.subtitle}</p>
+              </>
+            )}
           </div>
 
 
