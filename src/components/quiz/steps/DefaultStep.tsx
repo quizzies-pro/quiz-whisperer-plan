@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { CTAButton } from "@/components/ui/cta-button";
 import PhoneInput from "../PhoneInput";
@@ -15,7 +14,6 @@ interface DefaultStepProps {
 }
 
 const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFirst }: DefaultStepProps) => {
-  const navigate = useNavigate();
   const [localText, setLocalText] = useState(answer || "");
   const [validationError, setValidationError] = useState("");
 
@@ -26,18 +24,13 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
     }
   }, [step, onNext]);
 
-  const handleOptionClick = (value: string) => {
-    // Disqualify if user selects "sem_tempo" on step 7
-    if (step.id === 7 && value === "sem_tempo") {
-      navigate("/desqualificado");
+  const handleOptionClick = (option: { value: string; link?: string }) => {
+    // If option has external link, navigate away
+    if (option.link) {
+      window.location.href = option.link;
       return;
     }
-    // Disqualify if user selects "menos_200k" on step 9
-    if (step.id === 9 && value === "menos_200k") {
-      navigate("/sem-investimento");
-      return;
-    }
-    onAnswer(value);
+    onAnswer(option.value);
     onNext();
   };
 
@@ -46,21 +39,19 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
       <div className="max-w-xl w-full space-y-8 animate-fade-in my-auto relative z-10">
         <div className="space-y-3">
           <h2 className="font-heading font-bold text-2xl md:text-3xl leading-tight text-foreground">
-            {step.id === 3 && answers[2]
-              ? <>{answers[2]}, <span className="text-primary">qual é o seu email?</span></>
-              : step.id === 4 && answers[2]
-              ? <>{answers[2]}, <span className="text-primary">qual é o seu WhatsApp?</span></>
+            {step.id === 5 && answers[4]
+              ? <>{answers[4]}, <span className="text-primary">qual é o seu email?</span></>
+              : step.id === 6 && answers[4]
+              ? <>{answers[4]}, <span className="text-primary">qual é o seu WhatsApp?</span></>
               : step.title}
           </h2>
           {step.subtitle && (
             <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
-              {step.id === 10 && answers[2]
-                ? <>{answers[2]}, {step.subtitle.charAt(0).toLowerCase() + step.subtitle.slice(1)}</>
-                : step.subtitleParts ? (
-                  <>
-                    {step.subtitleParts[0]}<br className="hidden md:inline" />{step.subtitleParts[1]}
-                  </>
-                ) : step.subtitle}
+              {step.subtitleParts ? (
+                <>
+                  {step.subtitleParts[0]}<br className="hidden md:inline" />{step.subtitleParts[1]}
+                </>
+              ) : step.subtitle}
             </p>
           )}
         </div>
@@ -70,7 +61,7 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
             {step.options.map((option, idx) => (
               <button
                 key={option.id}
-                onClick={() => handleOptionClick(option.value)}
+                onClick={() => handleOptionClick(option)}
                 className={cn(
                   "w-full text-left px-5 py-4 rounded-[10px] transition-all duration-300 flex items-center gap-4 group",
                   answer === option.value
@@ -180,9 +171,16 @@ const DefaultStep = React.memo(({ step, answer, answers, onAnswer, onNext, isFir
         )}
 
         {step.type === "welcome" && (
-          <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
-            {isFirst ? "COMEÇAR" : "CONTINUAR"}
-          </CTAButton>
+          <div className="space-y-4">
+            <CTAButton onClick={onNext} className="px-10 py-5" showArrow>
+              {step.buttonLabel || (isFirst ? "COMEÇAR" : "CONTINUAR")}
+            </CTAButton>
+            {step.privacyText && (
+              <p className="text-xs text-muted-foreground/60 font-body text-center">
+                {step.privacyText}
+              </p>
+            )}
+          </div>
         )}
       </div>
     </div>

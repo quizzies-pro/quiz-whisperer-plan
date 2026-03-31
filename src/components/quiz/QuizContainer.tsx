@@ -5,7 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useFbCookies } from "@/hooks/use-fb-cookies";
 import QuizSidebar from "./QuizSidebar";
 import QuizStepView from "./QuizStepView";
-import bgHero from "@/assets/bg-hero.jpg";
 
 declare global {
   interface Window {
@@ -17,7 +16,7 @@ interface QuizContainerProps {
   initialStep?: number;
 }
 
-const RENDER_WINDOW = 1; // Render current ± 1 steps
+const RENDER_WINDOW = 1;
 
 const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   const [currentStep, setCurrentStep] = useState(initialStep);
@@ -65,7 +64,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
   const answeredSteps = Object.keys(answers).map(Number);
 
-  // Determine which steps to render (current ± RENDER_WINDOW)
   const visibleStepIds = useMemo(() => {
     const ids = new Set<number>();
     for (let i = currentStep - RENDER_WINDOW; i <= currentStep + RENDER_WINDOW; i++) {
@@ -95,17 +93,16 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
   const externalIdRef = useRef(crypto.randomUUID());
 
   // Save lead to database + Google Sheets progressively
+  // New mapping: name=step4, email=step5, phone=step6, investment=step8
   const saveLead = useCallback((updatedAnswers: Record<number, string>, step: number) => {
     const leadPayload = {
-      name: updatedAnswers[2] || "",
-      email: updatedAnswers[3] || "",
-      phone: updatedAnswers[4] || "",
+      name: updatedAnswers[4] || "",
+      email: updatedAnswers[5] || "",
+      phone: updatedAnswers[6] || "",
       current_step: step,
       answers: {
-        "5": updatedAnswers[5] || "",
-        "6": updatedAnswers[6] || "",
-        "7": updatedAnswers[7] || "",
-        "9": updatedAnswers[9] || "",
+        "3": updatedAnswers[3] || "",  // interesse
+        "8": updatedAnswers[8] || "",  // investimento
       },
     };
 
@@ -117,7 +114,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }).catch((err) => console.error(`Failed to save lead (step ${step}):`, err));
 
     // Sync to Google Sheets (upsert by email)
-    if (updatedAnswers[2] || updatedAnswers[3]) {
+    if (updatedAnswers[4] || updatedAnswers[5]) {
       supabase.functions.invoke("send-to-google-sheets", {
         body: leadPayload,
       }).then(({ error }) => {
@@ -126,7 +123,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }
   }, []);
 
-  // First-party Meta cookies (generated manually if Pixel didn't create them)
+  // First-party Meta cookies
   const { fbc, fbp } = useFbCookies();
 
   // Helper to fire Meta Pixel client-side with event_id for deduplication
@@ -146,18 +143,16 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         body: {
           event_name: eventName,
           event_id: eventId,
-          name: answers[2] || "",
-          email: answers[3] || "",
-          phone: answers[4] || "",
+          name: answers[4] || "",
+          email: answers[5] || "",
+          phone: answers[6] || "",
           client_ua: navigator.userAgent,
           external_id: externalIdRef.current,
           fbc: fbc || "",
           fbp: fbp || "",
           answers: {
-            "5": answers[5] || "",
-            "6": answers[6] || "",
-            "7": answers[7] || "",
-            "9": answers[9] || "",
+            "3": answers[3] || "",
+            "8": answers[8] || "",
           },
         },
       });
@@ -168,7 +163,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }
   }, [answers, firePixelEvent, fbc, fbp]);
 
-  // Send Lead to RD Station immediately when user submits WhatsApp (step 4 click)
+  // Send Lead on step 8 (investment selection) — this is when the user becomes a lead
   const sentLeadRef = useRef(false);
 
   const handleAnswer = useCallback((stepId: number, value: string) => {
@@ -178,21 +173,25 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
       // Save lead to DB on every answer (progressive upsert)
       saveLead(updated, stepId);
 
-      // Send to RD Station + Meta Lead event on step 4 (WhatsApp)
-      if (stepId === 4 && !sentLeadRef.current) {
+      // Send Lead event + RD Station + Google Sheets on step 8 (investment)
+      if (stepId === 8 && !sentLeadRef.current) {
         sentLeadRef.current = true;
         sendMetaEvent("Lead");
 
+        // Send to RD Station
         supabase.functions.invoke("send-to-rdstation", {
           body: {
-            name: updated[2] || "",
-            email: updated[3] || "",
-            phone: updated[4] || "",
-            answers: { "5": "", "6": "", "7": "", "9": "" },
+            name: updated[4] || "",
+            email: updated[5] || "",
+            phone: updated[6] || "",
+            answers: {
+              "3": updated[3] || "",
+              "8": updated[8] || "",
+            },
           },
         }).then(({ error }) => {
-          if (error) console.error("RD Station early send error:", error);
-        }).catch((err) => console.error("Failed to send early lead to RD Station:", err));
+          if (error) console.error("RD Station send error:", error);
+        }).catch((err) => console.error("Failed to send lead to RD Station:", err));
       }
 
       return updated;
@@ -217,33 +216,11 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
     }
   }, [currentStep, sendMetaEvent]);
 
-
-  // Update lead on RD Station with complete answers + CompleteRegistration to Meta at result step (11)
-  const sentToRdRef = useRef(false);
+  // CompleteRegistration at result step (9)
+  const sentCompleteRef = useRef(false);
   useEffect(() => {
-    if (currentStep === 11 && !sentToRdRef.current && answers[2] && answers[3]) {
-      sentToRdRef.current = true;
-
-      const leadPayload = {
-        name: answers[2] || "",
-        email: answers[3] || "",
-        phone: answers[4] || "",
-        answers: {
-          "5": answers[5] || "",
-          "6": answers[6] || "",
-          "7": answers[7] || "",
-          "9": answers[9] || "",
-        },
-      };
-
-      // RD Station - update with complete quiz answers
-      supabase.functions.invoke("send-to-rdstation", {
-        body: leadPayload,
-      }).then(({ error }) => {
-        if (error) console.error("RD Station update error:", error);
-      }).catch((err) => console.error("Failed to update lead on RD Station:", err));
-
-      // Meta CAPI - CompleteRegistration
+    if (currentStep === 9 && !sentCompleteRef.current && answers[4] && answers[5]) {
+      sentCompleteRef.current = true;
       sendMetaEvent("CompleteRegistration");
     }
   }, [currentStep, answers, sendMetaEvent]);
@@ -265,7 +242,7 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
 
   return (
     <div className="relative overflow-hidden" style={{ height: `${stepHeight}px` }}>
-      {/* Dark base — always present */}
+      {/* Dark base */}
       <div className="fixed inset-0 bg-background" />
 
       {/* Static quiz background — visible from step 2 onwards */}
@@ -282,7 +259,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
         </>
       )}
       <QuizSidebar currentStep={currentStep} answeredSteps={answeredSteps} />
-
 
       <div className="relative z-10 h-full w-full overflow-hidden">
         <div
@@ -303,7 +279,6 @@ const QuizContainer = ({ initialStep = 1 }: QuizContainerProps) => {
                   isActive={step.id === currentStep}
                 />
               ) : (
-                // Empty placeholder — same height, no content rendered
                 <div className="h-full w-full" />
               )}
             </div>

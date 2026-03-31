@@ -13,7 +13,7 @@ interface ResultStepProps {
 }
 
 const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
-  const nome = answers[2] || "Candidato";
+  const nome = answers[4] || "Candidato";
   const [selectedMotos, setSelectedMotos] = useState(5);
   const scenario = useMemo(() => calcularRetorno(selectedMotos), [selectedMotos]);
 
@@ -95,14 +95,15 @@ const ResultStep = React.memo(({ step, answers }: ResultStepProps) => {
           <div className="rounded-[10px] glass-card p-5 sm:p-6 md:p-8">
             <h3 className="font-heading font-bold text-sm sm:text-base text-foreground/80 uppercase tracking-wider mb-4">Resumo do seu perfil</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-              <ProfileItem
-                label="Capacidade"
+               <ProfileItem
+                label="Investimento"
                 value={(() => {
-                  const v = answers[7];
-                  if (v === "sem_tempo") return "Sem tempo disponível";
-                  if (v === "1h") return "1 hora por dia";
-                  if (v === "algumas_horas") return "Algumas horas/semana";
-                  if (v === "integral") return "Dedicação integral";
+                  const v = answers[8];
+                  if (v === "menos_200k") return "Menos de 200 Mil";
+                  if (v === "200k_300k") return "200 a 300 Mil";
+                  if (v === "300k_500k") return "300 a 500 Mil";
+                  if (v === "500k_700k") return "500 a 700 Mil";
+                  if (v === "mais_700k") return "Acima de 700 Mil";
                   return "Não informado";
                 })()}
               />
