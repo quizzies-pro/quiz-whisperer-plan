@@ -63,7 +63,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
             </div>
 
             {/* Right: Hero image */}
-            <div className="flex-shrink-0 order-1 md:order-2 w-[200px] sm:w-[240px] md:w-[400px] lg:w-[480px] xl:w-[520px]">
+            <div className="flex-shrink-0 order-1 md:order-1 w-[200px] sm:w-[240px] md:w-[400px] lg:w-[480px] xl:w-[520px]">
               <img
                 src={HERO_IMAGE}
                 alt="Franquia LocaGora"
