@@ -26,7 +26,7 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
 
   return (
     <div ref={scrollRef} className="h-full w-full relative flex flex-col overflow-y-auto scrollbar-none">
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6 sm:px-10 lg:px-16">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-6 sm:px-10 lg:px-16 py-4">
         <div className="max-w-6xl w-full animate-fade-in">
           {/* Desktop: image left, text right — vertically centered */}
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0">
