@@ -57,7 +57,7 @@ export const quizSteps: QuizStepData[] = [
   {
     id: 2,
     title: "Vou apresentar nossa franquia ainda hoje para você.",
-    subtitle: "Você gostaria de ter ganhos de até R$20.000,00 por mês?",
+    subtitle: "Gostaria de ter ganhos de até R$20.000,00 por mês?",
     type: "welcome",
     buttonLabel: "Quero ganhos de até R$20.000,00",
     privacyText: "Clicando acima você aceita nossas Políticas de Privacidade.",
