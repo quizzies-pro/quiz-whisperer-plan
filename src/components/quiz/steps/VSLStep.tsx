@@ -4,6 +4,7 @@ import bgHero from "@/assets/bg-hero.jpg";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
 import MarketSection from "./MarketSection";
+import ComparisonSection from "./ComparisonSection";
 import type { QuizStepData } from "@/lib/quiz-data";
 
 interface VSLStepProps {
