@@ -3,6 +3,7 @@ import logoLocagora from "@/assets/logo-locagora.png";
 import bgHero from "@/assets/bg-hero.jpg";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
+import MarketSection from "./MarketSection";
 import type { QuizStepData } from "@/lib/quiz-data";
 
 interface VSLStepProps {
@@ -139,6 +140,9 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           </div>
         </div>
       )}
+
+      {/* Market section */}
+      <MarketSection />
 
       {/* Footer mark */}
       <div className="pt-6 pb-20 sm:pb-4">
