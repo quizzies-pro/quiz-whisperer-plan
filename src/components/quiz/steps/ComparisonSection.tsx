@@ -25,29 +25,31 @@ const ComparisonSection = React.memo(({ onCta }: ComparisonSectionProps) => {
         </h2>
 
         {/* Table */}
-        <div className="grid grid-cols-3 gap-2.5 sm:gap-4">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {/* Header row */}
-          <div className="rounded-xl bg-secondary p-4 sm:p-6 flex items-center justify-center">
-            <span className="font-heading font-bold text-base sm:text-lg md:text-xl text-foreground">Benefícios</span>
+          <div className="rounded-xl border border-border/40 bg-secondary p-5 sm:p-7 flex items-center justify-center">
+            <span className="font-heading font-bold text-base sm:text-xl md:text-2xl text-foreground">Benefícios</span>
           </div>
-          <div className="rounded-xl bg-destructive p-4 sm:p-6 flex items-center justify-center">
-            <span className="font-heading font-bold text-base sm:text-lg md:text-xl text-destructive-foreground">Concorrentes</span>
+          <div className="rounded-xl bg-destructive p-5 sm:p-7 flex items-center justify-center">
+            <span className="font-heading font-bold text-base sm:text-xl md:text-2xl text-destructive-foreground">Concorrentes</span>
           </div>
-          <div className="rounded-xl bg-primary p-4 sm:p-6 flex items-center justify-center">
-            <span className="font-heading font-bold text-base sm:text-lg md:text-xl text-primary-foreground">LocAgora</span>
+          <div className="rounded-xl bg-primary p-5 sm:p-7 flex items-center justify-center">
+            <span className="font-heading font-bold text-base sm:text-xl md:text-2xl text-primary-foreground">LocAgora</span>
           </div>
 
           {/* Data rows */}
           {rows.map((label, i) => (
             <React.Fragment key={i}>
-              <div className="rounded-xl bg-secondary/60 p-4 sm:p-6 flex items-center">
+              <div className="rounded-xl bg-secondary/50 p-5 sm:p-7 flex items-center">
                 <span className="font-body text-sm sm:text-base md:text-lg text-foreground text-left">{label}</span>
               </div>
-              <div className="rounded-xl bg-secondary/40 p-4 sm:p-6 flex items-center justify-center">
-                <X className="w-7 h-7 sm:w-8 sm:h-8 text-destructive" strokeWidth={3} />
+              <div className="rounded-xl bg-secondary/30 p-5 sm:p-7 flex items-center justify-center">
+                <X className="w-8 h-8 sm:w-9 sm:h-9 text-destructive" strokeWidth={3} />
               </div>
-              <div className="rounded-xl bg-primary/80 p-4 sm:p-6 flex items-center justify-center">
-                <Check className="w-7 h-7 sm:w-8 sm:h-8 text-primary-foreground" strokeWidth={3} />
+              <div className={`rounded-xl p-5 sm:p-7 flex items-center justify-center ${i % 2 === 0 ? 'bg-primary/80' : 'bg-primary/65'}`}>
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/20 flex items-center justify-center">
+                  <Check className="w-6 h-6 sm:w-7 sm:h-7 text-primary-foreground" strokeWidth={3} />
+                </div>
               </div>
             </React.Fragment>
           ))}
