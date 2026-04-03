@@ -191,3 +191,12 @@ html, body {
 .animate-scroll-down {
   animation: scroll-down 25s linear infinite;
 }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.animate-ticker {
+  animation: ticker 20s linear infinite;
+}
