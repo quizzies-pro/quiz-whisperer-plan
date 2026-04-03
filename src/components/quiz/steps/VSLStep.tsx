@@ -202,7 +202,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
                   <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl leading-snug" style={{ color: '#0D1B2E' }}>
                     Seja um franqueado LocAgora{" "}
                     e fature mais de{" "}
-                    <span className="text-primary underline decoration-primary/30 underline-offset-4">R$400.000</span>{" "}
+                    <span className="text-primary bg-primary/15 px-1 rounded">R$400.000</span>{" "}
                     por ano em um dos setores{" "}
                     que mais cresce no Brasil.
                   </h2>
