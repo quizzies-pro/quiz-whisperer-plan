@@ -4,6 +4,7 @@ import bgHero from "@/assets/bg-hero.jpg";
 import { CTAButton } from "@/components/ui/cta-button";
 import { VideoCard } from "./shared";
 import MarketSection from "./MarketSection";
+import ComparisonSection from "./ComparisonSection";
 import type { QuizStepData } from "@/lib/quiz-data";
 
 interface VSLStepProps {
@@ -122,6 +123,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
           {/* Market section */}
           <MarketSection />
+          <ComparisonSection onCta={pauseAndNext} />
 
           {/* Testimonial videos */}
           <div className="space-y-4 sm:space-y-6">
