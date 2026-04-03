@@ -114,6 +114,9 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-12 sm:py-4 md:px-16 md:py-5 font-heading font-bold tracking-wide">
             COMEÇAR AVALIAÇÃO AGORA
           </CTAButton>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-2 font-body">
+            Investimento mínimo necessário de R$200.000,00
+          </p>
         </div>
 
           {/* Testimonial videos */}
