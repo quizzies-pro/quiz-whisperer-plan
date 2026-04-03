@@ -58,7 +58,7 @@ const ComparisonSection = React.memo(({ onCta }: ComparisonSectionProps) => {
         {/* CTA */}
         {onCta && (
           <div className="mt-12 sm:mt-14">
-            <CTAButton onClick={onCta} fullWidth className="text-base sm:text-lg md:text-xl px-10 py-5 sm:py-6">
+            <CTAButton onClick={onCta} className="text-base sm:text-lg md:text-xl px-14 sm:px-20 py-5 sm:py-6">
               COMEÇAR AVALIAÇÃO AGORA
             </CTAButton>
             <p className="text-xs sm:text-sm text-muted-foreground mt-3 font-body">
