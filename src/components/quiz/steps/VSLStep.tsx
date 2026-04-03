@@ -126,23 +126,34 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           <ComparisonSection onCta={pauseAndNext} />
 
           {/* Testimonial videos */}
-          <div className="space-y-4 sm:space-y-6">
-            <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
-              Confira o que os franqueados dizem
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto">
-              {[
-                { id: "rl-AYQ90-YU", title: "Case de Sucesso" },
-                { id: "6qa_JlGQQW8", title: "Viva a Experiência" },
-                { id: "hlEn0HbV36U", title: "Vivência" },
-                { id: "vtoTG4_fOBk", title: "Crescimento" },
-                { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
-                { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
-              ].map((video) => (
-                <VideoCard key={video.id} id={video.id} title={video.title} />
-              ))}
+          <section
+            className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 border-t border-b border-foreground/6"
+            style={{
+              backgroundImage: 'url(https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          >
+            <div className="absolute inset-0 bg-background/85" />
+            <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 space-y-4 sm:space-y-6">
+              <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
+                Confira o que os franqueados dizem
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                {[
+                  { id: "rl-AYQ90-YU", title: "Case de Sucesso" },
+                  { id: "6qa_JlGQQW8", title: "Viva a Experiência" },
+                  { id: "hlEn0HbV36U", title: "Vivência" },
+                  { id: "vtoTG4_fOBk", title: "Crescimento" },
+                  { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
+                  { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
+                ].map((video) => (
+                  <VideoCard key={video.id} id={video.id} title={video.title} />
+                ))}
+              </div>
             </div>
-          </div>
+          </section>
         </div>
       )}
 
