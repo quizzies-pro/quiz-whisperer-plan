@@ -199,7 +199,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
             <div className="max-w-5xl mx-auto px-4 sm:px-8">
               <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
                 <div className="flex-1 space-y-8 text-center md:text-left">
-                  <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl leading-snug" style={{ color: '#0D1B2E' }}>
+                  <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl leading-snug" style={{ color: '#0D1B2E' }}>
                     Seja um franqueado LocAgora{" "}
                     e fature mais de{" "}
                     <span className="text-primary bg-primary/15 px-1 rounded">R$400.000</span>{" "}
