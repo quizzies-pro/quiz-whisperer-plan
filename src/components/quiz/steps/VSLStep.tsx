@@ -123,6 +123,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
           {/* Market section */}
           <MarketSection />
+          <ComparisonSection onCta={pauseAndNext} />
 
           {/* Testimonial videos */}
           <div className="space-y-4 sm:space-y-6">
