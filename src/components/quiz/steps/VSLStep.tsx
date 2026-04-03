@@ -141,6 +141,9 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
         </div>
       )}
 
+      {/* Market section */}
+      <MarketSection />
+
       {/* Footer mark */}
       <div className="pt-6 pb-20 sm:pb-4">
         <p className="text-[10px] text-foreground/30 font-body tracking-wider uppercase">
