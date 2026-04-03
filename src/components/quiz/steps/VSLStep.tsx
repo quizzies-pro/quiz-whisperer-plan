@@ -189,6 +189,47 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
               </div>
             </div>
           </section>
+          {/* Franchise CTA section */}
+          <section
+            className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 !mt-0"
+            style={{
+              background: 'linear-gradient(180deg, hsl(140 60% 95%) 0%, hsl(140 50% 92%) 50%, hsl(140 60% 95%) 100%)',
+            }}
+          >
+            <div className="max-w-5xl mx-auto px-4 sm:px-8">
+              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div className="flex-1 space-y-8 text-center md:text-left">
+                  <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-navy-deep leading-snug">
+                    Seja um franqueado LocAgora<br />e fature mais de{" "}
+                    <span className="text-primary">R$400.000</span><br />
+                    por ano em um dos setores<br />que mais cresce no Brasil.
+                  </h2>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <div className="rounded-xl bg-navy-deep border border-foreground/6 px-6 py-5 text-center">
+                      <p className="text-sm text-white/70 font-body">Lucro líquido mensal estimado</p>
+                      <p className="font-heading font-extrabold text-xl text-primary mt-1">de 60 a 75%</p>
+                    </div>
+                    <div className="rounded-xl bg-navy-deep border border-foreground/6 px-6 py-5 text-center">
+                      <p className="text-sm text-white/70 font-body">Payback estimado de</p>
+                      <p className="font-heading font-extrabold text-xl text-primary mt-1">18 a 29 meses</p>
+                    </div>
+                  </div>
+                  <div>
+                    <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-16 sm:py-5 font-heading font-bold tracking-wide w-full sm:w-auto">
+                      QUERO CONHECER A LOCAGORA
+                    </CTAButton>
+                  </div>
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <img
+                    src="https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/ILUBRASILMAPA2_n44fir.webp"
+                    alt="Mapa do Brasil com franquias LocAgora"
+                    className="w-full max-w-lg object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       )}
 
