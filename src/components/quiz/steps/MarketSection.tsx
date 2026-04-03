@@ -15,9 +15,9 @@ const tickerItems = [
 const TickerContent = () => (
   <>
     {tickerItems.map((item, i) => (
-      <div key={i} className="flex items-center gap-2.5 px-6 shrink-0">
+      <div key={i} className="flex items-center gap-3 px-8 shrink-0">
         <span className="text-primary">{item.icon}</span>
-        <span className="font-heading font-bold text-sm sm:text-base text-foreground whitespace-nowrap">
+        <span className="font-heading font-bold text-base sm:text-lg text-foreground whitespace-nowrap">
           {item.text}
         </span>
       </div>
