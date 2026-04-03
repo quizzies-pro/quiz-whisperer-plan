@@ -125,49 +125,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           <MarketSection />
           <ComparisonSection onCta={pauseAndNext} />
 
-          {/* Why invest section */}
-          <section
-            className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 !mt-0"
-            style={{
-              background: 'linear-gradient(180deg, hsl(231 50% 16%) 0%, hsl(232 55% 11%) 50%, hsl(231 50% 16%) 100%)',
-            }}
-          >
-            <div className="max-w-5xl mx-auto px-4 sm:px-8">
-              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-12 sm:mb-16">
-                <div className="flex-1 space-y-4 text-center md:text-left">
-                  <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-foreground leading-snug">
-                    Por que investir na LocAgora<br />é o <span className="text-primary">melhor negócio</span>?
-                  </h2>
-                  <p className="text-sm sm:text-base text-muted-foreground font-body max-w-md mx-auto md:mx-0">
-                    Somos uma marca em constante crescimento e com presença nacional!
-                  </p>
-                </div>
-                <div className="flex-1 flex justify-center">
-                  <img
-                    src="https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313032/motobfloca_awd9rk.png"
-                    alt="Moto LocAgora"
-                    className="w-full max-w-md object-contain"
-                  />
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-                {[
-                  { value: "+1000", label: "FRANQUIAS ABERTAS" },
-                  { value: "+98", label: "CIDADES ATENDIDAS" },
-                  { value: "+100", label: "LOJAS EM OPERAÇÃO" },
-                ].map((stat) => (
-                  <div key={stat.label} className="rounded-xl bg-secondary/50 border border-foreground/6 p-6 sm:p-8 text-center">
-                    <p className="font-heading font-extrabold text-4xl sm:text-5xl text-primary">{stat.value}</p>
-                    <p className="font-heading font-bold text-xs sm:text-sm text-muted-foreground tracking-widest mt-2">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Testimonial videos */}
+          {/* Why invest + Testimonial videos */}
           <section
             className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 !mt-0"
             style={{
@@ -177,22 +135,57 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
               backgroundRepeat: 'no-repeat',
             }}
           >
-            <div className="absolute inset-0 bg-background/0" />
-            <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 space-y-4 sm:space-y-6">
-              <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
-                Confira o que os franqueados dizem
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                {[
-                  { id: "rl-AYQ90-YU", title: "Case de Sucesso" },
-                  { id: "6qa_JlGQQW8", title: "Viva a Experiência" },
-                  { id: "hlEn0HbV36U", title: "Vivência" },
-                  { id: "vtoTG4_fOBk", title: "Crescimento" },
-                  { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
-                  { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
-                ].map((video) => (
-                  <VideoCard key={video.id} id={video.id} title={video.title} />
-                ))}
+            <div className="max-w-5xl mx-auto px-4 sm:px-8 space-y-16 sm:space-y-24">
+              {/* Why invest */}
+              <div>
+                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-12 sm:mb-16">
+                  <div className="flex-1 space-y-4 text-center md:text-left">
+                    <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-foreground leading-snug">
+                      Por que investir na LocAgora<br />é o <span className="text-primary">melhor negócio</span>?
+                    </h2>
+                    <p className="text-sm sm:text-base text-muted-foreground font-body max-w-md mx-auto md:mx-0">
+                      Somos uma marca em constante crescimento e com presença nacional!
+                    </p>
+                  </div>
+                  <div className="flex-1 flex justify-center">
+                    <img
+                      src="https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313032/motobfloca_awd9rk.png"
+                      alt="Moto LocAgora"
+                      className="w-full max-w-md object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                  {[
+                    { value: "+1000", label: "FRANQUIAS ABERTAS" },
+                    { value: "+98", label: "CIDADES ATENDIDAS" },
+                    { value: "+100", label: "LOJAS EM OPERAÇÃO" },
+                  ].map((stat) => (
+                    <div key={stat.label} className="rounded-xl bg-secondary/50 border border-foreground/6 p-6 sm:p-8 text-center">
+                      <p className="font-heading font-extrabold text-4xl sm:text-5xl text-primary">{stat.value}</p>
+                      <p className="font-heading font-bold text-xs sm:text-sm text-muted-foreground tracking-widest mt-2">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Testimonial videos */}
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
+                  Confira o que os franqueados dizem
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                  {[
+                    { id: "rl-AYQ90-YU", title: "Case de Sucesso" },
+                    { id: "6qa_JlGQQW8", title: "Viva a Experiência" },
+                    { id: "hlEn0HbV36U", title: "Vivência" },
+                    { id: "vtoTG4_fOBk", title: "Crescimento" },
+                    { id: "nrVIL8DZygw", title: "Motos alugadas em 10 dias" },
+                    { id: "UJeqcMXjDbY", title: "Plano Fidelidade" },
+                  ].map((video) => (
+                    <VideoCard key={video.id} id={video.id} title={video.title} />
+                  ))}
+                </div>
               </div>
             </div>
           </section>
