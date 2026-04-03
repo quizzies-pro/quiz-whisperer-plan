@@ -41,27 +41,21 @@ const MarketSection = React.memo(() => {
               crescer ainda mais nos próximos anos
             </h2>
 
-            <p className="text-sm sm:text-base text-foreground/70 font-body leading-relaxed">
-              iFood, 99, Uber e agora… <strong className="text-foreground">Keeta.</strong>{" "}
+            <p className="text-sm sm:text-base text-foreground font-body leading-relaxed">
+              iFood, 99, Uber e agora… <strong>Keeta.</strong>{" "}
               O Brasil vive uma explosão histórica no setor de entregas e
               mobilidade urbana e{" "}
-              <strong className="text-foreground">
-                você pode alugar motos para entregadores.
-              </strong>
+              <strong>você pode alugar motos para entregadores.</strong>
             </p>
 
-            <p className="text-sm sm:text-base text-foreground/70 font-body leading-relaxed">
+            <p className="text-sm sm:text-base text-foreground font-body leading-relaxed">
               O brasileiro compra muito, pede muito e{" "}
-              <strong className="text-foreground">
-                precisa de entregadores todos os dias.
-              </strong>
+              <strong>precisa de entregadores todos os dias.</strong>
             </p>
 
-            <p className="text-sm sm:text-base text-foreground/60 font-body leading-relaxed">
+            <p className="text-sm sm:text-base text-foreground font-body leading-relaxed">
               E para cada entrega feita no Brasil, existe{" "}
-              <strong className="text-foreground">
-                uma única engrenagem indispensável: a moto.
-              </strong>
+              <strong>uma única engrenagem indispensável: a moto.</strong>
             </p>
           </div>
 
