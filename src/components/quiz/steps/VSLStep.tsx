@@ -193,31 +193,40 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           <section
             className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 !mt-0"
             style={{
-              background: 'linear-gradient(180deg, hsl(140 60% 95%) 0%, hsl(140 50% 92%) 50%, hsl(140 60% 95%) 100%)',
+              background: 'linear-gradient(180deg, hsl(130 40% 95%) 0%, hsl(130 35% 92%) 50%, hsl(130 40% 95%) 100%)',
             }}
           >
             <div className="max-w-5xl mx-auto px-4 sm:px-8">
-              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
                 <div className="flex-1 space-y-8 text-center md:text-left">
-                  <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-navy-deep leading-snug">
-                    Seja um franqueado LocAgora<br />e fature mais de{" "}
-                    <span className="text-primary">R$400.000</span><br />
-                    por ano em um dos setores<br />que mais cresce no Brasil.
+                  <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl leading-snug" style={{ color: '#0D1B2E' }}>
+                    Seja um franqueado LocAgora{" "}
+                    e fature mais de{" "}
+                    <span className="text-primary underline decoration-primary/30 underline-offset-4">R$400.000</span>{" "}
+                    por ano em um dos setores{" "}
+                    que mais cresce no Brasil.
                   </h2>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <div className="rounded-xl bg-navy-deep border border-foreground/6 px-6 py-5 text-center">
-                      <p className="text-sm text-white/70 font-body">Lucro líquido mensal estimado</p>
-                      <p className="font-heading font-extrabold text-xl text-primary mt-1">de 60 a 75%</p>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto md:mx-0">
+                    <div className="rounded-2xl px-5 py-6 sm:px-6 sm:py-7 text-center" style={{ background: '#0D1B2E' }}>
+                      <p className="text-xs sm:text-sm text-white/70 font-body leading-tight">Lucro líquido<br />mensal estimado</p>
+                      <p className="font-heading font-extrabold text-lg sm:text-2xl text-primary mt-2">de 60 a 75%</p>
                     </div>
-                    <div className="rounded-xl bg-navy-deep border border-foreground/6 px-6 py-5 text-center">
-                      <p className="text-sm text-white/70 font-body">Payback estimado de</p>
-                      <p className="font-heading font-extrabold text-xl text-primary mt-1">18 a 29 meses</p>
+                    <div className="rounded-2xl px-5 py-6 sm:px-6 sm:py-7 text-center" style={{ background: '#0D1B2E' }}>
+                      <p className="text-xs sm:text-sm text-white/70 font-body leading-tight">Payback<br />estimado de</p>
+                      <p className="font-heading font-extrabold text-lg sm:text-2xl text-primary mt-2">18 a 29 meses</p>
                     </div>
                   </div>
                   <div>
-                    <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-16 sm:py-5 font-heading font-bold tracking-wide w-full sm:w-auto">
+                    <button
+                      onClick={pauseAndNext}
+                      className="w-full sm:w-auto px-10 py-4 sm:px-16 sm:py-5 rounded-full font-heading font-bold text-sm md:text-base text-white tracking-wide uppercase transition-all duration-300 hover:scale-[1.02] hover:-translate-y-[2px]"
+                      style={{
+                        background: 'linear-gradient(90deg, #00C944 0%, #00E64D 50%, #4CAF50 100%)',
+                        boxShadow: '0 4px 24px rgba(0,230,77,0.30)',
+                      }}
+                    >
                       QUERO CONHECER A LOCAGORA
-                    </CTAButton>
+                    </button>
                   </div>
                 </div>
                 <div className="flex-1 flex justify-center">
