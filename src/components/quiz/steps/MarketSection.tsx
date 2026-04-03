@@ -1,9 +1,7 @@
 import React from "react";
-import news1 from "@/assets/news-1.jpg";
-import news2 from "@/assets/news-2.jpg";
-import news3 from "@/assets/news-3.jpg";
-import news4 from "@/assets/news-4.jpg";
 import { TrendingUp, Users, Infinity, Bike } from "lucide-react";
+
+const newsImage = "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313033/ILUNOTICIAS2_y3xbi0.webp";
 
 const tickerItems = [
   { icon: <TrendingUp className="w-5 h-5" />, text: "Cresce todos os anos" },
@@ -67,29 +65,11 @@ const MarketSection = React.memo(() => {
           </div>
 
           {/* Right — News collage */}
-          <div className="flex-1 relative min-h-[340px] sm:min-h-[400px] flex items-center justify-center">
+          <div className="flex-1 relative flex items-center justify-center">
             <img
-              src={news1}
-              alt="Notícia sobre entregadores"
-              className="absolute w-44 sm:w-52 rounded-lg shadow-dark -rotate-3 top-0 left-0 sm:left-4 z-10"
-              loading="lazy"
-            />
-            <img
-              src={news3}
-              alt="Notícia Exame sobre Keeta"
-              className="absolute w-44 sm:w-52 rounded-lg shadow-dark rotate-3 top-4 right-0 sm:right-4 z-20"
-              loading="lazy"
-            />
-            <img
-              src={news2}
-              alt="Notícia CNN sobre 99"
-              className="absolute w-44 sm:w-52 rounded-lg shadow-dark -rotate-2 bottom-4 left-8 sm:left-12 z-30"
-              loading="lazy"
-            />
-            <img
-              src={news4}
-              alt="Notícia sobre iFood"
-              className="absolute w-44 sm:w-52 rounded-lg shadow-dark rotate-2 bottom-0 right-4 sm:right-8 z-40"
+              src={newsImage}
+              alt="Notícias sobre o mercado de entregas no Brasil"
+              className="w-full max-w-[500px] rounded-lg shadow-dark"
               loading="lazy"
             />
           </div>
