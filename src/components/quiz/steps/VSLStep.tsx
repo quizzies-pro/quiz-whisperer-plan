@@ -206,14 +206,14 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
                     por ano em um dos setores{" "}
                     que mais cresce no Brasil.
                   </h2>
-                  <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto md:mx-0">
-                    <div className="rounded-2xl px-5 py-6 sm:px-6 sm:py-7 text-center" style={{ background: '#0D1B2E' }}>
-                      <p className="text-xs sm:text-sm text-white/70 font-body leading-tight">Lucro líquido<br />mensal estimado</p>
-                      <p className="font-heading font-extrabold text-lg sm:text-2xl text-primary mt-2">de 60 a 75%</p>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-5 max-w-lg mx-auto md:mx-0">
+                    <div className="rounded-2xl px-6 py-8 sm:px-8 sm:py-10 text-center flex flex-col items-center justify-center" style={{ background: '#0B1628' }}>
+                      <p className="text-xs sm:text-sm text-white/60 font-body leading-snug tracking-wide">Lucro líquido<br />mensal estimado</p>
+                      <p className="font-heading font-extrabold text-2xl sm:text-3xl text-primary mt-3">de 60 a 75%</p>
                     </div>
-                    <div className="rounded-2xl px-5 py-6 sm:px-6 sm:py-7 text-center" style={{ background: '#0D1B2E' }}>
-                      <p className="text-xs sm:text-sm text-white/70 font-body leading-tight">Payback<br />estimado de</p>
-                      <p className="font-heading font-extrabold text-lg sm:text-2xl text-primary mt-2">18 a 29 meses</p>
+                    <div className="rounded-2xl px-6 py-8 sm:px-8 sm:py-10 text-center flex flex-col items-center justify-center" style={{ background: '#0B1628' }}>
+                      <p className="text-xs sm:text-sm text-white/60 font-body leading-snug tracking-wide">Payback<br />estimado de</p>
+                      <p className="font-heading font-extrabold text-2xl sm:text-3xl text-primary mt-3">18 a 29 meses</p>
                     </div>
                   </div>
                   <div>
