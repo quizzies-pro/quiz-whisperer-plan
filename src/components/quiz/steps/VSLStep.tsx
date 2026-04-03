@@ -135,7 +135,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
               backgroundRepeat: 'no-repeat',
             }}
           >
-            <div className="absolute inset-0 bg-background/85" />
+            <div className="absolute inset-0 bg-background/0" />
             <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 space-y-4 sm:space-y-6">
               <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
                 Confira o que os franqueados dizem
