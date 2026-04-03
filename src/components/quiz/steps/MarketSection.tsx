@@ -34,7 +34,7 @@ const MarketSection = React.memo(() => {
           {/* Left — Text */}
           <div className="flex-1 space-y-5 max-w-xl">
             <h2
-              className="font-heading font-extrabold text-xl sm:text-2xl md:text-3xl text-primary italic leading-snug"
+              className="font-heading font-extrabold text-xl sm:text-2xl md:text-3xl text-primary leading-snug"
             >
               O mercado que JÁ gera mais de 1.6
               milhão de empregos no país vai
