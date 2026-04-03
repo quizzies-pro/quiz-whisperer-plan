@@ -15,9 +15,9 @@ const tickerItems = [
 const TickerContent = () => (
   <>
     {tickerItems.map((item, i) => (
-      <div key={i} className="flex items-center gap-2.5 px-6 shrink-0">
+      <div key={i} className="flex items-center gap-3 px-8 shrink-0">
         <span className="text-primary">{item.icon}</span>
-        <span className="font-heading font-bold text-sm sm:text-base text-foreground whitespace-nowrap">
+        <span className="font-heading font-bold text-base sm:text-lg text-foreground whitespace-nowrap">
           {item.text}
         </span>
       </div>
@@ -72,8 +72,8 @@ const MarketSection = React.memo(() => {
       </div>
 
       {/* Scrolling ticker bar */}
-      <div className="mt-14 sm:mt-20 max-w-5xl mx-auto px-4 sm:px-8">
-        <div className="py-5 sm:py-6 border border-foreground/15 rounded-2xl bg-card/60 overflow-hidden">
+      <div className="mt-14 sm:mt-20 max-w-6xl mx-auto px-4 sm:px-8">
+        <div className="py-7 sm:py-8 border border-foreground/15 rounded-2xl bg-card/60 overflow-hidden">
           <div className="flex animate-ticker">
             <TickerContent />
             <TickerContent />
