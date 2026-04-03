@@ -1,9 +1,7 @@
 import React from "react";
-import news1 from "@/assets/news-1.jpg";
-import news2 from "@/assets/news-2.jpg";
-import news3 from "@/assets/news-3.jpg";
-import news4 from "@/assets/news-4.jpg";
 import { TrendingUp, Users, Infinity, Bike } from "lucide-react";
+
+const newsImage = "https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313033/ILUNOTICIAS2_y3xbi0.webp";
 
 const tickerItems = [
   { icon: <TrendingUp className="w-5 h-5" />, text: "Cresce todos os anos" },
