@@ -217,16 +217,9 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
                     </div>
                   </div>
                   <div>
-                    <button
-                      onClick={pauseAndNext}
-                      className="w-full sm:w-auto px-10 py-4 sm:px-16 sm:py-5 rounded-full font-heading font-bold text-sm md:text-base text-white tracking-wide uppercase transition-all duration-300 hover:scale-[1.02] hover:-translate-y-[2px]"
-                      style={{
-                        background: 'linear-gradient(90deg, #00C944 0%, #00E64D 50%, #4CAF50 100%)',
-                        boxShadow: '0 4px 24px rgba(0,230,77,0.30)',
-                      }}
-                    >
+                    <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-16 sm:py-5 font-heading font-bold tracking-wide w-full sm:w-auto">
                       QUERO CONHECER A LOCAGORA
-                    </button>
+                    </CTAButton>
                   </div>
                 </div>
                 <div className="flex-1 flex justify-center">
