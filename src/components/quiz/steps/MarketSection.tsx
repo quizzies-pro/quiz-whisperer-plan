@@ -34,20 +34,20 @@ const MarketSection = React.memo(() => {
           {/* Left — Text */}
           <div className="flex-1 space-y-5 max-w-xl">
             <h2
-              className="font-heading font-extrabold text-xl sm:text-2xl md:text-3xl text-foreground italic leading-snug"
+              className="font-heading font-extrabold text-xl sm:text-2xl md:text-3xl text-primary italic leading-snug"
             >
-              O mercado que JÁ gera mais de{" "}
-              <span className="text-primary">1.6 milhão de empregos</span> no
-              país vai crescer ainda mais nos próximos anos
+              O mercado que JÁ gera mais de 1.6
+              milhão de empregos no país vai
+              crescer ainda mais nos próximos anos
             </h2>
 
             <p className="text-sm sm:text-base text-foreground/70 font-body leading-relaxed">
               iFood, 99, Uber e agora… <strong className="text-foreground">Keeta.</strong>{" "}
               O Brasil vive uma explosão histórica no setor de entregas e
               mobilidade urbana e{" "}
-              <span className="text-primary font-semibold">
+              <strong className="text-foreground">
                 você pode alugar motos para entregadores.
-              </span>
+              </strong>
             </p>
 
             <p className="text-sm sm:text-base text-foreground/70 font-body leading-relaxed">
