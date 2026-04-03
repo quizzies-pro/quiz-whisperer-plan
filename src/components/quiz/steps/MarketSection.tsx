@@ -72,11 +72,13 @@ const MarketSection = React.memo(() => {
       </div>
 
       {/* Scrolling ticker bar */}
-      <div className="mt-14 sm:mt-20 mx-4 sm:mx-8 py-4 sm:py-5 bg-card/80 border border-border/40 rounded-xl overflow-hidden">
-        <div className="flex animate-ticker">
-          <TickerContent />
-          <TickerContent />
-          <TickerContent />
+      <div className="mt-14 sm:mt-20 max-w-5xl mx-auto px-4 sm:px-8">
+        <div className="py-5 sm:py-6 border border-primary/40 rounded-2xl bg-card/60 overflow-hidden">
+          <div className="flex animate-ticker">
+            <TickerContent />
+            <TickerContent />
+            <TickerContent />
+          </div>
         </div>
       </div>
     </section>
