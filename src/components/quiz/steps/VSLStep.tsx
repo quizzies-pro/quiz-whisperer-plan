@@ -127,7 +127,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
           {/* Testimonial videos */}
           <section
-            className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 -mt-1"
+            className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 !mt-0"
             style={{
               backgroundImage: 'url(https://res.cloudinary.com/dqsuj0pjy/image/upload/v1774313034/bg2bfoca_bin3ti.webp)',
               backgroundSize: 'cover',
