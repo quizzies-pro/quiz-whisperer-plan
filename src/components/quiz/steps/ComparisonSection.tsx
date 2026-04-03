@@ -16,9 +16,9 @@ interface ComparisonSectionProps {
 const ComparisonSection = React.memo(({ onCta }: ComparisonSectionProps) => {
   return (
     <section
-      className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 text-center border-t border-b border-foreground/8"
+      className="w-screen relative left-1/2 -translate-x-1/2 py-16 sm:py-24 text-center border-t border-b border-foreground/6"
       style={{
-        background: 'linear-gradient(180deg, hsl(215 55% 13%) 0%, hsl(214 55% 10%) 40%, hsl(216 55% 7%) 100%)',
+        background: 'linear-gradient(180deg, hsl(216 60% 9%) 0%, hsl(216 55% 7%) 50%, hsl(216 60% 9%) 100%)',
       }}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-8">
