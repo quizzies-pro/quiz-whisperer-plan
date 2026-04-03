@@ -60,6 +60,9 @@ const WelcomeStep = React.memo(({ step, onNext }: WelcomeStepProps) => {
                 >
                   {step.buttonLabel || "CONTINUAR"}
                 </CTAButton>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-2 font-body">
+                  Investimento mínimo necessário de R$200.000,00
+                </p>
               </div>
 
               {step.privacyText && (
