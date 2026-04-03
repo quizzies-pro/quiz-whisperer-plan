@@ -27,7 +27,7 @@ const TickerContent = () => (
 
 const MarketSection = React.memo(() => {
   return (
-    <section className="w-full py-8 sm:py-12 relative overflow-hidden text-left">
+    <section className="w-full pt-16 sm:pt-24 pb-8 sm:pb-12 relative overflow-hidden text-left">
       {/* Content */}
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
