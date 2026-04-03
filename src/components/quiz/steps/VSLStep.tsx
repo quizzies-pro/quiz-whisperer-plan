@@ -216,8 +216,8 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
                       <p className="font-heading font-extrabold text-2xl sm:text-3xl text-primary mt-3">18 a 29 meses</p>
                     </div>
                   </div>
-                  <div>
-                    <CTAButton onClick={pauseAndNext} className="text-sm md:text-base px-10 py-3.5 sm:px-16 sm:py-5 font-heading font-bold tracking-wide w-full sm:w-auto">
+                  <div className="max-w-lg mx-auto md:mx-0">
+                    <CTAButton onClick={pauseAndNext} fullWidth className="text-sm md:text-base py-3.5 sm:py-5 font-heading font-bold tracking-wide">
                       QUERO CONHECER A LOCAGORA
                     </CTAButton>
                   </div>
