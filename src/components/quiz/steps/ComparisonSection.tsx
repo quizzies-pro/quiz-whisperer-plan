@@ -15,7 +15,7 @@ interface ComparisonSectionProps {
 
 const ComparisonSection = React.memo(({ onCta }: ComparisonSectionProps) => {
   return (
-    <section className="w-full pt-16 sm:pt-24 pb-8 sm:pb-12 text-center">
+    <section className="w-full pt-16 sm:pt-24 pb-12 sm:pb-16 text-center border-t border-b border-border/40" style={{ background: 'linear-gradient(180deg, hsl(214 55% 10%) 0%, hsl(216 55% 7%) 100%)' }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-8">
         <p className="text-sm sm:text-base uppercase tracking-[0.2em] text-muted-foreground font-heading mb-4">
           Por que somos a melhor escolha?
