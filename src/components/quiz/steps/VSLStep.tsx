@@ -120,6 +120,9 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           </p>
         </div>
 
+          {/* Market section */}
+          <MarketSection />
+
           {/* Testimonial videos */}
           <div className="space-y-4 sm:space-y-6">
             <h3 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-foreground text-center">
@@ -140,9 +143,6 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
           </div>
         </div>
       )}
-
-      {/* Market section */}
-      <MarketSection />
 
       {/* Footer mark */}
       <div className="pt-6 pb-20 sm:pb-4">
