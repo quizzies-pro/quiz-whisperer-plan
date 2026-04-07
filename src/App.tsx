@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Quiz from "./pages/Quiz";
 import QuizStep from "./pages/QuizStep";
+import Faro from "./pages/Faro";
 import NotFound from "./pages/NotFound";
 
 const stepRoutes = [
@@ -32,6 +33,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Quiz />} />
+          <Route path="/faro" element={<Faro />} />
           <Route path="/quiz/step/1" element={<QuizStep />} />
           <Route path="/quiz/step/2" element={<QuizStep />} />
           <Route path="/quiz/step/3" element={<QuizStep />} />
