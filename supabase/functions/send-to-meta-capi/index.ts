@@ -78,15 +78,11 @@ serve(async (req) => {
       userData.external_id = [await sha256(crypto.randomUUID())];
     }
 
-    // Build custom_data from quiz answers
+    // Build custom_data from current quiz answers (steps 3 and 8)
     const customData: Record<string, string> = {};
     if (answers) {
-      if (answers["5"]) customData.objetivo = answers["5"];
-      if (answers["6"]) customData.experiencia = answers["6"];
-      if (answers["7"]) customData.tamanho_cidade = answers["7"];
-      if (answers["8"]) customData.disponibilidade = answers["8"];
-      if (answers["10"]) customData.faixa_investimento = answers["10"];
-      if (answers["11"]) customData.qtd_motos = answers["11"];
+      if (answers["3"]) customData.interesse = answers["3"];
+      if (answers["8"]) customData.faixa_investimento = answers["8"];
     }
 
     const eventData: Record<string, unknown> = {
