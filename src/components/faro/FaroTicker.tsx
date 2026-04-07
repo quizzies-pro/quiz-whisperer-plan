@@ -17,15 +17,15 @@ const ITEMS = [
 
 const FaroTicker: React.FC = () => {
   return (
-    <div className="w-full bg-white border-y border-gray-200 overflow-hidden py-4">
-      <p className="text-center text-[10px] sm:text-xs tracking-[0.3em] uppercase text-gray-400 font-heading font-semibold mb-3">
+    <div className="w-full bg-white py-5 overflow-hidden" style={{ borderBottom: '1px solid #e5e7eb' }}>
+      <p className="text-center text-[10px] tracking-[0.35em] uppercase font-heading font-semibold mb-4" style={{ color: '#9ca3af' }}>
         Presença Nacional Comprovada
       </p>
       <div className="relative overflow-hidden">
         <div className="flex animate-ticker whitespace-nowrap">
-          {[...ITEMS, ...ITEMS].map((item, i) => (
-            <span key={i} className="inline-flex items-center gap-2 px-4 sm:px-6 text-xs sm:text-sm text-gray-700 font-body font-medium shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2B2BFF] shrink-0" />
+          {[...ITEMS, ...ITEMS, ...ITEMS].map((item, i) => (
+            <span key={i} className="inline-flex items-center gap-2.5 px-5 text-xs font-body font-medium shrink-0" style={{ color: '#374151' }}>
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#2B2BFF' }} />
               {item}
             </span>
           ))}
