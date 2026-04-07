@@ -63,7 +63,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     }
   }, []);
   return (
-    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto overscroll-none" style={{ backgroundImage: 'linear-gradient(to bottom, hsl(var(--background)) 80%, hsl(130 40% 95%) 100%)' }}>
+    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto overscroll-none">
     {/* Green banner strip */}
     <div className="w-full bg-primary py-2.5 sm:py-3 text-center flex-shrink-0 z-20">
       <p className="font-heading font-extrabold sm:text-sm md:text-base text-primary-foreground tracking-widest uppercase text-sm">
@@ -78,7 +78,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     >
       <div className="absolute inset-x-0 bottom-0 h-[30%] sm:h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
     </div>
-    <div className="relative z-10 max-w-5xl w-full space-y-3 sm:space-y-6 md:space-y-8 animate-fade-in text-center px-4 pt-6 sm:pt-16 pb-[100px] sm:pb-[120px]">
+    <div className="relative z-10 max-w-5xl w-full space-y-3 sm:space-y-6 md:space-y-8 animate-fade-in text-center px-4 pt-6 sm:pt-16 pb-0">
       <img src={logoLocagora} alt="LocaGora" className="h-8 sm:h-10 md:h-16 mx-auto object-contain mb-4 sm:mb-8" />
 
       <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-[2.75rem] tracking-[-0.02em] text-foreground max-w-5xl mx-auto" style={{ lineHeight: 1.2 }}>
