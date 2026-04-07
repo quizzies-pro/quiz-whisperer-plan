@@ -39,10 +39,8 @@ serve(async (req) => {
     // Lead is now saved progressively by the save-lead function
 
     const quizSummary = [
-      `Objetivo: ${answers?.["5"] || "N/A"}`,
-      `Experiência: ${answers?.["6"] || "N/A"}`,
-      `Tempo: ${answers?.["7"] || "N/A"}`,
-      `Investimento: ${answers?.["9"] || "N/A"}`,
+      `Interesse: ${answers?.["3"] || "N/A"}`,
+      `Investimento: ${answers?.["8"] || "N/A"}`,
     ].join(" | ");
 
     const payload = {
