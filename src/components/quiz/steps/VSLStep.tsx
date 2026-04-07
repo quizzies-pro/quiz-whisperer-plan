@@ -63,7 +63,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
     }
   }, []);
   return (
-    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto" style={{ backgroundColor: 'hsl(130 40% 95%)' }}>
+    <div ref={scrollRef} className="h-full w-full relative flex flex-col items-center scrollbar-none overflow-y-auto">
     {/* Green banner strip */}
     <div className="w-full bg-primary py-2.5 sm:py-3 text-center flex-shrink-0 z-20">
       <p className="font-heading font-extrabold sm:text-sm md:text-base text-primary-foreground tracking-widest uppercase text-sm">
@@ -237,7 +237,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
       {/* Footer mark */}
       <div
-        className="w-screen relative left-1/2 -translate-x-1/2 pt-6 pb-20 sm:pb-6 text-center !mt-0 flex-1 flex items-start justify-center"
+        className="w-screen relative left-1/2 -translate-x-1/2 pt-6 pb-[200px] sm:pb-[150px] text-center !mt-0"
         style={{ background: 'hsl(130 40% 95%)' }}
       >
         <p className="text-[10px] font-body tracking-wider uppercase" style={{ color: 'hsl(130 20% 40%)' }}>
