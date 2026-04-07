@@ -237,7 +237,7 @@ const VSLStep = React.memo(({ step, onNext }: VSLStepProps) => {
 
       {/* Footer mark */}
       <div
-        className="w-screen relative left-1/2 -translate-x-1/2 pt-6 pb-20 sm:pb-6 text-center !mt-0 flex-1 flex items-start justify-center"
+        className="w-screen relative left-1/2 -translate-x-1/2 pt-6 pb-[200px] sm:pb-[150px] text-center !mt-0"
         style={{ background: 'hsl(130 40% 95%)' }}
       >
         <p className="text-[10px] font-body tracking-wider uppercase" style={{ color: 'hsl(130 20% 40%)' }}>
