@@ -69,7 +69,7 @@ async function getAccessToken(email: string, privateKeyPem: string): Promise<str
 // Helper: fetch all rows from the sheet
 async function getSheetData(accessToken: string, sheetId: string): Promise<string[][]> {
   const res = await fetch(
-    `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:I`,
+    `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:F`,
     { headers: { Authorization: `Bearer ${accessToken}` } }
   );
   const data = await res.json();
@@ -104,7 +104,7 @@ serve(async (req) => {
     }
 
     const body = await req.json();
-    const { name, phone, email: leadEmail, answers } = body;
+    const { name, phone, email: leadEmail, answers, current_step } = body;
 
     if (!name && !leadEmail) {
       return new Response(JSON.stringify({ error: "Name or email required" }), {
@@ -118,15 +118,26 @@ serve(async (req) => {
 
     const now = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
 
+    // Columns: A=Nome, B=Email, C=WhatsApp, D=Interesse, E=Investimento, F=Última atualização
+    const investimentoMap: Record<string, string> = {
+      "menos_200k": "Menos de 200 Mil",
+      "200k_300k": "200 a 300 Mil",
+      "300k_500k": "300 a 500 Mil",
+      "500k_700k": "500 a 700 Mil",
+      "mais_700k": "Acima de 700 Mil",
+    };
+
+    const interesseMap: Record<string, string> = {
+      "interesse_franquia": "Franquia",
+      "alugar_moto": "Alugar moto",
+    };
+
     const row = [
       name || "",
       leadEmail || "",
       phone ? `'${phone}` : "",
-      answers?.["5"] || "",
-      answers?.["6"] || "",
-      answers?.["7"] || "",
-      answers?.["9"] || "",
-      String(body.current_step || ""),
+      answers?.["3"] ? (interesseMap[answers["3"]] || answers["3"]) : "",
+      answers?.["8"] ? (investimentoMap[answers["8"]] || answers["8"]) : "",
       now,
     ];
 
@@ -138,7 +149,7 @@ serve(async (req) => {
 
     if (existingRowIndex > 0) {
       // UPDATE existing row
-      const range = `A${existingRowIndex}:I${existingRowIndex}`;
+      const range = `A${existingRowIndex}:F${existingRowIndex}`;
       sheetsRes = await fetch(
         `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?valueInputOption=USER_ENTERED`,
         {
@@ -154,7 +165,7 @@ serve(async (req) => {
     } else {
       // APPEND new row
       sheetsRes = await fetch(
-        `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:I:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+        `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A:F:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
         {
           method: "POST",
           headers: {
