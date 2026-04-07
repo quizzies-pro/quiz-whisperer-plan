@@ -10,7 +10,7 @@ const Faro = () => {
   const handleCTA = () => navigate("/quiz/step/2");
 
   return (
-    <div className="w-full min-h-screen bg-white text-gray-900 overflow-x-hidden">
+    <div className="w-full min-h-screen overflow-x-hidden" style={{ background: '#ffffff' }}>
       <FaroHero onCTA={handleCTA} />
       <FaroTicker />
       <FaroDelivery />
