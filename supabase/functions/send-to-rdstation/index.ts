@@ -61,6 +61,18 @@ serve(async (req) => {
       );
     }
 
+    // Block fake/spam phone numbers
+    if (isFakePhone(phone)) {
+      console.warn("Blocked fake phone number:", phone);
+      return new Response(
+        JSON.stringify({ error: "Invalid phone number", blocked: true }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
     // Lead is now saved progressively by the save-lead function
 
     const quizSummary = [
