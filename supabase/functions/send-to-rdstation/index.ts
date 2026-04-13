@@ -1,5 +1,30 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+/** Returns true if the phone number looks fake/spam */
+function isFakePhone(phone: string): boolean {
+  if (!phone) return false;
+  const digits = phone.replace(/\D/g, "");
+  if (digits.length < 7) return true;
+
+  // All same digit: 00000000, 11111111, 99999999, etc.
+  if (/^(\d)\1+$/.test(digits)) return true;
+
+  // Sequential ascending: 1234567890
+  const ascending = "01234567890123456789";
+  if (digits.length >= 7 && ascending.includes(digits)) return true;
+
+  // Sequential descending: 9876543210
+  const descending = "98765432109876543210";
+  if (digits.length >= 7 && descending.includes(digits)) return true;
+
+  // Common spam patterns (with or without country code)
+  const stripped = digits.replace(/^(55|1|52|351)/, "");
+  if (/^(\d)\1+$/.test(stripped)) return true;
+  if (stripped.length >= 7 && ascending.includes(stripped)) return true;
+  if (stripped.length >= 7 && descending.includes(stripped)) return true;
+
+  return false;
+}
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
